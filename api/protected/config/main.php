@@ -24,14 +24,7 @@ return array(
 		'application.components.*',
 	),
 
-	'modules'=>array(
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'123',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('192.168.1.102','::1'),
-		),
-	),
+	'modules'=>array('client',),
 
 	// application components
 	'components'=>array(
@@ -39,6 +32,7 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+	    
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(

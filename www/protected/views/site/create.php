@@ -1,15 +1,26 @@
 <?php
 /* @var $this SiteController */
 /* @var $model Admin */
-
-$this->breadcrumbs=array(
-	'Admins'=>array('index'),
-	'Create',
+$this->breadcrumbs = array(
+    'Admins' => array(
+        'index'
+    ),
+    'Create'
 );
 
-$this->menu=array(
-	array('label'=>'List Admin', 'url'=>array('index')),
-	array('label'=>'Manage Admin', 'url'=>array('admin')),
+$this->menu = array(
+    array(
+        'label' => 'List Admin',
+        'url' => array(
+            'index'
+        )
+    ),
+    array(
+        'label' => 'Manage Admin',
+        'url' => array(
+            'admin'
+        )
+    )
 );
 ?>
 

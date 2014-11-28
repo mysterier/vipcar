@@ -7,17 +7,11 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
+	<br /> <b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
 	<?php echo CHtml::encode($data->name); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('passwd')); ?>:</b>
+	<br /> <b><?php echo CHtml::encode($data->getAttributeLabel('passwd')); ?>:</b>
 	<?php echo CHtml::encode($data->passwd); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('created')); ?>:</b>
+	<br /> <b><?php echo CHtml::encode($data->getAttributeLabel('created')); ?>:</b>
 	<?php echo CHtml::encode($data->created); ?>
 	<br />
 

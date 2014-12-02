@@ -8,6 +8,7 @@
  * @property string $real_name
  * @property string $avatar
  * @property string $mobile
+ * @property string $password
  * @property string $email
  * @property string $credit_record
  * @property string $city_id

@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'tbl_drivers':
  * @property string $id
  * @property string $name
+ * @property string $password
  * @property integer $age
  * @property string $sex
  * @property string $id_card
@@ -13,7 +14,7 @@
  * @property string $valid_from
  * @property string $valid_for
  * @property string $address
- * @property string $tel
+ * @property string $mobile
  * @property string $contacter
  * @property string $contacter_tel
  * @property string $police_check

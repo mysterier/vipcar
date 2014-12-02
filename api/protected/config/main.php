@@ -24,7 +24,7 @@ return array(
 		'application.components.*',
 	),
 
-	'modules'=>array('client',),
+	'modules'=>array('client','driver'),
 
 	// application components
 	'components'=>array(

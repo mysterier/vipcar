@@ -73,6 +73,11 @@ class Clients extends CActiveRecord
                 self::HAS_MANY,
                 'Orders',
                 'client_id'
+            ],
+            'client_msg' => [
+                self::HAS_MANY,
+                'ClientMessage',
+                'client_id'
             ]
         ];
     }

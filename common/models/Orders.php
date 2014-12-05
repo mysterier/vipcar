@@ -12,7 +12,11 @@
  * @property string $driver_id
  * @property string $license_no
  * @property double $estimated_cost
- * @property string $carusing_time
+ * @property double $order_income
+ * @property string $travel_duration
+ * @property double $travel_distance
+ * @property double $packing_fee
+ * @property double $highway_fee
  * @property string $pickup_place
  * @property string $drop_place
  * @property string $summary
@@ -39,17 +43,31 @@ class Orders extends CActiveRecord
      */
     public function rules()
     {
-        return array(
-            array(
-                'order_no, client_id, contacter_name, contacter_phone, driver_id, license_no, estimated_cost, carusing_time, pickup_place, drop_place',
-                'required'
-            ),
-            array(
+        return [
+            [
+                'order_no, client_id, contacter_name, contacter_phone, driver_id, license_no, estimated_cost, travel_duration, pickup_place, drop_place',
+                'required',
+                'on' => 'new'
+            ],
+            
+            [
+                'travel_duration,travel_distance,travel_distance,packing_fee,highway_fee',
+                'required',
+                'on' => 'update'
+            ],
+            
+            [
+                'packing_fee,travel_distance,highway_fee',
+                'numerical',
+                'on' => 'update'
+            ],
+            
+            [
                 'order_no, license_no, pickup_place, drop_place',
                 'safe',
                 'on' => 'search'
-            )
-        );
+            ]
+        ];
     }
 
     /**

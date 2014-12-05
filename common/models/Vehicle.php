@@ -7,8 +7,6 @@
  * @property string $id
  * @property string $license_no
  * @property string $vehicle_model_id
- * @property string $vehicle_model
- * @property string $vehicle_type
  * @property string $engine_no
  * @property string $frame_no
  * @property string $insurance
@@ -44,7 +42,7 @@ class Vehicle extends CActiveRecord
     {
         return array(
             array(
-                'license_no, vehicle_model_id, vehicle_model, vehicle_type, engine_no, frame_no, insurance, inspection, vehicle_license_path, policy_path',
+                'license_no, vehicle_model_id, engine_no, frame_no, insurance, inspection, vehicle_license_path, policy_path',
                 'required'
             ),
             array(

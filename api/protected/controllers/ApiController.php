@@ -22,4 +22,24 @@ class ApiController extends Controller
     public function actionOrderlist() {
         $this->render('order_list');
     }
+    
+    public function actionOrderdetail() {
+        $this->render('order_detail');
+    }
+   
+    public function actionOrderstatus() {
+        $this->render('order_status');
+    }
+    
+    public function actionOrdermodify() {
+        $this->render('order_modify');
+    }
+    
+    public function actionDriverinfor() {
+        $this->render('driverinfor');
+    }
+    
+    public function actionMessagelist() {
+        $this->render('message_list');
+    }
 }

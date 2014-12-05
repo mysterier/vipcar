@@ -1,13 +1,17 @@
 <?php
 
 /**
- * This is the model class for table "tbl_city".
+ * This is the model class for table "tbl_personal_message".
  *
- * The followings are the available columns in table 'tbl_city':
+ * The followings are the available columns in table 'tbl_personal_message':
  * @property string $id
- * @property string $name
+ * @property string $client_id
+ * @property string $client_type
+ * @property string $tpl_id
+ * @property string $created
+ * @property string $last_update
  */
-class City extends CActiveRecord
+class ClientMessage extends CActiveRecord
 {
 
     /**
@@ -16,7 +20,7 @@ class City extends CActiveRecord
      */
     public function tableName()
     {
-        return 'tbl_city';
+        return 'tbl_client_message';
     }
 
     /**
@@ -34,11 +38,17 @@ class City extends CActiveRecord
      */
     public function relations()
     {
-        return [
-            'clients' => [
-                self::HAS_MANY,
+        return [            
+            'client' => [
+                self::BELONGS_TO,
                 'Clients',
-                'city_id'
+                'client_id'
+            ],
+            
+            'tpl' => [
+                self::BELONGS_TO,
+                'MessageTpl',
+                'tpl_id'
             ]
         ];
     }
@@ -51,17 +61,21 @@ class City extends CActiveRecord
     {
         return array(
             'id' => 'ID',
-            'name' => '城市'
+            'client_id' => '用户id',
+            'client_type' => '用户类型 ',
+            'tpl_id' => '消息模板id',
+            'created' => '创建时间',
+            'last_update' => '最后更新时间'
         );
     }
 
     /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
-     *
+     * 
      * @param string $className
      *            active record class name.
-     * @return City the static model class
+     * @return PersonalMessage the static model class
      */
     public static function model($className = __CLASS__)
     {

@@ -9,8 +9,10 @@
  * @property string $password
  * @property integer $age
  * @property string $sex
+ * @property string $avatar
  * @property string $id_card
  * @property string $level
+ * @property string $driver_level
  * @property string $valid_from
  * @property string $valid_for
  * @property string $address
@@ -23,6 +25,7 @@
  * @property string $health
  * @property string $status
  * @property string $created
+ * @property integer $last_update
  */
 class Drivers extends CActiveRecord
 {
@@ -70,6 +73,11 @@ class Drivers extends CActiveRecord
             'orders' => [
                 self::HAS_MANY,
                 'Orders',
+                'driver_id'
+            ],
+            'driver_msg' => [
+                self::HAS_MANY,
+                'DriverMessage',
                 'driver_id'
             ]
         ];

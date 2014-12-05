@@ -123,6 +123,7 @@ class ApiLoginForm extends CFormModel
             if (! $tobj->save())
                 return false;
         }
+        Yii::app()->controller->result['id'] = $uid;
         Yii::app()->controller->result['token'] = $token;
         return true;
     }

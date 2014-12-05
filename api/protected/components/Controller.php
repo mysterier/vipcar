@@ -12,12 +12,12 @@ class Controller extends CController
     public $menu = array();
 
     public $breadcrumbs = array();
-    
+
     public $uid;
 
     public $result = [
-        'error_code' => - 1,
-        'error_msg' => 'params error'
+        'error_code' => ERROR_DEFAULT,
+        'error_msg' => ERROR_MSG_DEFAULT
     ];
 
     protected function beforeAction($action)
@@ -25,13 +25,13 @@ class Controller extends CController
         if ($this->module) {
             if (! count($_POST)) {
                 
-                $this->result['error_msg'] = 'Please POST first!';
+                $this->result['error_msg'] = ERROR_MSG_CHECK_POST;
                 $result = json_encode($this->result);
                 echo $result;
                 return false;
             }
             
-            if ($this->id != 'login' && ! $this->check_token())
+            if ($this->id != 'login' && ! $this->checkToken())
                 
                 return false;
         }
@@ -45,17 +45,17 @@ class Controller extends CController
         echo $result;
     }
 
-    public function check_token()
+    public function checkToken()
     {
         $obj_token = new Token('check');
         $obj_token->attributes = $_POST;
         if (! $obj_token->validate()) {
-            $this->result['error_msg'] = '账号在其他地方登陆';
+            $this->result['error_msg'] = ERROR_MSG_SSO;
             $result = json_encode($this->result);
             echo $result;
             return false;
         }
-        $this->uid = $this->get_uid($this->get_param('token'));
+        $this->uid = $this->getUid($this->getParam('token'));
         return true;
     }
 
@@ -65,7 +65,7 @@ class Controller extends CController
      * @param obj $model            
      * @author lqf
      */
-    public function add_errors($model)
+    public function addErrors($model)
     {
         $error_str = '';
         if ($model->hasErrors()) {
@@ -83,23 +83,24 @@ class Controller extends CController
      * @param string $param            
      * @author lqf
      */
-    public function get_param($param)
+    public function getParam($param)
     {
         return (isset($_POST[$param]) && (strval($_POST[$param]) != '')) ? trim(strval($_POST[$param])) : '';
     }
-    
+
     /**
      * 根据token获取uid
-     * 
-     * @param string $token
+     *
+     * @param string $token            
      * @author lqf
      */
-    public function get_uid($token) {
+    public function getUid($token)
+    {
         $module = $this->module->id;
         $module = ($module == 'driver') ? '2' : '1';
         $type = substr($token, 0, 1);
         if ($module != $type) {
-            $this->result['error_msg'] = '用户类型有误';
+            $this->result['error_msg'] = ERROR_MSG_USER_TYPE;
             $result = json_encode($this->result);
             echo $result;
             Yii::app()->end();
@@ -108,10 +109,78 @@ class Controller extends CController
         $uid = substr($token, 33);
         return $uid;
     }
-    
-    public function get_api_lastupdate() {
-        return '99999';
+
+    /**
+     * 获取api最后更新时间
+     * 主要针对orderlist接口
+     *
+     * @return string
+     * @author lqf
+     */
+    public function getApiLastUpdate()
+    {
+        $token = $this->getParam('token');
+        $url = $this->getUrl();
+        
+        $c = new CDbCriteria();
+        $c->select = 'last_update';
+        $c->condition = 'token =:token and url=:url';
+        $c->params = [
+            'token' => $token,
+            'url' => $url            
+        ];
+        $model = ApiLastupdate::model()->find($c);
+        if ($model)
+            return $model->last_update;
+        $this->result['error_msg'] = ERROR_MSG_DB;
+        $result = json_encode($this->result);
+        echo $result;
+        Yii::app()->end();
     }
-    
-    public function set_api_lastupdate() {}
+
+    /**
+     * 设置api最后更新时间
+     * 主要针对orderlist接口
+     *
+     * @return string
+     * @author lqf
+     */
+    public function setApiLastUpdate()
+    {
+        $token = $this->getParam('token');
+        $url = $this->getUrl();
+        $api = substr($url, 1);
+        $api = str_replace('/', '_', $api);
+        
+        $c = new CDbCriteria();
+        $c->condition = 'token =:token and url=:url';
+        $c->params = [
+            'token' => $token,
+            'url' => $url
+        ];
+        $model = ApiLastupdate::model()->find($c);
+        if (!$model)
+            $model = new ApiLastupdate();
+        
+        $model->attributes = [
+            'last_update' => time(),
+            'token' => $token,
+            'api' => $api,
+            'url' => $url
+        ];
+        return $model->save();
+    }
+
+    /**
+     * 去除url最后一个横杠
+     *
+     * @return mixed
+     * @author lqf
+     */
+    public function getUrl()
+    {
+        $url = Yii::app()->request->url;
+        $url = preg_replace('/\/$/', '', $url);
+        return $url;
+    }
 }

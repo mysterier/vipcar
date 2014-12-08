@@ -29,6 +29,7 @@ class DriverinforController extends Controller
             $result['car_name'] = $car_name;
             $result['car_level'] = $car_level;
             $result['car_number'] = $car_number;
+            $result['last_update'] = $model->last_update;
             $this->result = $result;
         } else {
             $this->result['error_code'] = API_MAINTAIN_DRIVER_INFO;

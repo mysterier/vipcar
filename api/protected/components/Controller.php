@@ -31,7 +31,7 @@ class Controller extends CController
                 return false;
             }
             
-            if ($this->id != 'login' && ! $this->checkToken())
+            if ($this->id != 'login' && $this->id != 'register' && ! $this->checkToken())
                 
                 return false;
         }
@@ -97,7 +97,7 @@ class Controller extends CController
     public function getUid($token)
     {
         $module = $this->module->id;
-        $module = ($module == 'driver') ? '2' : '1';
+        $module = ($module == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT;
         $type = substr($token, 0, 1);
         if ($module != $type) {
             $this->result['error_msg'] = ERROR_MSG_USER_TYPE;
@@ -119,14 +119,14 @@ class Controller extends CController
      */
     public function getApiLastUpdate()
     {
-        $token = $this->getParam('token');
         $url = $this->getUrl();
         
         $c = new CDbCriteria();
         $c->select = 'last_update';
-        $c->condition = 'token =:token and url=:url';
+        $c->condition = 'uid =:uid and utype=:utype and url=:url';
         $c->params = [
-            'token' => $token,
+            'uid' => $this->uid,
+            'utype' => ($this->module->id == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT,
             'url' => $url            
         ];
         $model = ApiLastupdate::model()->find($c);
@@ -147,15 +147,16 @@ class Controller extends CController
      */
     public function setApiLastUpdate()
     {
-        $token = $this->getParam('token');
         $url = $this->getUrl();
         $api = substr($url, 1);
         $api = str_replace('/', '_', $api);
+        $utype = ($this->module->id == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT;
         
         $c = new CDbCriteria();
-        $c->condition = 'token =:token and url=:url';
+        $c->condition = 'uid =:uid and utype=:utype url=:url';
         $c->params = [
-            'token' => $token,
+            'uid' => $this->uid,
+            'utype' => $utype,
             'url' => $url
         ];
         $model = ApiLastupdate::model()->find($c);
@@ -164,7 +165,8 @@ class Controller extends CController
         
         $model->attributes = [
             'last_update' => time(),
-            'token' => $token,
+            'uid' => $this->uid,
+            'utype' => $utype,
             'api' => $api,
             'url' => $url
         ];

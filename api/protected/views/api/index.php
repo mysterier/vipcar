@@ -17,3 +17,5 @@ $this->breadcrumbs=array(
 <h2><a href="/api/messagelist">司机消息</a></h2>
 
 <h1>客户端API测试</h1>
+
+<h2><a href="/api/cregister">注册接口</a></h2>

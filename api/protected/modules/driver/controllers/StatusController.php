@@ -25,11 +25,7 @@ class StatusController extends Controller
         }
         
         $model = Drivers::model()->updateByPk($this->uid, $attributes);
-        if ($model) {
-            $this->result['error_code'] = SUCCESS_DEFAULT;
-            $this->result['error_msg'] = '';
-        } else {
-            $this->result['error_msg'] = '状态未更新！';
-        }
+        $this->result['error_code'] = SUCCESS_DEFAULT;
+        $this->result['error_msg'] = $model ? '' : $this->result['error_msg'] = '状态未更新！';
     }
 }

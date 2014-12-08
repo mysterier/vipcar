@@ -99,7 +99,7 @@ class ApiLoginForm extends CFormModel
         $password = $scenario . '_pass';
         
         $uid = $this->user_id->id;
-        $type = ($scenario == 'driver') ? '2' : '1';
+        $type = ($scenario == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT;
         $token = $type . md5(time() . $uid . $type) . $uid;
         $attributes = [
             'client_id' => $uid,

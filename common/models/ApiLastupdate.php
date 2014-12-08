@@ -5,7 +5,8 @@
  *
  * The followings are the available columns in table 'tbl_api_lastupdate':
  * @property string $id
- * @property string $token
+ * @property string $uid
+ * @property string $utype
  * @property string $api
  * @property string $url
  * @property string $last_update
@@ -27,7 +28,7 @@ class ApiLastupdate extends CActiveRecord
 	{
 		return [
 		    [
-		        'last_update,token,api,url',
+		        'last_update,uid,utype,api,url',
 		         'safe'
 		    ]		    
 		];
@@ -40,7 +41,8 @@ class ApiLastupdate extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'token' => 'token',
+			'uid' => '用户id',
+		    'utype' => '用户类型',
 			'api' => 'api名称',
 			'url' => 'api对应的url',
 			'last_update' => '最后更新时间',

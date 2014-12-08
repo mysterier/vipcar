@@ -42,4 +42,11 @@ class ApiController extends Controller
     public function actionMessagelist() {
         $this->render('message_list');
     }
+    
+    
+    //=====================客户端=============
+    
+    public function actionCRegister() {
+        $this->render('cregister');
+    }
 }

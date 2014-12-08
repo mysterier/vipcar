@@ -31,6 +31,9 @@ class MessageController extends Controller
             $this->result['error_msg'] = '';
             $this->result['last_message_sid'] = $id;
             $this->result['message'] = $message;
+        } else {
+            $this->result['error_code'] = API_MAINTAIN_MESSAGE;
+            $this->result['error_msg'] = API_MAINTAIN_MESSAGE_MSG;
         }
     }
 }

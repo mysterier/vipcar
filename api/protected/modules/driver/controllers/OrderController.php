@@ -151,6 +151,7 @@ class OrderController extends Controller
         if ($orders) {
             foreach ($orders as $order) {
                 $this->orders[] = [
+                    'order_sid' => $order->id,
                     'order_no' => $order->order_no,
                     'pickup_place' => $order->pickup_place,
                     'drop_place' => $order->drop_place,

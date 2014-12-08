@@ -19,3 +19,5 @@ $this->breadcrumbs=array(
 <h1>客户端API测试</h1>
 
 <h2><a href="/api/cregister">注册接口</a></h2>
+<h2><a href="/api/cregvalidate">验证码校验接口</a></h2>
+<h2><a href="/api/clogin">客户端登陆login</a></h2>

@@ -34,6 +34,15 @@ class Controller extends CController
             if ($this->id != 'login' && $this->id != 'register' && ! $this->checkToken())
                 
                 return false;
+            
+            if ($this->module->id == 'client' && ! in_array($this->id, [
+                'regvalidate',
+                'register',
+                'login'
+            ])) {
+                if (! $this->isActived())
+                    return false;
+            }
         }
         
         return true;
@@ -57,6 +66,25 @@ class Controller extends CController
         }
         $this->uid = $this->getUid($this->getParam('token'));
         return true;
+    }
+
+    /**
+     * 判断用户是否激活
+     *
+     * @author lqf
+     */
+    public function isActived()
+    {
+        $token = $this->getParam('token');
+        $uid = $this->getUid($token);
+        $model = Clients::model()->findByPk($uid);
+        if (! $model || $model->status == USER_CLIENT_NOT_ACTIVED) {
+            $this->result['error_code'] = CLIENT_EORROR_NOT_ACTIVED;
+            $this->result['error_msg'] = CLIENT_EORROR_MSG_NOT_ACTIVED;
+            $result = json_encode($this->result);
+            echo $result;
+            return false;
+        }
     }
 
     /**
@@ -127,7 +155,7 @@ class Controller extends CController
         $c->params = [
             'uid' => $this->uid,
             'utype' => ($this->module->id == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT,
-            'url' => $url            
+            'url' => $url
         ];
         $model = ApiLastupdate::model()->find($c);
         if ($model)
@@ -160,7 +188,7 @@ class Controller extends CController
             'url' => $url
         ];
         $model = ApiLastupdate::model()->find($c);
-        if (!$model)
+        if (! $model)
             $model = new ApiLastupdate();
         
         $model->attributes = [

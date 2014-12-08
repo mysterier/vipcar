@@ -76,12 +76,16 @@ class ApiLoginForm extends CFormModel
         $static = ucwords($scenario) . 's';
         
         $criteria = new CDbCriteria();
-        $criteria->select = 'id';
         $criteria->condition = 'mobile=:mobile and password=:password';
         $criteria->params = $attributes;
         $this->user_id = $static::model()->find($criteria);
-        if (! $this->user_id)
-            $this->addError('password', 'Incorrect username or password.');
+        if ($this->user_id) {
+            if ($scenario == 'client' && $this->user_id->status == USER_CLIENT_NOT_ACTIVED) {
+                $this->addError('login', CLIENT_EORROR_MSG_NOT_ACTIVED);
+                Yii::app()->controller->result['error_code'] = CLIENT_EORROR_NOT_ACTIVED;
+            }                
+        } else 
+            $this->addError('password', 'Incorrect username or password.');        
     }
 
     /**

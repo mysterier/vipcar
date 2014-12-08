@@ -10,8 +10,9 @@ class RegisterController extends Controller
         
         $model = new Clients('reg');
         $model->attributes = ['mobile' => $mobile, 'password' => $pass, 'last_update' => time()];
-        $uid = $model->save();
-        if ($uid) {
+
+        if ($model->save()) {
+            $uid = $model->id;
             $token = USER_TYPE_CLIENT . md5(time() . $uid . USER_TYPE_CLIENT) . $uid;
             $tobj = new Token();
             $tobj->attributes = [

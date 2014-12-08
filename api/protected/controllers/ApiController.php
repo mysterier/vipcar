@@ -49,4 +49,14 @@ class ApiController extends Controller
     public function actionCRegister() {
         $this->render('cregister');
     }
+    
+    public function actionCRegvalidate() {
+        $this->render('cregvalidate');
+    }
+    
+    public function actionCLogin() {
+        $model=new ApiLoginForm;
+    
+        $this->render('clogin',array('model'=>$model));
+    }
 }

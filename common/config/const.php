@@ -3,6 +3,8 @@
 // Global
 define('USER_TYPE_CLIENT', 1);
 define('USER_TYPE_DRIVER', 2);
+define('USER_CLIENT_ACTIVED', 1);
+define('USER_CLIENT_NOT_ACTIVED', 0);
 
 // Global error
 define('ERROR_DEFAULT', - 1);
@@ -30,7 +32,14 @@ define('API_ORDER_NEW_FLAG', 2);
 define('API_ORDER_UPDATE_FLAG', 1);
 define('API_UPDATE_DRIVER_INFO', 1);
 define('API_MAINTAIN_DRIVER_INFO', 0);
+define('API_MAINTAIN_MESSAGE', 0);
+define('API_MAINTAIN_MESSAGE_MSG', '消息未更新！');
 
 // Driver
 define('DRIVER_TYPE_OFF', 0);
 define('DRIVER_TYPE_ON', 1);
+
+//Client
+define('CLIENT_EORROR_NOT_ACTIVED', -2);
+define('CLIENT_EORROR_MSG_NOT_ACTIVED', '账号未激活！');
+define('CLIENT_EORROR_MSG_ACTIVED', '账号已经激活！');

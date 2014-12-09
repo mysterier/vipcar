@@ -59,4 +59,16 @@ class ApiController extends Controller
     
         $this->render('clogin',array('model'=>$model));
     }
+    
+    public function actionAirportpickup() {
+        $this->render('airportpickup');
+    }
+    
+    public function actionAirportsend() {
+        $this->render('airportsend');
+    }
+    
+    public function actionClientinfor() {
+        $this->render('clientinfor');
+    }
 }

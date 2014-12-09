@@ -26,11 +26,11 @@ class OrderController extends Controller
         
         switch ($status) {
             // 请求未完成订单列表
-            case ORDER_TYPE_UNFINISHED:
+            case ORDER_UNFINISHED:
                 $this->getNewOrders();
                 break;
             // 请求已完成订单列表
-            case ORDER_TYPE_FINISHED:
+            case ORDER_FINISHED:
                 $this->getUpdateOrders();
                 break;
             default:
@@ -64,7 +64,7 @@ class OrderController extends Controller
     {
         $status = $this->getParam('order_status');
         // 目前只开放司机接单状态
-        if ($status == ORDER_TYPE_RUN) {
+        if ($status == ORDER_STATUS_RUN) {
             $model = Orders::model()->findByPk($id);
             if ($model && ($model->driver_id == $this->uid)) {
                 $model->status = $status;
@@ -98,7 +98,7 @@ class OrderController extends Controller
      */
     private function getNewOrders()
     {
-        $condition = 'driver_id=:uid and id > :id and (status="' . ORDER_TYPE_NEW . '" or status="' . ORDER_TYPE_RUN . '")';
+        $condition = 'driver_id=:uid and id > :id and (status="' . ORDER_STATUS_NEW . '" or status="' . ORDER_STATUS_RUN . '")';
         $params = [
             'uid' => $this->uid,
             'id' => $this->sid
@@ -107,7 +107,7 @@ class OrderController extends Controller
         $this->getOrders($condition, $params, API_ORDER_NEW_FLAG);
         
         // 获取未完成但已经修改过的订单
-        $this->getUpdateOrders('driver_id=:uid and (status="' . ORDER_TYPE_NEW . '" or status="' . ORDER_TYPE_RUN . '") and last_update > :last_update');
+        $this->getUpdateOrders('driver_id=:uid and (status="' . ORDER_STATUS_NEW . '" or status="' . ORDER_STATUS_RUN . '") and last_update > :last_update');
     }
 
     /**
@@ -121,7 +121,7 @@ class OrderController extends Controller
         $api_last_update = $this->getApiLastUpdate();
         
         if ($api_last_update > $last_update) {
-            $condition = $condition ? $condition : 'driver_id=:uid and status="' . ORDER_TYPE_END . '" and last_update > :last_update';
+            $condition = $condition ? $condition : 'driver_id=:uid and status="' . ORDER_STATUS_END . '" and last_update > :last_update';
             $params = [
                 'uid' => $this->uid,
                 'last_update' => $last_update

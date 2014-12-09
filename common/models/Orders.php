@@ -10,6 +10,7 @@
  * @property string $contacter_name
  * @property string $contacter_phone
  * @property string $driver_id
+ * @property string $vehicle_type
  * @property string $license_no
  * @property double $estimated_cost
  * @property double $order_income
@@ -19,6 +20,7 @@
  * @property double $highway_fee
  * @property string $pickup_place
  * @property string $drop_place
+ * @property string $flight_number
  * @property string $summary
  * @property string $type
  * @property string $status
@@ -45,19 +47,25 @@ class Orders extends CActiveRecord
     {
         return [
             [
-                'order_no, client_id, contacter_name, contacter_phone, driver_id, license_no, estimated_cost, travel_duration, pickup_place, drop_place',
+                'order_no, client_id, contacter_name, contacter_phone, estimated_cost, pickup_place, drop_place, flight_number',
                 'required',
-                'on' => 'new'
+                'on' => 'insert'
             ],
             
             [
-                'travel_duration,travel_distance,travel_distance,packing_fee,highway_fee',
+                'order_no, client_id, contacter_name, contacter_phone, estimated_cost, pickup_place, drop_place, flight_number, pickup_time, is_round_trip',
+                'required',
+                'on' => 'airportsend'
+            ],
+            
+            [
+                'packing_fee,highway_fee',
                 'required',
                 'on' => 'update'
             ],
             
             [
-                'packing_fee,travel_distance,highway_fee',
+                'packing_fee,highway_fee',
                 'numerical',
                 'on' => 'update'
             ],
@@ -66,6 +74,11 @@ class Orders extends CActiveRecord
                 'order_no, license_no, pickup_place, drop_place',
                 'safe',
                 'on' => 'search'
+            ],
+            
+            [
+                'summary',
+                'safe'
             ]
         ];
     }
@@ -108,6 +121,7 @@ class Orders extends CActiveRecord
             'carusing_time' => '用车时长',
             'pickup_place' => '出发地',
             'drop_place' => '目的地',
+            'flight_number' => '航班号',
             'summary' => '备注',
             'type' => '订单类型',
             'status' => '订单状态',

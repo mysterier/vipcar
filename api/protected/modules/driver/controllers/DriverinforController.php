@@ -20,7 +20,7 @@ class DriverinforController extends Controller
                 }
             }
             
-            $result['error_code'] = API_UPDATE_DRIVER_INFO;
+            $result['error_code'] = API_UPDATE_USER_INFO;
             $result['error_msg'] = '';
             $result['driver_photo'] = $model->avatar;
             $result['driver_name'] = $model->name;
@@ -32,7 +32,7 @@ class DriverinforController extends Controller
             $result['last_update'] = $model->last_update;
             $this->result = $result;
         } else {
-            $this->result['error_code'] = API_MAINTAIN_DRIVER_INFO;
+            $this->result['error_code'] = API_MAINTAIN_USER_INFO;
             $this->result['error_msg'] = '';
         }
     }

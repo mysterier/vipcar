@@ -44,6 +44,7 @@ class Clients extends CActiveRecord
                 'match',
                 'pattern' => '/^(?:(?:1(?:3[4-9]|5[012789]|8[78])\d{8}|1(?:3[0-2]|5[56]|8[56])\d{8}|18[0-9]\d{8}|1[35]3\d{8})|14[57]\d{8}|170[059]\d{7}|17[67]\d{8})$/',
                 'allowEmpty' => false,
+                'message' => ERROR_MSG_MOBILE,
                 'on' => 'reg'
             ],
             [
@@ -52,6 +53,7 @@ class Clients extends CActiveRecord
                 'className' => 'Clients',
                 'attributeName' => 'mobile',
                 'allowEmpty' => false,
+                'message' => CLIENT_EORROR_MSG_REGISTERED,
                 'on' => 'reg'
             ],
             [

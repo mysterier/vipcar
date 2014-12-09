@@ -85,6 +85,7 @@ class Controller extends CController
             echo $result;
             return false;
         }
+        return true;
     }
 
     /**
@@ -99,7 +100,22 @@ class Controller extends CController
         if ($model->hasErrors()) {
             $errors = $model->getErrors();
             foreach ($errors as $error) {
-                $error_str .= implode(' ', $error) . ' ';
+                $error = implode(' ', $error);
+                switch ($error) {
+                    case ERROR_MSG_MOBILE:
+                        $code = ERROR_MOBILE;
+                        break;
+                    case CLIENT_EORROR_MSG_NOT_ACTIVED:
+                        $code = CLIENT_EORROR_NOT_ACTIVED;
+                        break;
+                    case CLIENT_EORROR_MSG_REGISTERED:
+                        $code = CLIENT_EORROR_REGISTERED;
+                        break;
+                    default:
+                        $code = ERROR_DEFAULT;
+                }
+                $this->result['error_code'] = $code;
+                $error_str .= $error . ' ';
             }
         }
         $this->result['error_msg'] = $error_str;

@@ -71,4 +71,20 @@ class ApiController extends Controller
     public function actionClientinfor() {
         $this->render('clientinfor');
     }
+    
+    public function actionCOrderlist() {
+        $this->render('corder_list');
+    }
+    
+    public function actionCOrderdetail() {
+        $this->render('corder_detail');
+    }
+    
+    public function actionCMessagelist() {
+        $this->render('cmessage_list');
+    }
+    
+    public function actionPageinfor() {
+        $this->render('pageinfor');
+    }
 }

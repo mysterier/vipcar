@@ -80,9 +80,9 @@ class OrderController extends Controller
     public function actionModify($id)
     {
         $model = Orders::model()->findByPk($id);
-        var_dump($_POST);
         if ($model && ($model->driver_id == $this->uid)) {
             $model->attributes = $_POST;
+            //todo
             if ($model->save()) {
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';
@@ -142,7 +142,7 @@ class OrderController extends Controller
     private function getOrders($condition, $params, $flag)
     {
         $criteria = new CDbCriteria();
-        $criteria->select = 'id,order_no,pickup_place,drop_place,created,last_update';
+        $criteria->select = 'id,order_no,pickup_place,drop_place,order_income,created,last_update';
         $criteria->condition = $condition;
         $criteria->order = 'id asc';
         $criteria->params = $params;
@@ -155,6 +155,7 @@ class OrderController extends Controller
                     'order_no' => $order->order_no,
                     'pickup_place' => $order->pickup_place,
                     'drop_place' => $order->drop_place,
+                    'order_income' => $order->order_income,
                     'order_date' => ($flag == API_ORDER_NEW_FLAG) ? $order->created : date('Y-m-d H:i:s', $order->last_update),
                     'order_flag' => $flag
                 ];

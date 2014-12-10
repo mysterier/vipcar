@@ -176,10 +176,7 @@ class Controller extends CController
         $model = ApiLastupdate::model()->find($c);
         if ($model)
             return $model->last_update;
-        $this->result['error_msg'] = ERROR_MSG_DB;
-        $result = json_encode($this->result);
-        echo $result;
-        Yii::app()->end();
+        return 0;
     }
 
     /**

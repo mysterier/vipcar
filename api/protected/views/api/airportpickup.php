@@ -51,6 +51,11 @@ $form = $this->beginWidget('CActiveForm', array(
 	
 	<div class="row">
 		<label>pickup_place</label>
+	    <input type="text" name="pickup_time" />
+	</div>
+	
+	<div class="row">
+		<label>pickup_place</label>
 	    <input type="text" name="pickup_place" />
 	</div>
 	

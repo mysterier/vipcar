@@ -2,13 +2,13 @@
 /* @var $this SiteController */
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
-$this->pageTitle = Yii::app()->name . ' - Register';
+$this->pageTitle = Yii::app()->name . ' - Contacter';
 $this->breadcrumbs = array(
-    'Register'
+    'Contacter'
 );
 ?>
 
-<h1>Register</h1>
+<h1>Contacter</h1>
 
 <p>Please fill out the following form with your login credentials:</p>
 
@@ -17,7 +17,7 @@ $this->breadcrumbs = array(
 
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'login-form',
-    'action' => '/client/register',
+    'action' => '/client/contacter',
     'enableClientValidation' => true,
     'clientOptions' => array(
         'validateOnSubmit' => true
@@ -30,23 +30,12 @@ $form = $this->beginWidget('CActiveForm', array(
 	</p>
 
 	<div class="row">
-	   <label>client_mobile</label>
-	   <input type="text" name="client_mobile" />
+	   <label>Token</label>
+	   <input type="text" name="token" />
 	</div>
-	
-	<div class="row">
-	   <label>client_email</label>
-	   <input type="text" name="client_email" />
-	</div>
-
-	<div class="row">
-		<label>client_pass</label>
-	    <input type="text" name="client_pass" />
-	</div>
-
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Register'); ?>
+		<?php echo CHtml::submitButton('Contacter'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -59,15 +59,15 @@ class Orders extends CActiveRecord
             ],
             
             [
-                'packing_fee,highway_fee',
+                'order_income,travel_duration,packing_fee,highway_fee,status,last_update',
                 'required',
-                'on' => 'update'
+                'on' => 'driver_modify'
             ],
             
             [
-                'packing_fee,highway_fee',
+                'order_income,packing_fee,highway_fee',
                 'numerical',
-                'on' => 'update'
+                'on' => 'driver_modify'
             ],
             
             [

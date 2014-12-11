@@ -28,19 +28,7 @@ class ContacterHistory extends CActiveRecord
      */
     public function rules()
     {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
-        return array(
-            array(
-                'name',
-                'required'
-            ),
-            array(
-                'name',
-                'safe',
-                'on' => 'search'
-            )
-        );
+        return [];
     }
 
     /**
@@ -49,9 +37,18 @@ class ContacterHistory extends CActiveRecord
      */
     public function relations()
     {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
-        return array();
+        return [
+            'client' => [
+                self::BELONGS_TO,
+                'Clients',
+                'client_id'
+            ],
+            'tel' => [
+                self::HAS_MANY,
+                'ContacterTel',
+                'contacter_id'
+            ]
+        ];
     }
 
     /**
@@ -67,30 +64,6 @@ class ContacterHistory extends CActiveRecord
             'created' => '创建时间',
             'weight' => '权重'
         );
-    }
-
-    /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     *
-     * Typical usecase:
-     * - Initialize the model fields with values from filter form.
-     * - Execute this method to get CActiveDataProvider instance which will filter
-     * models according to data in model fields.
-     * - Pass data provider to CGridView, CListView or any similar widget.
-     *
-     * @return CActiveDataProvider the data provider that can return the models
-     *         based on the search/filter conditions.
-     */
-    public function search()
-    {
-        // @todo Please modify the following code to remove attributes that should not be searched.
-        $criteria = new CDbCriteria();
-        
-        $criteria->compare('name', $this->name, true);
-        
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria
-        ));
     }
 
     /**

@@ -9,6 +9,11 @@ define('VEHICLE_TYPE_ECONOMY', 1);
 define('VEHICLE_TYPE_COMFORTABLE', 2);
 define('VEHICLE_TYPE_BUSINESS', 3);
 define('VEHICLE_TYPE_LUXURY', 4);
+define('ORDER_STATISTIC', 0);
+define('ORDER_MSG_STATISTIC', '无订单记录！');
+//汽车费用
+define('STARTING_FARE', 25);
+define('FARE_PER_KM', 4);
 
 // Global error
 define('ERROR_DEFAULT', - 1);
@@ -22,6 +27,8 @@ define('ERROR_MSG_MOBILE', '手机格式错误！');
 
 // Global success
 define('SUCCESS_DEFAULT', 1);
+define('NO_RECORD', 0);
+define('NO_RECORD_MSG', '无记录！');
 
 // Orders status
 define('ORDER_STATUS_END', 0);

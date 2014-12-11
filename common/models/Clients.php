@@ -40,6 +40,11 @@ class Clients extends CActiveRecord
                 'email'
             ],
             [
+                'email,mobile',
+                'required',
+                'on' => 'reg'
+            ],
+            [
                 'mobile',
                 'match',
                 'pattern' => '/^(?:(?:1(?:3[4-9]|5[012789]|8[78])\d{8}|1(?:3[0-2]|5[56]|8[56])\d{8}|18[0-9]\d{8}|1[35]3\d{8})|14[57]\d{8}|170[059]\d{7}|17[67]\d{8})$/',
@@ -89,6 +94,11 @@ class Clients extends CActiveRecord
             'client_msg' => [
                 self::HAS_MANY,
                 'ClientMessage',
+                'client_id'
+            ],
+            'contacter' => [
+                self::HAS_MANY,
+                'ContacterHistory',
                 'client_id'
             ]
         ];

@@ -6,11 +6,17 @@ class RegisterController extends Controller
     public function actionIndex()
     {
         $mobile = $this->getParam('client_mobile');
+        $email = $this->getParam('client_email');
         $pass = $this->getParam('client_pass');
         
         $model = new Clients('reg');
-        $model->attributes = ['mobile' => $mobile, 'password' => $pass, 'last_update' => time()];
-
+        $model->attributes = [
+            'mobile' => $mobile,
+            'email' => $email,
+            'password' => $pass,
+            'last_update' => time()
+        ];
+        
         if ($model->save()) {
             $uid = $model->id;
             $token = USER_TYPE_CLIENT . md5(time() . $uid . USER_TYPE_CLIENT) . $uid;
@@ -28,6 +34,6 @@ class RegisterController extends Controller
             }
         } else {
             $this->addErrors($model);
-        }          
+        }
     }
 }

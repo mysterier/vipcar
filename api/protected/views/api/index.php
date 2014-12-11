@@ -17,6 +17,7 @@ $this->breadcrumbs=array(
 <h2><a href="/api/ordermodify">更改订单表单</a></h2>
 <h2><a href="/api/driverinfor">获取司机信息</a></h2>
 <h2><a href="/api/messagelist">司机消息</a></h2>
+<h2><a href="/api/incomestat">获取司机各项统计</a></h2>
 </div>
 
 <div style="margin-left:500px">
@@ -32,5 +33,6 @@ $this->breadcrumbs=array(
 <h2><a href="/api/corderdetail">客户订单详情</a></h2>
 <h2><a href="/api/cmessagelist">客户消息列表</a></h2>
 <h2><a href="/api/pageinfor">App各类信息</a></h2>
+<h2><a href="/api/contacter">联系人历史</a></h2>
 </div>
 </div>

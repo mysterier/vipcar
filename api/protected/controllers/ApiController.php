@@ -43,6 +43,10 @@ class ApiController extends Controller
         $this->render('message_list');
     }
     
+    public function actionIncomestat() {
+        $this->render('incomestat');
+    }
+    
     
     //=====================客户端=============
     
@@ -86,5 +90,9 @@ class ApiController extends Controller
     
     public function actionPageinfor() {
         $this->render('pageinfor');
+    }
+    
+    public function actionContacter() {
+        $this->render('contacter');
     }
 }

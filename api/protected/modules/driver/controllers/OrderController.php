@@ -80,14 +80,33 @@ class OrderController extends Controller
     public function actionModify($id)
     {
         $model = Orders::model()->findByPk($id);
+        $model->setScenario('driver_modify');
         if ($model && ($model->driver_id == $this->uid)) {
+            // 司机端操作此接口，说明订单已经完成
+            $_POST['order_income'] = $this->getIncome($model);
+            $_POST['status'] = ORDER_STATUS_END;
+            $_POST['last_update'] = time();
             $model->attributes = $_POST;
-            //todo
             if ($model->save()) {
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';
             }
         }
+    }
+
+    /**
+     * 获取订单收入
+     *
+     * @param object $model
+     *            订单对象
+     * @author lqf
+     */
+    private function getIncome($model)
+    {
+        $income = STARTING_FARE + FARE_PER_KM * $model->travel_distance;
+        $income += $model->packing_fee;
+        $income += $model->highway_fee;
+        return $income;
     }
 
     /**

@@ -1,5 +1,4 @@
 <?php
-
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -9,7 +8,7 @@ return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'SuXian Frontend',
     'timezone' => 'Asia/Shanghai',
-    
+    'defaultController' => 'home',
     // 别名
     'aliases' => array(
         'common' => COMMON
@@ -28,16 +27,6 @@ return array(
     ),
     
     'modules' => array(
-        'gii' => array(
-            'class' => 'system.gii.GiiModule',
-            'password' => '123',
-            
-            // If removed, Gii defaults to localhost only. Edit carefully to taste.
-            'ipFilters' => array(
-                '192.168.1.102',
-                '::1'
-            )
-        )
     ),
     
     // application components
@@ -101,7 +90,6 @@ return array(
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
     'params' => array(
-        
         // this is used in contact page
         'adminEmail' => 'webmaster@example.com'
     )

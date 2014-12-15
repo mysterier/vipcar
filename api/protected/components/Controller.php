@@ -43,8 +43,9 @@ class Controller extends CController
                 if (! $this->isActived())
                     return false;
             }
+            $this->writeIntoFile();
         }
-        
+               
         return true;
     }
 
@@ -226,4 +227,29 @@ class Controller extends CController
         $url = preg_replace('/\/$/', '', $url);
         return $url;
     }
+    
+    /**
+     * 记录调用接口日志
+     * 
+     * @param string $text
+     * @author lqf
+     */
+    public function writeIntoFile()
+	{
+	    $text = [
+	        'uid' => $this->uid,
+	        'url' => $this->getUrl(),
+	        'post' => $_POST,
+	        'time' => date('Y-m-d H:i:s')
+ 	    ];
+	    $text = json_encode($text) . "\n";
+	    
+		$dir = realpath(SYSTEM_PATH) . '/api/protected/runtime/apilogs/';
+		$dir .= date('Y') . '/' . date('m');
+		if (!is_dir($dir))
+		    mkdir($dir, 0777, true);
+
+		$logFile = $dir . '/' . date('Y-m-d');
+		file_put_contents($logFile, $text, FILE_APPEND | LOCK_EX);		
+	}
 }

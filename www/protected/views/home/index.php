@@ -1,60 +1,32 @@
-<div class="container-fluid">
-	<div class="row">
-		<div class="page-block"></div>
+<div class="container">
+	<div id="section-1" class="block-banner">
 	</div>
-
-	<div class="row">
-		<div class="page-block">
-			<div class="order-form">
-
-				<div class="col-md-3">
-
-					<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-					</div>
-					<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-					</div>
-				</div>
-
-
-				<div class="col-md-3">
-
-					<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-					</div>
-					<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-					</div>
-				</div>
-
-
-				<div class="col-md-3">
-
-					<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-					</div>
-					<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-					</div>
-				</div>
-
-
-				<div class="col-md-3">
-					<input type="submit" value="提 交" name="" class="" />
-				</div>
-
+	<div id="section-2" class="block-form">
+	</div>
+	<div id="section-3" class="block-car">
+		<?php include("_block_car.php"); ?>
+	</div>
+	<div id="section-4" class="block-service">
+		<h1>特色服务</h1>
+		<div class="service-wrap">
+			<div class="service-content service-conent-1">
+			</div>
+			<div class="service-content service-conent-2">
+			</div>
+			<div class="service-content service-conent-3">
+			</div>
+			<div class="service-content service-conent-4">
 			</div>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class="page-block"></div>
+	<div class="block-footer-wrap">
+		<div class="block-footer">
+			<div class="footer-block">
+				<div class="footer-title">新手上路</div>
+				<ul>
+					<li>订车流程</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>

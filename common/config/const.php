@@ -65,4 +65,8 @@ define('CLIENT_EORROR_MSG_ACTIVED', '账号已经激活！');
 define('CLIENT_EORROR_REGISTERED', -202);
 define('CLIENT_EORROR_MSG_REGISTERED', '手机号码已被注册！');
 
+//Coupon
+define('COUPON_PREFIX', 2015);
+define('COUPON_CHECK_CODE', 201501);
+
 

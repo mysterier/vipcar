@@ -5,6 +5,16 @@ class IncomestatController extends Controller
 
     public function actionIndex()
     {
+        $total_criteria = new CDbCriteria();
+        $total_criteria->select = 'count(0) total_order,sum(order_income) total_income';
+        $total_criteria->condition = 'driver_id = :uid and status = :status';
+        $total_criteria->params = [
+            'uid' => $this->uid,
+            'status' => (string) ORDER_STATUS_END
+        ];
+        $total_orders = Orders::model()->find($total_criteria);
+        
+        
         $this_month = date("Y-m-d H:i:s", mktime(0, 0, 0, date('m'), 1, date('Y')));
         
         $criteria = new CDbCriteria();
@@ -15,6 +25,9 @@ class IncomestatController extends Controller
             'status' => (string) ORDER_STATUS_END,
             'created' => $this_month
         ];
+        
+        $this->result['error_code'] = SUCCESS_DEFAULT;
+        $this->result['error_msg'] = '';
         
         $orders = Orders::model()->findAll($criteria);
         if ($orders) {
@@ -39,9 +52,7 @@ class IncomestatController extends Controller
                     $today_income += $order->order_income;
                 }
             }
-            
-            $this->result['error_code'] = SUCCESS_DEFAULT;
-            $this->result['error_msg'] = '';
+                        
             $this->result['statistic'] = [
                 'today_order' => $today_order,
                 'today_income' => $today_income,
@@ -51,8 +62,16 @@ class IncomestatController extends Controller
                 'month_income' => $month_income
             ];
         } else {
-            $this->result['error_code'] = ORDER_STATISTIC;
-            $this->result['error_msg'] = ORDER_MSG_STATISTIC;
+            $this->result['statistic'] = [
+                'today_order' => 0,
+                'today_income' => 0,
+                'week_order' => 0,
+                'week_income' => 0,
+                'month_order' => 0,
+                'month_income' => 0
+            ];
         }
+        $this->result['statistic']['total_order'] = $total_orders->total_order;
+        $this->result['statistic']['total_income'] = $total_orders->total_income ? $total_orders->total_income : 0;
     }
 }

@@ -30,6 +30,10 @@
 class Orders extends CActiveRecord
 {
 
+    public $total_order;
+
+    public $total_income;
+
     /**
      *
      * @return string the associated database table name

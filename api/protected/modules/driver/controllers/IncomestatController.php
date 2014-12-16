@@ -50,7 +50,6 @@ class IncomestatController extends Controller
                 'month_order' => $month_order,
                 'month_income' => $month_income
             ];
-            var_dump($this->result);
         } else {
             $this->result['error_code'] = ORDER_STATISTIC;
             $this->result['error_msg'] = ORDER_MSG_STATISTIC;

@@ -12,28 +12,28 @@
 					<div class="form-warp-small">
 						<div class="form-wrap-small-block">
 							<label>城市</label>
-							<input type="input" class="input-small" name="" id="" />
+							<input type="input" class="form-btn input-small" name="" id="" />
 						</div>
 						<div class="form-wrap-small-block">
 							<label>人数</label>
-							<input type="input" class="input-small" name="" id="" />
+							<input type="input" class="form-btn input-small" name="" id="" />
 						</div>
 						<div class="clear"></div>
 					</div>
 					<label>包车类型</label>
-					<input type="input" class="input-normal" name="" id="" />
+					<input type="input" class="form-btn input-large" name="" id="" />
 				</div>
 				<div class="form-wrap-block">
 					<label>时间</label>
-					<input type="input" class="input-normal" name="" id="" />
+					<input type="input" class="form-btn input-normal" name="" id="" />
 					<label>公司地址</label>
-					<input type="input" class="input-normal" name="" id="" />
+					<input type="input" class="form-btn input-normal" name="" id="" />
 				</div>
 				<div class="form-wrap-block">
 					<label>车型</label>
-					<input type="input" class="input-normal" name="" id="" />
+					<input type="input" class="form-btn input-normal" name="" id="" />
 					<label>联系电话</label>
-					<input type="input" class="input-normal" name="" id="" />
+					<input type="input" class="form-btn input-normal" name="" id="" />
 				</div>
 				<div class="form-wrap-btn">
 					<input type="submit" class="order-btn" name="" id="" value="提交" />

@@ -17,7 +17,7 @@ $(document).ready(function()
     $("#showcase").awShowcase(
     {
         content_width:      843,
-        content_height:     560,
+        content_height:     660,
         fit_to_parent:      false,
         auto:         true,
         interval:       3000,
@@ -35,8 +35,8 @@ $(document).ready(function()
         mousetrace:       false, /* Trace x and y coordinates for the mouse */
         pauseonover:      true,
         stoponclick:      false,
-        transition:       'hslide', /* hslide/vslide/fade */
-        transition_delay:   0,
+        transition:       'fade', /* hslide/vslide/fade */
+        transition_delay:   500,
         transition_speed:   500,
         show_caption:     'onload', /* onload/onhover/show */
         thumbnails:       false,

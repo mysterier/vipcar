@@ -88,6 +88,7 @@ class OrderController extends Controller
             $_POST['last_update'] = time();
             $model->attributes = $_POST;
             if ($model->save()) {
+                $this->setApiLastUpdate();
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';
             }

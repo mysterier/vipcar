@@ -189,13 +189,14 @@ class Controller extends CController
      */
     public function setApiLastUpdate()
     {
-        $url = $this->getUrl();
-        $api = substr($url, 1);
-        $api = str_replace('/', '_', $api);
-        $utype = ($this->module->id == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT;
+        $controller = $this->id;
+        $moudle = $this->module->id;
+        $api = $moudle . '_' . $controller . '_list';
+        $url = '/' . $moudle . '/' . $controller . '/list';
+        $utype = ($moudle == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT;
         
         $c = new CDbCriteria();
-        $c->condition = 'uid =:uid and utype=:utype url=:url';
+        $c->condition = 'uid =:uid and utype=:utype and url=:url';
         $c->params = [
             'uid' => $this->uid,
             'utype' => $utype,

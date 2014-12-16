@@ -4,20 +4,20 @@ $(document).ready(function()
         $.scrollTo('#section-1',500); 
     });
     $(".link_2").click(function(){ 
-        $.scrollTo('#section-2',500); 
+        $.scrollTo('#section-car',500); 
     });
     $(".link_3").click(function(){ 
-        $.scrollTo('#section-3',500); 
+        $.scrollTo('#section-app',500); 
     });
     $(".link_4").click(function(){ 
-        $.scrollTo('#section-4',500); 
+        $.scrollTo('#section-service',500); 
     });
 
 
     $("#showcase").awShowcase(
     {
         content_width:      843,
-        content_height:     470,
+        content_height:     560,
         fit_to_parent:      false,
         auto:         true,
         interval:       3000,

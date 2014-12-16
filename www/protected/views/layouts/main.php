@@ -17,8 +17,8 @@
 		<ul class="sx-nav" id="sx-menu">
 			<li><a href="#" class="link_1">首页</a></li>
 			<li><a href="#" class="link_2">车型查询</a></li>
-			<li><a href="#" class="link_3">服务介绍</a></li>
-			<li><a href="#" class="link_4">客户端下载</a></li>
+			<li><a href="#" class="link_3">客户端下载</a></li>
+			<li><a href="#" class="link_4">服务介绍</a></li>
 			<li><a href="#" class="link_5">更多优惠</a></li>
 			<li><a href="#" class="link_6">关于苏宝</a></li>
 		</ul>

@@ -9,12 +9,13 @@ class CouponCommand extends CConsoleCommand
 {
     /**
      * 产生优惠码
-     * 命令：cli.php Coupon create --num=100
+     * 命令：cli.php Coupon create --num=100 --type=2 > 文件.txt
      * 
      * @param int $num 产生数量默认500
+     * @param string $type 1=>虹桥接机,2=>虹桥送机,3=>浦东接机,4=>浦东送机
      * @author lqf
      */
-    public function actionCreate($num='') {
+    public function actionCreate($num='', $type='1') {
         $id = 100000;
         $num = $num ? $num : 500;
         $model = Coupon::model()->find('1 order by id DESC');
@@ -36,6 +37,7 @@ class CouponCommand extends CConsoleCommand
             $tail = $this->encryptionId($id);
             $coupon = $head . $mid . $tail;
             $model->coupon = $coupon;
+            $model->type = $type;
             if ($model->save())
                 echo $coupon . "\n";          
         }

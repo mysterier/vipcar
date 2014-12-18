@@ -102,7 +102,7 @@
 			<div class="footer-liner"></div>
 			<div class="footer-contact">
 				<img src="/img/icon-iphone.gif" /> <span>400-684-5505</span>
-				<img src="/img/icon-email.gif" /> <span>sales@subaozuche.com</span>
+				<img src="/img/icon-email.gif" /> <span>zhongzeyongche@carvip.wang</span>
 				<img src="/img/icon-dizhi.gif" /> <span>上海市徐汇区宜山路705号科技大厦A座18楼</span>
 			</div>
 		</div>

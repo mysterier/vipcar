@@ -15,15 +15,15 @@ class IncomestatController extends Controller
         $total_orders = Orders::model()->find($total_criteria);
         
         
-        $this_month = date("Y-m-d H:i:s", mktime(0, 0, 0, date('m'), 1, date('Y')));
+        $this_month = mktime(0, 0, 0, date('m'), 1, date('Y'));
         
         $criteria = new CDbCriteria();
-        $criteria->select = 'id,order_income,created';
-        $criteria->condition = 'driver_id = :uid and status = :status and created > :created';
+        $criteria->select = 'id,order_income,last_update';
+        $criteria->condition = 'driver_id = :uid and status = :status and last_update > :last_update';
         $criteria->params = [
             'uid' => $this->uid,
             'status' => (string) ORDER_STATUS_END,
-            'created' => $this_month
+            'last_update' => $this_month
         ];
         
         $this->result['error_code'] = SUCCESS_DEFAULT;
@@ -37,17 +37,16 @@ class IncomestatController extends Controller
             $month_income = $week_income = $today_income = $month_order = $week_order = $today_order = 0;
             
             foreach ($orders as $order) {
-                $created = strtotime($order->created);
                 // 本月统计
                 ++ $month_order;
                 $month_income += $order->order_income;
                 // 本周统计
-                if ($created > $this_week) {
+                if ($last_update > $this_week) {
                     ++ $week_order;
                     $week_income += $order->order_income;
                 }
                 // 当日统计
-                if ($created > $this_day) {
+                if ($last_update > $this_day) {
                     ++ $today_order;
                     $today_income += $order->order_income;
                 }

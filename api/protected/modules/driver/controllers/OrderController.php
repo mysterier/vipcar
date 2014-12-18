@@ -83,7 +83,8 @@ class OrderController extends Controller
         $model->setScenario('driver_modify');
         if ($model && ($model->driver_id == $this->uid)) {
             // 司机端操作此接口，说明订单已经完成
-            $_POST['order_income'] = $this->getIncome($model);
+            $order_income = $this->getIncome($model);
+            $_POST['order_income'] = $order_income;
             $_POST['status'] = ORDER_STATUS_END;
             $_POST['last_update'] = time();
             $model->attributes = $_POST;
@@ -91,6 +92,7 @@ class OrderController extends Controller
                 $this->setApiLastUpdate();
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';
+                $this->result['order_income'] = $order_income;
             }
         }
     }

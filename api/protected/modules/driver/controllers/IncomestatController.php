@@ -41,12 +41,12 @@ class IncomestatController extends Controller
                 ++ $month_order;
                 $month_income += $order->order_income;
                 // 本周统计
-                if ($last_update > $this_week) {
+                if ($order->last_update > $this_week) {
                     ++ $week_order;
                     $week_income += $order->order_income;
                 }
                 // 当日统计
-                if ($last_update > $this_day) {
+                if ($order->last_update > $this_day) {
                     ++ $today_order;
                     $today_income += $order->order_income;
                 }

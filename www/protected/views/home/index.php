@@ -1,7 +1,7 @@
 <div class="container">
 	<div id="section-1" class="block-banner">
 		<div class="banner-title-wrap">
-			<div class="banner-title">众择租车 “<span>买一单，送一单</span>”</div>
+			<div class="banner-title">众择用车 “<span>买一单，送一单</span>”</div>
 			<div class="banner-subtitle">订车热线 <span>400-684-5505</span></div>
 		</div>
 	</div>

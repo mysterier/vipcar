@@ -56,6 +56,12 @@ class OrderController extends Controller
             $result['contacter_phone'] = $model->contacter_phone;
             $result['pickup_place'] = $model->pickup_place;
             $result['drop_place'] = $model->drop_place;
+            $coordinate = $model->coordinate;
+            $coordinate = explode(',', $coordinate);
+            $result['pickup_longitude'] = $coordinate[0];
+            $result['pickup_latitude'] = $coordinate[1];
+            $result['drop_longitude'] = $coordinate[2];
+            $result['drop_latitude'] = $coordinate[3];
             $this->result = $result;
         }
     }

@@ -50,7 +50,7 @@ $form = $this->beginWidget('CActiveForm', array(
 	</div>
 	
 	<div class="row">
-		<label>pickup_place</label>
+		<label>pickup_time</label>
 	    <input type="text" name="pickup_time" />
 	</div>
 	
@@ -82,6 +82,26 @@ $form = $this->beginWidget('CActiveForm', array(
 	<div class="row">
 		<label>order_type</label>
 	    <input type="text" name="order_type" />
+	</div>
+	
+	<div class="row">
+		<label>pickup_longitude</label>
+	    <input type="text" name="pickup_longitude" />
+	</div>
+	
+	<div class="row">
+		<label>pickup_latitude</label>
+	    <input type="text" name="pickup_latitude" />
+	</div>
+	
+	<div class="row">
+		<label>drop_longitude</label>
+	    <input type="text" name="drop_longitude" />
+	</div>
+	
+	<div class="row">
+		<label>drop_latitude</label>
+	    <input type="text" name="drop_latitude" />
 	</div>
 
 

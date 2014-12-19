@@ -89,6 +89,25 @@ $form = $this->beginWidget('CActiveForm', array(
 	    <input type="text" name="is_round_trip" />
 	</div>
 
+	<div class="row">
+		<label>pickup_longitude</label>
+	    <input type="text" name="pickup_longitude" />
+	</div>
+	
+	<div class="row">
+		<label>pickup_latitude</label>
+	    <input type="text" name="pickup_latitude" />
+	</div>
+	
+	<div class="row">
+		<label>drop_longitude</label>
+	    <input type="text" name="drop_longitude" />
+	</div>
+	
+	<div class="row">
+		<label>drop_latitude</label>
+	    <input type="text" name="drop_latitude" />
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Airportsend'); ?>

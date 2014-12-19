@@ -4,7 +4,7 @@ class AirportpickupController extends Controller
 {
 
     public function actionIndex()
-    {     
+    {
         $attributes = $_POST;
         $order_no = 'su' . time();
         $attributes['order_no'] = $order_no;
@@ -13,11 +13,12 @@ class AirportpickupController extends Controller
         $attributes['summary'] = $this->getParam('order_summary');
         $attributes['type'] = $this->getParam('order_type');
         $attributes['client_id'] = $this->uid;
+        $attributes['coordinate'] = $this->getParam('pickup_longitude') . ',' . $this->getParam('pickup_latitude') . ',' . $this->getParam('drop_longitude') . ',' . $this->getParam('drop_latitude');
         
         $model = new Orders();
         $model->attributes = $attributes;
         if ($model->save()) {
-            //记录联系人历史
+            // 记录联系人历史
             $contacter = new Contacter();
             $contacter->setContacter();
             

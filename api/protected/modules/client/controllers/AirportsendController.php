@@ -13,6 +13,7 @@ class AirportsendController extends Controller
         $attributes['summary'] = $this->getParam('order_summary');
         $attributes['type'] = $this->getParam('order_type');
         $attributes['client_id'] = $this->uid;
+        $attributes['coordinate'] = $this->getParam('pickup_longitude') . ',' . $this->getParam('pickup_latitude') . ',' . $this->getParam('drop_longitude') . ',' . $this->getParam('drop_latitude');
         
         $model = new Orders('airportsend');
         $model->attributes = $attributes;

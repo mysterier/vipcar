@@ -11,6 +11,9 @@ define('VEHICLE_TYPE_BUSINESS', 3);
 define('VEHICLE_TYPE_LUXURY', 4);
 define('ORDER_STATISTIC', 0);
 define('ORDER_MSG_STATISTIC', '无订单记录！');
+define('SEX_DEFAULT', '-');
+define('SEX_MALE', '男');
+define('SEX_FEMALE', '女');
 //汽车费用
 define('STARTING_FARE', 25);
 define('FARE_PER_KM', 4);
@@ -56,7 +59,9 @@ define('API_MAINTAIN_MESSAGE_MSG', '消息未更新！');
 
 // Driver
 define('DRIVER_TYPE_OFF', 0);
+define('DRIVER_MSG_OFF', '下线');
 define('DRIVER_TYPE_ON', 1);
+define('DRIVER_MSG_ON', '在线');
 
 //Client
 define('CLIENT_EORROR_NOT_ACTIVED', -201);

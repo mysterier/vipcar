@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'SuXian Admin',
+    'name' => '众择后台管理',
     'timezone' => 'Asia/Shanghai',
     
     // 别名
@@ -17,7 +17,8 @@ return array(
     
     // preloading 'log' component
     'preload' => array(
-        'log'
+        'log',
+        'booster'
     ),
     
     // autoloading model and component classes
@@ -85,20 +86,21 @@ return array(
                     'class' => 'CFileLogRoute',
                     'levels' => 'error, warning'
                 ),
-                array(
-                    'class' => 'common.yii-debug-toolbar.YiiDebugToolbarRoute',
-                    'ipFilters' => array(
-                        '127.0.0.1',
-                        '192.168.1.102'
-                    )
-                )
-            )
-            // uncomment the following to show log messages on web pages
-            // array(
-            // 'class'=>'CWebLogRoute',
-            // 'categories' => 'common.*'
-            // ),
-            
+//                 array(
+//                     'class' => 'common.yii-debug-toolbar.YiiDebugToolbarRoute',
+//                     'ipFilters' => array(
+//                         '127.0.0.1',
+//                         '192.168.1.102'
+//                     )
+//                 ),
+                // array(
+                // 'class'=>'CWebLogRoute',
+                // 'categories' => 'common.*'
+                // ),
+            )         
+        ),
+        'booster' => array(
+            'class' => 'common.booster.components.Booster'
         )
     ),
     

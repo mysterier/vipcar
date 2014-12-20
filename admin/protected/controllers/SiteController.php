@@ -8,7 +8,7 @@ class SiteController extends Controller
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      *      using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
+    //public $layout = '//layouts/column2';
 
     /**
      *
@@ -74,12 +74,12 @@ class SiteController extends Controller
                     'admin'
                 )
             ),
-            array(
-                'deny', // deny all users
-                'users' => array(
-                    '*'
-                )
-            )
+//             array(
+//                 'deny', // deny all users
+//                 'users' => array(
+//                     '*'
+//                 )
+//             )
         );
     }
 
@@ -171,35 +171,11 @@ class SiteController extends Controller
      * Lists all models.
      */
     public function actionIndex()
-    {
-        $user = Drivers::model()->with('vehicle','vehicle.model','vehicle.model.type')->findAll();
-        //$user = Vehicle::model()->with('model')->findAll();
-        foreach ($user as $k => $v) {
-            //var_dump($v->vehicle);
-            //var_dump($v->model);
-            foreach ($v->vehicle as $bb) {
-                var_dump($bb->model->type->attributes);
-                var_dump($bb->model->attributes);
-                var_dump($bb->attributes);
-            }
-            var_dump($v->attributes);
-        }
-           
-
-//         $c = new Clients();
-//         $c->real_name = '测试2';
-//         $c->avatar = '/path/to/a.jpg';
-//         $c->mobile = '18912546521';
-//         $c->email = 'a@163.com';
-//         $c->credit_record = 'aaaa';
-//         $c->city_id = 1;
-//         echo $c->save();
-        exit();
-        
-//         $dataProvider = new CActiveDataProvider('Admin');
-//         $this->render('index', array(
-//             'dataProvider' => $dataProvider
-//         ));
+    {     
+        $dataProvider = new CActiveDataProvider('Admin');
+        $this->render('index', array(
+            'dataProvider' => $dataProvider
+        ));
     }
 
     /**

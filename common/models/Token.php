@@ -39,7 +39,7 @@ class Token extends CActiveRecord
             ],
             
             [
-                'client_id,type,token',
+                'client_id,type,token,ios_token',
                 'safe'
             ]
         );

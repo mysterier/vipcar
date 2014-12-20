@@ -2,13 +2,13 @@
 /* @var $this SiteController */
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
-$this->pageTitle = Yii::app()->name . ' - Login';
+$this->pageTitle = Yii::app()->name . ' - chgiostoken';
 $this->breadcrumbs = array(
-    'Login'
+    'chgiostoken'
 );
 ?>
 
-<h1>Login</h1>
+<h1>chgiostoken</h1>
 
 <p>Please fill out the following form with your login credentials:</p>
 
@@ -17,7 +17,7 @@ $this->breadcrumbs = array(
 
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'login-form',
-    'action' => '/client/login',
+    'action' => '/'.$module.'/chgiostoken',
     'enableClientValidation' => true,
     'clientOptions' => array(
         'validateOnSubmit' => true
@@ -30,13 +30,8 @@ $form = $this->beginWidget('CActiveForm', array(
 	</p>
 
 	<div class="row">
-	   <label>client_mobile</label>
-	   <input type="text" name="client_mobile" />
-	</div>
-
-	<div class="row">
-		<label>client_pass</label>
-	    <input type="password" name="client_pass" />
+	   <label>Token</label>
+	   <input type="text" name="token" />
 	</div>
 	
 	<div class="row">
@@ -44,9 +39,9 @@ $form = $this->beginWidget('CActiveForm', array(
 	   <input type="text" name="apple_token" />
 	</div>
 
-
+	
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Login'); ?>
+		<?php echo CHtml::submitButton('chgiostoken'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

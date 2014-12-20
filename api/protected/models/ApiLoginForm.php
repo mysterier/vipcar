@@ -11,6 +11,8 @@ class ApiLoginForm extends CFormModel
 
     public $client_pass;
 
+    public $apple_token;
+
     private $user_id;
 
     public function rules()
@@ -53,6 +55,11 @@ class ApiLoginForm extends CFormModel
                 'client_pass',
                 'authenticate',
                 'on' => 'client'
+            ],
+            
+            [
+                'apple_token',
+                'safe'
             ]
         ];
     }
@@ -83,9 +90,9 @@ class ApiLoginForm extends CFormModel
             if ($scenario == 'client' && $this->user_id->status == USER_CLIENT_NOT_ACTIVED) {
                 $this->addError('login', CLIENT_EORROR_MSG_NOT_ACTIVED);
                 Yii::app()->controller->result['error_code'] = CLIENT_EORROR_NOT_ACTIVED;
-            }                
-        } else 
-            $this->addError('password', 'Incorrect username or password.');        
+            }
+        } else
+            $this->addError('password', 'Incorrect username or password.');
     }
 
     /**
@@ -113,7 +120,8 @@ class ApiLoginForm extends CFormModel
         $tstatic = Token::model()->findByAttributes($attributes);
         if ($tstatic) {
             if (! Token::model()->updateByPk($tstatic->id, [
-                'token' => $token
+                'token' => $token,
+                'ios_token' => $this->apple_token
             ]))
                 return false;
         } else {
@@ -121,7 +129,8 @@ class ApiLoginForm extends CFormModel
             $tobj->attributes = [
                 'client_id' => $uid,
                 'type' => $type,
-                'token' => $token
+                'token' => $token,
+                'ios_token' => $this->apple_token
             ];
             
             if (! $tobj->save())

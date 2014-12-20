@@ -253,4 +253,18 @@ class Controller extends CController
 		$logFile = $dir . '/' . date('Y-m-d');
 		file_put_contents($logFile, $text, FILE_APPEND | LOCK_EX);		
 	}
+	
+	/**
+	 * 更新ios_token
+	 * 
+	 * @author lqf
+	 */
+	public function chiostoken() {
+	    $model = token::model()->findByAttributes(['token'=>$this->getParam('token')]);
+	    $model->ios_token = $this->getParam('apple_token');
+	    if ($model->save()) {
+	        $this->result['error_code'] = SUCCESS_DEFAULT;
+	        $this->result['error_msg'] = '';
+	    }	    
+	}
 }

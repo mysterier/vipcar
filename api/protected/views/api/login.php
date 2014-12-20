@@ -37,17 +37,11 @@ $form = $this->beginWidget('CActiveForm', array(
 	<div class="row">
 		<label>password</label>
 	    <input type="password" name="driver_pass" />
-		<p class="hint">
-			Hint: You may login with
-			<kbd>demo</kbd>
-			/
-			<kbd>demo</kbd>
-			or
-			<kbd>admin</kbd>
-			/
-			<kbd>admin</kbd>
-			.
-		</p>
+	</div>
+	
+	<div class="row">
+	   <label>apple_token</label>
+	   <input type="text" name="apple_token" />
 	</div>
 
 

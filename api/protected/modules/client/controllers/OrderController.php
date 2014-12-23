@@ -22,7 +22,7 @@ class OrderController extends Controller
 
     public function actionList()
     {
-        $condition_new = 'client_id=:uid and id > :id';
+        $condition_new = 't.client_id=:uid and t.id > :id';
         $params_new = [
             'uid' => $this->uid,
             'id' => $this->sid
@@ -33,7 +33,7 @@ class OrderController extends Controller
         $api_last_update = $this->getApiLastUpdate();
         
         if ($api_last_update > $this->last_update) {
-            $condition_update = 'client_id=:uid and last_update > :last_update';
+            $condition_update = 't.client_id=:uid and t.last_update > :last_update';
             $params_update = [
                 'uid' => $this->uid,
                 'last_update' => $this->last_update
@@ -78,18 +78,23 @@ class OrderController extends Controller
         $criteria = new CDbCriteria();
         $criteria->select = 'id,order_no,order_income,type,status,created,last_update';
         $criteria->condition = $condition;
-        $criteria->order = 'id asc';
+        $criteria->order = 't.id asc';
         $criteria->params = $params;
         
-        $orders = Orders::model()->findAll($criteria);
+        $orders = Orders::model()->with('driver')->with('driver.vehicle')->findAll($criteria);
         if ($orders) {
             foreach ($orders as $order) {
+                $vehicle = $order->driver->vehicle;
                 $this->orders[] = [
                     'order_sid' => $order->id,
                     'order_no' => $order->order_no,
                     'order_type' => $order->type,
                     'order_status' => $order->status,
                     'order_cost' => $order->order_income,
+                    'pickup_place' => $order->pickup_place,
+                    'drop_place' => $order->drop_place,
+                    'driver_name' => $order->driver->name,
+                    'car_number' => $vehicle[0]->license_no,
                     'order_date' => ($flag == API_ORDER_NEW_FLAG) ? $order->created : date('Y-m-d H:i:s', $order->last_update),
                     'order_flag' => $flag
                 ];

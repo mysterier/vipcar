@@ -60,6 +60,7 @@ class Controller extends CController
         $obj_token = new Token('check');
         $obj_token->attributes = $_POST;
         if (! $obj_token->validate()) {
+            $this->result['error_code'] = ERROR_TOKEN;
             $this->result['error_msg'] = ERROR_MSG_SSO;
             $result = json_encode($this->result);
             echo $result;

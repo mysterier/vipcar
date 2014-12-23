@@ -84,7 +84,11 @@ class OrderController extends Controller
         $orders = Orders::model()->with('driver')->with('driver.vehicle')->findAll($criteria);
         if ($orders) {
             foreach ($orders as $order) {
-                $vehicle = $order->driver->vehicle;
+                if ($order->driver) {
+                    $vehicle = $order->driver->vehicle;
+                    $driver_name = $order->driver->name;
+                }
+                    
                 $this->orders[] = [
                     'order_sid' => $order->id,
                     'order_no' => $order->order_no,
@@ -93,8 +97,8 @@ class OrderController extends Controller
                     'order_cost' => $order->order_income,
                     'pickup_place' => $order->pickup_place,
                     'drop_place' => $order->drop_place,
-                    'driver_name' => $order->driver->name,
-                    'car_number' => $vehicle[0]->license_no,
+                    'driver_name' => isset($driver_name) ? $driver_name : '',
+                    'car_number' => isset($vehicle) ? $vehicle[0]->license_no : '',
                     'order_date' => ($flag == API_ORDER_NEW_FLAG) ? $order->created : date('Y-m-d H:i:s', $order->last_update),
                     'order_flag' => $flag
                 ];

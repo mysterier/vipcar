@@ -7,14 +7,20 @@ class ContacterController extends Controller
     {
         $model = ContacterHistory::model()->with('tel')->findAll('t.client_id =' . $this->uid);
         if ($model) {
-            $contacters = $tel = [];
+            $contacters = $tel = $temp = [];
             foreach ($model as $contacter) {
                 if ($contacter->tel) {
                     foreach ($contacter->tel as $objtel) {
-                       $tel[$contacter->name][] = $objtel->tel;
+                       $tel[] = [                          
+                           'weight' => $objtel->weight,
+                           'tel' => $objtel->tel
+                       ];
                     }
                 }
-                $contacters[] = $tel;
+                $temp['contacter'] = $contacter->name;
+                $temp['weight'] = $contacter->weight;
+                $temp['contacter_tel'] = $tel;
+                $contacters[] = $temp;
             }
             $this->result['error_code'] = SUCCESS_DEFAULT;
             $this->result['error_msg'] = '';

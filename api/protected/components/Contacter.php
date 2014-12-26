@@ -21,13 +21,16 @@ class Contacter
                 'contacter_id' => $model->id,
                 'tel' => $tel
             ]);
-            if (!$obj_tel) {
+            if (! $obj_tel) {
                 $obj_tel = new ContacterTel();
                 $obj_tel->contacter_id = $model->id;
                 $obj_tel->tel = $tel;
-                $obj_tel->save();
+            } else {
+                ++ $obj_tel->weight;
             }
-
+            ++ $model->weight;
+            $model->save();
+            $obj_tel->save();
         } else {
             $model = new ContacterHistory();
             $model->client_id = $uid;

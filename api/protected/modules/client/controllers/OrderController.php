@@ -51,16 +51,15 @@ class OrderController extends Controller
 
     public function actionDetail($id)
     {
-        $model = Orders::model()->findByPk($id);
+        $model = Orders::model()->with('driver')->findByPk($id);
         if ($model) {
             $result['error_code'] = SUCCESS_DEFAULT;
             $result['error_msg'] = '';
-            $result['order_no'] = $model->order_no;
-            $result['order_date'] = $model->last_update ? date('Y-m-d H:i:s', $model->last_update) : $model->created;
-            $result['contacter_name'] = $model->contacter_name;
-            $result['contacter_phone'] = $model->contacter_phone;
-            $result['pickup_place'] = $model->pickup_place;
-            $result['drop_place'] = $model->drop_place;
+            $result['travel_duration'] = $model->travel_duration ? $model->travel_duration : 0;
+            $result['travel_distance'] = $model->travel_distance;
+            $result['driver_name'] = $model->driver ? $model->driver->name : '';
+            $result['all_cost'] = $model->order_income;
+            $result['order_status'] = $model->status;
             $this->result = $result;
         }
     }

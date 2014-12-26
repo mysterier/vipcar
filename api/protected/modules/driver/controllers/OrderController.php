@@ -62,6 +62,10 @@ class OrderController extends Controller
             $result['pickup_latitude'] = $coordinate[1];
             $result['drop_longitude'] = $coordinate[2];
             $result['drop_latitude'] = $coordinate[3];
+            $result['travel_duration'] = $model->travel_duration ? $model->travel_duration : 0;
+            $result['travel_distance'] = $model->travel_distance;
+            $result['packing_fee'] = $model->packing_fee;
+            $result['highway_fee'] = $model->highway_fee;
             $this->result = $result;
         }
     }
@@ -74,7 +78,9 @@ class OrderController extends Controller
             $model = Orders::model()->findByPk($id);
             if ($model && ($model->driver_id == $this->uid)) {
                 $model->status = $status;
+                $model->last_update = time();
                 if ($model->save(false)) {
+                    $this->setApiLastUpdate();
                     $result['error_code'] = SUCCESS_DEFAULT;
                     $result['error_msg'] = '';
                     $this->result = $result;

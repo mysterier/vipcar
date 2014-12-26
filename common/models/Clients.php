@@ -42,7 +42,11 @@ class Clients extends CActiveRecord
             [
                 'email,mobile',
                 'required',
-                'on' => 'reg'
+                'on' => [
+                    'insert',
+                    'update',
+                    'reg'
+                ]
             ],
             [
                 'mobile',
@@ -50,7 +54,11 @@ class Clients extends CActiveRecord
                 'pattern' => '/^(?:(?:1(?:3[4-9]|5[012789]|8[78])\d{8}|1(?:3[0-2]|5[56]|8[56])\d{8}|18[0-9]\d{8}|1[35]3\d{8})|14[57]\d{8}|170[059]\d{7}|17[67]\d{8})$/',
                 'allowEmpty' => false,
                 'message' => ERROR_MSG_MOBILE,
-                'on' => 'reg'
+                'on' => [
+                    'insert',
+                    'update',
+                    'reg'
+                ]
             ],
             [
                 'mobile',
@@ -59,7 +67,24 @@ class Clients extends CActiveRecord
                 'attributeName' => 'mobile',
                 'allowEmpty' => false,
                 'message' => CLIENT_EORROR_MSG_REGISTERED,
-                'on' => 'reg'
+                'on' => [
+                    'insert',
+                    'update',
+                    'reg'
+                ]
+            ],
+            [
+                'email',
+                'unique',
+                'className' => 'Clients',
+                'attributeName' => 'email',
+                'allowEmpty' => false,
+                'message' => EMAIL_EXISTED,
+                'on' => [
+                    'insert',
+                    'update',
+                    'reg'
+                ]
             ],
             [
                 'password,last_update',
@@ -70,6 +95,14 @@ class Clients extends CActiveRecord
                 'real_name, mobile, email',
                 'safe',
                 'on' => 'search'
+            ],
+            [
+                'real_name, client_title,credit_record',
+                'safe',
+                'on' => [
+                    'insert',
+                    'update'
+                ]
             ]
         ];
     }
@@ -116,6 +149,8 @@ class Clients extends CActiveRecord
             'avatar' => '头像',
             'mobile' => '手机号',
             'email' => '邮箱',
+            'password' => '密码',
+            'client_title' => '称谓',
             'credit_record' => '诚信记录',
             'city_id' => '城市',
             'created' => '创建时间',

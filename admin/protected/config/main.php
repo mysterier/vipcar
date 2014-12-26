@@ -93,10 +93,9 @@ return array(
 //                         '192.168.1.102'
 //                     )
 //                 ),
-                // array(
-                // 'class'=>'CWebLogRoute',
-                // 'categories' => 'common.*'
-                // ),
+//                 array(
+//                 'class'=>'CWebLogRoute',
+//                 ),
             )         
         ),
         'booster' => array(

@@ -80,26 +80,25 @@ class Controller extends CController
             ],
             [
                 'label' => '账户管理',
-                'active' => $this->id == 'driver' ? true : false,
+                'active' => in_array($this->id, ['driver', 'vehicle']) ? true : false,
+                'url' => '/',
                 'items' => [
                     [
                         'label' => '车辆管理',
                         'url' => [
-                            'product/new',
-                            'tag' => 'new'
+                            'vehicle/list'
                         ]
                     ],
                     [
                         'label' => '客户管理',
                         'url' => [
-                            'product/new',
-                            'tag' => 'new'
+                            'client/list'
                         ]
                     ],
                     [
                         'label' => '司机管理',
                         'url' => [
-                            '/driver/list'
+                            'driver/list'
                         ]
                     ]
                 ]
@@ -209,5 +208,68 @@ class Controller extends CController
                 'visible' => ! Yii::app()->user->isGuest
             ]
         ];
+    }
+
+    /**
+     * 重命名上传文件
+     *
+     * @param obj $file_model
+     *            上传的文件对象
+     * @param string $attribute
+     *            对应的库表字段
+     * @return string 保存路径
+     * @author lqf
+     */
+    public function renameUploadFile($file_model, $attribute)
+    {
+        $path = '';
+        if (is_object($file_model) && get_class($file_model) === 'CUploadedFile') {
+            $dir = DEFAULT_UPLOAD_PATH . '/' . $this->id . '/' . date('Y') . '/' . date('m');
+            if (! is_dir($dir))
+                mkdir($dir, 0777, true);
+            $path = $dir . '/' . $attribute . '_' . date('d') . '_' . time() . '_' . rand(0, 9999) . '.' . $file_model->extensionName;
+        }
+        return $path;
+    }
+
+    /**
+     * 保存上传文件
+     *
+     * @param string $attribute
+     *            对应的库表字段
+     * @param
+     *            string 保存路径
+     * @author lqf
+     */
+    public function saveUploadFile($file_model, $path)
+    {
+        if (is_object($file_model) && get_class($file_model) === 'CUploadedFile') {
+            $file_model->saveAs($path);
+        }
+    }
+    
+    /**
+     * 密码加密
+     * 
+     * @param string $password
+     * @return string
+     * @author lqf
+     */
+    public function encryptPasswd($password = DEFAULT_PASSWORD) {
+        $pass = md5($password);
+        $pass = 'suxian' . $pass;
+        $pass = md5($pass);
+        return $pass;
+    }
+    
+    /**
+     * 获取post参数
+     *
+     * @param string $param
+     * @author lqf
+     */
+    public function getParam($param)
+    {
+        return (isset($_POST[$param]) && (strval($_POST[$param]) != '')) ? trim(strval($_POST[$param])) : '';
     }
 }

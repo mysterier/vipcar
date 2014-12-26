@@ -27,7 +27,12 @@ class VehicleModel extends CActiveRecord
      */
     public function rules()
     {
-        return array();
+        return [
+            [
+                'make,model,vehicle_type',
+                'safe'
+            ]
+        ];
     }
 
     /**
@@ -56,18 +61,18 @@ class VehicleModel extends CActiveRecord
      */
     public function attributeLabels()
     {
-        return array(
+        return [
             'id' => 'ID',
             'make' => '品牌名称',
             'model' => '型号',
-            'vehicle_type' => '汽车分类id'
-        );
+            'vehicle_type' => '汽车分类'
+        ];
     }
 
     /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
-     * 
+     *
      * @param string $className
      *            active record class name.
      * @return VehicleModel the static model class

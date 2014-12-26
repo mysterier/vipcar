@@ -40,17 +40,56 @@ class Vehicle extends CActiveRecord
      */
     public function rules()
     {
-        return array(
-            array(
-                'license_no, vehicle_model_id, engine_no, frame_no, insurance, inspection, vehicle_license_path, policy_path',
+        return [
+            [
+                'license_no, vehicle_model_id, engine_no, frame_no, insurance, inspection',
                 'required'
-            ),
-            array(
-                'license_no, engine_no',
-                'safe',
-                'on' => 'search'
-            )
-        );
+            ],
+            [
+                'license_no',
+                'unique',
+                'className' => 'Vehicle',
+                'attributeName' => 'license_no',
+                'allowEmpty' => false,
+                'message' => LICENSE_NO_EXISTED
+            ],
+            [
+                'engine_no',
+                'unique',
+                'className' => 'Vehicle',
+                'attributeName' => 'engine_no',
+                'allowEmpty' => false,
+                'message' => ENGINE_NO_EXISTED
+            ],
+            [
+                'frame_no',
+                'unique',
+                'className' => 'Vehicle',
+                'attributeName' => 'frame_no',
+                'allowEmpty' => false,
+                'message' => FRAME_NO_EXISTED
+            ],
+            [
+                'vehicle_license_path',
+                'file',
+                'types' => 'jpg,png,gif',
+                'maxSize' => 1024 * 1024 * 10,
+                'tooLarge' => FILE_TOOLARGE,
+                'allowEmpty' => true
+            ],
+            [
+                'policy_path',
+                'file',
+                'types' => 'jpg,png,gif',
+                'maxSize' => 1024 * 1024 * 10,
+                'tooLarge' => FILE_TOOLARGE,
+                'allowEmpty' => true
+            ],
+            [
+                'ltd_name, ltd_legal_person, ltd_contacter, ltd_contacter_tel, ltd_reg_address, ltd_office_address',
+                'safe'
+            ]
+        ];
     }
 
     /**
@@ -60,12 +99,12 @@ class Vehicle extends CActiveRecord
     public function relations()
     {
         return [
-            'drivers'   => [
+            'drivers' => [
                 self::MANY_MANY,
                 'Drivers',
                 'tbl_driver_vehihcle(vehicle_id, driver_id)'
             ],
-            'model'     => [
+            'model' => [
                 self::BELONGS_TO,
                 'VehicleModel',
                 'vehicle_model_id'
@@ -82,9 +121,9 @@ class Vehicle extends CActiveRecord
         return array(
             'id' => 'ID',
             'license_no' => '车牌号',
-            'vehicle_model' => '车型',
+            'vehicle_model_id' => '车型',
             'vehicle_type' => '汽车分类',
-            'engine_no' => '车架号',
+            'engine_no' => '发动机号',
             'frame_no' => '车架号',
             'insurance' => '保险额度',
             'inspection' => '年检时间',

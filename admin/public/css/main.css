@@ -192,3 +192,20 @@ div.search-form {
 .operations li a:hover {
 	background: #80CFFF;
 }
+
+.field-left {
+	width:500px;
+	float: left;
+}
+
+.field-right {
+	width:500px;
+	float: left;
+}
+
+.field-middle {
+	margin: auto;
+}
+.company {
+	display: none;
+}

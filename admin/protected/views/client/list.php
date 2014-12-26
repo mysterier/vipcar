@@ -5,7 +5,7 @@ $this->widget(
         'buttonType' => 'link',
         'label' => '新建',
         'context' => 'Primary',
-        'url' =>  Yii::app()->createUrl('driver/new')
+        'url' =>  Yii::app()->createUrl('client/new')
     ]
 );
 ?>

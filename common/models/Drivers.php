@@ -45,17 +45,76 @@ class Drivers extends CActiveRecord
      */
     public function rules()
     {
-        return array(
-            array(
-                'name, id_card, level, valid_from, valid_for, address, tel, contacter, contacter_tel, police_check, id_card_path, license_path, health',
+        return [
+            [
+                'name, id_card, level, valid_from, valid_for, address, mobile, contacter, contacter_tel, police_check, id_card_path, license_path, health',
                 'required'
-            ),
-            array(
+            ],
+            [
+                'age',
+                'numerical'
+            ],
+            [
+                'age',
+                'length',
+                'min' => 1,
+                'max' => 2
+            ],
+            [
+                'mobile',
+                'match',
+                'pattern' => '/^(?:(?:1(?:3[4-9]|5[012789]|8[78])\d{8}|1(?:3[0-2]|5[56]|8[56])\d{8}|18[0-9]\d{8}|1[35]3\d{8})|14[57]\d{8}|170[059]\d{7}|17[67]\d{8})$/',
+                'allowEmpty' => false,
+                'message' => ERROR_MSG_MOBILE
+            ],
+            [
+                'mobile',
+                'unique',
+                'className' => 'Drivers',
+                'attributeName' => 'mobile',
+                'allowEmpty' => false,
+                'message' => CLIENT_EORROR_MSG_REGISTERED
+            ],
+            [
+                'id_card',
+                'unique',
+                'className' => 'Drivers',
+                'attributeName' => 'id_card',
+                'allowEmpty' => false,
+                'message' => ID_CARD_EXISTED
+            ],
+            [
+                'avatar',
+                'file',
+                'types' => 'jpg,png,gif',
+                'maxSize' => 1024 * 1024 * 10,
+                'tooLarge' => FILE_TOOLARGE,
+                'allowEmpty' => true,
+            ],
+            [
+                'id_card_path',
+                'file',
+                'types' => 'jpg,png,gif',
+                'maxSize' => 1024 * 1024 * 10,
+                'tooLarge' => FILE_TOOLARGE
+            ],
+            [
+                'license_path',
+                'file',
+                'types' => 'jpg,png,gif',
+                'maxSize' => 1024 * 1024 * 10,
+                'tooLarge' => FILE_TOOLARGE
+            ],
+            [
                 'name, id_card',
                 'safe',
                 'on' => 'search'
-            )
-        );
+            ],
+            [
+                'sex, status',
+                'safe'
+            ]
+        ];
     }
 
     /**
@@ -93,12 +152,14 @@ class Drivers extends CActiveRecord
             'name' => '姓名',
             'age' => '年龄',
             'sex' => '性别',
+            'avatar' => '头像',
             'id_card' => '身份证号码',
+            'password' => '密码',
             'level' => '准驾等级',
             'valid_from' => '初次领证时间',
             'valid_for' => '年审换证时间',
             'address' => '家庭地址',
-            'tel' => '联系电话',
+            'mobile' => '手机',
             'contacter' => '紧急联系人',
             'contacter_tel' => '紧急联系人电话',
             'police_check' => '无犯罪记录证明',

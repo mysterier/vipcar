@@ -52,10 +52,13 @@ ol {
 	z-index: 1000;
 }
 #logo {
+	background:url('/img/logo.png') no-repeat;
+	margin-top:10px;
 	width: 100px;
 	height: 90px;
 	float: left;
 }
+
 
 .sx-nav {
 	float: left;
@@ -67,7 +70,15 @@ ol {
 	padding-left: 20px;
 	padding-right: 20px;
 	line-height: 90px;
+	-webkit-transition: all 200ms linear;
+    -moz-transition: all 200ms linear;
+    -o-transition: all 200ms linear;
+    -ms-transition: all 200ms linear;
+	transform:all 200ms linear;
 }
+#sx-menu li:hover{
+	background-color:#00aeff;
+	}
 .sx-nav li a {
 	color: white;
 }
@@ -86,11 +97,12 @@ ol {
 }
 
 .sx-nav-sep {
-	padding-left: 2px;
-	padding-right: 2px;
+	margin:35px 2px;
 	float: left;
 	line-height: 90px;
-	height: 90px;
+	height: 20px;
+	width: 1px;
+	background:#FFF;
 }
 
 /**body*/
@@ -300,6 +312,16 @@ ol {
 .app-wrap .app-wrap-right p {
 	line-height: 22px;
 }
+.app-qr{
+	float: left;
+	margin:20px 20px 20px 0px;
+	text-align: center;
+	
+	
+
+}
+
+
 
 /**footer*/
 .block-footer-wrap {
@@ -342,8 +364,17 @@ ol {
 .footer-liner {
 	margin: 20px 0;
 	width: 960px;
-	height: 5px;
-	background-image: url('/img/footer-liner.png');
+	
+}
+.liner1{
+	width:960px;
+	height:1px;
+	background-color:#000;
+}
+.liner2{
+	width:960px;
+	height:1px;
+	background-color:#454545;
 }
 .footer-social {
 	padding: 20px 0;

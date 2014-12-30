@@ -90,7 +90,10 @@
 				<img src="/img/foot-map.gif" />
 			</div>
 			<div class="clear"></div>
-			<div class="footer-liner"></div>
+			<div class="footer-liner">
+            	<div class="liner1"></div>
+                <div class="liner2"></div>
+            </div>
 			<div class="footer-social">
 				<ul>
 					<li><img src="/img/icon-qq.gif" /></li>
@@ -99,7 +102,10 @@
 				</ul>
 				<div class="clear"></div>
 			</div>
-			<div class="footer-liner"></div>
+			<div class="footer-liner">
+            	<div class="liner1"></div>
+                <div class="liner2"></div>
+            </div>
 			<div class="footer-contact">
 				<img src="/img/icon-iphone.gif" /> <span>400-684-5505</span>
 				<img src="/img/icon-email.gif" /> <span>zhongzeyongche@carvip.wang</span>

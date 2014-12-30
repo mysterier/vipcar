@@ -7,9 +7,10 @@ class ContacterController extends Controller
     {
         $model = ContacterHistory::model()->with('tel')->findAll('t.client_id =' . $this->uid);
         if ($model) {
-            $contacters = $tel = $temp = [];
+            $contacters = $temp = [];
             foreach ($model as $contacter) {
                 if ($contacter->tel) {
+                    $tel = [];
                     foreach ($contacter->tel as $objtel) {
                        $tel[] = [                          
                            'weight' => $objtel->weight,

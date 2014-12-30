@@ -103,6 +103,11 @@ class Orders extends CActiveRecord
                 self::BELONGS_TO,
                 'Drivers',
                 'driver_id'
+            ],
+            'ticket' => [
+                self::HAS_ONE,
+                'ClientTicket',
+                'order_id'
             ]
         ];
     }

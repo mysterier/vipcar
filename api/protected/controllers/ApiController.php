@@ -1,5 +1,4 @@
 <?php
-
 class ApiController extends Controller
 {
 
@@ -128,5 +127,20 @@ class ApiController extends Controller
     public function actionCchgiostoken()
     {
         $this->render('Chgiostoken',['module' => 'client']);
+    }
+    
+    public function actionGetticket()
+    {
+        $this->render('get_ticket');
+    }
+    
+    public function actionCouponlist()
+    {
+        $this->render('coupon_list');
+    }
+    
+    public function actionCouponhistory()
+    {
+        $this->render('coupon_history');
     }
 }

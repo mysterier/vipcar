@@ -133,6 +133,11 @@ class Clients extends CActiveRecord
                 self::HAS_MANY,
                 'ContacterHistory',
                 'client_id'
+            ],
+            'ticket' => [
+                self::MANY_MANY,
+                'Tickets',
+                'tbl_client_ticket(client_id, ticket_id)'
             ]
         ];
     }

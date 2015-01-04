@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>众择用车</title>
 	<meta name="description" content="众择用车,旅游,上海租车,租车,租车网,租车公司,上海租车网,汽车租赁,接送机，旅游租车，汽车租赁公司,上海租车公司,上海汽车租赁公司,汽车租赁网，商务租车，旅游租车，机场接送" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="shortcut icon" href="/img/favicon32.ico" />
+	<link rel="icon" href="/img/favicon16.ico" />
     <link href="/css/main.css" rel="stylesheet" />
     <link href="/css/style.css" rel="stylesheet" />
 </head>

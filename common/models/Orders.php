@@ -12,6 +12,8 @@
  * @property string $driver_id
  * @property string $vehicle_type
  * @property string $license_no
+ * @property string $estimated_duration
+ * @property double $estimated_distance
  * @property double $estimated_cost
  * @property double $order_income
  * @property string $travel_duration
@@ -81,7 +83,7 @@ class Orders extends CActiveRecord
             ],
             
             [
-                'summary',
+                'summary,estimated_duration,estimated_distance',
                 'safe'
             ]
         ];

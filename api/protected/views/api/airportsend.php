@@ -75,6 +75,16 @@ $form = $this->beginWidget('CActiveForm', array(
 	</div>
 	
 	<div class="row">
+		<label>estimated_duration</label>
+	    <input type="text" name="estimated_duration" />
+	</div>
+	
+	<div class="row">
+		<label>estimated_distance</label>
+	    <input type="text" name="estimated_distance" />
+	</div>
+	
+	<div class="row">
 		<label>estimated_cost</label>
 	    <input type="text" name="estimated_cost" />
 	</div>

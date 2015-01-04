@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta id="viewport" name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" />
+    <meta id="viewport" name="viewport" content="width=960,target-densitydpi=device-dpi,user-scalable=no" />
     <title>众择用车</title>
 	<meta name="description" content="众择用车,旅游,上海租车,租车,租车网,租车公司,上海租车网,汽车租赁,接送机，旅游租车，汽车租赁公司,上海租车公司,上海汽车租赁公司,汽车租赁网，商务租车，旅游租车，机场接送" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>

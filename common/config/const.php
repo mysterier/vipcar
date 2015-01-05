@@ -103,4 +103,6 @@ define('CLIENT_TICKET_DONATE', 3);
 define('COUPON_PREFIX', 2015);
 define('COUPON_CHECK_CODE', 201501);
 
+//sms_tpl
+define('SMS_VERIFY_CODE', 'verify_code');
 

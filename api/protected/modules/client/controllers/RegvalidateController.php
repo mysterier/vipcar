@@ -17,7 +17,8 @@ class RegvalidateController extends Controller
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';
             }
-        }
-        $this->result['error_msg'] = '验证码不正确';
+        } else {
+            $this->result['error_msg'] = '验证码不正确';
+        }        
     }
 }

@@ -20,7 +20,7 @@ class SmsCommand extends CConsoleCommand
             foreach ($model as $sms) {
                  sms::sendSms($sms->mobile, $sms->content);
             }
-            SmsQueue::model()->updateAll(['status' => 1], 'status=0');      
+            SmsQueue::model()->updateAll(['status' => 1, 'updated' => time()], 'status=0');      
         }
     }
 }

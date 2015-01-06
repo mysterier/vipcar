@@ -4,7 +4,7 @@ class RegisterController extends Controller
 {
 
     public function actionIndex()
-    {
+    {   
         $mobile = $this->getParam('client_mobile');
         $email = $this->getParam('client_email');
         $pass = $this->getParam('client_pass');
@@ -31,6 +31,13 @@ class RegisterController extends Controller
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';
                 $this->result['token'] = $token;
+                //发送验证短信
+                Yii::import('common.sms.sms');
+                $code = $this->getVerifyCode();
+                $content = sms::getSmsTpl(SMS_VERIFY_CODE, [$code, VERIFY_CODE_EXPIRE]);
+                sms::addSmsToQueue($mobile, SMS_VERIFY_CODE, $content, [$uid, USER_TYPE_CLIENT]);
+                $this->sRedisSet($token, $code, VERIFY_CODE_EXPIRE);
+                $this->sRedisSet($token.'issend', 1, VERIFY_CODE_RESEND);
             }
         } else {
             $this->addErrors($model);

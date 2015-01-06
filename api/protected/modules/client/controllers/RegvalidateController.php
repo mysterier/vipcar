@@ -5,7 +5,7 @@ class RegvalidateController extends Controller
 
     public function actionIndex()
     {
-        $captcha = '123'; //todo
+        $captcha = $this->sRedisGet($this->getParam('token'));
         $code = $this->getParam('client_code');
         if ($code == $captcha) {
             $attributes = [
@@ -18,5 +18,6 @@ class RegvalidateController extends Controller
                 $this->result['error_msg'] = '';
             }
         }
+        $this->result['error_msg'] = '验证码不正确';
     }
 }

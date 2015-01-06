@@ -38,7 +38,8 @@ class Controller extends CController
             if ($this->module->id == 'client' && ! in_array($this->id, [
                 'regvalidate',
                 'register',
-                'login'
+                'login',
+                'sendcode'
             ])) {
                 if (! $this->isActived())
                     return false;
@@ -267,5 +268,23 @@ class Controller extends CController
 	        $this->result['error_code'] = SUCCESS_DEFAULT;
 	        $this->result['error_msg'] = '';
 	    }	    
+	}
+	
+	/**
+	 * 简单redis存储
+	 */
+	public function sRedisSet($key, $value, $expire=REDIS_EXPIRE) {
+	    Yii::app()->redis->getClient()->set($key, $value);
+	    if ($expire)
+	        Yii::app()->redis->getClient()->expire($key, $expire);
+	}
+	
+	public function sRedisGet($key) {
+	    return Yii::app()->redis->getClient()->get($key);
+	}
+	
+	public function getVerifyCode() {
+	   $code = rand(100000, 999999);
+	   return $code;
 	}
 }

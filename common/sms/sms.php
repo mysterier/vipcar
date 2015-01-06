@@ -75,7 +75,6 @@ class sms
         $output .= "====================\n";
         
         self::writeIntoFile($output);
-        echo $output;
     }
 
     /**
@@ -93,5 +92,30 @@ class sms
         
         $logFile = $dir . '/' . date('Y-m-d');
         file_put_contents($logFile, $text, FILE_APPEND | LOCK_EX);
+    }
+    
+
+    /**
+     * 加入短信队列
+     * 
+     * @param string $mobile
+     * @param string $tpl
+     * @param string $content
+     * @param array $user  uid,utype
+     * 
+     * @author lqf
+     */
+    public static function addSmsToQueue($mobile, $tpl, $content, $user=[]) {
+        $model = new SmsQueue();
+        $model->tpl = $tpl;
+        $model->mobile = $mobile;
+        $model->content = $content;
+        $model->uid = $user ? $user[0] : 0;
+        $model->utype = $user ? $user[1] : 0;
+        
+        if ($model->save())
+            return $model->id;
+        else
+            return false;
     }
 }

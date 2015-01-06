@@ -39,5 +39,6 @@ $this->breadcrumbs=array(
 <h2><a href="/api/getticket">兑换优惠码</a></h2>
 <h2><a href="/api/couponlist">优惠券列表</a></h2>
 <h2><a href="/api/couponhistory">优惠券历史</a></h2>
+<h2><a href="/api/sendcode">重发验证码</a></h2>
 </div>
 </div>

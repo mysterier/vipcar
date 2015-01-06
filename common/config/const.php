@@ -35,6 +35,8 @@ define('CLIENT_MSG_NOT_ACTIVED', '未激活');
 define('CLIENT_TITLE_MALE', '先生');
 define('CLIENT_TITLE_FEMALE', '女士');
 define('EMAIL_EXISTED', '邮箱已被注册');
+define('VERIFY_CODE_EXPIRE', 1800);
+define('VERIFY_CODE_RESEND', 60);
 //汽车费用
 define('STARTING_FARE', 25);
 define('FARE_PER_KM', 4);
@@ -49,6 +51,7 @@ define('ERROR_MSG_USER_TYPE', '用户类型有误');
 define('ERROR_MSG_DB', '数据查询有误');
 define('ERROR_MOBILE', - 101);
 define('ERROR_MSG_MOBILE', '手机格式错误！');
+define('ERROR_VERIFY_CODE_RESEND', '重发验证码太频繁！');
 
 // Global success
 define('SUCCESS_DEFAULT', 1);

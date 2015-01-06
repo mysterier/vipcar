@@ -143,4 +143,9 @@ class ApiController extends Controller
     {
         $this->render('coupon_history');
     }
+    
+    public function actionSendcode()
+    {
+        $this->render('send_code');
+    }
 }

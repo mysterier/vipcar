@@ -9,3 +9,8 @@ define('DB_PORT_CORE',					'3306');
 //sms
 define('SMS_UID', 'suxian');
 define('SMS_PWD', 'suxian8863');
+
+//redis
+define('REDIS_HOST', 'localhost');
+define('REDIS_PORT', 6379);
+define('REDIS_EXPIRE', 1800);

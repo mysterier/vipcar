@@ -90,6 +90,10 @@ class ApiLoginForm extends CFormModel
             if ($scenario == 'client' && $this->user_id->status == USER_CLIENT_NOT_ACTIVED) {
                 $this->addError('login', CLIENT_EORROR_MSG_NOT_ACTIVED);
                 Yii::app()->controller->result['error_code'] = CLIENT_EORROR_NOT_ACTIVED;
+                $token = $this->generateToken($this->user_id->id, USER_TYPE_CLIENT);
+                if (!$token)
+                    return false;
+                Yii::app()->controller->result['token'] = $token;
             }
         } else
             $this->addError('password', 'Incorrect username or password.');
@@ -111,6 +115,15 @@ class ApiLoginForm extends CFormModel
         
         $uid = $this->user_id->id;
         $type = ($scenario == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT;
+        $token = $this->generateToken($uid, $type);
+        if (!$token)
+            return false;
+        Yii::app()->controller->result['id'] = $uid;
+        Yii::app()->controller->result['token'] = $token;
+        return true;
+    }
+    
+    private function generateToken($uid, $type) {
         $token = $type . md5(time() . $uid . $type) . $uid;
         $attributes = [
             'client_id' => $uid,
@@ -132,12 +145,10 @@ class ApiLoginForm extends CFormModel
                 'token' => $token,
                 'ios_token' => $this->apple_token
             ];
-            
+        
             if (! $tobj->save())
                 return false;
         }
-        Yii::app()->controller->result['id'] = $uid;
-        Yii::app()->controller->result['token'] = $token;
-        return true;
+        return $token;
     }
 }

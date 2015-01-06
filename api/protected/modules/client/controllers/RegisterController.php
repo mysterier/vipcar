@@ -34,7 +34,7 @@ class RegisterController extends Controller
                 //发送验证短信
                 Yii::import('common.sms.sms');
                 $code = $this->getVerifyCode();
-                $content = sms::getSmsTpl(SMS_VERIFY_CODE, [$code, VERIFY_CODE_EXPIRE]);
+                $content = sms::getSmsTpl(SMS_VERIFY_CODE, [$code, VERIFY_CODE_EXPIRE/60]);
                 sms::addSmsToQueue($mobile, SMS_VERIFY_CODE, $content, [$uid, USER_TYPE_CLIENT]);
                 $this->sRedisSet($token, $code, VERIFY_CODE_EXPIRE);
                 $this->sRedisSet($token.'issend', 1, VERIFY_CODE_RESEND);

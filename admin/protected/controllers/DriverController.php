@@ -130,6 +130,7 @@ class DriverController extends Controller
             
             $password = isset($_POST['Drivers']['password']) ? trim(strval($_POST['Drivers']['password'])) : DEFAULT_PASSWORD;
             $model->password = $model->password == $password ? $model->password : $this->encryptPasswd($password);
+            $model->last_update = time();
             
             if ($model->save()) {
                 $this->saveUploadFile($id_card, $model->id_card_path);

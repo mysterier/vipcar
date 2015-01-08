@@ -14,3 +14,6 @@ define('SMS_PWD', 'suxian8863');
 define('REDIS_HOST', 'localhost');
 define('REDIS_PORT', 6379);
 define('REDIS_EXPIRE', 1800);
+
+//百度云推送
+define('SECRET_KEY', 'u6280Qz0pyZoV6GdVf8nrMUwcrluKTnQ');

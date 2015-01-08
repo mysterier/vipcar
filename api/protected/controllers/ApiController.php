@@ -64,6 +64,11 @@ class ApiController extends Controller
         $this->render('Chgiostoken',['module' => 'driver']);
     }
     
+    public function actionBindchannel()
+    {
+        $this->render('bindchannel',['module' => 'driver']);
+    }
+    
     // =====================客户端=============
     public function actionCRegister()
     {
@@ -147,5 +152,10 @@ class ApiController extends Controller
     public function actionSendcode()
     {
         $this->render('send_code');
+    }
+    
+    public function actionCbindchannel()
+    {
+        $this->render('bindchannel',['module' => 'client']);
     }
 }

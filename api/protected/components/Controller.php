@@ -46,7 +46,7 @@ class Controller extends CController
             }
             $this->writeIntoFile();
         }
-               
+        
         return true;
     }
 
@@ -230,61 +230,85 @@ class Controller extends CController
         $url = preg_replace('/\/$/', '', $url);
         return $url;
     }
-    
+
     /**
      * 记录调用接口日志
-     * 
-     * @param string $text
+     *
+     * @param string $text            
      * @author lqf
      */
     public function writeIntoFile()
-	{
-	    $text = [
-	        'uid' => $this->uid,
-	        'url' => $this->getUrl(),
-	        'post' => $_POST,
-	        'time' => date('Y-m-d H:i:s')
- 	    ];
-	    $text = json_encode($text) . "\n";
-	    
-		$dir = realpath(SYSTEM_PATH) . '/api/protected/runtime/apilogs/';
-		$dir .= date('Y') . '/' . date('m');
-		if (!is_dir($dir))
-		    mkdir($dir, 0777, true);
+    {
+        $text = [
+            'uid' => $this->uid,
+            'url' => $this->getUrl(),
+            'post' => $_POST,
+            'time' => date('Y-m-d H:i:s')
+        ];
+        $text = json_encode($text) . "\n";
+        
+        $dir = realpath(SYSTEM_PATH) . '/api/protected/runtime/apilogs/';
+        $dir .= date('Y') . '/' . date('m');
+        if (! is_dir($dir))
+            mkdir($dir, 0777, true);
+        
+        $logFile = $dir . '/' . date('Y-m-d');
+        file_put_contents($logFile, $text, FILE_APPEND | LOCK_EX);
+    }
 
-		$logFile = $dir . '/' . date('Y-m-d');
-		file_put_contents($logFile, $text, FILE_APPEND | LOCK_EX);		
-	}
-	
-	/**
-	 * 更新ios_token
-	 * 
-	 * @author lqf
-	 */
-	public function chiostoken() {
-	    $model = token::model()->findByAttributes(['token'=>$this->getParam('token')]);
-	    $model->ios_token = $this->getParam('apple_token');
-	    if ($model->save()) {
-	        $this->result['error_code'] = SUCCESS_DEFAULT;
-	        $this->result['error_msg'] = '';
-	    }	    
-	}
-	
-	/**
-	 * 简单redis存储
-	 */
-	public function sRedisSet($key, $value, $expire=REDIS_EXPIRE) {
-	    Yii::app()->redis->getClient()->set($key, $value);
-	    if ($expire)
-	        Yii::app()->redis->getClient()->expire($key, $expire);
-	}
-	
-	public function sRedisGet($key) {
-	    return Yii::app()->redis->getClient()->get($key);
-	}
-	
-	public function getVerifyCode() {
-	   $code = rand(100000, 999999);
-	   return $code;
-	}
+    /**
+     * 更新ios_token
+     *
+     * @author lqf
+     */
+    public function chiostoken()
+    {
+        $model = token::model()->findByAttributes([
+            'token' => $this->getParam('token')
+        ]);
+        $model->ios_token = $this->getParam('apple_token');
+        if ($model->save()) {
+            $this->result['error_code'] = SUCCESS_DEFAULT;
+            $this->result['error_msg'] = '';
+        }
+    }
+
+    /**
+     * 简单redis存储
+     */
+    public function sRedisSet($key, $value, $expire = REDIS_EXPIRE)
+    {
+        Yii::app()->redis->getClient()->set($key, $value);
+        if ($expire)
+            Yii::app()->redis->getClient()->expire($key, $expire);
+    }
+
+    public function sRedisGet($key)
+    {
+        return Yii::app()->redis->getClient()->get($key);
+    }
+
+    public function getVerifyCode()
+    {
+        $code = rand(100000, 999999);
+        return $code;
+    }
+
+    /**
+     * 绑定百度推送通道
+     * 
+     * @author lqf
+     */
+    public function bindchannel()
+    {
+        $model = token::model()->findByAttributes([
+            'token' => $this->getParam('token')
+        ]);
+        $model->user_id = $this->getParam('user_id');
+        $model->channel_id = $this->getParam('channel_id');
+        if ($model->save()) {
+            $this->result['error_code'] = SUCCESS_DEFAULT;
+            $this->result['error_msg'] = '';
+        }
+    }
 }

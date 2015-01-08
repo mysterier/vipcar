@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<div class="page-header">
-			<h1>择众用车后台管理系统</h1>
+			<h1><img src="/images/logo.png" class="img-rounded"> 众择用车后台管理系统</h1>
 		</div>
 	
     <?php

@@ -95,7 +95,7 @@ class OrderController extends Controller
         $model->setScenario('driver_modify');
         if ($model && ($model->driver_id == $this->uid)) {
             // 司机端操作此接口，说明订单已经完成
-            $order_income = $this->getIncome($model);
+            $order_income = $this->getIncome();
             $_POST['order_income'] = $order_income;
             $_POST['status'] = ORDER_STATUS_END;
             $_POST['last_update'] = time();
@@ -116,11 +116,11 @@ class OrderController extends Controller
      *            订单对象
      * @author lqf
      */
-    private function getIncome($model)
+    private function getIncome()
     {
-        $income = STARTING_FARE + FARE_PER_KM * $model->travel_distance;
-        $income += $model->packing_fee;
-        $income += $model->highway_fee;
+        $income = STARTING_FARE + FARE_PER_KM * $this->getParam('travel_distance');
+        $income += $this->getParam('packing_fee');
+        $income += $this->getParam('ighway_fee');
         return $income;
     }
 

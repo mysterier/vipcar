@@ -16,4 +16,5 @@ define('REDIS_PORT', 6379);
 define('REDIS_EXPIRE', 1800);
 
 //百度云推送
-define('SECRET_KEY', 'u6280Qz0pyZoV6GdVf8nrMUwcrluKTnQ');
+define('CHANNEL_SECRET_KEY', 'u6280Qz0pyZoV6GdVf8nrMUwcrluKTnQ');
+define('CHANNEL_API_KEY', 'rM2XLwazvOAi7Wn60dUSrQIq');

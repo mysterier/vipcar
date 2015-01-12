@@ -158,4 +158,9 @@ class ApiController extends Controller
     {
         $this->render('bindchannel',['module' => 'client']);
     }
+    
+    public function actionAvatar()
+    {
+        $this->render('avatar');
+    }
 }

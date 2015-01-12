@@ -42,5 +42,6 @@ $this->breadcrumbs=array(
 <h2><a href="/api/couponhistory">优惠券历史</a></h2>
 <h2><a href="/api/sendcode">重发验证码</a></h2>
 <h2><a href="/api/cbindchannel">绑定百度推送通道</a></h2>
+<h2><a href="/api/avatar">修改头像</a></h2>
 </div>
 </div>

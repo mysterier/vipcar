@@ -31,6 +31,7 @@ $this->breadcrumbs=array(
 <h2><a href="/api/airportpickup">接机订单提交</a></h2>
 <h2><a href="/api/airportsend">送机订单提交</a></h2>
 <h2><a href="/api/clientinfor">获取客户信息</a></h2>
+<h2><a href="/api/modifyinfor">修改客户信息</a></h2>
 <h2><a href="/api/corderlist">客户订单列表</a></h2>
 <h2><a href="/api/corderdetail">客户订单详情</a></h2>
 <h2><a href="/api/cmessagelist">客户消息列表</a></h2>

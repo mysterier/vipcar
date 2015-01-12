@@ -163,4 +163,9 @@ class ApiController extends Controller
     {
         $this->render('avatar');
     }
+    
+    public function actionModifyinfor()
+    {
+        $this->render('modify_infor');
+    }
 }

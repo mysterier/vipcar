@@ -10,6 +10,7 @@ class AvatarController extends Controller
         $path = $this->uploadAvatar();
         if ($path) {
             $model->avatar = $path;
+            $model->last_update = $time();
             if ($model->save()) {
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';

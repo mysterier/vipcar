@@ -7,7 +7,7 @@ class ClientinforController extends Controller
     {
         $model = Clients::model()->findByPk($this->uid);
         
-        if ($model && $model->last_update > $this->getParam('last_update')) {            
+        if ($model && $model->last_update > $this->getParam('last_update')) {
             $result['error_code'] = API_UPDATE_USER_INFO;
             $result['error_msg'] = '';
             $result['client_name'] = $model->real_name;
@@ -20,6 +20,21 @@ class ClientinforController extends Controller
         } else {
             $this->result['error_code'] = API_MAINTAIN_DRIVER_INFO;
             $this->result['error_msg'] = '';
+        }
+    }
+
+    public function actionModify($id)
+    {
+        $model = Clients::model()->findByPk($id);
+        $model->setScenario('modify');
+        if ($model && ($model->id == $this->uid)) {
+            $model->real_name = $this->getParam('name');
+            $model->client_title = $this->getParam('client_title');
+            $model->last_update = time();
+            if ($model->save()) {
+                $this->result['error_code'] = SUCCESS_DEFAULT;
+                $this->result['error_msg'] = '';
+            }
         }
     }
 }

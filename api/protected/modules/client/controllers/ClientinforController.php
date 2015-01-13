@@ -15,19 +15,21 @@ class ClientinforController extends Controller
             $result['account_balance'] = $model->account_balance;
             $result['client_avatar'] = $model->avatar;
             $result['client_title'] = $model->client_title;
+            $result['client_phone'] = $model->mobile;
+            $result['client_email'] = $model->email;
             $result['last_update'] = $model->last_update;
             $this->result = $result;
         } else {
-            $this->result['error_code'] = API_MAINTAIN_DRIVER_INFO;
+            $this->result['error_code'] = API_MAINTAIN_USER_INFO;
             $this->result['error_msg'] = '';
         }
     }
 
     public function actionModify()
     {
-        $model = Clients::model()->findByPk($id);
+        $model = Clients::model()->findByPk($this->uid);
         $model->setScenario('modify');
-        if ($model && ($model->id == $this->uid)) {
+        if ($model) {
             $model->real_name = $this->getParam('name');
             $model->client_title = $this->getParam('client_title');
             $model->last_update = time();

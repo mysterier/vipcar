@@ -1,6 +1,15 @@
 <?php
 Yii::import('common.pushmsg.sdk.*');
 
+/**
+ * Yii::import('common.pushmsg.*');
+ * $token = '20b6c4bf037d0aaf4f5387a8590cb29561';
+ * $tpl = SMS_VERIFY_CODE;
+ * $a = PushMsg::action()->pushMsg($token, $tpl);
+ * 
+ * @author lqf
+ *
+ */
 class PushMsg
 {
 

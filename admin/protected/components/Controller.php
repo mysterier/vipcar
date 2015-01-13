@@ -65,8 +65,7 @@ class Controller extends CController
                     [
                         'label' => '订单查询',
                         'url' => [
-                            'product/new',
-                            'tag' => 'new'
+                            'order/list'
                         ]
                     ],
                     [

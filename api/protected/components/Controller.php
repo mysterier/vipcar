@@ -189,18 +189,18 @@ class Controller extends CController
      * @return string
      * @author lqf
      */
-    public function setApiLastUpdate()
+    public function setApiLastUpdate($controller='', $module='', $uid='')
     {
-        $controller = $this->id;
-        $moudle = $this->module->id;
-        $api = $moudle . '_' . $controller . '_list';
-        $url = '/' . $moudle . '/' . $controller . '/list';
-        $utype = ($moudle == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT;
+        $controller = $controller ? $controller : $this->id;
+        $module = $module ? $module : $this->module->id;
+        $api = $module . '_' . $controller . '_list';
+        $url = '/' . $module . '/' . $controller . '/list';
+        $utype = ($module == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT;
         
         $c = new CDbCriteria();
         $c->condition = 'uid =:uid and utype=:utype and url=:url';
         $c->params = [
-            'uid' => $this->uid,
+            'uid' => $uid ? $uid : $this->uid,
             'utype' => $utype,
             'url' => $url
         ];
@@ -210,7 +210,7 @@ class Controller extends CController
         
         $model->attributes = [
             'last_update' => time(),
-            'uid' => $this->uid,
+            'uid' => $uid ? $uid : $this->uid,
             'utype' => $utype,
             'api' => $api,
             'url' => $url

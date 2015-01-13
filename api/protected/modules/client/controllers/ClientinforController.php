@@ -23,7 +23,7 @@ class ClientinforController extends Controller
         }
     }
 
-    public function actionModify($id)
+    public function actionModify()
     {
         $model = Clients::model()->findByPk($id);
         $model->setScenario('modify');

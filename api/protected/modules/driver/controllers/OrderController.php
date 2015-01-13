@@ -81,6 +81,7 @@ class OrderController extends Controller
                 $model->last_update = time();
                 if ($model->save(false)) {
                     $this->setApiLastUpdate();
+                    $this->setApiLastUpdate('order', 'client', $model->client_id);
                     $result['error_code'] = SUCCESS_DEFAULT;
                     $result['error_msg'] = '';
                     $this->result = $result;
@@ -102,6 +103,7 @@ class OrderController extends Controller
             $model->attributes = $_POST;
             if ($model->save()) {
                 $this->setApiLastUpdate();
+                $this->setApiLastUpdate('order', 'client', $model->client_id);
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';
                 $this->result['order_income'] = $order_income;

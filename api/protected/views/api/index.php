@@ -45,5 +45,6 @@ $this->breadcrumbs=array(
 <h2><a href="/api/cbindchannel">绑定百度推送通道</a></h2>
 <h2><a href="/api/avatar">修改头像</a></h2>
 <h2><a href="/api/ordercomment">订单评论</a></h2>
+<h2><a href="/api/recharge">获取充值单号</a></h2>
 </div>
 </div>

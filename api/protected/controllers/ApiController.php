@@ -173,4 +173,8 @@ class ApiController extends Controller
     {
         $this->render('order_comment');
     }
+    
+    public function actionRecharge() {
+        $this->render('recharge');
+    }
 }

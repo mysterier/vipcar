@@ -58,7 +58,13 @@ class OrderController extends Controller
             $result['travel_duration'] = $model->travel_duration ? $model->travel_duration : 0;
             $result['travel_distance'] = $model->travel_distance;
             $result['driver_name'] = $model->driver ? $model->driver->name : '';
+            $result['highway_fee'] = $model->highway_fee;
+            $result['packing_fee'] = $model->packing_fee;
             $result['all_cost'] = $model->order_income;
+            $result['contacter_name'] = $model->contacter_name;
+            $result['contacter_mobile'] = $model->contacter_phone;
+            $result['flight_number'] = $model->flight_number;
+            $result['order_summary'] = $model->summary;
             $result['order_status'] = $model->status;
             $this->result = $result;
         }

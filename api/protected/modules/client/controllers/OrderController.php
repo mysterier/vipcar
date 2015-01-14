@@ -111,4 +111,15 @@ class OrderController extends Controller
             }
         }
     }
+    
+    public function actionComment($id) {
+        $model = Orders::model()->findByPk($id);
+        $model->star = $this->getParam('comment');
+        $model->last_update = time();
+        if ($model->save()) {
+            $this->setApiLastUpdate();
+            $this->result['error_code'] = SUCCESS_DEFAULT;
+            $this->result['error_msg'] = '';
+        }
+    }
 }

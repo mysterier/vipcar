@@ -168,4 +168,9 @@ class ApiController extends Controller
     {
         $this->render('modify_infor');
     }
+    
+    public function actionOrdercomment()
+    {
+        $this->render('order_comment');
+    }
 }

@@ -66,7 +66,7 @@ class Clients extends CActiveRecord
                 'className' => 'Clients',
                 'attributeName' => 'mobile',
                 'allowEmpty' => false,
-                'message' => CLIENT_EORROR_MSG_REGISTERED,
+                'message' => CLIENT_ERROR_MSG_REGISTERED,
                 'on' => [
                     'insert',
                     'update',

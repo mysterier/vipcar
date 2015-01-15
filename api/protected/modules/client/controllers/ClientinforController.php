@@ -39,4 +39,22 @@ class ClientinforController extends Controller
             }
         }
     }
+
+    public function actionResetpass()
+    {
+        $old_pass = $this->getParam('old_password');
+        $new_pass = $this->getParam('new_password');
+        $model = Clients::model()->findByPk($this->uid);
+        $model->setScenario('resetpass');
+        if ($model && ($model->password == $old_pass)) {
+            $model->password = $new_pass;
+            if ($model->save()) {
+                $this->result['error_code'] = SUCCESS_DEFAULT;
+                $this->result['error_msg'] = '';
+            }
+        } else {
+            $this->result['error_code'] = ERROR_DEFAULT;
+            $this->result['error_msg'] = '原始密码错误';
+        }
+    }
 }

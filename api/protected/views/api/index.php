@@ -20,6 +20,7 @@ $this->breadcrumbs=array(
 <h2><a href="/api/incomestat">获取司机各项统计</a></h2>
 <h2><a href="/api/chgiostoken">更改Apple_token</a></h2>
 <h2><a href="/api/bindchannel">绑定百度推送通道</a></h2>
+<h2><a href="/api/resetpass">修改密码</a></h2>
 </div>
 
 <div style="margin-left:500px">
@@ -48,5 +49,6 @@ $this->breadcrumbs=array(
 <h2><a href="/api/recharge">获取充值单号</a></h2>
 <h2><a href="/api/rechargelist">获取充值记录</a></h2>
 <h2><a href="/api/couponpresent">转赠优惠券</a></h2>
+<h2><a href="/api/cresetpass">修改密码</a></h2>
 </div>
 </div>

@@ -69,6 +69,10 @@ class ApiController extends Controller
         $this->render('bindchannel',['module' => 'driver']);
     }
     
+    public function actionResetpass()
+    {
+        $this->render('resetpass',['module' => 'driver/driverinfor']);
+    }
     // =====================客户端=============
     public function actionCRegister()
     {
@@ -185,5 +189,10 @@ class ApiController extends Controller
     public function actionCouponpresent()
     {
         $this->render('coupon_present');
+    }
+    
+    public function actionCresetpass()
+    {
+        $this->render('resetpass',['module' => 'client/clientinfor']);
     }
 }

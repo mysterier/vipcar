@@ -48,7 +48,11 @@ class Drivers extends CActiveRecord
         return [
             [
                 'name, id_card, level, valid_from, valid_for, address, mobile, contacter, contacter_tel, police_check, id_card_path, license_path, health',
-                'required'
+                'required',
+                'on' => [
+                    'insert',
+                    'update'
+                ]
             ],
             [
                 'age',
@@ -73,7 +77,7 @@ class Drivers extends CActiveRecord
                 'className' => 'Drivers',
                 'attributeName' => 'mobile',
                 'allowEmpty' => false,
-                'message' => CLIENT_EORROR_MSG_REGISTERED
+                'message' => CLIENT_ERROR_MSG_REGISTERED
             ],
             [
                 'id_card',
@@ -81,7 +85,11 @@ class Drivers extends CActiveRecord
                 'className' => 'Drivers',
                 'attributeName' => 'id_card',
                 'allowEmpty' => false,
-                'message' => ID_CARD_EXISTED
+                'message' => ID_CARD_EXISTED,
+                'on' => [
+                    'insert',
+                    'update'
+                ]
             ],
             [
                 'avatar',
@@ -89,21 +97,29 @@ class Drivers extends CActiveRecord
                 'types' => 'jpg,png,gif',
                 'maxSize' => 1024 * 1024 * 10,
                 'tooLarge' => FILE_TOOLARGE,
-                'allowEmpty' => true,
+                'allowEmpty' => true
             ],
             [
                 'id_card_path',
                 'file',
                 'types' => 'jpg,png,gif',
                 'maxSize' => 1024 * 1024 * 10,
-                'tooLarge' => FILE_TOOLARGE
+                'tooLarge' => FILE_TOOLARGE,
+                'on' => [
+                    'insert',
+                    'update'
+                ]
             ],
             [
                 'license_path',
                 'file',
                 'types' => 'jpg,png,gif',
                 'maxSize' => 1024 * 1024 * 10,
-                'tooLarge' => FILE_TOOLARGE
+                'tooLarge' => FILE_TOOLARGE,
+                'on' => [
+                    'insert',
+                    'update'
+                ]
             ],
             [
                 'name, id_card',

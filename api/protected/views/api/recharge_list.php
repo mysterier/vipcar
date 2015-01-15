@@ -2,13 +2,13 @@
 /* @var $this SiteController */
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
-$this->pageTitle = Yii::app()->name . ' - Recharge';
+$this->pageTitle = Yii::app()->name . ' - Recharge List';
 $this->breadcrumbs = array(
-    'Recharge'
+    'Recharge List'
 );
 ?>
 
-<h1>Recharge</h1>
+<h1>Recharge List</h1>
 
 <p>Please fill out the following form with your login credentials:</p>
 
@@ -17,7 +17,7 @@ $this->breadcrumbs = array(
 
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'login-form',
-    'action' => '/client/recharge',
+    'action' => '/client/recharge/list',
     'enableClientValidation' => true,
     'clientOptions' => array(
         'validateOnSubmit' => true
@@ -33,15 +33,15 @@ $form = $this->beginWidget('CActiveForm', array(
 	   <label>Token</label>
 	   <input type="text" name="token" />
 	</div>
-	
+
 	<div class="row">
-	   <label>recharge_amount</label>
-	   <input type="text" name="recharge_amount" />
+		<label>last_recharge_sid</label>
+	    <input type="text" name="last_recharge_sid" />
 	</div>
 
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Recharge'); ?>
+		<?php echo CHtml::submitButton('Recharge List'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

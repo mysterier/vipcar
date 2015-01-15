@@ -28,6 +28,7 @@ class RechargeController extends Controller
             foreach ($model as $recharge) {
                 $rechargelist[] = [
                     'recharge_sid' => $recharge->id,
+                    'recharge_no' => $recharge->recharge_no,
                     'recharge_amount' => $recharge->amount,
                     'recharge_date' => $recharge->created,
                     'recharge_status' => $recharge->status

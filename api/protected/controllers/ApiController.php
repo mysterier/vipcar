@@ -181,4 +181,9 @@ class ApiController extends Controller
     public function actionRechargelist() {
         $this->render('recharge_list');
     }
+    
+    public function actionCouponpresent()
+    {
+        $this->render('coupon_present');
+    }
 }

@@ -91,11 +91,11 @@ define('DRIVER_TYPE_ON', 1);
 define('DRIVER_MSG_ON', '在线');
 
 //Client
-define('CLIENT_EORROR_NOT_ACTIVED', -201);
-define('CLIENT_EORROR_MSG_NOT_ACTIVED', '账号未激活！');
-define('CLIENT_EORROR_MSG_ACTIVED', '账号已经激活！');
-define('CLIENT_EORROR_REGISTERED', -202);
-define('CLIENT_EORROR_MSG_REGISTERED', '手机号码已被注册！');
+define('CLIENT_ERROR_NOT_ACTIVED', -201);
+define('CLIENT_ERROR_MSG_NOT_ACTIVED', '账号未激活！');
+define('CLIENT_ERROR_MSG_ACTIVED', '账号已经激活！');
+define('CLIENT_ERROR_REGISTERED', -202);
+define('CLIENT_ERROR_MSG_REGISTERED', '手机号码已被注册！');
 define('CLIENT_ERROR_COUPON', -203);
 define('CLIENT_MSG_COUPON_NOT_EXIST', '该优惠码不存在或已被使用');
 define('CLIENT_MSG_COUPON_NOT_ACTIVED', '该优惠码不可用');
@@ -103,6 +103,8 @@ define('CLIENT_TICKET_DEL', 0);
 define('CLIENT_TICKET_ACTIVED', 1);
 define('CLIENT_TICKET_USED', 2);
 define('CLIENT_TICKET_DONATE', 3);
+define('CLIENT_ERROR_NOT_EXISTED', -204);
+define('CLIENT_ERROR_MSG_NOT_EXISTED', '该用户不存在');
 
 //Coupon
 define('COUPON_PREFIX', 2015);

@@ -82,8 +82,8 @@ class Controller extends CController
         $uid = $this->getUid($token);
         $model = Clients::model()->findByPk($uid);
         if (! $model || $model->status == USER_CLIENT_NOT_ACTIVED) {
-            $this->result['error_code'] = CLIENT_EORROR_NOT_ACTIVED;
-            $this->result['error_msg'] = CLIENT_EORROR_MSG_NOT_ACTIVED;
+            $this->result['error_code'] = CLIENT_ERROR_NOT_ACTIVED;
+            $this->result['error_msg'] = CLIENT_ERROR_MSG_NOT_ACTIVED;
             $result = json_encode($this->result);
             echo $result;
             return false;
@@ -108,11 +108,11 @@ class Controller extends CController
                     case ERROR_MSG_MOBILE:
                         $code = ERROR_MOBILE;
                         break;
-                    case CLIENT_EORROR_MSG_NOT_ACTIVED:
-                        $code = CLIENT_EORROR_NOT_ACTIVED;
+                    case CLIENT_ERROR_MSG_NOT_ACTIVED:
+                        $code = CLIENT_ERROR_NOT_ACTIVED;
                         break;
-                    case CLIENT_EORROR_MSG_REGISTERED:
-                        $code = CLIENT_EORROR_REGISTERED;
+                    case CLIENT_ERROR_MSG_REGISTERED:
+                        $code = CLIENT_ERROR_REGISTERED;
                         break;
                     default:
                         $code = ERROR_DEFAULT;

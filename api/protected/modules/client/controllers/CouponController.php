@@ -4,11 +4,10 @@ class CouponController extends Controller
 {
 
     public function actionIndex()
+    {}
+
+    public function actionGetticket()
     {
-        
-    }
-    
-    public function actionGetticket() {
         $code = $this->getParam('coupon_code');
         
         $criteria = new CDbCriteria();
@@ -19,10 +18,9 @@ class CouponController extends Controller
             'expire' => time()
         ];
         
-
         $model = Coupon::model()->with('ticket')->find($criteria);
         if ($model) {
-            if($model->ticket) {
+            if ($model->ticket) {
                 $client_ticket = new ClientTicket();
                 $client_ticket->client_id = $this->uid;
                 $client_ticket->ticket_id = $model->ticket_id;
@@ -42,7 +40,7 @@ class CouponController extends Controller
                 } else {
                     $this->result['error_code'] = CLIENT_ERROR_COUPON;
                     $this->result['error_msg'] = CLIENT_MSG_COUPON_NOT_ACTIVED;
-                }              
+                }
             } else {
                 $this->result['error_code'] = CLIENT_ERROR_COUPON;
                 $this->result['error_msg'] = CLIENT_MSG_COUPON_NOT_ACTIVED;
@@ -52,15 +50,16 @@ class CouponController extends Controller
             $this->result['error_msg'] = CLIENT_MSG_COUPON_NOT_EXIST;
         }
     }
-    
-    public function actionList() {
+
+    public function actionList()
+    {
         $attributes = [
             'client_id' => $this->uid,
-            'status' => CLIENT_TICKET_ACTIVED            
+            'status' => CLIENT_TICKET_ACTIVED
         ];
         $model = ClientTicket::model()->with('ticket')->findAllByAttributes($attributes);
         $tickets = [];
-        if ($model) {           
+        if ($model) {
             foreach ($model as $coupon) {
                 if ($coupon->ticket) {
                     $tickets[] = [
@@ -69,15 +68,16 @@ class CouponController extends Controller
                         'coupon_type' => $coupon->coupon_type,
                         'coupon_expire' => $coupon->expire
                     ];
-                }               
+                }
             }
         }
         $this->result['error_code'] = SUCCESS_DEFAULT;
         $this->result['error_msg'] = '';
         $this->result['coupons'] = $tickets;
     }
-    
-    public function actionHistory() {
+
+    public function actionHistory()
+    {
         $sid = $this->getParam('coupon_last_sid');
         
         $criteria = new CDbCriteria();
@@ -109,18 +109,20 @@ class CouponController extends Controller
         $this->result['error_msg'] = '';
         $this->result['coupons'] = $tickets;
     }
-    
+
     /**
      * 得到抵扣金额
-     * 
-     * @param $income 订单费用
-     * @param $ticket 优惠方式 例如500 , 20%
-     * 
+     *
+     * @param $income 订单费用            
+     * @param $ticket 优惠方式
+     *            例如500 , 20%
+     *            
      * @return $deduction 实际抵扣金额
      */
-    private function getDeduction($income, $ticket) {
-        if (!$income || !$ticket)
-            return 0; 
+    private function getDeduction($income, $ticket)
+    {
+        if (! $income || ! $ticket)
+            return 0;
         
         if ($income >= $ticket)
             return $ticket;
@@ -129,5 +131,48 @@ class CouponController extends Controller
             return $income;
         
         return 0;
+    }
+
+    public function actionPresent()
+    {
+        $user_mobile = $this->getParam('user_mobile');
+        $coupon_id = $this->getParam('coupon_sid');
+        $mobile = Clients::model()->findByAttributes([
+            'mobile' => $user_mobile
+        ]);
+        if ($mobile) {
+            $client_id = $mobile->id;
+            if ($client_id != $this->uid) {               
+                $parent = ClientTicket::model()->findByPk($coupon_id);
+                if ($parent && ($this->uid == $parent->client_id)) {
+                    // 开启事务处理
+                    $transaction = Yii::app()->db->beginTransaction();
+                    
+                    $parent->status = CLIENT_TICKET_DONATE;
+                    $parent->last_update = time();
+                    if ($parent->save()) {
+                        $model = new ClientTicket();
+                        $model->client_id = $client_id;
+                        $model->parent_id = $parent->id;
+                        $model->ticket_id = $parent->ticket_id;
+                        $model->coupon_type = $parent->coupon_type;
+                        $model->expire = $parent->expire;
+                        if ($model->save()) {
+                            $transaction->commit();
+                            $this->result['error_code'] = SUCCESS_DEFAULT;
+                            $this->result['error_msg'] = '';
+                        } else {
+                            $transaction->rollback();
+                        }
+                    }
+                }
+            } else {
+                $this->result['error_code'] = ERROR_DEFAULT;
+                $this->result['error_msg'] = '不能转赠给自己';
+            }
+        } else {
+            $this->result['error_code'] = CLIENT_ERROR_NOT_EXISTED;
+            $this->result['error_msg'] = CLIENT_ERROR_MSG_NOT_EXISTED;
+        }
     }
 }

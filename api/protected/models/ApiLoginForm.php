@@ -88,8 +88,8 @@ class ApiLoginForm extends CFormModel
         $this->user_id = $static::model()->find($criteria);
         if ($this->user_id) {
             if ($scenario == 'client' && $this->user_id->status == USER_CLIENT_NOT_ACTIVED) {
-                $this->addError('login', CLIENT_EORROR_MSG_NOT_ACTIVED);
-                Yii::app()->controller->result['error_code'] = CLIENT_EORROR_NOT_ACTIVED;
+                $this->addError('login', CLIENT_ERROR_MSG_NOT_ACTIVED);
+                Yii::app()->controller->result['error_code'] = CLIENT_ERROR_NOT_ACTIVED;
                 $token = $this->generateToken($this->user_id->id, USER_TYPE_CLIENT);
                 if (!$token)
                     return false;

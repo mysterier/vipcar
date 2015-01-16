@@ -34,6 +34,10 @@ $form = $this->beginWidget('CActiveForm', array(
 	   <input type="text" name="token" />
 	</div>
 
+	<div class="row">
+	   <label>last_coupon_sid</label>
+	   <input type="text" name="last_coupon_sid" />
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('coupon_list'); ?>

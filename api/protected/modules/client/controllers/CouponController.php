@@ -53,15 +53,13 @@ class CouponController extends Controller
 
     public function actionList()
     {
-        $attributes = [
-            'client_id' => $this->uid,
-            'status' => CLIENT_TICKET_ACTIVED
-        ];
-        $model = ClientTicket::model()->with('ticket')->findAllByAttributes($attributes);
+        $model = $this->getTicket(CLIENT_TICKET_ACTIVED);
+        $last_coupon_sid = 0;
         $tickets = [];
         if ($model) {
             foreach ($model as $coupon) {
                 if ($coupon->ticket) {
+                    $last_coupon_sid = $coupon->id;
                     $tickets[] = [
                         'coupon_sid' => $coupon->id,
                         'coupon_ticket' => $coupon->ticket->name,
@@ -73,22 +71,14 @@ class CouponController extends Controller
         }
         $this->result['error_code'] = SUCCESS_DEFAULT;
         $this->result['error_msg'] = '';
+        $this->result['last_coupon_sid'] = $last_coupon_sid;
         $this->result['coupons'] = $tickets;
     }
 
     public function actionHistory()
     {
-        $sid = $this->getParam('coupon_last_sid');
-        
-        $criteria = new CDbCriteria();
-        $criteria->condition = 't.client_id=:client_id and t.status=:status and t.id > :id';
-        $criteria->order = 't.id asc';
-        $criteria->params = [
-            'client_id' => $this->uid,
-            'status' => CLIENT_TICKET_USED,
-            'id' => $sid
-        ];
-        $model = ClientTicket::model()->with('order', 'ticket')->findAll($criteria);
+        $model = $this->getTicket(CLIENT_TICKET_USED);
+        $last_coupon_sid = 0;
         $tickets = [];
         if ($model) {
             foreach ($model as $coupon) {
@@ -111,6 +101,21 @@ class CouponController extends Controller
         $this->result['error_msg'] = '';
         $this->result['last_coupon_sid'] = $last_coupon_sid;
         $this->result['coupons'] = $tickets;
+    }
+    
+    private function getTicket($status) {
+        $sid = $this->getParam('last_coupon_sid');
+        
+        $criteria = new CDbCriteria();
+        $criteria->condition = 't.client_id=:client_id and t.status=:status and t.id > :id';
+        $criteria->order = 't.id asc';
+        $criteria->params = [
+            'client_id' => $this->uid,
+            'status' => $status,
+            'id' => $sid
+        ];
+        $model = ClientTicket::model()->with('order', 'ticket')->findAll($criteria);
+        return $model;
     }
 
     /**

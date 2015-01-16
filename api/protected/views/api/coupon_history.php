@@ -35,8 +35,8 @@ $form = $this->beginWidget('CActiveForm', array(
 	</div>
 
 	<div class="row">
-	   <label>coupon_last_sid</label>
-	   <input type="text" name="coupon_last_sid" />
+	   <label>last_coupon_sid</label>
+	   <input type="text" name="last_coupon_sid" />
 	</div>
 
 	<div class="row buttons">

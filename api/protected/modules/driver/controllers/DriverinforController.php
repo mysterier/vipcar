@@ -54,4 +54,24 @@ class DriverinforController extends Controller
             $this->result['error_msg'] = '原始密码错误';
         }
     }
+    
+    public function actionForgetpass() {
+        $mobile = $this->getParam('client_mobile');
+        $captcha = $this->sRedisGet($mobile);
+        $code = $this->getParam('verify_code');
+        $mobile = $this->getParam('client_mobile');
+        $password = $this->getParam('new_pass');
+        if ($code == $captcha) {
+            $model = Drivers::model()->findByAttributes(['mobile' => $mobile]);
+            if ($model) {
+                $model->setScenario('resetpass');
+                $model->password = $password;
+                if ($model->save()) {
+                    $this->result['error_code'] = SUCCESS_DEFAULT;
+                    $this->result['error_msg'] = '';
+                }
+            }
+        } else
+            $this->result['error_msg'] = '验证码不正确';
+    }
 }

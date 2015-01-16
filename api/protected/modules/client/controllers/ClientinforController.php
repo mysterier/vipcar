@@ -44,17 +44,36 @@ class ClientinforController extends Controller
     {
         $old_pass = $this->getParam('old_password');
         $new_pass = $this->getParam('new_password');
-        $model = Clients::model()->findByPk($this->uid);
-        $model->setScenario('resetpass');
+        $model = Clients::model()->findByPk($this->uid);        
         if ($model && ($model->password == $old_pass)) {
+            $model->setScenario('resetpass');
             $model->password = $new_pass;
             if ($model->save()) {
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';
             }
         } else {
-            $this->result['error_code'] = ERROR_DEFAULT;
             $this->result['error_msg'] = '原始密码错误';
         }
+    }
+    
+    public function actionForgetpass() {
+        $mobile = $this->getParam('client_mobile');
+        $captcha = $this->sRedisGet($mobile);
+        $code = $this->getParam('verify_code');
+        $mobile = $this->getParam('client_mobile');
+        $password = $this->getParam('new_pass');
+        if ($code == $captcha) {
+            $model = Clients::model()->findByAttributes(['mobile' => $mobile]);
+            if ($model) {
+                $model->setScenario('resetpass');
+                $model->password = $password;
+                if ($model->save()) {
+                    $this->result['error_code'] = SUCCESS_DEFAULT;
+                    $this->result['error_msg'] = '';
+                }
+            }
+        } else 
+            $this->result['error_msg'] = '验证码不正确';
     }
 }

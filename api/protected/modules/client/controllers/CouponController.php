@@ -26,17 +26,21 @@ class CouponController extends Controller
                 $client_ticket->ticket_id = $model->ticket_id;
                 $client_ticket->coupon_type = $model->type;
                 $client_ticket->expire = $model->ticket_expire;
+                // 开启事务处理
+                $transaction = Yii::app()->db->beginTransaction();
                 
                 if ($client_ticket->save()) {
                     $model->status = 1;
-                    $model->save();
-                    
-                    $this->result['error_code'] = SUCCESS_DEFAULT;
-                    $this->result['error_msg'] = '';
-                    $this->result['coupon_sid'] = $client_ticket->id;
-                    $this->result['coupon_ticket'] = $model->ticket->name;
-                    $this->result['coupon_type'] = $model->type;
-                    $this->result['coupon_expire'] = $model->ticket_expire;
+                    if ($model->save()) {
+                        $transaction->commit();
+                        $this->result['error_code'] = SUCCESS_DEFAULT;
+                        $this->result['error_msg'] = '';
+                        $this->result['coupon_sid'] = $client_ticket->id;
+                        $this->result['coupon_ticket'] = $model->ticket->name;
+                        $this->result['coupon_type'] = $model->type;
+                        $this->result['coupon_expire'] = $model->ticket_expire;
+                    } else 
+                        $transaction->rollback();
                 } else {
                     $this->result['error_code'] = CLIENT_ERROR_COUPON;
                     $this->result['error_msg'] = CLIENT_MSG_COUPON_NOT_ACTIVED;
@@ -169,9 +173,8 @@ class CouponController extends Controller
                             $transaction->commit();
                             $this->result['error_code'] = SUCCESS_DEFAULT;
                             $this->result['error_msg'] = '';
-                        } else {
+                        } else
                             $transaction->rollback();
-                        }
                     }
                 }
             } else {

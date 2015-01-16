@@ -73,6 +73,16 @@ class ApiController extends Controller
     {
         $this->render('resetpass',['module' => 'driver/driverinfor']);
     }
+    
+    public function actionSendcodeforget()
+    {
+        $this->render('sendcode_forget',['module' => 'driver/sendcode']);
+    }
+    
+    public function actionForgetpass()
+    {
+        $this->render('forgetpass',['module' => 'driver/driverinfor']);
+    }
     // =====================客户端=============
     public function actionCRegister()
     {
@@ -194,5 +204,15 @@ class ApiController extends Controller
     public function actionCresetpass()
     {
         $this->render('resetpass',['module' => 'client/clientinfor']);
+    }
+    
+    public function actionCsendcodeforget()
+    {
+        $this->render('sendcode_forget',['module' => 'client/sendcode']);
+    }
+    
+    public function actionCforgetpass()
+    {
+        $this->render('forgetpass',['module' => 'client/clientinfor']);
     }
 }

@@ -20,12 +20,14 @@ class RechargeController extends Controller
     public function actionList() {
         $criteria = new CDbCriteria();
         $criteria->condition = 'id > :id';
+        $criteria->order = 'id asc';
         $criteria->params = [
             'id' => $this->getParam('last_recharge_sid')
         ];
         $model = RechargeLog::model()->findAll($criteria);
         if ($model) {
             foreach ($model as $recharge) {
+                $last_recharge_sid = $recharge->id;
                 $rechargelist[] = [
                     'recharge_sid' => $recharge->id,
                     'recharge_no' => $recharge->recharge_no,
@@ -36,10 +38,12 @@ class RechargeController extends Controller
             }
             $this->result['error_code'] = SUCCESS_DEFAULT;
             $this->result['error_msg'] = '';
+            $this->result['last_recharge_sid'] = $last_recharge_sid;
             $this->result['rechargelist'] = $rechargelist;
         } else {
             $this->result['error_code'] = API_MAINTAIN_RECHARGE;
             $this->result['error_msg'] = '';
+            $this->result['last_recharge_sid'] = '';
             $this->result['rechargelist'] = [];
         }
     }

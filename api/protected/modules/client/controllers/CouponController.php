@@ -82,6 +82,7 @@ class CouponController extends Controller
         
         $criteria = new CDbCriteria();
         $criteria->condition = 't.client_id=:client_id and t.status=:status and t.id > :id';
+        $criteria->order = 't.id asc';
         $criteria->params = [
             'client_id' => $this->uid,
             'status' => CLIENT_TICKET_USED,
@@ -93,6 +94,7 @@ class CouponController extends Controller
             foreach ($model as $coupon) {
                 $income = $coupon->order ? $coupon->order->order_income : 0;
                 $ticket = $coupon->ticket ? $coupon->ticket->name : '';
+                $last_coupon_sid = $coupon->id;
                 $tickets[] = [
                     'coupon_sid' => $coupon->id,
                     'coupon_ticket' => $ticket,
@@ -107,6 +109,7 @@ class CouponController extends Controller
         }
         $this->result['error_code'] = SUCCESS_DEFAULT;
         $this->result['error_msg'] = '';
+        $this->result['last_coupon_sid'] = $last_coupon_sid;
         $this->result['coupons'] = $tickets;
     }
 

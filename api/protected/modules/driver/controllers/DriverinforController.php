@@ -56,10 +56,9 @@ class DriverinforController extends Controller
     }
     
     public function actionForgetpass() {
-        $mobile = $this->getParam('client_mobile');
+        $mobile = $this->getParam('driver_mobile');
         $captcha = $this->sRedisGet($mobile);
         $code = $this->getParam('verify_code');
-        $mobile = $this->getParam('client_mobile');
         $password = $this->getParam('new_pass');
         if ($code == $captcha) {
             $model = Drivers::model()->findByAttributes(['mobile' => $mobile]);

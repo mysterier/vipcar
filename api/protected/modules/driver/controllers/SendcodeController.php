@@ -15,7 +15,7 @@ class SendcodeController extends Controller
     }
     
     public function actionForgetpass() {
-        $mobile = $this->getParam('client_mobile');
+        $mobile = $this->getParam('driver_mobile');
         if (!$this->sRedisGet($mobile.'issend_driver')) {
             $model = Drivers::model()->findByAttributes(['mobile' => $mobile]);
             if ($model)           

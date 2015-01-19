@@ -134,7 +134,7 @@ class OrderController extends Controller
      */
     private function getNewOrders()
     {
-        $condition = 'driver_id=:uid and id > :id and (status="' . ORDER_STATUS_NEW . '" or status="' . ORDER_STATUS_RUN . '")';
+        $condition = 'driver_id=:uid and id > :id and status<="' . ORDER_STATUS_RUN . '"';
         $params = [
             'uid' => $this->uid,
             'id' => $this->sid
@@ -143,7 +143,7 @@ class OrderController extends Controller
         $this->getOrders($condition, $params, API_ORDER_NEW_FLAG);
         
         // 获取未完成但已经修改过的订单
-        $this->getUpdateOrders('driver_id=:uid and (status="' . ORDER_STATUS_NEW . '" or status="' . ORDER_STATUS_RUN . '") and last_update > :last_update');
+        $this->getUpdateOrders('driver_id=:uid and status<="' . ORDER_STATUS_RUN . '" and last_update > :last_update');
     }
 
     /**

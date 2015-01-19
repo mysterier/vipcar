@@ -215,4 +215,9 @@ class ApiController extends Controller
     {
         $this->render('forgetpass',['module' => 'client/clientinfor']);
     }
+    
+    public function actionPay()
+    {
+        $this->render('pay');
+    }
 }

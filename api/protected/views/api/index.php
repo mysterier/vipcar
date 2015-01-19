@@ -54,5 +54,6 @@ $this->breadcrumbs=array(
 <h2><a href="/api/cresetpass">修改密码</a></h2>
 <h2><a href="/api/csendcodeforget">发送忘记密码验证码</a></h2>
 <h2><a href="/api/cforgetpass">修改密码</a></h2>
+<h2><a href="/api/pay">确认付款</a></h2>
 </div>
 </div>

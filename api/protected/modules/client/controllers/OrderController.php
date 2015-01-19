@@ -81,7 +81,7 @@ class OrderController extends Controller
     private function getOrders($condition, $params, $flag)
     {
         $criteria = new CDbCriteria();
-        $criteria->select = 'id,order_no,pickup_place,estimated_cost,estimated_duration,estimated_distance,vehicle_type,drop_place,order_income,type,status,created,last_update';
+        $criteria->select = 'id,order_no,pickup_place,estimated_cost,estimated_duration,estimated_distance,vehicle_type,drop_place,order_income,type,status,created,last_update,star';
         $criteria->condition = $condition;
         $criteria->order = 't.id asc';
         $criteria->params = $params;
@@ -110,6 +110,7 @@ class OrderController extends Controller
                     'estimated_duration' => $order->estimated_duration,
                     'estimated_distance' => $order->estimated_distance,
                     'car_type' => $order->vehicle_type,
+                    'order_rate' => $order->star,
                     'order_flag' => $flag
                 ];
                 if ($flag == API_ORDER_NEW_FLAG)

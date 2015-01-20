@@ -19,10 +19,11 @@ class RechargeController extends Controller
     
     public function actionList() {
         $criteria = new CDbCriteria();
-        $criteria->condition = 'id > :id';
+        $criteria->condition = 'uid = :uid and id > :id';
         $criteria->order = 'id asc';
         $criteria->params = [
-            'id' => $this->getParam('last_recharge_sid')
+            'id' => $this->getParam('last_recharge_sid'),
+            'uid' => $this->uid
         ];
         $model = RechargeLog::model()->findAll($criteria);
         if ($model) {
@@ -46,5 +47,12 @@ class RechargeController extends Controller
             $this->result['last_recharge_sid'] = '';
             $this->result['rechargelist'] = [];
         }
+    }
+    
+    public function actionNotify() {
+        require_once(COMMON . "/alipay/alipay.config.php");
+        require_once(COMMON . "/alipay/lib/alipay_notify.class.php");
+        $alipayNotify = new AlipayNotify($alipay_config);
+        var_dump($alipayNotify);
     }
 }

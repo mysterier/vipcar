@@ -21,4 +21,10 @@ $this->widget(
         'columns' => $gridColumns
     ]
 );
+
+$this->widget('booster.widgets.TbPager', [
+    'displayFirstAndLast' => true,
+    'pages' => $gridDataProvider->pagination,
+    'maxButtonCount' => 5
+]);
 ?>

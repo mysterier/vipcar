@@ -8,9 +8,15 @@ class VehicleController extends Controller
 
     public function actionList()
     {
-        $model = Vehicle::model()->with('model')->findAll();
-        
-        $dataProvider = new CArrayDataProvider($model);
+        $criteria = new CDbCriteria();
+        $criteria->with = 'model';
+        $dataProvider = new CActiveDataProvider('Vehicle', [
+            'criteria' => $criteria,
+            'pagination' => [
+                'pageVar' => 'page',
+                'pageSize' => ADMIN_PAGE_SIZE
+            ]
+        ]);
         $hash['gridDataProvider'] = $dataProvider;
         $hash['gridColumns'] = [
             [
@@ -140,9 +146,15 @@ class VehicleController extends Controller
             '车型管理'
         ];
         
-        $model = VehicleModel::model()->with('type')->findAll();
-        
-        $dataProvider = new CArrayDataProvider($model);
+        $criteria = new CDbCriteria();
+        $criteria->with = 'type';
+        $dataProvider = new CActiveDataProvider('VehicleModel', [
+            'criteria' => $criteria,
+            'pagination' => [
+                'pageVar' => 'page',
+                'pageSize' => ADMIN_PAGE_SIZE
+            ]
+        ]);
         $hash['gridDataProvider'] = $dataProvider;
         $hash['gridColumns'] = [
             [

@@ -8,9 +8,13 @@ class DriverController extends Controller
 
     public function actionList()
     {
-        $model = Drivers::model()->findAll();
+        $dataProvider = new CActiveDataProvider('Drivers',[
+            'pagination' => [
+                'pageVar' => 'page',
+                'pageSize' => ADMIN_PAGE_SIZE
+            ]
+        ]);
         
-        $dataProvider = new CArrayDataProvider($model);
         $hash['gridDataProvider'] = $dataProvider;
         $hash['gridColumns'] = [
             [

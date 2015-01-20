@@ -7,10 +7,14 @@ class ClientController extends Controller
     {}
 
     public function actionList()
-    {
-        $model = Clients::model()->findAll();
+    {      
+        $dataProvider = new CActiveDataProvider('Clients',[
+            'pagination' => [
+                'pageVar' => 'page',
+                'pageSize' => ADMIN_PAGE_SIZE
+            ]
+        ]);
         
-        $dataProvider = new CArrayDataProvider($model);
         $hash['gridDataProvider'] = $dataProvider;
         $hash['gridColumns'] = [
             [

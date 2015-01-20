@@ -32,6 +32,7 @@ class ClientinforController extends Controller
         if ($model) {
             $model->real_name = $this->getParam('name');
             $model->client_title = $this->getParam('client_title');
+            $model->email = $this->getParam('client_email');
             $model->last_update = time();
             if ($model->save()) {
                 $this->result['error_code'] = SUCCESS_DEFAULT;

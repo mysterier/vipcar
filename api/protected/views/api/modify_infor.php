@@ -44,6 +44,11 @@ $form = $this->beginWidget('CActiveForm', array(
 	   <input type="text" name="client_title" />
 	</div>
 	
+	<div class="row">
+	   <label>client_email</label>
+	   <input type="text" name="client_email" />
+	</div>
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Clientinfor'); ?>
 	</div>

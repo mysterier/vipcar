@@ -58,6 +58,7 @@ class OrderController extends Controller
             $result['travel_duration'] = $model->travel_duration ? $model->travel_duration : 0;
             $result['travel_distance'] = $model->travel_distance;
             $result['driver_name'] = $model->driver ? $model->driver->name : '';
+            $result['driver_mobile'] = $model->driver ? $model->driver->mobile : '';
             $result['highway_fee'] = $model->highway_fee;
             $result['packing_fee'] = $model->packing_fee;
             $result['all_cost'] = $model->order_income;
@@ -89,10 +90,11 @@ class OrderController extends Controller
         $orders = Orders::model()->with('driver')->with('driver.vehicle')->findAll($criteria);
         if ($orders) {
             foreach ($orders as $order) {
-                $vehicle = $driver_name = '';
+                $vehicle = $driver_name = $driver_mobile = '';
                 if ($order->driver) {
                     $vehicle = $order->driver->vehicle;
                     $driver_name = $order->driver->name;
+                    $driver_mobile = $order->driver->mobile;
                 }
 
                 $this->orders[] = [
@@ -104,6 +106,7 @@ class OrderController extends Controller
                     'pickup_place' => $order->pickup_place,
                     'drop_place' => $order->drop_place,
                     'driver_name' => $driver_name ? $driver_name : '',
+                    'driver_mobile' => $driver_mobile ? $driver_mobile : '',
                     'car_number' => $vehicle ? $vehicle[0]->license_no : '',
                     'order_date' => ($flag == API_ORDER_NEW_FLAG) ? $order->created : date('Y-m-d H:i:s', $order->last_update),
                     'estimated_cost' => $order->estimated_cost,

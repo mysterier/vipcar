@@ -17,7 +17,8 @@ $this->breadcrumbs = array(
 
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'login-form',
-    'action' => '/client/payment/4',
+    //'action' => '/client/payment/4',
+    'action' => '/client/recharge/notify',
     'enableClientValidation' => true,
     'clientOptions' => array(
         'validateOnSubmit' => true

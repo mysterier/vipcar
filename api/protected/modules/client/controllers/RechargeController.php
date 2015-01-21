@@ -5,15 +5,40 @@ class RechargeController extends Controller
 
     public function actionIndex()
     {
+        require_once(COMMON . "/alipay/alipay.config.php");
+        require_once(COMMON . "/alipay/lib/alipay_core.function.php");
+        require_once(COMMON . "/alipay/lib/alipay_rsa.function.php");
         $recharge_no = 'rcg' . time();
+        $total_fee = $this->getParam('total_fee');
+        $subject = $this->getParam('subject');
+        $body = $this->getParam('body');
+        $params['partner'] = $alipay_config['partner'];
+        $params['seller_id'] = 'jackyren@subaozuche.com';
+        $params['out_trade_no'] = $recharge_no;
+        $params['subject'] = $subject;
+        $params['body'] = $body;
+        $params['total_fee'] = $total_fee;
+        $params['notify_url'] = 'http://' . DEFAULT_API_SITE . '/client/notify';
+        $params['service'] = 'mobile.securitypay.pay';
+        $params['payment_type'] = '1';
+        $params['_input_charset'] = 'utf-8';
+        $params['it_b_pay'] = '30m';
+        $link = $this->getLink($params);
+        $sign = rsaSign($link, $alipay_config['private_key_path']);
+        $sign = urlencode($sign);
+        $params['sign'] = $sign;
+        $params['sign_type'] = $alipay_config['sign_type'];
+        $pay_info = $this->getLink($params);
         $model = new RechargeLog();
         $model->uid = $this->uid;
         $model->recharge_no = $recharge_no;
-        $model->amount = $this->getParam('recharge_amount');
+        $model->amount = $total_fee;
+        $model->subject = $subject;
+        $model->body = $body;
         if ($model->save()) {
             $this->result['error_code'] = SUCCESS_DEFAULT;
             $this->result['error_msg'] = '';
-            $this->result['recharge_no'] = $recharge_no;
+            $this->result['pay_info'] = $pay_info;
         }
     }
     
@@ -54,5 +79,16 @@ class RechargeController extends Controller
         require_once(COMMON . "/alipay/lib/alipay_notify.class.php");
         $alipayNotify = new AlipayNotify($alipay_config);
         var_dump($alipayNotify);
+    }
+    
+    private function getLink($para) {
+        $arg  = "";
+        while (list ($key, $val) = each ($para)) {
+            $arg.=$key."=\"".$val."\"&";
+        }
+        //去掉最后一个&字符
+        $arg = substr($arg,0,count($arg)-2);
+        
+        return $arg;
     }
 }

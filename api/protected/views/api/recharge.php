@@ -35,8 +35,18 @@ $form = $this->beginWidget('CActiveForm', array(
 	</div>
 	
 	<div class="row">
-	   <label>recharge_amount</label>
-	   <input type="text" name="recharge_amount" />
+	   <label>total_fee</label>
+	   <input type="text" name="total_fee" />
+	</div>
+	
+	<div class="row">
+	   <label>subject</label>
+	   <input type="text" name="subject" />
+	</div>
+	
+	<div class="row">
+	   <label>body</label>
+	   <input type="text" name="body" />
 	</div>
 
 

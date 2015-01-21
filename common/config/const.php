@@ -39,6 +39,7 @@ define('EMAIL_EXISTED', '邮箱已被注册');
 define('VERIFY_CODE_EXPIRE', 1800);
 define('VERIFY_CODE_RESEND', 60);
 define('ADMIN_PAGE_SIZE', 10);
+define('DEFAULT_API_SITE', 'api.carvip.wang:8080');
 //汽车费用
 define('STARTING_FARE', 25);
 define('FARE_PER_KM', 4);
@@ -115,4 +116,5 @@ define('COUPON_CHECK_CODE', 201501);
 
 //sms_tpl
 define('SMS_VERIFY_CODE', 'verify_code');
+define('NOTIFY_ORDER_CONFIRM', '');
 

@@ -85,12 +85,15 @@ class OrderController extends Controller
                     $this->setApiLastUpdate('order', 'client', $model->client_id);
                     
                     Yii::import('common.pushmsg.*');
-                    $token = $this->getParam('token');
+                    $attributes = [
+                        'client_id' => $model->client_id,
+                        'type' => USER_TYPE_CLIENT
+                    ];
                     $tpl = 'order_confirm';
                     $option = [
                         'description' => '您的订单' . $model->order_no . '已被确认，司机正向您火速奔来。'
                     ];
-                    PushMsg::action()->pushMsg($token, $tpl, $option);
+                    PushMsg::action()->pushMsg($attributes, $tpl, $option);
                     
                     $result['error_code'] = SUCCESS_DEFAULT;
                     $result['error_msg'] = '';
@@ -116,12 +119,15 @@ class OrderController extends Controller
                 $this->setApiLastUpdate('order', 'client', $model->client_id);
                 
                 Yii::import('common.pushmsg.*');
-                $token = $this->getParam('token');
+                $attributes = [
+                        'client_id' => $model->client_id,
+                        'type' => USER_TYPE_CLIENT
+                    ];
                 $tpl = 'bill_confirm';
                 $option = [
                     'description' => $this->bill_cofirm
                 ];
-                PushMsg::action()->pushMsg($token, $tpl, $option);
+                PushMsg::action()->pushMsg($attributes, $tpl, $option);
                 
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';

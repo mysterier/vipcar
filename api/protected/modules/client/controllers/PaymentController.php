@@ -23,7 +23,7 @@ class PaymentController extends Controller
                 // 开启事务处理
                 $transaction = Yii::app()->db->beginTransaction();
                 // 修改订单状态
-                $order_obj->status = 6;
+                $order_obj->status = ORDER_STATUS_END;
                 $order_obj->last_update = time();
                 if ($order_obj->save()) {
                     // 修改账户余额
@@ -47,12 +47,14 @@ class PaymentController extends Controller
                                     $transaction->commit();
                                     $this->result['error_code'] = SUCCESS_DEFAULT;
                                     $this->result['error_msg'] = '';
+                                    $this->finishNotify($order_obj);
                                 } else
                                     $transaction->rollback();
                             } else {
                                 $transaction->commit();
                                 $this->result['error_code'] = SUCCESS_DEFAULT;
                                 $this->result['error_msg'] = '';
+                                $this->finishNotify($order_obj);
                             }
                         } else
                             $transaction->rollback();
@@ -63,5 +65,27 @@ class PaymentController extends Controller
                 $this->result['error_msg'] = '余额不足';
             }
         }
+    }
+    
+    private function finishNotify($order) {
+        Yii::import('common.pushmsg.*');
+        $token = $this->getParam('token');
+        $tpl = 'order_finished';
+        $option = [
+            'description' => '订单' . $order->order_no . '已完成，感谢您的乘坐，众择用车只做最专业的接送机服务。'
+        ];
+        PushMsg::action()->pushMsg($token, $tpl, $option);
+        
+        //给司机发送消息
+        $attributes = [
+            'client_id' => $order->driver_id,
+            'type' => USER_TYPE_DRIVER
+        ];
+        
+        $tpl = 'driver_bill_payed';
+        $option = [
+            'description' => '订单' . $order->order_no . '，用户已付款结单，接下去，能量满满地工作吧。'
+        ];
+        PushMsg::action()->pushMsg($attributes, $tpl, $option);
     }
 }

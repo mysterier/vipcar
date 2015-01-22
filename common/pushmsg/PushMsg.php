@@ -48,9 +48,11 @@ class PushMsg
             // 推送消息到该app中的全部user，设置push_type = 3;
         switch ($push_type) {
             case 1:
-                $model = Token::model()->findByAttributes([
+                $attributes = is_array($token) ? $token : [
                     'token' => $token
-                ]);
+                ];
+                
+                $model = Token::model()->findByAttributes($attributes);
                 if (! $model)
                     return false;
                 

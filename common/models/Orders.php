@@ -53,7 +53,7 @@ class Orders extends CActiveRecord
     {
         return [
             [
-                'order_no, client_id, contacter_name, contacter_phone, estimated_cost, pickup_place, drop_place, flight_number, pickup_time, coordinate',
+                'order_no, client_id, contacter_name, contacter_phone, estimated_cost, pickup_place, drop_place, flight_number, pickup_time, coordinate, type',
                 'required',
                 'on' => 'insert'
             ],

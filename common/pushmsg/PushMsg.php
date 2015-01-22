@@ -69,6 +69,7 @@ class PushMsg
         $optional[Channel::MESSAGE_TYPE] = isset($message_type) ? $message_type : 1;
         
         $message = $msg_tpl[$tpl];
+        isset($description) ? $message['description'] = $description : '';
         $message = json_encode($message);
         $message_key = time();
         $ret = $this->_channel->pushMessage($push_type, $message, $message_key, $optional);

@@ -1,5 +1,4 @@
 <?php
-
 class OrderController extends Controller
 {
 
@@ -8,6 +7,8 @@ class OrderController extends Controller
     private $sid;
 
     private $last_update;
+    
+    private $bill_cofirm;
 
     public function init()
     {
@@ -82,6 +83,15 @@ class OrderController extends Controller
                 if ($model->save(false)) {
                     $this->setApiLastUpdate();
                     $this->setApiLastUpdate('order', 'client', $model->client_id);
+                    
+                    Yii::import('common.pushmsg.*');
+                    $token = $this->getParam('token');
+                    $tpl = 'order_confirm';
+                    $option = [
+                        'description' => '您的订单' . $model->order_no . '已被确认，司机正向您火速奔来。'
+                    ];
+                    PushMsg::action()->pushMsg($token, $tpl, $option);
+                    
                     $result['error_code'] = SUCCESS_DEFAULT;
                     $result['error_msg'] = '';
                     $this->result = $result;
@@ -96,14 +106,23 @@ class OrderController extends Controller
         $model->setScenario('driver_modify');
         if ($model && ($model->driver_id == $this->uid)) {
             // 司机端操作此接口，说明订单已经完成
-            $order_income = $this->getIncome();
+            $order_income = $this->getIncome($model);
             $_POST['order_income'] = $order_income;
-            $_POST['status'] = ORDER_STATUS_END;
+            $_POST['status'] = ORDER_STATUS_PAY;
             $_POST['last_update'] = time();
             $model->attributes = $_POST;
             if ($model->save()) {
                 $this->setApiLastUpdate();
                 $this->setApiLastUpdate('order', 'client', $model->client_id);
+                
+                Yii::import('common.pushmsg.*');
+                $token = $this->getParam('token');
+                $tpl = 'bill_confirm';
+                $option = [
+                    'description' => $this->bill_cofirm
+                ];
+                PushMsg::action()->pushMsg($token, $tpl, $option);
+                
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';
                 $this->result['order_income'] = $order_income;
@@ -118,14 +137,69 @@ class OrderController extends Controller
      *            订单对象
      * @author lqf
      */
-    private function getIncome()
+    private function getIncome($model)
     {
-        $income = STARTING_FARE + FARE_PER_KM * $this->getParam('travel_distance');
-        $income += $this->getParam('packing_fee');
-        $income += $this->getParam('ighway_fee');
+        $fare = '';
+        switch ($model->vehicle_type) {
+            case VEHICLE_TYPE_COMFORTABLE:
+                $vehicle_type = '舒适';
+                $fares = [280, 380];
+                break;
+            case VEHICLE_TYPE_BUSINESS:
+                $vehicle_type = '商务';
+                $fares = [380, 480];
+                break;
+            case VEHICLE_TYPE_LUXURY:
+                $vehicle_type = '豪华';
+                $fares = [580, 680];
+                break;
+            default:
+                $vehicle_type = '舒适';
+                $fares = [280, 380];
+        }
+        
+        $type = $model->type;
+        if ($type == ORDER_TYPE_AIRPORTPICKUP || $type == ORDER_TYPE_BOOK_AIRPORTPICKUP) {
+            $place = $model->pickup_place;
+        } elseif ($type == ORDER_TYPE_AIRPORTSEND || $type == ORDER_TYPE_BOOK_AIRPORTSEND) {
+            $place = $model->drop_place;
+        }
+
+        if (strstr($place, '浦东')) {
+            $fare = $fares[1];
+            $place = '浦东';
+        } else {
+            $fare = $fares[0];
+            $place = '虹桥';
+        }
+        
+        $distance = $this->getParam('travel_distance');
+        $duration = $this->getParam('travel_duration');
+        $duration = substr($duration, 0, 2);
+        $over_distance = $distance - BASE_DISTANCE;
+        $over_distance = ($over_distance > 0) ? $over_distance *  FARE_PER_KM : 0;
+        $over_duration = $duration - BASE_DURATION;
+        $over_duration = ($over_duration > 0) ? $over_duration * FARE_PER_HOUR : 0;
+        $packing_fee = $this->getParam('packing_fee');
+        $highway_fee = $this->getParam('highway_fee');
+        
+        $extra = '';
+        $extra .= $packing_fee ? '停车费' . $packing_fee . '元，' : '';
+        $extra .= $highway_fee ? '高速费' . $highway_fee . '元，' : '';
+        $extra .= $over_distance ? '超公里费' . $over_distance . '元，' : '' ;
+        $extra .= $over_duration ? '超时费' . $over_duration . '元，' : '';
+        $extra = $extra ? '额外费用：' . $extra : '';
+
+        $income = $fare + $over_distance + $over_duration;
+        $income += $packing_fee;
+        $income += $highway_fee;
+        
+        $this->bill_cofirm = '您的订单' . $model->order_no . '的账单已生成，请您核实查验：'
+                             . $place . '机场接送机服务' . $vehicle_type . '型' 
+                             . $fare . '元，' . $extra . '共计' . $income . '元。';
         return $income;
     }
-
+    
     /**
      * 获取最新增加的订单
      *
@@ -178,7 +252,7 @@ class OrderController extends Controller
     private function getOrders($condition, $params, $flag)
     {
         $criteria = new CDbCriteria();
-        $criteria->select = 'id,order_no,pickup_place,drop_place,order_income,created,last_update,status';
+        $criteria->select = 'id,order_no,pickup_place,pickup_time,drop_place,order_income,created,last_update,status';
         $criteria->condition = $condition;
         $criteria->order = 'id asc';
         $criteria->params = $params;
@@ -190,6 +264,7 @@ class OrderController extends Controller
                     'order_sid' => $order->id,
                     'order_no' => $order->order_no,
                     'pickup_place' => $order->pickup_place,
+                    'pickup_time' => $order->pickup_time,
                     'drop_place' => $order->drop_place,
                     'order_income' => $order->order_income,
                     'order_date' => ($flag == API_ORDER_NEW_FLAG) ? $order->created : date('Y-m-d H:i:s', $order->last_update),

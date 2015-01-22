@@ -42,5 +42,50 @@ return  [
         'custom_content' => [
             'key' => 'value'
         ]
+    ],
+    'order_confirm' => [
+        'title' => '众择租车来消息啦',
+        'description' => '您的订单xxxxx已被确认，司机正向您火速奔来。',
+        'notification_basic_style' => 7,
+        'open_type' => 2,
+        'custom_content' => [
+            'key' => 'value'
+        ]
+    ],
+    'order_finished' => [
+        'title' => '众择租车来消息啦',
+        'description' => '订单xxxxx已完成，感谢您的乘坐，众择用车只做最专业的接送机服务。',
+        'notification_basic_style' => 7,
+        'open_type' => 2,
+        'custom_content' => [
+            'key' => 'value'
+        ]
+    ],
+    'bill_confirm' => [
+        'title' => '众择租车来消息啦',
+        'description' => '订单xxxxx的账单已生成，请您核实查验：xx机场接送机服务xx型xxx元，额外费用：xxxx，xxx元，共计xxx元。',
+        'notification_basic_style' => 7,
+        'open_type' => 2,
+        'custom_content' => [
+            'key' => 'value'
+        ]
+    ],
+    'driver_new_order' => [
+        'title' => '众择租车来消息啦',
+        'description' => '叮咚，您有新的分配订单，请注意查阅。',
+        'notification_basic_style' => 7,
+        'open_type' => 2,
+        'custom_content' => [
+            'key' => 'value'
+        ]
+    ],
+    'driver_bill_payed' => [
+        'title' => '众择租车来消息啦',
+        'description' => '订单xxxxx，用户已付款结单，接下去，能量满满地工作吧。',
+        'notification_basic_style' => 7,
+        'open_type' => 2,
+        'custom_content' => [
+            'key' => 'value'
+        ]
     ]
 ];

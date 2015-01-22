@@ -53,13 +53,13 @@ class Orders extends CActiveRecord
     {
         return [
             [
-                'order_no, client_id, contacter_name, contacter_phone, estimated_cost, pickup_place, drop_place, flight_number, pickup_time, coordinate, type',
+                'order_no, client_id, contacter_name, vehicle_type, contacter_phone, estimated_cost, pickup_place, drop_place, flight_number, pickup_time, coordinate, type',
                 'required',
                 'on' => 'insert'
             ],
             
             [
-                'order_no, client_id, contacter_name, contacter_phone, estimated_cost, pickup_place, drop_place, flight_number, pickup_time, coordinate, is_round_trip',
+                'order_no, client_id, contacter_name, vehicle_type, contacter_phone, estimated_cost, pickup_place, drop_place, flight_number, pickup_time, coordinate, is_round_trip, type',
                 'required',
                 'on' => 'airportsend'
             ],
@@ -83,7 +83,7 @@ class Orders extends CActiveRecord
             ],
             
             [
-                'summary,estimated_duration,estimated_distance',
+                'summary,estimated_duration,estimated_distance,license_no',
                 'safe'
             ]
         ];

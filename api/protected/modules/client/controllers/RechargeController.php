@@ -18,7 +18,7 @@ class RechargeController extends Controller
         $params['subject'] = $subject;
         $params['body'] = $body;
         $params['total_fee'] = $total_fee;
-        $params['notify_url'] = 'http://' . DEFAULT_API_SITE . '/client/notify';
+        $params['notify_url'] = 'http://' . DEFAULT_API_SITE . '/client/recharge/notify';
         $params['service'] = 'mobile.securitypay.pay';
         $params['payment_type'] = '1';
         $params['_input_charset'] = 'utf-8';

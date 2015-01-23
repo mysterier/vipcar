@@ -31,11 +31,11 @@ class Controller extends CController
                 return false;
             }
 
-            if ($this->id != 'login' && $this->id != 'register' && $this->action->id != 'forgetpass' && ! $this->checkToken())
+            if ($this->id != 'login' && $this->id != 'register' && $this->action->id != 'forgetpass' && $this->action->id != 'notify' && ! $this->checkToken())
                 
                 return false;
             
-            if ($this->action->id != 'forgetpass' && $this->module->id == 'client' && ! in_array($this->id, [
+            if ($this->action->id != 'forgetpass' && $this->action->id != 'notify' && $this->module->id == 'client' && ! in_array($this->id, [
                 'regvalidate',
                 'register',
                 'login',

@@ -83,7 +83,7 @@ class PushMsg
             $output .= 'ERROR NUMBER: ' . $this->_channel->errno() . "\n";
             $output .= 'ERROR MESSAGE: ' . $this->_channel->errmsg() . "\n";
             $output .= 'REQUEST ID: ' . $this->_channel->getRequestId() . "\n";
-            $output .= 'TIME' . date('Y-m-d H:i:s');
+            $output .= 'TIME' . date('Y-m-d H:i:s') . "\n";
             $this->writeIntoFile($output);
             return false;
         }

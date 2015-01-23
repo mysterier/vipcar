@@ -56,6 +56,9 @@ class PushMsg
                 if (! $model)
                     return false;
                 
+                if (!$model->user_id || !$model->channel_id)
+                    return false; 
+                
                 $optional[Channel::USER_ID] = $model->user_id;
                 $optional[Channel::CHANNEL_ID] = $model->channel_id;
                 break;
@@ -80,6 +83,7 @@ class PushMsg
             $output .= 'ERROR NUMBER: ' . $this->_channel->errno() . "\n";
             $output .= 'ERROR MESSAGE: ' . $this->_channel->errmsg() . "\n";
             $output .= 'REQUEST ID: ' . $this->_channel->getRequestId() . "\n";
+            $output .= 'TIME' . date('Y-m-d H:i:s');
             $this->writeIntoFile($output);
             return false;
         }

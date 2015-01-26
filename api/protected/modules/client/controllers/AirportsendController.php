@@ -26,6 +26,7 @@ class AirportsendController extends Controller
             $this->result['error_msg'] = '';
             $this->result['order_sid'] = $model->id;
             $this->result['order_no'] = $order_no;
+            $this->result['order_date'] = date('Y-m-d H:i:s');
         } else {
             $this->addErrors($model);
         }

@@ -64,6 +64,7 @@ class OrderController extends Controller
             $result['all_cost'] = $model->order_income;
             $result['contacter_name'] = $model->contacter_name;
             $result['contacter_mobile'] = $model->contacter_phone;
+            $result['is_round_trip'] = $model->is_round_trip;
             $result['flight_number'] = $model->flight_number;
             $result['order_summary'] = $model->summary;
             $result['order_status'] = $model->status;
@@ -82,7 +83,7 @@ class OrderController extends Controller
     private function getOrders($condition, $params, $flag)
     {
         $criteria = new CDbCriteria();
-        $criteria->select = 'id,order_no,pickup_place,estimated_cost,estimated_duration,estimated_distance,vehicle_type,drop_place,order_income,type,status,created,last_update,star';
+        $criteria->select = 'id,order_no,pickup_place,estimated_cost,estimated_duration,estimated_distance,vehicle_type,drop_place,order_income,type,is_round_trip,status,created,last_update,star';
         $criteria->condition = $condition;
         $criteria->order = 't.id asc';
         $criteria->params = $params;
@@ -105,6 +106,7 @@ class OrderController extends Controller
                     'order_cost' => $order->order_income,
                     'pickup_place' => $order->pickup_place,
                     'drop_place' => $order->drop_place,
+                    'is_round_trip' => $order->is_round_trip,
                     'driver_name' => $driver_name ? $driver_name : '',
                     'driver_mobile' => $driver_mobile ? $driver_mobile : '',
                     'car_number' => $vehicle ? $vehicle[0]->license_no : '',

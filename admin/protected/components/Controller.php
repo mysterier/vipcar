@@ -71,8 +71,8 @@ class Controller extends CController
                     [
                         'label' => '订单处理',
                         'url' => [
-                            'product/index',
-                            'tag' => 'popular'
+                            'order/process',
+                            'status' => ORDER_STATUS_NOT_DISTRIBUTE
                         ]
                     ]
                 ]
@@ -270,5 +270,17 @@ class Controller extends CController
     public function getParam($param)
     {
         return (isset($_POST[$param]) && (strval($_POST[$param]) != '')) ? trim(strval($_POST[$param])) : '';
+    }
+    
+    /**
+     * 判断是否来自移动端
+     * 
+     * @author lqf
+     */
+    public function is_mobile() {
+        if(stripos($_SERVER['HTTP_USER_AGENT'],"android")!=flase||stripos($_SERVER['HTTP_USER_AGENT'],"ios")!=flase||stripos($_SERVER['HTTP_USER_AGENT'],"wp")!=flase)
+            return true;
+        else
+            return false;
     }
 }

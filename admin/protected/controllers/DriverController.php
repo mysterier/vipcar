@@ -8,7 +8,10 @@ class DriverController extends Controller
 
     public function actionList()
     {
-        $dataProvider = new CActiveDataProvider('Drivers',[
+        $criteria = new CDbCriteria();
+        $criteria->with = 'vehicle.model';
+        $dataProvider = new CActiveDataProvider('Drivers', [
+            'criteria' => $criteria,
             'pagination' => [
                 'pageVar' => 'page',
                 'pageSize' => ADMIN_PAGE_SIZE
@@ -46,8 +49,14 @@ class DriverController extends Controller
                 'header' => '紧急联系人'
             ],
             [
+                'header' => '座驾',
+                'type' => 'raw',
+                'value' => 'Yii::app()->controller->formatVehicle($data)'
+            ],
+            
+            [
                 'name' => 'status',
-                'header' => '状态',                
+                'header' => '状态',
                 'value' => 'Yii::app()->controller->formatStatus($data->status)'
             ],
             [
@@ -96,6 +105,25 @@ class DriverController extends Controller
         }
     }
 
+    public function formatVehicle($data)
+    {
+        $vehicles = $data->vehicle;
+        $vehicle = '';
+        $ids = [];
+        if ($vehicles) {
+            foreach ($vehicles as $v) {
+                $ids[] = $v->id;
+                if ($v->model) {
+                    $vehicle = $v->model->make . '-' . $v->model->model;
+                }
+            }
+        }
+        $vehicle .= CHtml::link('分配座驾', $this->createUrl('/driver/distribute/' . $data->id . '?vehicle=' . implode(',', $ids)), [
+            'style' => 'margin-left:10px'
+        ]);
+        return $vehicle;
+    }
+
     public function actionNew()
     {
         $this->breadcrumbs = [
@@ -119,6 +147,89 @@ class DriverController extends Controller
         ];
         $model = Drivers::model()->findByPk($id);
         $this->saveDrivers($model);
+    }
+
+    /**
+     * 分配座驾
+     *
+     * @param int $id            
+     *
+     * @author lqf
+     */
+    public function actionDistribute($id)
+    {
+        $criteria = new CDbCriteria();
+        $criteria->with = 'model';
+        $dataProvider = new CActiveDataProvider('Vehicle', [
+            'criteria' => $criteria
+        ]);
+        $hash['gridDataProvider'] = $dataProvider;
+        $hash['gridColumns'] = [
+            [
+                'class' => 'CCheckBoxColumn',
+                'value' => '$data->id',
+                'checkBoxHtmlOptions' => [
+                    'name' => 'ids[]'
+                ],
+                'checked' => 'Yii::app()->controller->isChecked($data->id)'
+            ],
+            [
+                'name' => 'id',
+                'header' => '序号',
+                'htmlOptions' => [
+                    'style' => 'width: 60px'
+                ]
+            ],
+            [
+                'name' => 'model.make',
+                'header' => '品牌'
+            ],
+            [
+                'name' => 'model.model',
+                'header' => '型号'
+            ],
+            [
+                'name' => 'license_no',
+                'header' => '车牌'
+            ],
+            [
+                'name' => 'ltd_name',
+                'header' => '归属公司'
+            ],
+            [
+                'header' => '保单信息',
+                'class' => 'CLinkColumn',
+                'label' => '查看',
+                'urlExpression' => 'Yii::app()->controller->createUrl("show", ["id" => $data->policy_path])'
+            ],
+            [
+                'name' => 'status',
+                'header' => '车辆状态',
+                'value' => 'Yii::app()->controller->formatStatus($data->status)'
+            ]
+        ];
+        $this->breadcrumbs = [
+            '司机管理' => [
+                '/driver/list'
+            ],
+            '分配座驾'
+        ];
+        $this->render('distributeform', $hash);
+    }
+
+    public function actionSavevehicle($id)
+    {
+        $ids = $_POST['ids'];
+        if ($ids) {
+            $new = new DriverVehicle();
+            $model = DriverVehicle::model()->deleteAll('driver_id='.$id);
+            foreach ($ids as $v) {                
+                $new->driver_id = $id;
+                $new->vehicle_id = $v;
+                $new->save();
+            }
+        }
+        $this->redirect('/driver/list');
     }
 
     private function saveDrivers($model)
@@ -147,9 +258,17 @@ class DriverController extends Controller
         $this->render('driverform', $hash);
     }
 
+    public function isChecked($id)
+    {
+        $ids = $_GET['vehicle'] ? explode(',', $_GET['vehicle']) : [];
+        if (in_array($id, $ids))
+            return true;
+        return false;
+    }
+
     public function actionDel($id)
     {
         echo 123;
-        //var_dump(Yii::app()>request>urlReferrer);
+        // var_dump(Yii::app()>request>urlReferrer);
     }
 }

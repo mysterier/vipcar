@@ -83,6 +83,12 @@ class Orders extends CActiveRecord
             ],
             
             [
+                'contacter_name, contacter_phone, vehicle_type, driver_id',
+                'required',
+                'on' => 'process_order'
+            ],
+            
+            [
                 'summary,estimated_duration,estimated_distance,license_no',
                 'safe'
             ]
@@ -180,5 +186,19 @@ class Orders extends CActiveRecord
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
+    }
+    
+    public function getDriversByVehcileType($type = '') {
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'model.vehicle_type = :mtype and t.status = :status and vehicle.status = :vstatus';
+        $criteria->params = [
+            'mtype' => $type ? $type : (int)$this->vehicle_type,
+            'status' => (string)DRIVER_TYPE_ON,
+            'vstatus' => (string)VEHICLE_STATUS_ON
+        ];
+        $criteria->with = 'vehicle';
+        $criteria->with = 'vehicle.model';
+        $drivers = Drivers::model()->findAll($criteria);
+        return $drivers;
     }
 }

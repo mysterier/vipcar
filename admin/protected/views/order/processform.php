@@ -45,10 +45,10 @@ echo $form->dropDownListGroup($model, 'vehicle_type', [
     ],
     'widgetOptions' => [
         'data' => [
-            '-请选择-',
-            '舒适型',
-            '商务型',
-            '豪华型'
+          '' => '-请选择-',
+           2 => '舒适型',
+           3 => '商务型',
+           4 => '豪华型'
         ],
         'htmlOptions' => []
     ]

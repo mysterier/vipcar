@@ -9,7 +9,7 @@ class SmsCommand extends CConsoleCommand
 {
     /**
      * 发送短信
-     * 命令：cli.php send
+     * 命令：cli.php sms send
      * 
      * @author lqf
      */

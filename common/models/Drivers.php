@@ -222,4 +222,19 @@ class Drivers extends CActiveRecord
     {
         return parent::model($className);
     }
+
+    /**
+     * 修改司机的flag值
+     *
+     * @autor lqf
+     */
+    public function modifyFlag($flag, $order_obj)
+    {
+        if ($order_obj->driver_id) {
+            $model = self::model();
+            $model->updateByPk($order_obj->driver_id, [
+                'flag' => $flag
+            ]);
+        }
+    }
 }

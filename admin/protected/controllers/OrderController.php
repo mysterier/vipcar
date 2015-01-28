@@ -113,14 +113,16 @@ class OrderController extends Controller
     private function saveOrders($model)
     {
         if (isset($_POST['Orders'])) {
+            //如果订单已经分配司机，则将该司机的flag改为free
+            Drivers::model()->modifyFlag(DRIVER_FLAG_FREE, $model);
             $model->attributes = $_POST['Orders'];
-            $model->status = '1';
+            $model->status = (string)ORDER_STATUS_DISTRIBUTE;
             $model->last_update = time();
-            
             if ($model->save()) {
                 $driver_id = $_POST['Orders']['driver_id'];
                 $this->setApiLastUpdate($model->client_id, 'client');
                 $this->setApiLastUpdate($driver_id, 'driver');
+                Drivers::model()->modifyFlag(DRIVER_FLAG_DISTRIBUTED, $model);
                 //给司机发送通知
                 Yii::import('common.pushmsg.*');
                 $attributes = [

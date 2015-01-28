@@ -95,6 +95,8 @@ define('DRIVER_TYPE_OFF', 0);
 define('DRIVER_MSG_OFF', '下线');
 define('DRIVER_TYPE_ON', 1);
 define('DRIVER_MSG_ON', '在线');
+define('DRIVER_FLAG_FREE', 0);
+define('DRIVER_FLAG_DISTRIBUTED', 1);
 
 //Client
 define('CLIENT_ERROR_NOT_ACTIVED', -201);

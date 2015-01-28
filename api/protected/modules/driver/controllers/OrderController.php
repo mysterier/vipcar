@@ -115,6 +115,7 @@ class OrderController extends Controller
             $_POST['last_update'] = time();
             $model->attributes = $_POST;
             if ($model->save()) {
+                Drivers::model()->modifyFlag(DRIVER_FLAG_FREE, $model);
                 $this->setApiLastUpdate();
                 $this->setApiLastUpdate('order', 'client', $model->client_id);
                 

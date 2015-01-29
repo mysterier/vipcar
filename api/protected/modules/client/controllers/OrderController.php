@@ -83,7 +83,7 @@ class OrderController extends Controller
     private function getOrders($condition, $params, $flag)
     {
         $criteria = new CDbCriteria();
-        $criteria->select = 'id,order_no,pickup_place,estimated_cost,estimated_duration,estimated_distance,vehicle_type,drop_place,order_income,type,is_round_trip,status,created,last_update,star';
+        $criteria->select = 'id,order_no,pickup_place,pickup_time,estimated_cost,estimated_duration,estimated_distance,vehicle_type,drop_place,order_income,type,is_round_trip,status,created,last_update,star';
         $criteria->condition = $condition;
         $criteria->order = 't.id asc';
         $criteria->params = $params;
@@ -105,6 +105,7 @@ class OrderController extends Controller
                     'order_status' => $order->status,
                     'order_cost' => $order->order_income,
                     'pickup_place' => $order->pickup_place,
+                    'pickup_time' => $order->pickup_time,
                     'drop_place' => $order->drop_place,
                     'is_round_trip' => $order->is_round_trip,
                     'driver_name' => $driver_name ? $driver_name : '',

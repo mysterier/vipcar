@@ -37,6 +37,11 @@ class OrderController extends Controller
                 'value' => 'Yii::app()->controller->formatType($data->type)'
             ],
             [
+            'name' => 'vehicle_type',
+                'header' => '服务类型',
+                'value' => 'Yii::app()->controller->formatService($data->vehicle_type)'
+            ],
+            [
                 'name' => 'contacter_name',
                 'header' => '联系人'
             ],
@@ -86,6 +91,17 @@ class OrderController extends Controller
             6 => '完成'
         ];
         return $tpl[$status];
+    }
+    
+    public function formatService($service)
+    {
+        $tpl = [
+            VEHICLE_TYPE_ECONOMY => '经济型',
+            VEHICLE_TYPE_COMFORTABLE => '舒适型',
+            VEHICLE_TYPE_BUSINESS => '商务型',
+            VEHICLE_TYPE_LUXURY => '豪华型'
+        ];
+        return $tpl[$service];
     }
 
     public function actionNew()
@@ -203,6 +219,11 @@ class OrderController extends Controller
             [
                 'name' => 'order_no',
                 'header' => '订单号'
+            ],
+            [
+            'name' => 'vehicle_type',
+                'header' => '服务类型',
+                'value' => 'Yii::app()->controller->formatService($data->vehicle_type)'
             ],
             [
             'name' => 'type',

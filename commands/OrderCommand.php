@@ -28,6 +28,7 @@ class OrderCommand extends CConsoleCommand
                     $driver = array_shift($drivers);
                     $attributes = [
                         'driver_id' => $driver->id,
+                        'license_no' => $driver->vehicle[0]->license_no,
                         'status' => (string)ORDER_STATUS_DISTRIBUTE,
                         'last_update' => time()
                     ];

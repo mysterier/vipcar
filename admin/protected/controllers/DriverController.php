@@ -55,6 +55,12 @@ class DriverController extends Controller
             ],
             
             [
+                'name' => 'flag',
+                'header' => '工作状态',
+                'value' => 'Yii::app()->controller->formatFlag($data->flag)'
+            ],
+            
+            [
                 'name' => 'status',
                 'header' => '状态',
                 'value' => 'Yii::app()->controller->formatStatus($data->status)'
@@ -74,6 +80,18 @@ class DriverController extends Controller
             '司机管理'
         ];
         $this->render('list', $hash);
+    }
+
+    public function formatFlag($flag)
+    {
+        switch ($flag) {
+            case DRIVER_FLAG_DISTRIBUTED:
+                return '有订单';
+                break;
+            case DRIVER_FLAG_FREE:
+                return '空闲';
+                break;
+        }
     }
 
     public function formatStatus($status)
@@ -222,8 +240,8 @@ class DriverController extends Controller
         $ids = $_POST['ids'];
         if ($ids) {
             $new = new DriverVehicle();
-            $model = DriverVehicle::model()->deleteAll('driver_id='.$id);
-            foreach ($ids as $v) {                
+            $model = DriverVehicle::model()->deleteAll('driver_id=' . $id);
+            foreach ($ids as $v) {
                 $new->driver_id = $id;
                 $new->vehicle_id = $v;
                 $new->save();

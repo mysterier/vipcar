@@ -9,6 +9,9 @@ class OrderController extends Controller
     public function actionList()
     {
         $dataProvider = new CActiveDataProvider('Orders', [
+            'sort' => [
+                'defaultOrder' => 'id DESC'
+            ],
             'pagination' => [
                 'pageVar' => 'page',
                 'pageSize' => ADMIN_PAGE_SIZE
@@ -107,23 +110,35 @@ class OrderController extends Controller
     }
 
     /**
+     *
      * @todo 推送 百度老报错
-     * @param unknown $model
+     * @param unknown $model            
      */
     private function saveOrders($model)
     {
+        $drivers = $model->getDriversByVehcileType();
+        $tmp = [];
+        if ($drivers) {
+            $driver = array_shift($drivers);
+            $name = $driver->name;
+            $vehicle = $driver->vehicle[0];
+            $name .= '-->' . $vehicle->model->make . '-' . $vehicle->model->model;
+            $tmp[$driver->id] = $name;
+        }
+        
         if (isset($_POST['Orders'])) {
-            //如果订单已经分配司机，则将该司机的flag改为free
+            // 如果订单已经分配司机，则将该司机的flag改为free
             Drivers::model()->modifyFlag(DRIVER_FLAG_FREE, $model);
             $model->attributes = $_POST['Orders'];
-            $model->status = (string)ORDER_STATUS_DISTRIBUTE;
+            $model->status = (string) ORDER_STATUS_DISTRIBUTE;
+            $model->license_no = $vehicle->license_no;
             $model->last_update = time();
             if ($model->save()) {
                 $driver_id = $_POST['Orders']['driver_id'];
                 $this->setApiLastUpdate($model->client_id, 'client');
                 $this->setApiLastUpdate($driver_id, 'driver');
                 Drivers::model()->modifyFlag(DRIVER_FLAG_DISTRIBUTED, $model);
-                //给司机发送通知
+                // 给司机发送通知
                 Yii::import('common.pushmsg.*');
                 $attributes = [
                     'client_id' => $driver_id,
@@ -131,22 +146,11 @@ class OrderController extends Controller
                 ];
                 $tpl = 'driver_new_order';
                 
-                //PushMsg::action()->pushMsg($attributes, $tpl);
+                // PushMsg::action()->pushMsg($attributes, $tpl);
                 $this->redirect('/order/process?status=' . ORDER_STATUS_NOT_DISTRIBUTE);
             }
         }
         $hash['model'] = $model;
-        $drivers = $model->getDriversByVehcileType();
-        $tmp = [];
-        if ($drivers) {
-            foreach ($drivers as $driver) {
-                $name = $driver->name;
-                $vehicle = $driver->vehicle[0];
-                $name .= '-->' . $vehicle->model->make . '-' . $vehicle->model->model;
-                $tmp[$driver->id] = $name;
-            }
-        }
-        
         $hash['drivers'] = [
             '' => '--请选择--'
         ] + $tmp;
@@ -173,6 +177,9 @@ class OrderController extends Controller
         ];
         $dataProvider = new CActiveDataProvider('Orders', [
             'criteria' => $criteria,
+            'sort' => [
+                'defaultOrder' => 't.id DESC'
+            ],
             'pagination' => [
                 'pageVar' => 'page',
                 'pageSize' => ADMIN_PAGE_SIZE
@@ -247,7 +254,7 @@ class OrderController extends Controller
     {
         $string = '';
         $driver = $obj->driver;
-        if ( $driver && $driver->vehicle) {
+        if ($driver && $driver->vehicle) {
             if ($driver->vehicle[0]->model) {
                 $string = $driver->vehicle[0]->model->make;
                 $string .= ' - ' . $driver->vehicle[0]->model->model;
@@ -255,7 +262,7 @@ class OrderController extends Controller
         }
         return $string;
     }
-    
+
     /**
      * 设置api最后更新时间
      * 主要针对orderlist接口
@@ -269,7 +276,7 @@ class OrderController extends Controller
         $api = $utype . '_order_list';
         $url = '/' . $utype . '/order/list';
         $utype = ($utype == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT;
-    
+        
         $c = new CDbCriteria();
         $c->condition = 'uid =:uid and utype=:utype and url=:url';
         $c->params = [
@@ -280,7 +287,7 @@ class OrderController extends Controller
         $model = ApiLastupdate::model()->find($c);
         if (! $model)
             $model = new ApiLastupdate();
-    
+        
         $model->attributes = [
             'last_update' => time(),
             'uid' => $uid,

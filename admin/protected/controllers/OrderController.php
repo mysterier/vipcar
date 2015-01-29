@@ -32,6 +32,11 @@ class OrderController extends Controller
                 'header' => '订单号'
             ],
             [
+            'name' => 'type',
+                'header' => '订单类型',
+                'value' => 'Yii::app()->controller->formatType($data->type)'
+            ],
+            [
                 'name' => 'contacter_name',
                 'header' => '联系人'
             ],
@@ -200,6 +205,11 @@ class OrderController extends Controller
                 'header' => '订单号'
             ],
             [
+            'name' => 'type',
+                'header' => '订单类型',
+                'value' => 'Yii::app()->controller->formatType($data->type)'
+            ],
+            [
                 'name' => 'contacter_name',
                 'header' => '联系人'
             ],
@@ -250,6 +260,15 @@ class OrderController extends Controller
         $this->render('process', $hash);
     }
 
+    public function formatType($type)
+    {
+        $tpl = [
+            ORDER_TYPE_AIRPORTPICKUP => '接机单',
+            ORDER_TYPE_AIRPORTSEND => '送机单'
+        ];
+        return $tpl[$type];
+    }
+    
     public function getVehicle($obj)
     {
         $string = '';

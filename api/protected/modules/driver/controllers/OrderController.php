@@ -9,6 +9,12 @@ class OrderController extends Controller
     private $last_update;
     
     private $bill_cofirm;
+    
+    private $fare;
+    
+    private $over_distance;
+    
+    private $over_duration;
 
     public function init()
     {
@@ -48,6 +54,7 @@ class OrderController extends Controller
     public function actionDetail($id)
     {
         $model = Orders::model()->findByPk($id);
+        $this->getIncome($model);
         if ($model) {
             $result['error_code'] = SUCCESS_DEFAULT;
             $result['error_msg'] = '';
@@ -67,6 +74,9 @@ class OrderController extends Controller
             $result['travel_distance'] = $model->travel_distance;
             $result['packing_fee'] = $model->packing_fee;
             $result['highway_fee'] = $model->highway_fee;
+            $result['base_fee'] = $this->fare;
+            $result['overtime_fee'] = $this->over_duration;
+            $result['overmile_fee'] = $this->over_distance;
             $this->result = $result;
         }
     }
@@ -181,7 +191,10 @@ class OrderController extends Controller
         }
         
         $distance = $this->getParam('travel_distance');
+        //为了兼容订单详情获取超时费和超公里费
+        $distance = $distance ? $distance : $model->travel_distance;
         $duration = $this->getParam('travel_duration');
+        $duration = $duration ? $duration : $model->travel_duration;
         $duration = substr($duration, 0, 2);
         $over_distance = $distance - BASE_DISTANCE;
         $over_distance = ($over_distance > 0) ? $over_distance *  FARE_PER_KM : 0;
@@ -204,6 +217,9 @@ class OrderController extends Controller
         $this->bill_cofirm = '您的订单' . $model->order_no . '的账单已生成，请您核实查验：'
                              . $place . '机场接送机服务' . $vehicle_type . '型' 
                              . $fare . '元，' . $extra . '共计' . $income . '元。';
+        $this->fare = $fare;
+        $this->over_distance = $over_distance;
+        $this->over_duration = $over_duration;
         return $income;
     }
     

@@ -137,25 +137,16 @@ class OrderController extends Controller
      */
     private function saveOrders($model)
     {
-        $drivers = $model->getDriversByVehcileType();
-        $tmp = [];
-        if ($drivers) {
-            $driver = array_shift($drivers);
-            $name = $driver->name;
-            $vehicle = $driver->vehicle[0];
-            $name .= '-->' . $vehicle->model->make . '-' . $vehicle->model->model;
-            $tmp[$driver->id] = $name;
-        }
-        
         if (isset($_POST['Orders'])) {
             // 如果订单已经分配司机，则将该司机的flag改为free
             Drivers::model()->modifyFlag(DRIVER_FLAG_FREE, $model);
+            $driver_id = $_POST['Orders']['driver_id'];
+            $driver = Drivers::model()->with('vehicle')->findByPk($driver_id);
             $model->attributes = $_POST['Orders'];
             $model->status = (string) ORDER_STATUS_DISTRIBUTE;
-            $model->license_no = $vehicle->license_no;
+            $model->license_no = $driver->vehicle[0]->license_no;
             $model->last_update = time();
-            if ($model->save()) {
-                $driver_id = $_POST['Orders']['driver_id'];
+            if ($model->save()) {            
                 $this->setApiLastUpdate($model->client_id, 'client');
                 $this->setApiLastUpdate($driver_id, 'driver');
                 Drivers::model()->modifyFlag(DRIVER_FLAG_DISTRIBUTED, $model);
@@ -172,6 +163,15 @@ class OrderController extends Controller
             }
         }
         $hash['model'] = $model;
+        $drivers = $model->getDriversByVehcileType();
+        $tmp = [];
+        if ($drivers) {
+            $driver = array_shift($drivers);
+            $name = $driver->name;
+            $vehicle = $driver->vehicle[0];
+            $name .= '-->' . $vehicle->model->make . '-' . $vehicle->model->model;
+            $tmp[$driver->id] = $name;
+        }
         $hash['drivers'] = [
             '' => '--请选择--'
         ] + $tmp;

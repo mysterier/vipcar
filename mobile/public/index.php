@@ -6,6 +6,7 @@ define('SYSTEM_PATH', __DIR__ . '/../../');
 define('COMMON', realpath(SYSTEM_PATH . 'common'));
 
 include (COMMON . '/config/config.php');
+include (COMMON . '/config/const.php');
 
 // remove the following lines when in production mode
 defined('YII_DEBUG') or define('YII_DEBUG', false);

@@ -18,4 +18,9 @@ class PageController extends Controller
         $this->title = '收费详情';
         $this->render('service');
     }
+    
+    public function actionDownload() {
+        $this->layout = '//layouts/download';
+        $this->render('download');
+    }
 }

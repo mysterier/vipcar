@@ -15,18 +15,16 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-
-.icon-c:before { content: "\e603"; }
-
-.icon-yonghu:before { content: "\f0053"; }
-
-.icon-shouji:before { content: "\e64a"; }
-
-.icon-feiji:before { content: "\e630"; }
-
-.icon-time:before { content: "\e738"; }
-
-.icon-dizhi:before { content: "\e606"; }
-
-.icon-iconlz02:before { content: "\e622"; }
-
+.icon-pingguo:before { content: "\e600"; }
+.icon-yonghu:before { content: "\e601"; }
+.icon-anzhuo:before { content: "\e602"; }
+.icon-pingguo1:before { content: "\e603"; }
+.icon-c:before { content: "\e604"; }
+.icon-zhinenghuaxuanpinicon2:before { content: "\e60c"; }
+.icon-shouji:before { content: "\e605"; }
+.icon-fanhuireturn:before { content: "\e606"; }
+.icon-feiji:before { content: "\e607"; }
+.icon-time:before { content: "\e608"; }
+.icon-iconlz02:before { content: "\e609"; }
+.icon-dizhi:before { content: "\e60a"; }
+.icon-icon:before { content: "\e60b"; }

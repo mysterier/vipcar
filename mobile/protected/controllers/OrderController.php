@@ -66,7 +66,8 @@ class OrderController extends Controller
                    $date = date('Y-m-d', $date);
                }
                $pickup_time .= $date . ' ' . $output->result->arr_time;
-               $text = $output->result->dep . '&nbsp;&nbsp;&nbsp;&nbsp;至 &nbsp;&nbsp;&nbsp;&nbsp;' . $output->result->arr . '&nbsp;&nbsp;&nbsp;&nbsp;到达时间：'. $output->result->arr_time;
+               $text = '<span class="title">航班时间选择</span>';
+               $text .= $output->result->dep . '&nbsp;&nbsp;&nbsp;&nbsp;至 &nbsp;&nbsp;&nbsp;&nbsp;' . $output->result->arr . '&nbsp;&nbsp;&nbsp;&nbsp;到达时间：'. $output->result->arr_time;
                
                $flight = urlencode($flight);
                $pickup_time = urlencode($pickup_time);

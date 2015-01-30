@@ -18,15 +18,13 @@
 <div class="form-group hangban-title">
 	<span class="title">航班时间选择</span>
 	<div id="flight-content">
-    <a href="/" class="hangban-time">asdasdasd</a>
-    <a href="#" class="hangban-time">asdasdasd</a>
 	</div>
 </div>
 <script>
 $("#getflight").click(function(){
 	var flight_no = $("#hangban_j").val();
 	var date = $("#datetimepicker").val();
-	$.post('/order/getflight',{flight:flight_no,date:date},function(data){
+	$.post('/order/getflight',{flight:flight_no,date:date,contacter_name:'<?php echo $contacter_name;?>',contacter_phone:'<?php echo $contacter_phone;?>'},function(data){
 		if (data.error_code == 0) {
 			$("#flight-content").html(data.html);
 		}

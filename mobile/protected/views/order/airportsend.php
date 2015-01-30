@@ -19,7 +19,7 @@
 	<div class="form-group">
 		<div class="input-group">
 			<div class="input-group-addon iconfont">&#xe738;</div>
-			<input type="datetime" class="form-control" id="datetimepicker"
+			<input type="text" class="form-control" id="datetimepicker"
 				placeholder="上车时间" name="pickup_time">
 
 		</div>

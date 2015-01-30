@@ -11,6 +11,8 @@ class OrderController extends Controller
         $hash['flight_no'] = isset($_GET['flight_no']) ? urldecode($_GET['flight_no']) : '';
         $hash['pickup_time'] = isset($_GET['pickup_time']) ? urldecode($_GET['pickup_time']) : '';
         $hash['pickup_place'] = isset($_GET['pickup_place']) ? urldecode($_GET['pickup_place']) : '';
+        $hash['contacter_name'] = isset($_GET['contacter_name']) ? urldecode($_GET['contacter_name']) : '';
+        $hash['contacter_phone'] = isset($_GET['contacter_phone']) ? urldecode($_GET['contacter_phone']) : '';
         $this->render('airportpickup', $hash);
     }
     
@@ -26,13 +28,15 @@ class OrderController extends Controller
         $wechat->attributes = $_POST;
         $wechat->order_no = 'wx'.time();
         $wechat->type = (string)$id;
-        //$wechat->save();
+        $wechat->save();
         $this->render('success');
     }
     
     public function actionGetflight() {
         $flight = $_POST['flight'];
         $date = $_POST['date'];
+        $contacter_name = $_POST['contacter_name'];
+        $contacter_phone = $_POST['contacter_phone'];
         $fdate = str_replace('-', '', $date);
         
         $params = [
@@ -67,8 +71,11 @@ class OrderController extends Controller
                $flight = urlencode($flight);
                $pickup_time = urlencode($pickup_time);
                $pickup_place = urlencode($output->result->arr);
+               $contacter_name = urlencode($contacter_name);
+               $contacter_phone = urlencode($contacter_phone);
                
-               $query = "flight_no={$flight}&pickup_time={$pickup_time}&pickup_place={$pickup_place}";
+               $query = "flight_no={$flight}&pickup_time={$pickup_time}&pickup_place={$pickup_place}&contacter_name={$contacter_name}&contacter_phone={$contacter_phone}";
+                             
                $html .= '<a href="/order/airportpickup?'.$query.'" class="hangban-time">';
                $html .= $text;
                $html .= '</a>';
@@ -89,6 +96,8 @@ class OrderController extends Controller
     
     public function actionFlight() {
         $this->title = '查询航班号';
-        $this->render('flight');
+        $hash['contacter_name'] = isset($_GET['contacter_name']) ? $_GET['contacter_name'] : '';
+        $hash['contacter_phone'] = isset($_GET['contacter_phone']) ? $_GET['contacter_phone'] : '';
+        $this->render('flight', $hash);
     }
 }

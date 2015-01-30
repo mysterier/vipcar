@@ -2,14 +2,14 @@
 <div style="margin-top: 1em;" class="form-group">
 	<div class="input-group">
 		<div class="input-group-addon iconfont">&#xf0053;</div>
-		<input type="text" class="form-control" id="user_j" placeholder="联系人" name="contacter_name">
+		<input type="text" class="form-control" id="user_j" placeholder="联系人" name="contacter_name" value="<?php echo $contacter_name;?>">
 	</div>
 </div>
 
 <div class="form-group">
 	<div class="input-group">
 		<div class="input-group-addon iconfont">&#xe64a;</div>
-		<input type="tel" class="form-control" id="tel_j" placeholder="联系电话" name="contacter_phone">
+		<input type="tel" class="form-control" id="tel_j" placeholder="联系电话" name="contacter_phone" value="<?php echo $contacter_phone;?>">
 	</div>
 </div>
 
@@ -24,7 +24,7 @@
 <div class="form-group">
 	<div class="input-group">
 		<div class="input-group-addon iconfont">&#xe738;</div>
-		<input type="datetime" class="form-control" disabled id="timeup_j"
+		<input type="text" class="form-control" disabled id="timeup_j"
 			placeholder="上车时间" value="<?php echo $pickup_time;?>">
 	</div>
 </div>
@@ -74,6 +74,8 @@
 </form>
 <script>
 $("#hangban_j").focus(function(){
-	window.location.href="/order/flight";
+	var contacter_name = $("#user_j").val();
+	var contacter_phone = $("#tel_j").val();
+	window.location.href="/order/flight?contacter_name=" + contacter_name + "&contacter_phone=" + contacter_phone;
 });
 </script>

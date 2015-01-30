@@ -19,7 +19,10 @@ $(function(){
     $('#datetimepicker').datetimepicker({
 	    format: <?php if($this->action->id == 'flight'):?>'yyyy-mm-dd'<?php else:?>'yyyy-mm-dd hh:ii'<?php endif;?>,
 	    language: 'zh-CN',
-        autoclose: true
+        autoclose: true,
+        <?php if($this->action->id == 'flight'):?>
+        minView: 'month'
+        <?php endif;?>
     });
 });
 </script>

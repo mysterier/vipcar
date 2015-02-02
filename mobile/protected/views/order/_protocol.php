@@ -27,7 +27,7 @@
     </div>
   </div>
 </div>
-<button id="orderCommit" type="submit" class="btn btn-primary btn-block" disabled>提交订单</button>
+<button id="orderCommit" type="button" class="btn btn-primary btn-block" disabled>提交订单</button>
 <script>
 $(function(){
     var commit = $("#orderCommit");
@@ -81,6 +81,39 @@ $(function(){
 		income = getIncome(vehicle_type,place);
 		$(".rmb").text(income);
 		$("#estimated_cost").val(income);
+	}
+});
+
+//订单验证
+$("#orderCommit").click(function(){
+	$(".alert-danger").remove();
+	var validate = true;
+	var contacter_name = $("input[name=contacter_name]");
+	var contacter_phone = $("input[name=contacter_phone]");
+	var pickup_time = $("input[name=pickup_time]");
+	var pickup_place = $("input[name=pickup_place]");
+	var drop_place = $("input[name=drop_place]");
+	
+	var drop_val = drop_place.val() ? drop_place.val() : $("#terminal").val();
+	
+	var obj = [contacter_name,contacter_phone,pickup_time,pickup_place,drop_place];
+	var error_msg = [
+		'联系人不能为空',
+		'联系电话不能为空',
+		'上车时间不能为空',
+		'上车地点不能为空',
+		'下车地点不能为空',		
+	];
+	var params = [contacter_name.val(),contacter_phone.val(),pickup_time.val(),pickup_place.val(),drop_val];
+	for (i=0;i<params.length;++i) {
+		if (!params[i]) {
+			obj[i].parents(".form-group").after('<div class="alert alert-danger" role="alert">'+error_msg[i]+'</div>');
+			validate = false;
+		}
+	}
+	
+	if (validate) {
+		$("form").submit();
 	}
 });
 </script>

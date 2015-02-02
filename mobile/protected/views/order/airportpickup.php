@@ -26,18 +26,18 @@
 		<div class="input-group-addon iconfont">&#xe738;</div>
 		<input type="text" class="form-control" disabled id="timeup_j"
 			placeholder="上车时间" value="<?php echo $pickup_time;?>">
+		<input type="hidden" name="pickup_time" value="<?php echo $pickup_time;?>">
 	</div>
 </div>
-<input type="hidden" name="pickup_time" value="<?php echo $pickup_time;?>">
 
 <div class="form-group">
 	<div class="input-group">
 		<div class="input-group-addon iconfont">&#xe622;</div>
 		<input type="text" class="form-control" disabled id="hangzhanlou_j"
 			placeholder="航站楼" value="<?php echo $pickup_place;?>">
+		<input id="terminal" type="hidden" name="pickup_place" value="<?php echo $pickup_place;?>">
 	</div>
 </div>
-<input id="terminal" type="hidden" name="pickup_place" value="<?php echo $pickup_place;?>">
 
 <div class="form-group">
 	<div class="input-group">

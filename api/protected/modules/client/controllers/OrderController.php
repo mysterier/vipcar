@@ -111,7 +111,7 @@ class OrderController extends Controller
                     'driver_name' => $driver_name ? $driver_name : '',
                     'driver_mobile' => $driver_mobile ? $driver_mobile : '',
                     'car_number' => $vehicle ? $vehicle[0]->license_no : '',
-                    'order_date' => ($flag == API_ORDER_NEW_FLAG) ? $order->created : date('Y-m-d H:i:s', $order->last_update),
+                    'order_date' => ($order->status != ORDER_STATUS_END) ? $order->created : date('Y-m-d H:i:s', $order->last_update),
                     'estimated_cost' => $order->estimated_cost,
                     'estimated_duration' => $order->estimated_duration,
                     'estimated_distance' => $order->estimated_distance,

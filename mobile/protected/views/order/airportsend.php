@@ -28,7 +28,7 @@
 	<div class="form-group">
 		<div class="input-group">
 			<div class="input-group-addon iconfont">&#xe606;</div>
-			<input type="text" class="form-control" id="addressup"
+			<input type="text" class="form-control" id="suggestId"
 				placeholder="上车地点" name="pickup_place">
 		</div>
 	</div>

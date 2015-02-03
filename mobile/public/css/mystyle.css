@@ -95,3 +95,10 @@ h1 {
 .wancheng-p i {
 	font-size: 2em;
 }
+
+/*
+百度自动补全
+*/
+#tangram-suggestion--TANGRAM__2-main {
+	z-index: 9999;
+}

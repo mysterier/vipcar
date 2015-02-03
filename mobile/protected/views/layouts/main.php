@@ -14,6 +14,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/bootstrap-datetimepicker.min.js"></script>
 <script src="/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xKTm9GM58nRtGkBATG6jGwui"></script>
 <script type="text/javascript">
 $(function(){
     $('#datetimepicker').datetimepicker({

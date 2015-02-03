@@ -42,9 +42,10 @@
 <div class="form-group">
 	<div class="input-group">
 		<div class="input-group-addon iconfont">&#xe606;</div>
-		<input type="text" class="form-control" id="addressdown_j"
+		<input type="text" class="form-control" id="suggestId"
 			placeholder="下车地点" name="drop_place">
 	</div>
+	<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;z-index:999;height:auto; display:none;"></div>
 </div>
 
 <div class="form-group">

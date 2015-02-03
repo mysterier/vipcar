@@ -116,4 +116,12 @@ $("#orderCommit").click(function(){
 		$("form").submit();
 	}
 });
+
+//百度地图
+
+	var ac = new BMap.Autocomplete(
+		{"input" : "suggestId",
+		"location" : "上海"
+	});
+
 </script>

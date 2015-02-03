@@ -26,6 +26,9 @@ class PaymentController extends Controller
                 $order_obj->status = ORDER_STATUS_END;
                 $order_obj->last_update = time();
                 if ($order_obj->save()) {
+                    $this->setApiLastUpdate('order', 'driver', $order_obj->driver_id);
+                    $this->setApiLastUpdate('order', 'client', $order_obj->client_id);
+                    
                     // 修改账户余额
                     $client_obj->account_balance = $account_balance;
                     $client_obj->last_update = time();

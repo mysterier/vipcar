@@ -15,6 +15,8 @@
 			<h1><img src="/images/logo.png" class="img-rounded"> 众择用车后台管理系统</h1>
 		</div>
 	
+    <?php if($this->action->id != 'login'):?>
+    
     <?php
     $this->widget('booster.widgets.TbMenu', [
         'type' => 'pills',
@@ -31,8 +33,9 @@
     ));
     ?>
 		<!-- breadcrumbs -->
-	<?php endif?>
-
+	<?php endif;?>
+    <?php endif;?>
+    
 	<?php echo $content; ?>
 
 	<div class="clear"></div>

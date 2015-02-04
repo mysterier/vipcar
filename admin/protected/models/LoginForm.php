@@ -28,7 +28,8 @@ class LoginForm extends CFormModel
             // username and password are required
             array(
                 'username, password',
-                'required'
+                'required',
+                'message' => '{attribute}不能为空！'
             ),
             
             // rememberMe needs to be a boolean
@@ -50,9 +51,11 @@ class LoginForm extends CFormModel
      */
     public function attributeLabels()
     {
-        return array(
-            'rememberMe' => 'Remember me next time'
-        );
+        return [
+            'username' => '用户名',
+            'password' => '密码',
+            'rememberMe' => '记住我'
+        ];
     }
 
     /**
@@ -64,7 +67,7 @@ class LoginForm extends CFormModel
         if (! $this->hasErrors()) {
             $this->_identity = new UserIdentity($this->username, $this->password);
             if (! $this->_identity->authenticate())
-                $this->addError('password', 'Incorrect username or password.');
+                $this->addError('password', '用户名或密码错误！');
         }
     }
 

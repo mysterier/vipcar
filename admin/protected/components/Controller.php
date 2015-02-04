@@ -79,7 +79,10 @@ class Controller extends CController
             ],
             [
                 'label' => '账户管理',
-                'active' => in_array($this->id, ['driver', 'vehicle']) ? true : false,
+                'active' => in_array($this->id, [
+                    'driver',
+                    'vehicle'
+                ]) ? true : false,
                 'url' => '/',
                 'items' => [
                     [
@@ -192,15 +195,16 @@ class Controller extends CController
                     ]
                 ]
             ],
+            
+            // [
+            // 'label' => 'Login',
+            // 'url' => [
+            // '/site/login'
+            // ],
+            // 'visible' => Yii::app()->user->isGuest
+            // ],
             [
-                'label' => 'Login',
-                'url' => [
-                    '/site/login'
-                ],
-                'visible' => Yii::app()->user->isGuest
-            ],
-            [
-                'label' => 'Logout (' . Yii::app()->user->name . ')',
+                'label' => '登出 (' . Yii::app()->user->name . ')',
                 'url' => [
                     '/site/logout'
                 ],
@@ -246,41 +250,77 @@ class Controller extends CController
             $file_model->saveAs($path);
         }
     }
-    
+
     /**
      * 密码加密
-     * 
-     * @param string $password
+     *
+     * @param string $password            
      * @return string
      * @author lqf
      */
-    public function encryptPasswd($password = DEFAULT_PASSWORD) {
+    public function encryptPasswd($password = DEFAULT_PASSWORD)
+    {
         $pass = md5($password);
         $pass = 'suxian' . $pass;
         $pass = md5($pass);
         return $pass;
     }
-    
+
     /**
      * 获取post参数
      *
-     * @param string $param
+     * @param string $param            
      * @author lqf
      */
     public function getParam($param)
     {
         return (isset($_POST[$param]) && (strval($_POST[$param]) != '')) ? trim(strval($_POST[$param])) : '';
     }
-    
+
     /**
      * 判断是否来自移动端
-     * 
+     *
      * @author lqf
      */
-    public function is_mobile() {
-        if(stripos($_SERVER['HTTP_USER_AGENT'],"android")!=flase||stripos($_SERVER['HTTP_USER_AGENT'],"ios")!=flase||stripos($_SERVER['HTTP_USER_AGENT'],"wp")!=flase)
+    public function is_mobile()
+    {
+        if (stripos($_SERVER['HTTP_USER_AGENT'], "android") != flase || stripos($_SERVER['HTTP_USER_AGENT'], "ios") != flase || stripos($_SERVER['HTTP_USER_AGENT'], "wp") != flase)
             return true;
         else
             return false;
+    }
+
+    public function filters()
+    {
+        return [
+            'accessControl'
+        ];
+    }
+
+    public function accessRules()
+    {
+        return [
+            [
+                'allow',
+                'users' => [
+                    '@'
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'login'
+                ],
+                'users' => [
+                    '*'
+                ]
+            ],
+            [
+                'deny',
+                'users' => [
+                    '*'
+                ]
+            ]
+        ];
     }
 }

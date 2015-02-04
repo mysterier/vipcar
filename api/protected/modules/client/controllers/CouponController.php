@@ -93,6 +93,7 @@ class CouponController extends Controller
                     'coupon_sid' => $coupon->id,
                     'coupon_ticket' => $ticket,
                     'coupon_type' => $coupon->coupon_type,
+                    'order_sid' => $coupon->order ? $coupon->order->id : '',
                     'pickup_place' => $coupon->order ? $coupon->order->pickup_place : '',
                     'drop_place' => $coupon->order ? $coupon->order->drop_place : '',
                     'order_cost' => $income,

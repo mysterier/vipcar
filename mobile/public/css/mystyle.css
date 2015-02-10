@@ -1,4 +1,4 @@
-/*鎵�鏈�*/
+/*所有*/
 .head {
 	width: 100%;
 	background: rgb(66, 139, 202);
@@ -23,12 +23,16 @@
 	margin: 2em 0;
 }
 
-/*鍏充簬鎴戜滑*/
+.alltop {
+	margin-top: 1em;
+}
+
+/*关于我们*/
 .psize {
 	font-size: 1em;
 }
 
-/*鎺ラ�佹満*/
+/*接送机*/
 h1 {
 	color: #ffffff;
 }
@@ -43,7 +47,7 @@ h1 {
 	margin: 0 1em;
 }
 
-/*涓嬭浇*/
+/*下载*/
 .iconsize {
 	font-size: 1.5em;
 	padding-right: 0.3em;
@@ -54,7 +58,7 @@ h1 {
 	margin: 2em auto;
 }
 
-/*鑸彮鍙�*/
+/*航班号*/
 .title {
 	display: block;
 	width: 100%;
@@ -101,4 +105,73 @@ h1 {
 */
 #tangram-suggestion--TANGRAM__2-main {
 	z-index: 9999;
+}
+
+/*我的订单*/
+.alllist {
+	width: 100%;
+	background: #fff;
+	border: 1px rgba(204, 204, 204, 1.00) solid;
+	clear: both;
+	border-radius: 0.3em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding: 0 !important;
+}
+
+.leixin {
+	border-radius: 0.3em 0 0 0;
+	padding: 0.5em;
+	text-align: center;
+	width: 20%;
+	color: #fff;
+	font-weight: bold;
+	border-right: 1px rgba(204, 204, 204, 1.00) solid;
+}
+
+.paizhao {
+	padding: 0.5em;
+	width: 30%;
+}
+
+.shifu {
+	padding: 0.5em;
+}
+
+.twolist {
+	border-top: 1px rgba(204, 204, 204, 1.00) solid;
+}
+
+.ddicon {
+	padding: 0.5em;
+	font-weight: bold;
+}
+
+.ddpadd {
+	padding: 0.5em;
+}
+
+.threelist {
+	border-bottom: 1px rgba(204, 204, 204, 1.00) solid;
+}
+
+.bg-airportsend {
+	background-color: rgba(239, 102, 31, 1.00);
+}
+
+/*订单详情*/
+.ddimg {
+	margin-right: 1em;
+}
+
+.ddfukuan p {
+	line-height: 2.5em;
+}
+
+.ddfukuan strong {
+	font-size: 1.5em;
+}
+
+.listind {
+	text-indent: 1em;
 }

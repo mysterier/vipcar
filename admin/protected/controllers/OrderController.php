@@ -87,7 +87,7 @@ class OrderController extends Controller
             2 => '进行中',
             3 => '人工',
             4 => '紧急',
-            5 => '代付款',
+            5 => '待付款',
             6 => '完成'
         ];
         return $tpl[$status];

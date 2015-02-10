@@ -45,16 +45,16 @@ $(function(){
 function getIncome(vehicle_type, place) {
 	switch (vehicle_type) {
 		case '2':
-			fares = [280, 380];
+			fares = [<?php echo COMFORTABLE_LOW;?>, <?php echo COMFORTABLE_HIGH;?>];
 			break;
 		case '3':
-			fares = [380, 480];
+			fares = [<?php echo BUSINESS_LOW;?>, <?php echo BUSINESS_HIGH;?>];
 			break;
 		case '4':
-			fares = [580, 680];
+			fares = [<?php echo LUXURY_LOW;?>, <?php echo LUXURY_HIGH;?>];
 			break;
 		default:
-			fares = [280, 380];
+			fares = [<?php echo COMFORTABLE_LOW;?>, <?php echo COMFORTABLE_HIGH;?>];
 	}
 	if (place == '虹桥国际机场T1' || place == '虹桥国际机场T2') {
 		fare = fares[0];

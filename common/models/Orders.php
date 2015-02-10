@@ -89,6 +89,18 @@ class Orders extends CActiveRecord
             ],
             
             [
+                'order_no, open_id, contacter_name, vehicle_type, contacter_phone, estimated_cost, pickup_place, drop_place, flight_number, pickup_time, type',
+                'required',
+                'on' => 'wechat_pickup'
+            ],
+            
+            [
+                'order_no, open_id, contacter_name, vehicle_type, contacter_phone, estimated_cost, pickup_place, drop_place, pickup_time, is_round_trip, type',
+                'required',
+                'on' => 'wechat_send'
+            ],
+            
+            [
                 'summary,estimated_duration,estimated_distance,license_no',
                 'safe'
             ]
@@ -187,14 +199,15 @@ class Orders extends CActiveRecord
     {
         return parent::model($className);
     }
-    
-    public function getDriversByVehcileType($type = '') {
+
+    public function getDriversByVehcileType($type = '')
+    {
         $criteria = new CDbCriteria();
         $criteria->condition = 'model.vehicle_type = :mtype and t.flag = :flag and t.status = :status and vehicle.status = :vstatus';
         $criteria->params = [
-            'mtype' => $type ? $type : (int)$this->vehicle_type,
-            'status' => (string)DRIVER_TYPE_ON,
-            'vstatus' => (string)VEHICLE_STATUS_ON,
+            'mtype' => $type ? $type : (int) $this->vehicle_type,
+            'status' => (string) DRIVER_TYPE_ON,
+            'vstatus' => (string) VEHICLE_STATUS_ON,
             'flag' => DRIVER_FLAG_FREE
         ];
         $criteria->with = 'vehicle';

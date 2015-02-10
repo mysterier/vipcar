@@ -18,18 +18,21 @@ class OrderController extends Controller
     
     public function actionAirportsend()
     {
-        $this->title = '送机';      
+        $this->title = '送机';
         $this->render('airportsend');
     }
     
     public function actionProcess($id) {
         $this->layout = '//layouts/page';
-        $wechat = new WechatOrders();
+        $scenario = ($id == ORDER_TYPE_AIRPORTSEND) ? 'wechat_send' : 'wechat_pickup';
+        $wechat = new Orders($scenario);
         $wechat->attributes = $_POST;
+        $wechat->open_id = $this->openid;
         $wechat->order_no = 'wx'.time();
         $wechat->type = (string)$id;
-        $wechat->save();
-        $this->render('success');
+        if ($wechat->save()) {
+            $this->render('success');
+        }   
     }
     
     public function actionGetflight() {
@@ -100,5 +103,43 @@ class OrderController extends Controller
         $hash['contacter_name'] = isset($_GET['contacter_name']) ? $_GET['contacter_name'] : '';
         $hash['contacter_phone'] = isset($_GET['contacter_phone']) ? $_GET['contacter_phone'] : '';
         $this->render('flight', $hash);
+    }
+    
+    public function actionList() {
+        $this->title = '我的订单';
+        $criteria = new CDbCriteria();
+        $criteria->select = 'id,pickup_place,vehicle_type,drop_place,type,status,created,last_update';
+        $criteria->condition = 'open_id=:open_id';
+        $criteria->order = 't.id desc';
+        $criteria->params = [
+            'open_id' => $this->openid
+        ];
+        
+        $orders = Orders::model()->with('driver')->with('driver.vehicle')->findAll($criteria);
+        $hash['orders'] = $orders;
+        $this->render('list', $hash);
+    }
+    
+    public function actionDetail($id)
+    {
+        $this->title = '订单详情';
+        $result = [];
+        $model = Orders::model()->with('driver')->findByPk($id);
+        if ($model) {
+            $result['pickup_place'] = $model->pickup_place;
+            $result['pickup_time'] = $model->pickup_time;
+            $result['drop_place'] = $model->drop_place;
+            $result['highway_fee'] = $model->highway_fee;
+            $result['packing_fee'] = $model->packing_fee;
+            $result['all_cost'] = $model->order_income;
+            $result['contacter_name'] = $model->contacter_name;
+            $result['contacter_mobile'] = $model->contacter_phone;
+            $result['is_round_trip'] = $model->is_round_trip;            
+            $result['vehicle_type'] = $model->vehicle_type;
+            $result['flight_number'] = $model->flight_number;
+            $result['summary'] = $model->summary;
+            $result['status'] = $model->status;
+        }
+        $this->render('detail', $result);
     }
 }

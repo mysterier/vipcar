@@ -18,3 +18,7 @@ define('REDIS_EXPIRE', 1800);
 //百度云推送
 define('CHANNEL_SECRET_KEY', 'u6280Qz0pyZoV6GdVf8nrMUwcrluKTnQ');
 define('CHANNEL_API_KEY', 'rM2XLwazvOAi7Wn60dUSrQIq');
+
+//微信
+define('WECHAT_APP_ID', 'wxf6ae832e0b48f36e');
+define('WECHAT_APP_SECRET', 'b6679fd315e9542b90f2f842d435e1b4');

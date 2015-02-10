@@ -28,5 +28,49 @@ class Controller extends CController
      */
     public $breadcrumbs = array();
     
+    // 微信openid
+    public $openid;
+
     public $title;
+
+    public function beforeAction($action)
+    {
+        $openid = Yii::app()->session['openid'];
+        if ($openid)
+            $this->openid = $openid;
+        else {
+            // 微信获取openid            
+            echo $this->action->id;exit();
+            
+            if (! isset($_GET['code'])) {
+                $url = urlencode('http://m.vip-car.com.cn/'.$this->id.'/'.$this->action->id);
+                $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.WECHAT_APP_ID.'&redirect_uri=' . $url . '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+                $this->redirect($url);
+            } else {
+                $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.WECHAT_APP_ID.'&secret='.WECHAT_APP_SECRET.'&code=' . $_GET['code'] . '&grant_type=authorization_code';
+                $output = $this->gettohost($url);
+                $output = json_decode($output);
+                $openid = $output->openid;
+                Yii::app()->session['openid'] = $openid;
+                $this->openid = $openid;
+           }
+        }        
+        if ($this->openid)
+            return true;
+    }
+
+    public function gettohost($url)
+    {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 500);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        
+        $res = curl_exec($curl);
+        curl_close($curl);
+        
+        return $res;
+    }
 }

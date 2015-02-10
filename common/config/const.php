@@ -45,6 +45,12 @@ define('BASE_DURATION', 2);
 define('BASE_DISTANCE', 50);
 define('FARE_PER_HOUR', 50);
 define('FARE_PER_KM', 4);
+define('COMFORTABLE_LOW', 280);
+define('COMFORTABLE_HIGH', 380);
+define('BUSINESS_LOW', 300);
+define('BUSINESS_HIGH', 450);
+define('LUXURY_LOW', 580);
+define('LUXURY_HIGH', 680);
 
 // Global error
 define('ERROR_DEFAULT', - 1);

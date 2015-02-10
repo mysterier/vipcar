@@ -160,19 +160,19 @@ class OrderController extends Controller
         switch ($model->vehicle_type) {
             case VEHICLE_TYPE_COMFORTABLE:
                 $vehicle_type = '舒适';
-                $fares = [280, 380];
+                $fares = [COMFORTABLE_LOW, COMFORTABLE_HIGH];
                 break;
             case VEHICLE_TYPE_BUSINESS:
                 $vehicle_type = '商务';
-                $fares = [380, 480];
+                $fares = [BUSINESS_LOW, BUSINESS_HIGH];
                 break;
             case VEHICLE_TYPE_LUXURY:
                 $vehicle_type = '豪华';
-                $fares = [580, 680];
+                $fares = [LUXURY_LOW, LUXURY_HIGH];
                 break;
             default:
                 $vehicle_type = '舒适';
-                $fares = [280, 380];
+                $fares = [COMFORTABLE_LOW, COMFORTABLE_HIGH];
         }
         
         $type = $model->type;

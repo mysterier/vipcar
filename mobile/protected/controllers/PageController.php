@@ -19,6 +19,11 @@ class PageController extends Controller
         $this->render('service');
     }
     
+    public function actionContactus() {
+        $this->title = '联系我们';
+        $this->render('contactus');
+    }
+    
     public function actionDownload() {
         $this->layout = '//layouts/download';
         $this->render('download');

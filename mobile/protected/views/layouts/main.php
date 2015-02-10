@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/mystyle.css">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/fonts/iconfont.css">
+
 <link rel="stylesheet" type="text/css"
 	href="/css/bootstrap-datetimepicker.min.css">
 <script src="/js/jquery-1.11.2.js"></script>
@@ -37,7 +38,7 @@ $(function(){
 			<strong><?php echo $this->title; ?></strong>
 		</p>
 	</div>
-	<div style="padding-bottom: 1em;" class="container-fluid">
+	<div class="container-fluid">
 <?php echo $content;?>
 </div>
 </body>

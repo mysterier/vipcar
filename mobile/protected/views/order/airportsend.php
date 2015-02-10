@@ -55,7 +55,7 @@
 			<div class="input-group-addon iconfont">&#xe603;</div>
 			<select id="vehicle_type" class="form-control" name="vehicle_type">
 				<optgroup label="车型选择"></optgroup>
-				<option value="2">舒适性</option>
+				<!--<option value="2">舒适性</option>-->
 				<option value="3">商务型</option>
 				<option value="4">豪华型</option>
 			</select>

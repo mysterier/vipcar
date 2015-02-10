@@ -40,8 +40,6 @@ class Controller extends CController
             $this->openid = $openid;
         else {
             // 微信获取openid            
-            echo $this->action->id;exit();
-            
             if (! isset($_GET['code'])) {
                 $url = urlencode('http://m.vip-car.com.cn/'.$this->id.'/'.$this->action->id);
                 $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.WECHAT_APP_ID.'&redirect_uri=' . $url . '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';

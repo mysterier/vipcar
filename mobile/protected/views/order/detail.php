@@ -10,7 +10,7 @@
 <?php elseif($status == ORDER_STATUS_PAY):?>
 <div class="ddimg pull-left"><img src="/img/iconfont-fukuan.png" width="70" height="70" alt=""/></div>
     <p class="text-muted"><strong>订单待付款</strong><br/>订单超过30天自动完成</p>
-     <button type="button" class="btn btn-success btn-block">付款</button>	
+     <button id="wxpay" type="button" class="btn btn-success btn-block">付款</button>	
 <?php else:?>
 	<div class="ddimg pull-left"><img src="/img/iconfont-weiwancheng.png" width="70" height="70" alt=""/></div>
     <p class="text-muted"><strong>订单未完成</strong><br/>您的订单正在执行中</p>
@@ -68,3 +68,33 @@
 		<li class="list-group-item text-muted">其他需求：<span><?php echo $summary;?></span></li>
 	</ul>
 </div>
+<?php if($status == ORDER_STATUS_PAY):?>
+<script type="text/javascript">
+//调用微信JS api 支付
+function jsApiCall()
+{
+	WeixinJSBridge.invoke(
+		'getBrandWCPayRequest',
+		<?php echo $jsApiParameters; ?>,
+		function(res){
+			WeixinJSBridge.log(res.err_msg);
+			//alert(res.err_code+res.err_desc+res.err_msg);
+		}
+	);
+}
+
+$("#wxpay").click(function(){
+	if (typeof WeixinJSBridge == "undefined"){
+		if( document.addEventListener ){
+			document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+		}else if (document.attachEvent){
+			document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+			document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+		}
+	}else{
+		jsApiCall();
+	}
+});
+
+</script>
+<?php endif;?>

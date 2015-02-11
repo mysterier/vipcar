@@ -1,11 +1,13 @@
 
 <p class="text-success">众择采用租车一口价的计费模式。</p>
 <table class="table text-muted">
+<!-- 
 	<tr>
 		<th>舒适型：</th>
 		<td>280-虹桥机场</td>
 		<td>380-浦东机场</td>
 	</tr>
+ -->
 	<tr>
 		<th>商务型：</th>
 		<td>300-虹桥机场</td>

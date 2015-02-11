@@ -7,6 +7,10 @@ class PaymentController extends Controller
     {
         
     }
+    
+    public function beforeAction($action) {
+        return true;
+    }
     public function actionNotify()
     {
         include_once (COMMON . "/wxpay/WxPayPubHelper.php");

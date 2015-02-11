@@ -181,7 +181,7 @@ class OrderController extends Controller
                 //=========步骤3：使用jsapi调起支付============
                 $jsApi->setPrepayId($prepay_id);
                 
-                $jsApiParameters = $jsApi->getParameters();var_dump($jsApiParameters);exit();
+                $jsApiParameters = $jsApi->getParameters();
                 $result['jsApiParameters'] = $jsApiParameters;
             }
         }

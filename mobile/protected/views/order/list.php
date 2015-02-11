@@ -15,7 +15,7 @@
 if($orders):
 	foreach($orders as $order):
 ?>
-<a href="/order/detail/<?php echo $order->id . ($order->status==ORDER_STATUS_PAY) ? '?showwxpaytitle=1' : '';?>" class="alllist btn btn-default <?php echo ($order->status==ORDER_STATUS_END) ? 'finished' : 'running';?>">
+<a href="/order/detail/<?php echo $order->id . (($order->status==ORDER_STATUS_PAY) ? '?showwxpaytitle=1' : '');?>" class="alllist btn btn-default <?php echo ($order->status==ORDER_STATUS_END) ? 'finished' : 'running';?>">
 	<div class="onelist">
 		<div class="leixin pull-left <?php echo ($order->type==ORDER_TYPE_AIRPORTPICKUP) ? 'bg-primary' : 'bg-airportsend';?>">
 			<?php echo ($order->type==ORDER_TYPE_AIRPORTPICKUP) ? '接机' : '送机';?>

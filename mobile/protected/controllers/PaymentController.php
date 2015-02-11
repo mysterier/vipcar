@@ -10,7 +10,7 @@ class PaymentController extends Controller
     public function actionNotify()
     {
         include_once (COMMON . "/wxpay/WxPayPubHelper.php");
-        
+
         // 使用通用通知接口
         $notify = new Notify_pub();
         

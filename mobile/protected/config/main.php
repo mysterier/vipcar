@@ -45,7 +45,7 @@ return array(
             'rules' => array(
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<view:about>' => 'site/page',
+                '/order/detail/notify' => 'payment/notify',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>'
             )
         ),

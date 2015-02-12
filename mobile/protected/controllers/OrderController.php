@@ -166,7 +166,7 @@ class OrderController extends Controller
         $criteria->order = 't.id desc';
         $criteria->params = [
             'open_id' => $this->openid,
-            'status' => ORDER_STATUS_HAND
+            'status' => (string)ORDER_STATUS_HAND
         ];
         
         $orders = Orders::model()->with('driver')->with('driver.vehicle')->findAll($criteria);

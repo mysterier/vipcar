@@ -1,4 +1,4 @@
-<form method="post" action="/order/process/<?php echo ORDER_TYPE_AIRPORTPICKUP;?>">
+<form method="post" action="/order/process/<?php echo ORDER_TYPE_AIRPORTPICKUP;?>?showwxpaytitle=1">
 <div style="margin-top: 1em;" class="form-group">
 	<div class="input-group">
 		<div class="input-group-addon iconfont">&#xf0053;</div>

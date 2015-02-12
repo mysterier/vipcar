@@ -40,7 +40,7 @@
 
 </div>
 <h4 class=" text-center allmargin">
-	预付款:<span class="text-danger allsizelg allpadding"><?php echo $estimated_cost ?></span>元
+	预付款:<span class="text-danger allsizelg allpadding"><?php echo $estimated_cost; ?></span>元
 </h4>
 <button id="wxpay" type="button" class="btn btn-primary btn-lg btn-block">确认付款</button>
 <script type="text/javascript">

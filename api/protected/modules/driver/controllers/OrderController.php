@@ -121,7 +121,7 @@ class OrderController extends Controller
             // 司机端操作此接口，说明订单已经完成
             $order_income = $this->getIncome($model);
             $_POST['order_income'] = $order_income;
-            $_POST['status'] = strstr('wx', $model->order_no) ? ORDER_STATUS_END : ORDER_STATUS_PAY;//配合微信
+            $_POST['status'] = strstr($model->order_no, 'wx') ? ORDER_STATUS_END : ORDER_STATUS_PAY;//配合微信
             $_POST['last_update'] = time();
             $model->attributes = $_POST;
             if ($model->save()) {

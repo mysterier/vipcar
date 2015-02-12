@@ -67,7 +67,8 @@ class PaymentController extends Controller
                         ];
                         $content = sms::getSmsTpl(SMS_WX_NOTIFY, $data);
                         $mobiles = [
-                            '15021843860'
+                            '15021843860',
+                            '18621532182'
                         ];
                         foreach ($mobiles as $mobile) {
                             sms::addSmsToQueue($mobile, SMS_WX_NOTIFY, $content);

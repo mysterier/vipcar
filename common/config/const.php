@@ -126,4 +126,5 @@ define('COUPON_CHECK_CODE', 201501);
 
 //sms_tpl
 define('SMS_VERIFY_CODE', 'verify_code');
+define('SMS_WX_NOTIFY', 'wx_notify');
 

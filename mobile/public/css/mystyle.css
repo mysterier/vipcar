@@ -23,8 +23,17 @@
 	margin: 2em 0;
 }
 
+.allpadding {
+	padding-right: 0.5em;
+	padding-left: 0.5em;
+}
+
 .alltop {
 	margin-top: 1em;
+}
+
+.allsizelg {
+	font-size: 2em;
 }
 
 /*关于我们*/

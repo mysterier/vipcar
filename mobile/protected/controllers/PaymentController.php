@@ -42,20 +42,40 @@ class PaymentController extends Controller
         
         if ($notify->checkSign() == TRUE) {
             if ($notify->data["return_code"] == "FAIL") {
-                // 此处应该更新一下订单状态，商户自行增删操作
                 $this->writeIntoFile("【通信出错】:\n" . $xml . "\n");
             } elseif ($notify->data["result_code"] == "FAIL") {
-                // 此处应该更新一下订单状态，商户自行增删操作
                 $this->writeIntoFile("【业务出错】:\n" . $xml . "\n");
             } else {
-                // 此处应该更新一下订单状态，商户自行增删操作
+                $util = new Common_util_pub();
+                $array = $util->xmlToArray($xml);
+                $attributes = [
+                    'open_id' => $array['openid'],
+                    'order_no' => $array['out_trade_no']
+                ];
+                $model = Orders::model()->findByAttributes($attributes);
+                if ($model && $model->status == ORDER_STATUS_HAND) {
+                    $model->status = ORDER_STATUS_NOT_DISTRIBUTE;
+                    if ($model->save()) {                      
+                        //发送验证短信
+                        Yii::import('common.sms.sms');
+                        $data = [
+                            $model->contacter_name,
+                            $model->contacter_phone,
+                            $model->pickup_time,
+                            $model->pickup_place,
+                            $model->drop_place
+                        ];
+                        $content = sms::getSmsTpl(SMS_WX_NOTIFY, $data);
+                        $mobiles = [
+                            '15021843860'
+                        ];
+                        foreach ($mobiles as $mobile) {
+                            sms::addSmsToQueue($mobile, SMS_WX_NOTIFY, $content);
+                        }                       
+                    }
+                }
                 $this->writeIntoFile("【支付成功】:\n" . $xml . "\n");
             }
-            
-            // 商户自行增加处理流程,
-            // 例如：更新订单状态
-            // 例如：数据库操作
-            // 例如：推送支付完成信息
         }
     }
     

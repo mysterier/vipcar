@@ -162,7 +162,7 @@ class OrderController extends Controller
         $this->title = '我的订单';
         $criteria = new CDbCriteria();
         $criteria->select = 'id,pickup_place,vehicle_type,drop_place,type,status,created,last_update';
-        $criteria->condition = 'open_id=:open_id and status != :status';
+        $criteria->condition = 'open_id=:open_id and t.status != :status';
         $criteria->order = 't.id desc';
         $criteria->params = [
             'open_id' => $this->openid,

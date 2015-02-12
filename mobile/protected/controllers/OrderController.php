@@ -34,6 +34,7 @@ class OrderController extends Controller
         $wechat->status = ORDER_STATUS_HAND; //暂定
         if ($wechat->save()) {
             $total_fee = $_POST['estimated_cost'];
+            $total_fee *= 100; 
             $jsApiParameters = $this->getWxParams($order_no, $total_fee);
             $hash = $_POST;
             $hash['jsApiParameters'] = $jsApiParameters;

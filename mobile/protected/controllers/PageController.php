@@ -28,4 +28,9 @@ class PageController extends Controller
         $this->layout = '//layouts/download';
         $this->render('download');
     }
+    
+    public function actionAd() {
+        $this->layout = false;
+        $this->render('ad');
+    }
 }

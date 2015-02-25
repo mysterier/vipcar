@@ -67,8 +67,8 @@ class PageController extends Controller
     }
     
     public function actionAjax() {
-        $ad_type = $this->getParam('ad_type');
-        $open_id = $this->getParam('openid');
+        $ad_type = $_POST['ad_type'];
+        $open_id = $_POST['openid'];
         $attributes = [
             'open_id' => $open_id,
             'ad_type' => $ad_type

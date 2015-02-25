@@ -184,3 +184,22 @@ h1 {
 .listind {
 	text-indent: 1em;
 }
+/*优惠券*/
+.bgcolor {
+	height: 6em;;
+	width: auto;
+	background-color: #26a69a;
+	margin-bottom: 1em;
+}
+
+.bgcolor div {
+	color: #fff;
+	font-size: 2em;
+	line-height: 3em;
+	text-align: center;
+}
+
+.logo-left {
+	float: left;
+	padding-left: 20px;
+}

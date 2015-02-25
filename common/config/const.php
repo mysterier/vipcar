@@ -123,6 +123,8 @@ define('CLIENT_ERROR_MSG_NOT_EXISTED', '该用户不存在');
 //Coupon
 define('COUPON_PREFIX', 2015);
 define('COUPON_CHECK_CODE', 201501);
+define('WX_COUPON_STATUS_ON', 1);
+define('WX_COUPON_STATUS_OFF', 2);
 
 //sms_tpl
 define('SMS_VERIFY_CODE', 'verify_code');

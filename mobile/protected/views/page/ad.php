@@ -48,7 +48,7 @@
   wx.ready(function () {
     wx.onMenuShareTimeline({
 		desc: '搜索关注众择用车或长按二维码关注公众号，微信直接下单，下单拿红包',
-		imgUrl: '/img/small.jpg',
+		imgUrl: 'http://m.vip-car.com.cn/img/small.jpg',
 		success: function () { 
 			callback();
 		}
@@ -56,7 +56,7 @@
 	
 	wx.onMenuShareAppMessage({
 		desc: '搜索关注众择用车或长按二维码关注公众号，微信直接下单，下单拿红包',
-		imgUrl: '/img/small.jpg',
+		imgUrl: 'http://m.vip-car.com.cn/img/small.jpg',
 		success: function () { 
 			callback();
 		}

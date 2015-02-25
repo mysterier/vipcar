@@ -71,4 +71,28 @@ class Controller extends CController
         
         return $res;
     }
+    
+    //发放优惠券（转发+关注的用户）
+    public function checkExpand() {
+        //这里可加判断是否订阅公众号
+        $attributes = [
+            'open_id' => $this->openid,
+            'grant' => 0
+        ];
+        $model = WxExpand::model()->findAllByAttributes($attributes);
+        if ($model) {
+            foreach ($model as $value) {
+                switch ($value->ad_type) {
+                    case 1:
+                        $coupon = new WxCoupon();
+                        $coupon->open_id = $this->openid;
+                        $coupon->value = 50;
+                        $coupon->scope = 3;
+                        $coupon->save();
+                        break;
+                }
+            }
+            WxExpand::model()->updateAll(['grant' => 1], "open_id=:open_id and `grant`=0", ['open_id' => $this->openid]);
+        }
+    }
 }

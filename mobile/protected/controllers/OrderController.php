@@ -7,7 +7,7 @@ class OrderController extends Controller
     public function actionAirportpickup()
     {
         $this->title = '接机';
-        
+        $this->checkExpand();
         $hash['flight_no'] = isset($_GET['flight_no']) ? urldecode($_GET['flight_no']) : '';
         $hash['pickup_time'] = isset($_GET['pickup_time']) ? urldecode($_GET['pickup_time']) : '';
         $hash['pickup_place'] = isset($_GET['pickup_place']) ? urldecode($_GET['pickup_place']) : '';
@@ -19,6 +19,7 @@ class OrderController extends Controller
     public function actionAirportsend()
     {
         $this->title = '送机';
+        $this->checkExpand();
         $this->render('airportsend');
     }
     

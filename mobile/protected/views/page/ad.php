@@ -35,7 +35,6 @@
 </body>
 <script>
   wx.config({
-    debug: true,
     appId: '<?php echo $signPackage["appId"];?>',
     timestamp: <?php echo $signPackage["timestamp"];?>,
     nonceStr: '<?php echo $signPackage["nonceStr"];?>',
@@ -60,8 +59,6 @@
 	});
   });
   function callback() {
-		$.post('/page/ajax',{},function(data){
-			alert(data);
-		});
+		$.post('/page/ajax',{ad_type:1, openid:'<?php echo $openid;?>'});
   }
 </script>

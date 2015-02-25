@@ -42,11 +42,43 @@ class PageController extends Controller
         $this->layout = false;
         $jssdk = new jssdk(WECHAT_APP_ID, WECHAT_APP_SECRET);
         $signPackage = $jssdk->GetSignPackage();
+        
+        $openid = Yii::app()->session['openid'];//$openid='oA7kOtw-NcEWHPlc-bGUQMx8azY8';
+        if ($openid)
+            $hash['openid'] = $openid;
+        else {
+            // 微信获取openid
+            if (! isset($_GET['code'])) {
+                $url = urlencode('http://m.vip-car.com.cn/'.$this->id.'/'.$this->action->id);
+                $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.WECHAT_APP_ID.'&redirect_uri=' . $url . '&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+                $this->redirect($url);
+            } else {
+                $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.WECHAT_APP_ID.'&secret='.WECHAT_APP_SECRET.'&code=' . $_GET['code'] . '&grant_type=authorization_code';
+                $output = $this->gettohost($url);
+                $output = json_decode($output);
+                $openid = $output->openid;
+                Yii::app()->session['openid'] = $openid;
+                $hash['openid'] = $openid;
+            }
+        }
+        
         $hash['signPackage'] = $signPackage;
         $this->render('ad', $hash);
     }
     
     public function actionAjax() {
-        echo 123;
+        $ad_type = $this->getParam('ad_type');
+        $open_id = $this->getParam('openid');
+        $attributes = [
+            'open_id' => $open_id,
+            'ad_type' => $ad_type
+        ];
+        $model = WxExpand::model()->findByAttributes($attributes);
+        if (!$model) {
+            $expand = new WxExpand();
+            $expand->ad_type = $ad_type;
+            $expand->open_id = $open_id;
+            $expand->save();
+        }
     }
 }

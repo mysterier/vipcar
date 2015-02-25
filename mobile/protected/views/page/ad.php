@@ -48,7 +48,7 @@
   wx.ready(function () {
     wx.onMenuShareTimeline({
 		desc: '搜索关注众择用车或长按二维码关注公众号，微信直接下单，下单拿红包',
-		imgUrl: 'https://mp.weixin.qq.com/cgi-bin/getimgdata?mode=small&source=file&fileId=203257649&token=1250835920&lang=zh_CN',
+		imgUrl: '/img/small.jpg',
 		success: function () { 
 			callback();
 		}
@@ -56,7 +56,7 @@
 	
 	wx.onMenuShareAppMessage({
 		desc: '搜索关注众择用车或长按二维码关注公众号，微信直接下单，下单拿红包',
-		imgUrl: 'https://mp.weixin.qq.com/cgi-bin/getimgdata?mode=small&source=file&fileId=203257649&token=1250835920&lang=zh_CN',
+		imgUrl: '/img/small.jpg',
 		success: function () { 
 			callback();
 		}

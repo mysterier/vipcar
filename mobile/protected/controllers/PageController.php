@@ -9,6 +9,10 @@ class PageController extends Controller
         // $this->layout = '//layouts/page';
     }
 
+    public function beforeAction($action) {
+        return true;
+    }
+    
     public function actionHelp()
     {
         $this->title = '帮助中心';
@@ -40,5 +44,9 @@ class PageController extends Controller
         $signPackage = $jssdk->GetSignPackage();
         $hash['signPackage'] = $signPackage;
         $this->render('ad', $hash);
+    }
+    
+    public function actionAjax() {
+        echo 123;
     }
 }

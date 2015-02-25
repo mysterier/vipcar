@@ -5,9 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>红包</title>
+<title>高潮了，上不上？？你要或者不要，450元的红包就在这里！</title>
 <link rel="stylesheet" type="text/css" href="/css/mystyle.css">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<script src="/js/jquery-1.11.2.js"></script>
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
 <body>
@@ -33,7 +34,7 @@
 	</div>
 </body>
 <script>
-wx.config({
+  wx.config({
     debug: true,
     appId: '<?php echo $signPackage["appId"];?>',
     timestamp: <?php echo $signPackage["timestamp"];?>,
@@ -47,17 +48,20 @@ wx.config({
   });
   wx.ready(function () {
     wx.onMenuShareTimeline({
-    title: 'xxx', // 分享标题
-    link: '', // 分享链接
-    imgUrl: '', // 分享图标
-    success: function () { 
-        // 用户确认分享后执行的回调函数
-		alert(123);
-    },
-    cancel: function () { 
-        // 用户取消分享后执行的回调函数
-		alert(321);
-    }
-});
+		success: function () { 
+			callback();
+		}
+	});
+	
+	wx.onMenuShareAppMessage({
+		success: function () { 
+			callback();
+		}
+	});
   });
+  function callback() {
+		$.post('/page/ajax',{},function(data){
+			alert(data);
+		});
+  }
 </script>

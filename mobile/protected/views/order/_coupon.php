@@ -29,7 +29,6 @@
 			</div>
 			<div class="modal-footer">
 				<button id="nouse" type="button" class="btn btn-default" data-dismiss="modal">不使用优惠券</button>
-				<button type="button" class="btn btn-primary">确定使用</button>
 			</div>
 		</div>
 	</div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>高潮了，上不上？？你要或者不要，450元的红包就在这里！</title>
+<title>高潮了，上不上？？你要或者不要，450元的红包就在这里！50元红包先到手 下单再送450！</title>
 <link rel="stylesheet" type="text/css" href="/css/mystyle.css">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <script src="/js/jquery-1.11.2.js"></script>
@@ -15,7 +15,7 @@
 	<!--content-->
 
 	<div class="container-fluid">
-		<h3>高潮了，上不上？？你要或者不要，450元的红包就在这里！</h3>
+		<h3>高潮了，上不上？？你要或者不要，450元的红包就在这里！50元红包先到手 下单再送450！</h3>
 		<p class="text-muted">2015-02-16众择用车</p>
 		<div class=" alltop">
 			<img src="/img/gaoduan.png" width="100%">

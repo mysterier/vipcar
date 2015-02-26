@@ -55,7 +55,17 @@ class PaymentController extends Controller
                 $model = Orders::model()->findByAttributes($attributes);
                 if ($model && $model->status == ORDER_STATUS_HAND) {
                     $model->status = ORDER_STATUS_NOT_DISTRIBUTE;
-                    if ($model->save()) {                      
+                    if ($model->save()) {
+                        $attributes = [
+                            'open_id' => $array['openid'],
+                            'order_id' => $model->id
+                        ];
+                        $coupon = WxCoupon::model()->findByAttributes($attributes);
+                        if ($coupon) {
+                            $coupon->status = 2;
+                            $coupon->save();
+                        }
+                        
                         //发送验证短信
                         Yii::import('common.sms.sms');
                         $data = [

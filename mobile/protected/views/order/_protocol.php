@@ -42,7 +42,9 @@ $(function(){
     });
 });
 
-function getIncome(vehicle_type, place) {
+function getIncome() {
+	var vehicle_type = $("#vehicle_type").val();
+	var place = $("#terminal").val();
 	switch (vehicle_type) {
 		case '2':
 			fares = [<?php echo COMFORTABLE_LOW;?>, <?php echo COMFORTABLE_HIGH;?>];
@@ -65,23 +67,17 @@ function getIncome(vehicle_type, place) {
 }
 
 $("#vehicle_type,#terminal").change(function(){
-	var vehicle_type = $("#vehicle_type").val();
-	var place = $("#terminal").val();
-	if (vehicle_type && place){
-		income = getIncome(vehicle_type,place);
-		$(".rmb").text(income);
-		$("#estimated_cost").val(income);
-	}
+	income = getIncome();
+	$(".rmb").text(income);
+	$("#estimated_cost").val(income);
+	$("#coupon_id").val('');
+	$(".positionright").html('您目前有<span class="text-danger allpadding"><?php echo count($coupons);?></span>张优惠券');
 });
 
 $(function(){
-	var vehicle_type = $("#vehicle_type").val();
-	var place = $("#terminal").val();
-	if (vehicle_type && place){
-		income = getIncome(vehicle_type,place);
-		$(".rmb").text(income);
-		$("#estimated_cost").val(income);
-	}
+	income = getIncome();
+	$(".rmb").text(income);
+	$("#estimated_cost").val(income);
 });
 
 //订单验证

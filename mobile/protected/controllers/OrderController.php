@@ -8,6 +8,8 @@ class OrderController extends Controller
     {
         $this->title = '接机';
         $this->checkExpand();
+        $coupons = $this->couponlist();
+        $hash['coupons'] = $coupons;
         $hash['flight_no'] = isset($_GET['flight_no']) ? urldecode($_GET['flight_no']) : '';
         $hash['pickup_time'] = isset($_GET['pickup_time']) ? urldecode($_GET['pickup_time']) : '';
         $hash['pickup_place'] = isset($_GET['pickup_place']) ? urldecode($_GET['pickup_place']) : '';
@@ -20,7 +22,21 @@ class OrderController extends Controller
     {
         $this->title = '送机';
         $this->checkExpand();
-        $this->render('airportsend');
+        $coupons = $this->couponlist();
+        $hash['coupons'] = $coupons;
+        $this->render('airportsend', $hash);
+    }
+    
+    private function couponlist() {
+        $scope = ($this->action->id == 'airportsend') ? ORDER_TYPE_AIRPORTSEND : ORDER_TYPE_AIRPORTPICKUP;
+        $condition = 'open_id=:open_id and status=:status and (scope=:scope or scope=3)';
+        $params = [
+            'open_id' => $this->openid,
+            'status' => 1,
+            'scope' => $scope
+        ];
+        $model = WxCoupon::model()->findAll($condition, $params);
+        return $model;
     }
     
     public function actionProcess($id) {
@@ -34,6 +50,16 @@ class OrderController extends Controller
         $wechat->type = (string)$id;
         $wechat->status = ORDER_STATUS_HAND; //暂定
         if ($wechat->save()) {
+            //更新对应优惠券
+            if (isset($_POST['coupon_id'])) {
+                $coupon = WxCoupon::model()->findByPk($_POST['coupon_id']);
+                if ($coupon) {
+                    $coupon->order_id = $wechat->id;
+                    $coupon->last_update = time();
+                    $coupon->save();
+                }
+            }
+            
             $total_fee = $_POST['estimated_cost'];
             $total_fee *= 100; 
             $jsApiParameters = $this->getWxParams($order_no, $total_fee);

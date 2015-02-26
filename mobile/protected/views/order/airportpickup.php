@@ -66,7 +66,7 @@
 
 <textarea style="width: 100%;" class="form-group" rows="3"
 	placeholder="其他需求" name="summary"></textarea>
-
+<?php include '_coupon.php';?>
 <label style="float: right;">价格<span class="rmb">0</span>元
 <input type="hidden" name="estimated_cost" id="estimated_cost">
 </label>

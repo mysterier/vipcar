@@ -62,7 +62,7 @@ class OrderController extends Controller
             
             $total_fee = $_POST['estimated_cost'];
             if ($total_fee == 0)
-                $this->successForCoupon($order, $coupon);
+                $this->successForCoupon($wechat, $coupon);
             $total_fee *= 100; 
             $jsApiParameters = $this->getWxParams($order_no, $total_fee);
             $hash = $_POST;

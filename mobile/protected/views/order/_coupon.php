@@ -39,6 +39,7 @@ $(".mycoupon").click(function(){
 	var coupon_id = $(this).attr("coupon_id");
 	var coupon_cost = $(this).attr("coupon_cost");
 	var income = getIncome()-coupon_cost;
+	income = (income > 0) ? income : 0;
 	$("#coupon_id").val(coupon_id);
 	$(".rmb").text(income);
 	$("#estimated_cost").val(income);

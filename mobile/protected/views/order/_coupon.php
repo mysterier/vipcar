@@ -47,6 +47,8 @@ $(".mycoupon").click(function(){
 $("#nouse").click(function(){
 	$("#coupon_id").val('');
 	$(".positionright").html('您目前有<span class="text-danger allpadding"><?php echo count($coupons);?></span>张优惠券');
+	$(".rmb").text(income);
+	$("#estimated_cost").val(income);
 });
 </script>
 <?php endif;?>

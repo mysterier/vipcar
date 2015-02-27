@@ -64,6 +64,10 @@ class PaymentController extends Controller
                         if ($coupon) {
                             $coupon->status = 2;
                             $coupon->save();
+                            if ($coupon->value == 50)
+                                $this->sendCoupon($model);
+                        } else {
+                            $this->sendCoupon($model);
                         }
                         
                         //发送验证短信
@@ -88,6 +92,14 @@ class PaymentController extends Controller
                 $this->writeIntoFile("【支付成功】:\n" . $xml . "\n");
             }
         }
+    }
+    
+    public function sendCoupon(Orders $order) {
+        $coupon = new Coupon();
+        $coupon->open_id = $order->open_id;
+        $coupon->value = 450;
+        $coupon->scope = ($order->type == ORDER_TYPE_AIRPORTPICKUP) ? ORDER_TYPE_AIRPORTSEND : ORDER_TYPE_AIRPORTPICKUP;
+        $coupon->save();
     }
     
     /**

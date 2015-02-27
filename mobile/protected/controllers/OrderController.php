@@ -61,12 +61,46 @@ class OrderController extends Controller
             }
             
             $total_fee = $_POST['estimated_cost'];
+            if ($total_fee == 0)
+                $this->successForCoupon($order, $coupon);
             $total_fee *= 100; 
             $jsApiParameters = $this->getWxParams($order_no, $total_fee);
             $hash = $_POST;
             $hash['jsApiParameters'] = $jsApiParameters;
             $this->render('confirm_order', $hash);
         }   
+    }
+    
+    /**
+     * 只有当预付款0元时调用次方法
+     * @param unknown $order
+     * @param unknown $coupon
+     */
+    private function successForCoupon($order, $coupon) {
+        $order->status = ORDER_STATUS_NOT_DISTRIBUTE;
+        $order->save();
+        $coupon->status = 2;
+        $coupon->save();
+        
+        //发送验证短信
+        Yii::import('common.sms.sms');
+        $data = [
+            $order->contacter_name,
+            $order->contacter_phone,
+            $order->pickup_time,
+            $order->pickup_place,
+            $order->drop_place
+        ];
+        $content = sms::getSmsTpl(SMS_WX_NOTIFY, $data);
+        $mobiles = [
+            '15021843860',
+            '13801939692'
+        ];
+        foreach ($mobiles as $mobile) {
+            sms::addSmsToQueue($mobile, SMS_WX_NOTIFY, $content);
+        }
+        
+        $this->redirect('/order/success');
     }
     
     public function actionSuccess() {

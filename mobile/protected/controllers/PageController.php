@@ -61,9 +61,16 @@ class PageController extends Controller
                 $hash['openid'] = $openid;
             }
         }
-        
+        $this->pageStatistics($openid);
         $hash['signPackage'] = $signPackage;
         $this->render('ad', $hash);
+    }
+    
+    public function pageStatistics($openid) {
+        $model = new WxStatistics();
+        $model->open_id = $openid;
+        $model->action = '/' . $this->id . '/' . $this->action->id;
+        $model->save();
     }
     
     public function actionAjax() {

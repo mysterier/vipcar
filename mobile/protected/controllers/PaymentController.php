@@ -95,7 +95,7 @@ class PaymentController extends Controller
     }
     
     public function sendCoupon(Orders $order) {
-        $coupon = new Coupon();
+        $coupon = new WxCoupon();
         $coupon->open_id = $order->open_id;
         $coupon->value = 450;
         $coupon->scope = ($order->type == ORDER_TYPE_AIRPORTPICKUP) ? ORDER_TYPE_AIRPORTSEND : ORDER_TYPE_AIRPORTPICKUP;

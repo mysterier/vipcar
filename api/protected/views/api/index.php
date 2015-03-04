@@ -55,5 +55,12 @@ $this->breadcrumbs=array(
 <h2><a href="/api/csendcodeforget">发送忘记密码验证码</a></h2>
 <h2><a href="/api/cforgetpass">忘记密码</a></h2>
 <h2><a href="/api/pay">确认付款</a></h2>
+<h2><a href="/api/address?module=add">新增地址</a></h2>
+<h2><a href="/api/address?module=modify">修改地址</a></h2>
+<h2><a href="/api/address?module=list">地址列表</a></h2>
+<h2><a href="/api/address?module=del">删除地址</a></h2>
+<h2><a href="/api/invoice?module=new">开票</a></h2>
+<h2><a href="/api/invoice?module=history">历史开票记录</a></h2>
+<h2><a href="/api/invoice?module=amount">总额、可开票金额、已开票金额</a></h2>
 </div>
 </div>

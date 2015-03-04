@@ -1,4 +1,5 @@
 <?php
+
 class ApiController extends Controller
 {
 
@@ -58,30 +59,40 @@ class ApiController extends Controller
     {
         $this->render('incomestat');
     }
-    
+
     public function actionChgiostoken()
     {
-        $this->render('Chgiostoken',['module' => 'driver']);
+        $this->render('Chgiostoken', [
+            'module' => 'driver'
+        ]);
     }
-    
+
     public function actionBindchannel()
     {
-        $this->render('bindchannel',['module' => 'driver']);
+        $this->render('bindchannel', [
+            'module' => 'driver'
+        ]);
     }
-    
+
     public function actionResetpass()
     {
-        $this->render('resetpass',['module' => 'driver/driverinfor']);
+        $this->render('resetpass', [
+            'module' => 'driver/driverinfor'
+        ]);
     }
-    
+
     public function actionSendcodeforget()
     {
-        $this->render('sendcode_forget',['module' => 'driver/sendcode']);
+        $this->render('sendcode_forget', [
+            'module' => 'driver/sendcode'
+        ]);
     }
-    
+
     public function actionForgetpass()
     {
-        $this->render('forgetpass',['module' => 'driver/driverinfor']);
+        $this->render('forgetpass', [
+            'module' => 'driver/driverinfor'
+        ]);
     }
     // =====================客户端=============
     public function actionCRegister()
@@ -145,79 +156,122 @@ class ApiController extends Controller
 
     public function actionCchgiostoken()
     {
-        $this->render('Chgiostoken',['module' => 'client']);
+        $this->render('Chgiostoken', [
+            'module' => 'client'
+        ]);
     }
-    
+
     public function actionGetticket()
     {
         $this->render('get_ticket');
     }
-    
+
     public function actionCouponlist()
     {
         $this->render('coupon_list');
     }
-    
+
     public function actionCouponhistory()
     {
         $this->render('coupon_history');
     }
-    
+
     public function actionSendcode()
     {
         $this->render('send_code');
     }
-    
+
     public function actionCbindchannel()
     {
-        $this->render('bindchannel',['module' => 'client']);
+        $this->render('bindchannel', [
+            'module' => 'client'
+        ]);
     }
-    
+
     public function actionAvatar()
     {
         $this->render('avatar');
     }
-    
+
     public function actionModifyinfor()
     {
         $this->render('modify_infor');
     }
-    
+
     public function actionOrdercomment()
     {
         $this->render('order_comment');
     }
-    
-    public function actionRecharge() {
+
+    public function actionRecharge()
+    {
         $this->render('recharge');
     }
-    
-    public function actionRechargelist() {
+
+    public function actionRechargelist()
+    {
         $this->render('recharge_list');
     }
-    
+
     public function actionCouponpresent()
     {
         $this->render('coupon_present');
     }
-    
+
     public function actionCresetpass()
     {
-        $this->render('resetpass',['module' => 'client/clientinfor']);
+        $this->render('resetpass', [
+            'module' => 'client/clientinfor'
+        ]);
     }
-    
+
     public function actionCsendcodeforget()
     {
-        $this->render('sendcode_forget',['module' => 'client/sendcode']);
+        $this->render('sendcode_forget', [
+            'module' => 'client/sendcode'
+        ]);
     }
-    
+
     public function actionCforgetpass()
     {
-        $this->render('forgetpass',['module' => 'client/clientinfor']);
+        $this->render('forgetpass', [
+            'module' => 'client/clientinfor'
+        ]);
     }
-    
+
     public function actionPay()
     {
         $this->render('pay');
+    }
+
+    public function actionAddress()
+    {
+        $module = $_GET['module'];
+        switch ($module) {
+            case 'add':
+                $action = '/client/address/add';
+                break;
+            case 'list':
+                $action = '/client/address/list';
+                break;
+            case 'modify':
+                $action = '/client/address/modify/1';
+                break;
+            case 'del':
+                $action = '/client/address/del/1';
+                break;
+        }
+        
+        $this->render('address', [
+            'module' => $module,
+            'action' => $action
+        ]);
+    }
+    
+    public function actionInvoice() {
+        $module = $_GET['module'];        
+        $this->render('invoice', [
+            'module' => $module,
+        ]);
     }
 }

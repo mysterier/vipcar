@@ -40,6 +40,8 @@ define('VERIFY_CODE_EXPIRE', 1800);
 define('VERIFY_CODE_RESEND', 60);
 define('ADMIN_PAGE_SIZE', 10);
 define('DEFAULT_API_SITE', 'api.carvip.wang:8080');
+define('STATUS_DEL', 0);
+define('STATUS_LIVE', 1);
 //汽车费用
 define('BASE_DURATION', 2);
 define('BASE_DISTANCE', 50);

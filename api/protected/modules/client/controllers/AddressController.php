@@ -17,12 +17,12 @@ class AddressController extends Controller
     }
     
     public function actionList() {
-        $sid = $this->getParam('last_address_sid');
+        //暂时无视sid
+        //$sid = $this->getParam('last_address_sid');
         $criteria = new CDbCriteria();
-        $criteria->condition = 'uid=:uid and id > :id and status=:status';
+        $criteria->condition = 'uid=:uid and status=:status';
         $criteria->params = [
             'uid' => $this->uid,
-            'id' => $sid,
             'status' => STATUS_LIVE
         ];
         $criteria->order = 'id asc';
@@ -42,7 +42,7 @@ class AddressController extends Controller
                 ];
             }
         }
-        $this->result['last_address_sid'] = $sid;
+        //$this->result['last_address_sid'] = $sid;
         $this->result['address_list'] = $address_list;
     }
     

@@ -5,6 +5,8 @@ class CheckupdateController extends Controller
 
     public function actionIndex()
     {
-        echo 'hello world';
+        $this->result['error_code'] = NO_RECORD;
+        $this->result['error_msg'] = '';
+        $this->result['app_url'] = '';
     }
 }

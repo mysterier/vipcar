@@ -258,7 +258,7 @@ class ApiController extends Controller
                 $action = '/client/address/modify/1';
                 break;
             case 'del':
-                $action = '/client/address/del/1';
+                $action = '/client/address/delete/1';
                 break;
         }
         

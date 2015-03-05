@@ -58,7 +58,7 @@ class AddressController extends Controller
         }
     }
     
-    public function actionDel($id) {
+    public function actionDelete($id) {
         $address = InvoiceAddress::model()->findByPk($id);
         $address->status = STATUS_DEL;
         if ($address->save()) {

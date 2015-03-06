@@ -22,7 +22,7 @@ class Controller extends CController
 
     protected function beforeAction($action)
     {
-        if ($this->module && ($this->id == 'recharge' && $this->action->id != 'notify')) {
+        if ($this->module && $this->action->id != 'notify') {
             if (! count($_POST)) {
                 
                 $this->result['error_msg'] = ERROR_MSG_CHECK_POST;

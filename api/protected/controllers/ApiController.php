@@ -94,6 +94,12 @@ class ApiController extends Controller
             'module' => 'driver/driverinfor'
         ]);
     }
+    
+    public function actionPushmsg()
+    {
+        $this->render('pushmsg');
+    }
+    
     // =====================客户端=============
     public function actionCRegister()
     {

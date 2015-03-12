@@ -14,6 +14,7 @@ class PushMsg
 {
 
     private static $_instance;
+    private static $_is_driver;
 
     private $_channel;
 
@@ -21,12 +22,13 @@ class PushMsg
     {
         $api_key = $driver ? DRIVER_CHANNEL_API_KEY : CLIENT_CHANNEL_API_KEY;
         $secret_key = $driver ? DRIVER_CHANNEL_SECRET_KEY : CLIENT_CHANNEL_SECRET_KEY;
+        self::$_is_driver = $driver;
         $this->_channel = new Channel($api_key, $secret_key);
     }
 
     public static function action($driver = 0)
     {
-        if (! (self::$_instance instanceof self))
+        if (! (self::$_instance instanceof self) || self::$_is_driver != $driver)
             self::$_instance = new self($driver);
         return self::$_instance;
     }

@@ -7,6 +7,12 @@ class DefaultController extends Controller
     {
         echo 'hello world';
     }
+    
+    public function getUid($token)
+    {    
+        $uid = substr($token, 33);
+        return $uid;
+    }
 
     public function actionPushmsg()
     {

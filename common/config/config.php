@@ -16,8 +16,10 @@ define('REDIS_PORT', 6379);
 define('REDIS_EXPIRE', 1800);
 
 //百度云推送
-define('CHANNEL_SECRET_KEY', 'u6280Qz0pyZoV6GdVf8nrMUwcrluKTnQ');
-define('CHANNEL_API_KEY', 'rM2XLwazvOAi7Wn60dUSrQIq');
+define('CLIENT_CHANNEL_SECRET_KEY', '5W6TydUdv60Y8GvSW00v1OQp4Zy9uab6');
+define('CLIENT_CHANNEL_API_KEY', 'inMRGL81XHFZLnvLx5BhPmo6');
+define('DRIVER_CHANNEL_SECRET_KEY', 'u6280Qz0pyZoV6GdVf8nrMUwcrluKTnQ');
+define('DRIVER_CHANNEL_API_KEY', 'rM2XLwazvOAi7Wn60dUSrQIq');
 
 //微信
 define('WECHAT_APP_ID', 'wxf6ae832e0b48f36e');

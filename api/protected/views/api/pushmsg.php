@@ -35,8 +35,13 @@ $form = $this->beginWidget('CActiveForm', array(
 	</div>
 
 	<div class="row">
-		<label>Driver Pushmsg</label>
-	    <input type="text" name="driver_Pushmsg" />
+		<label>msg</label>
+	    <input type="text" name="msg" />
+	</div>
+	
+	<div class="row">
+		<label>Is Driver</label>
+	    <input type="text" name="is_driver" />
 	</div>
 
 

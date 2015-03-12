@@ -89,6 +89,6 @@ class PaymentController extends Controller
         $option = [
             'description' => '订单' . $order->order_no . '，用户已付款结单，接下去，能量满满地工作吧。'
         ];
-        PushMsg::action()->pushMsg($attributes, $tpl, $option);
+        PushMsg::action(1)->pushMsg($attributes, $tpl, $option);
     }
 }

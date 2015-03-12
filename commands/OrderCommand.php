@@ -47,7 +47,7 @@ class OrderCommand extends CConsoleCommand
                     ];
                     $tpl = 'driver_new_order';
                     
-                    //PushMsg::action()->pushMsg($attributes, $tpl);
+                    PushMsg::action(1)->pushMsg($attributes, $tpl);
                 }
             }
         }

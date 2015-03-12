@@ -17,15 +17,17 @@ class PushMsg
 
     private $_channel;
 
-    private function __construct()
+    private function __construct($driver)
     {
-        $this->_channel = new Channel(CHANNEL_API_KEY, CHANNEL_SECRET_KEY);
+        $api_key = $driver ? DRIVER_CHANNEL_API_KEY : CLIENT_CHANNEL_API_KEY;
+        $secret_key = $driver ? DRIVER_CHANNEL_SECRET_KEY : CLIENT_CHANNEL_SECRET_KEY;
+        $this->_channel = new Channel($api_key, $secret_key);
     }
 
-    public static function action()
+    public static function action($driver = 0)
     {
         if (! (self::$_instance instanceof self))
-            self::$_instance = new self();
+            self::$_instance = new self($driver);
         return self::$_instance;
     }
 

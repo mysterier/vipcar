@@ -117,7 +117,7 @@ class OrderController extends Controller
     {
         $model = Orders::model()->findByPk($id);
         $model->setScenario('driver_modify');
-        if ($model && ($model->driver_id == $this->uid)) {
+        if ($model && ($model->driver_id == $this->uid) && $model->status < ORDER_STATUS_PAY) {
             // 司机端操作此接口，说明订单已经完成
             $order_income = $this->getIncome($model);
             $_POST['order_income'] = $order_income;

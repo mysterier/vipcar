@@ -13,6 +13,10 @@ class DefaultController extends Controller
         $uid = substr($token, 33);
         return $uid;
     }
+    
+    public function beforeAction($action) {
+        return true;
+    }
 
     public function actionPushmsg()
     {
@@ -27,5 +31,9 @@ class DefaultController extends Controller
         PushMsg::action($driver)->pushMsg($attributes, $tpl, $option);
         echo 'success';
         exit();
+    }
+    
+    public function actionHttp() {
+        sleep(3);
     }
 }

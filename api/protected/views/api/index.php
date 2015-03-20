@@ -24,6 +24,7 @@ $this->breadcrumbs=array(
 <h2><a href="/api/sendcodeforget">发送忘记密码验证码</a></h2>
 <h2><a href="/api/forgetpass">修改密码</a></h2>
 <h2><a href="/api/pushmsg">推送消息</a></h2>
+<h2><a href="/api/orderrequest">主动请求订单</a></h2>
 </div>
 
 <div style="margin-left:500px">

@@ -100,6 +100,11 @@ class ApiController extends Controller
         $this->render('pushmsg');
     }
     
+    public function actionOrderrequest()
+    {
+        $this->render('order_request');
+    }
+    
     // =====================客户端=============
     public function actionCRegister()
     {

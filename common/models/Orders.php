@@ -101,7 +101,7 @@ class Orders extends CActiveRecord
             ],
             
             [
-                'summary,estimated_duration,estimated_distance,license_no',
+                'summary,estimated_duration,estimated_distance,license_no,driver_id,status,last_update',
                 'safe'
             ]
         ];

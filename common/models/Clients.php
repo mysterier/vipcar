@@ -57,7 +57,8 @@ class Clients extends CActiveRecord
                 'on' => [
                     'insert',
                     'update',
-                    'reg'
+                    'reg',
+                    'loginv1'
                 ]
             ],
             [
@@ -70,7 +71,8 @@ class Clients extends CActiveRecord
                 'on' => [
                     'insert',
                     'update',
-                    'reg'
+                    'reg',
+                    'loginv1'
                 ]
             ],
             [

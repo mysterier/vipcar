@@ -30,16 +30,27 @@ class Controller extends CController
                 echo $result;
                 return false;
             }
-
-            if ($this->id != 'login' && $this->id != 'register' && $this->action->id != 'forgetpass' && $this->action->id != 'notify' && ! $this->checkToken())
+            
+            //检查token 
+            if (! in_array($this->id, [
+                'login',
+                'register',
+                'login1_1'
+            ]) && ! in_array($this->action->id, [
+                'forgetpass',
+                'notify',
+                'login'
+            ]) && ! $this->checkToken())
                 
                 return false;
             
+            //检查是否激活
             if ($this->action->id != 'forgetpass' && $this->action->id != 'notify' && $this->module->id == 'client' && ! in_array($this->id, [
                 'regvalidate',
                 'register',
                 'login',
-                'sendcode'
+                'sendcode',
+                'login1_1'
             ])) {
                 if (! $this->isActived())
                     return false;
@@ -189,7 +200,7 @@ class Controller extends CController
      * @return string
      * @author lqf
      */
-    public function setApiLastUpdate($controller='', $module='', $uid='')
+    public function setApiLastUpdate($controller = '', $module = '', $uid = '')
     {
         $controller = $controller ? $controller : $this->id;
         $module = $module ? $module : $this->module->id;
@@ -296,7 +307,7 @@ class Controller extends CController
 
     /**
      * 绑定百度推送通道
-     * 
+     *
      * @author lqf
      */
     public function bindchannel()

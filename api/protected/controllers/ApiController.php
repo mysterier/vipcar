@@ -125,6 +125,11 @@ class ApiController extends Controller
         ));
     }
 
+    public function actionCLoginv1()
+    {    
+        $this->render('loginv1');
+    }
+    
     public function actionAirportpickup()
     {
         $this->render('airportpickup');
@@ -241,6 +246,11 @@ class ApiController extends Controller
         $this->render('sendcode_forget', [
             'module' => 'client/sendcode'
         ]);
+    }
+    
+    public function actionSendcodelogin()
+    {
+        $this->render('sendcode_login');
     }
 
     public function actionCforgetpass()

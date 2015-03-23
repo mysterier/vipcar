@@ -38,4 +38,21 @@ class SendcodeController extends Controller
         $this->result['error_code'] = SUCCESS_DEFAULT;
         $this->result['error_msg'] = '';
     }
+    
+    public function actionLogin() {
+        $mobile = $this->getParam('client_mobile');
+        if (!$this->sRedisGet($mobile.'issend_client')) {
+            $model = Clients::model()->findByAttributes(['mobile' => $mobile]);
+            if (!$model) {
+                $model = new Clients('loginv1');
+                $model->mobile = $mobile;
+                $model->password = '123';
+                $model->status = '1';
+                if ($model->save())
+                    $this->sendSms($mobile, $model);
+            } else    
+                $this->sendSms($mobile, $model);     
+        } else
+            $this->result['error_msg'] = ERROR_VERIFY_CODE_RESEND;
+    }
 }

@@ -21,10 +21,12 @@ class MessageController extends Controller
         if ($model) {
             foreach ($model as $msg) {
                 $id = $msg->id;
+                $msg_tag = $msg->tpl_id ? $msg->tpl->tag : $msg->tag;
+                $content = $msg->tpl_id ? $msg->tpl->content : $msg->content;
                 $message[] = [
                     'msg_date' => $msg->created,
-                    'msg_content' => $msg->tpl->content,
-                    'msg_tag' => $msg->tpl->tag
+                    'msg_content' => $content,
+                    'msg_tag' => $msg_tag
                 ];
             }
             $this->result['error_code'] = SUCCESS_DEFAULT;

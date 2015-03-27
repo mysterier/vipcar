@@ -79,6 +79,9 @@ class PushMsg
         
         $message = $msg_tpl[$tpl];
         isset($description) ? $message['description'] = $description : '';
+        
+        $this->addmessage($model->client_id, $message['title'], $message['description']);
+        
         $message = json_encode($message);
         $message_key = time();
         $ret = $this->_channel->pushMessage($push_type, $message, $message_key, $optional);
@@ -109,5 +112,24 @@ class PushMsg
         
         $logFile = $dir . '/' . date('Y-m-d');
         file_put_contents($logFile, $text, FILE_APPEND | LOCK_EX);
+    }
+    
+    /**
+     * 加入消息列表
+     * 有tpl_id的一般都是群发消息，用户特定消息不用tpl_id
+     *
+     * @param  $uid
+     * @param  $tag
+     * @param  $content
+     *
+     * @author lqf
+     */
+    public function addmessage($uid, $tag, $content) {
+        $message = self::$_is_driver ? new DriverMessage() : new ClientMessage();
+        $user = self::$_is_driver ? 'driver_id' : 'client_id';
+        $message->$user = $uid;
+        $message->tag = $tag;
+        $message->content = $content;
+        $message->save();
     }
 }

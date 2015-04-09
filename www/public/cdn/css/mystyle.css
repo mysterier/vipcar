@@ -1,38 +1,95 @@
 /*所有*/
+.head {
+	width: 100%;
+	background: rgb(66, 139, 202);
+	margin-bottom: 1em;
+}
 
-.head{width:100%;background:rgb(66,139,202);margin-bottom:1em;}
-.head p{color:#fff; padding:0.3em; font-size:2em;}
-.container-fluid{padding-bottom:1em;}
-.allwidth{width:100%;}
-.allmargin{margin:2em 0;}
+.head p {
+	color: #fff;
+	padding: 0.3em;
+	font-size: 2em;
+}
+
+.container-fluid {
+	padding: 1em 0;
+}
+
+.allwidth {
+	width: 100%;
+}
+
+.allmargin {
+	margin: 2em 0;
+}
 
 /*关于我们*/
-.psize{font-size:1em;}
+.psize {
+	font-size: 1em;
+}
 
 /*接送机*/
-h1{color:#ffffff;}
-.padd{margin:0.5em auto;}
-.rmb{font-size:2em; color:rgb(66,139,202); margin:0 1em;}
+h1 {
+	color: #ffffff;
+}
+
+.padd {
+	margin: 0.5em auto;
+}
+
+.rmb {
+	font-size: 2em;
+	color: rgb(66, 139, 202);
+	margin: 0 1em;
+}
 
 /*下载*/
+.iconsize {
+	font-size: 1.5em;
+	padding-right: 0.3em;
+}
 
-.iconsize{font-size:1.5em; padding-right:0.3em;}
-.imgcss{width:50%; margin:2em auto;}
+.imgcss {
+	width: 50%;
+	margin: 2em auto;
+}
 
 /*航班号*/
+.title {
+	display: block;
+	width: 100%;
+	background: rgb(66, 139, 202);
+	color: #fff;
+	padding: 0.3em;
+	font-size: 1.5em;
+	text-align: center;
+	margin-top: 1em;
+}
 
-.title{ display:block; width:100%;background:rgb(66,139,202);  color:#fff; padding:0.3em; font-size:1.5em; text-align:center;
-margin-top:1em;}
-.hangban-time{ border-bottom:1px #ccc solid; width:100%; font-size:1em; padding:0.5em; background-color:#fff; color:#000; text-indent:2em;}
-.hangban-time:hover{ background-color:#E3E3E3;}
+.hangban-time {
+	border-bottom: 1px #ccc solid;
+	width: 100%;
+	font-size: 1em;
+	padding: 0.5em;
+	background-color: #fff;
+	color: #000;
+	text-indent: 2em;
+}
 
-.wancheng-p{
+.hangban-time:hover {
+	background-color: #E3E3E3;
+}
+
+.wancheng-p {
 	margin: 1em;
-	background-color: rgba(87,166,64,1.00);
+	background-color: rgba(87, 166, 64, 1.00);
 	font-size: 2em;
 	padding: 2em;
 	color: #fff;
 	-moz-border-radius: 1em;
 	;
 }
-.wancheng-p i{font-size:2em;}
+
+.wancheng-p i {
+	font-size: 2em;
+}

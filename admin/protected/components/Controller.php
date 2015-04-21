@@ -196,13 +196,33 @@ class Controller extends CController
                 ]
             ],
             
-            // [
-            // 'label' => 'Login',
-            // 'url' => [
-            // '/site/login'
-            // ],
-            // 'visible' => Yii::app()->user->isGuest
-            // ],
+            [
+                'label' => '网站管理',
+                'active' => $this->id == 'statistics' ? true : false,
+                'items' => [
+                    [
+                        'label' => '网站公告',
+                        'url' => [
+                            'notice/list',
+                            'tag' => 'list'
+                        ]
+                    ],
+                    [
+                        'label' => '网站活动',
+                        'url' => [
+                            'event/list',
+                            'tag' => 'list'
+                        ]
+                    ],
+                    [
+                        'label' => '网站杂志',
+                        'url' => [
+                            'magazine/list',
+                            'tag' => 'list'
+                        ]
+                    ]
+                ]
+            ],
             [
                 'label' => '登出 (' . Yii::app()->user->name . ')',
                 'url' => [

@@ -1,15 +1,3 @@
-<?php 
-$this->widget(
-    'booster.widgets.TbButton',
-    [
-        'buttonType' => 'link',
-        'label' => '新建',
-        'context' => 'Primary',
-        'url' =>  Yii::app()->createUrl('driver/new')
-    ]
-);
-?>
-
 <?php
 $this->widget(
     'booster.widgets.TbGridView',

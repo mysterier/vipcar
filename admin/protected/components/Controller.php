@@ -307,9 +307,9 @@ class Controller extends CController
     {
         $path = '';
         if (is_object($file_model) && get_class($file_model) === 'CUploadedFile') {
-            $dir = DEFAULT_UPLOAD_PATH . '/' . $this->id . '/' . date('Y') . '/' . date('m');
-            if (! is_dir($dir))
-                mkdir($dir, 0777, true);
+            $dir = '/' . $this->id . '/' . date('Y') . '/' . date('m');
+            if (! is_dir(DEFAULT_UPLOAD_PATH . $dir))
+                mkdir(DEFAULT_UPLOAD_PATH . $dir, 0777, true);
             $path = $dir . '/' . $attribute . '_' . date('d') . '_' . time() . '_' . rand(0, 9999) . '.' . $file_model->extensionName;
         }
         return $path;

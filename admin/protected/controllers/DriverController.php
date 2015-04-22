@@ -269,9 +269,9 @@ class DriverController extends Controller
             $model->last_update = time();
             
             if ($model->save()) {
-                $this->saveUploadFile($id_card, $model->id_card_path);
-                $this->saveUploadFile($license, $model->license_path);
-                $this->saveUploadFile($avatar, $model->avatar);
+                $this->saveUploadFile($id_card, DEFAULT_UPLOAD_PATH . $model->id_card_path);
+                $this->saveUploadFile($license, DEFAULT_UPLOAD_PATH . $model->license_path);
+                $this->saveUploadFile($avatar, DEFAULT_UPLOAD_PATH . $model->avatar);
                 $this->redirect('/driver/list');
             }
         }

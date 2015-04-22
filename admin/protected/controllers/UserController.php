@@ -22,6 +22,9 @@ class UserController extends Controller
             'criteria' => $criteria
         ]);
         
+        $template = '';
+        $template .= $this->checkAccess(MODIFY_ADMIN) ? '{update}' : '';
+        $template .= $this->checkAccess(DEL_ADMIN) ? ' {delete}' : '';
         $hash['gridDataProvider'] = $dataProvider;
         $hash['gridColumns'] = [
             [
@@ -49,7 +52,7 @@ class UserController extends Controller
                 ],
                 'header' => '操作',
                 'class' => 'booster.widgets.TbButtonColumn',
-                'template' => '{update} {delete}',
+                'template' => $template,
                 'updateButtonUrl' => 'Yii::app()->controller->createUrl("modify", ["id" => $data->id])',
                 'deleteButtonUrl' => 'Yii::app()->controller->createUrl("del", ["id" => $data->id])',               
             ]

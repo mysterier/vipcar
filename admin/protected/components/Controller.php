@@ -181,34 +181,71 @@ class Controller extends CController
         ];
         
         // 统计报表
-        $this->menu[] = [
-            'label' => '统计报表',
-            'active' => $this->id == 'statistics' ? true : false,
-            'items' => [
-                [
-                    'label' => '报表总览',
-                    'url' => [
-                        'product/new',
-                        'tag' => 'new'
-                    ]
-                ],
-                [
-                    'label' => '订单报表',
-                    'url' => [
-                        'product/new',
-                        'tag' => 'new'
-                    ]
-                ],
-                [
-                    'label' => '客户报表',
-                    'url' => [
-                        'product/new',
-                        'tag' => 'new'
+        if (true) {
+            $this->menu[] = [
+                'label' => '统计报表',
+                'active' => $this->id == 'statistics' ? true : false,
+                'items' => [
+                    [
+                        'label' => '报表总览',
+                        'url' => [
+                            'product/new',
+                            'tag' => 'new'
+                        ]
+                    ],
+                    [
+                        'label' => '订单报表',
+                        'url' => [
+                            'product/new',
+                            'tag' => 'new'
+                        ]
+                    ],
+                    [
+                        'label' => '客户报表',
+                        'url' => [
+                            'product/new',
+                            'tag' => 'new'
+                        ]
                     ]
                 ]
-            ]
-        ];
-        
+            ];
+        }
+             
+        //网站管理
+        if ($this->checkAccess([VIEW_NOTICE,VIEW_EVENT,VIEW_MAGAZINE])) {
+            $items = [];
+            if ($this->checkAccess(VIEW_NOTICE))
+                $items[] = [
+                        'label' => '网站公告',
+                        'url' => [
+                            'notice/list',
+                            'tag' => 'list'
+                        ]
+                    ];
+            if ($this->checkAccess(VIEW_EVENT))
+                $items[] = [
+                        'label' => '网站活动',
+                        'url' => [
+                            'event/list',
+                            'tag' => 'list'
+                        ]
+                    ];
+            if ($this->checkAccess(VIEW_MAGAZINE))
+                $items[] = [
+                        'label' => '网站杂志',
+                        'url' => [
+                            'magazine/list',
+                            'tag' => 'list'
+                        ]
+                    ];
+            
+            $this->menu[] = [
+                'label' => '网站管理',
+                'active' => ($this->id == 'event' || $this->id == 'magazine' || $this->id == 'notice') ? true : false,
+                'items' => $items
+            ];
+        }
+    
         // 系统设置
         if ($this->checkAccess([
             VIEW_ADMIN,

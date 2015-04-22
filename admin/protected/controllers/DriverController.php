@@ -18,6 +18,9 @@ class DriverController extends Controller
             ]
         ]);
         
+        $template = '';
+        $template .= $this->checkAccess(MODIFY_DRIVER) ? '{update}' : '';
+        $template .= $this->checkAccess(DEL_DRIVER) ? ' {delete}' : '';
         $hash['gridDataProvider'] = $dataProvider;
         $hash['gridColumns'] = [
             [
@@ -71,7 +74,7 @@ class DriverController extends Controller
                 ],
                 'header' => '操作',
                 'class' => 'booster.widgets.TbButtonColumn',
-                'template' => '{update} {delete}',
+                'template' => $template,
                 'updateButtonUrl' => 'Yii::app()->controller->createUrl("modify", ["id" => $data->id])',
                 'deleteButtonUrl' => 'Yii::app()->controller->createUrl("del", ["id" => $data->id])'
             ]
@@ -288,5 +291,56 @@ class DriverController extends Controller
     {
         echo 123;
         // var_dump(Yii::app()>request>urlReferrer);
+    }
+    
+    public function accessRules()
+    {
+        return [
+            [
+                'allow',
+                'actions' => [
+                    'list'
+                ],
+                'roles' => [
+                    VIEW_DRIVER
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'modify'
+                ],
+                'roles' => [
+                    MODIFY_DRIVER
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'new'
+                ],
+                'roles' => [
+                    NEW_DRIVER
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'del'
+                ],
+                'roles' => [
+                    DEL_DRIVER
+                ]
+            ],
+            [
+                'deny',
+                'users' => [
+                    '*'
+                ],
+                'deniedCallback' => function ($rule) {
+                    header("location: /");
+                }
+            ]
+            ];
     }
 }

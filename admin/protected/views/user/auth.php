@@ -12,7 +12,7 @@
 </div>
 <?php foreach($task_operation as $operation):?>
 <?php $task_name = array_shift($operation);if($operation):?>
-<div class="form-group">
+<div class="form-group" style="float: left;margin-right:100px;">
     <label><?php echo $task_name;?></label>
     <?php foreach($operation as $key => $value):?>
 	<div class="checkbox">

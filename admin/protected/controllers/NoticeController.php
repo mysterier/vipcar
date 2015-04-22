@@ -1,14 +1,11 @@
 <?php
 
-class ClientController extends Controller
+class NoticeController extends Controller
 {
-    // public $brea
-    public function actionIndex()
-    {}
 
     public function actionList()
     {
-        $dataProvider = new CActiveDataProvider('Clients', [
+        $dataProvider = new CActiveDataProvider('Notice', [
             'pagination' => [
                 'pageVar' => 'page',
                 'pageSize' => ADMIN_PAGE_SIZE
@@ -16,8 +13,8 @@ class ClientController extends Controller
         ]);
         
         $template = '';
-        $template .= $this->checkAccess(MODIFY_CLIENT) ? '{update}' : '';
-        $template .= $this->checkAccess(DEL_CLIENT) ? ' {delete}' : '';
+        $template .= $this->checkAccess(MODIFY_NOTICE) ? '{update}' : '';
+        $template .= $this->checkAccess(DEL_NOTICE) ? ' {delete}' : '';
         $hash['gridDataProvider'] = $dataProvider;
         $hash['gridColumns'] = [
             [
@@ -28,20 +25,8 @@ class ClientController extends Controller
                 ]
             ],
             [
-                'name' => 'real_name',
-                'header' => '客户姓名'
-            ],
-            [
-                'name' => 'mobile',
-                'header' => '手机'
-            ],
-            [
-                'name' => 'score',
-                'header' => '积分'
-            ],
-            [
-                'name' => 'account_balance',
-                'header' => '账户余额'
+                'name' => 'title',
+                'header' => '标题'
             ],
             [
                 'name' => 'status',
@@ -54,13 +39,13 @@ class ClientController extends Controller
                 ],
                 'header' => '操作',
                 'class' => 'booster.widgets.TbButtonColumn',
-                'template' => '{update} {delete}',
+                'template' => $template,
                 'updateButtonUrl' => 'Yii::app()->controller->createUrl("modify", ["id" => $data->id])',
                 'deleteButtonUrl' => 'Yii::app()->controller->createUrl("del", ["id" => $data->id])'
             ]
         ];
         $this->breadcrumbs = [
-            '客户管理'
+            '公告管理'
         ];
         $this->render('list', $hash);
     }
@@ -77,51 +62,48 @@ class ClientController extends Controller
         }
     }
 
-    public function actionNew()
+    public function actionCreate()
     {
         $this->breadcrumbs = [
-            '客户管理' => [
-                '/client/list'
+            '网站公告管理' => [
+                '/notice/list'
             ],
-            '新建客户'
+            '新建公告'
         ];
         
-        $model = new Clients(); // var_dump($model);exit();
-        $this->saveClients($model);
+        $model = new Notice();
+        $hash['model'] = $model;
+        $this->saveNotice($model);
     }
 
     public function actionModify($id)
     {
         $this->breadcrumbs = [
-            '客户管理' => [
-                '/client/list'
+            '网站公告管理' => [
+                '/notice/list'
             ],
-            '修改客户'
+            '修改公告'
         ];
-        $model = Clients::model()->findByPk($id);
-        $this->saveClients($model);
+        $model = Notice::model()->findByPk($id);
+        $this->saveNotice($model);
     }
 
-    private function saveClients($model)
+    private function saveNotice($model)
     {
-        if (isset($_POST['Clients'])) {
-            $model->attributes = $_POST['Clients'];
-            $password = isset($_POST['Clients']['password']) ? trim(strval($_POST['Clients']['password'])) : DEFAULT_PASSWORD;
-            $model->password = $model->password == $password ? $model->password : $this->encryptPasswd($password);
-            $model->last_update = time();
-            
+        if (isset($_POST['Notice'])) {
+            $model->attributes = $_POST['Notice'];
             if ($model->save()) {
-                $this->redirect('/client/list');
+                $this->redirect('/notice/list');
             }
         }
         $hash['model'] = $model;
-        $this->render('clientform', $hash);
+        $this->render('form', $hash);
     }
 
     public function actionDel($id)
     {
-        echo 123;
-        // var_dump(Yii::app()>request>urlReferrer);
+        Notice::model()->deleteByPk($id);
+        $this->redirect('/notice/list');
     }
 
     public function accessRules()
@@ -133,7 +115,7 @@ class ClientController extends Controller
                     'list'
                 ],
                 'roles' => [
-                    VIEW_CLIENT
+                    VIEW_NOTICE
                 ]
             ],
             [
@@ -142,16 +124,16 @@ class ClientController extends Controller
                     'modify'
                 ],
                 'roles' => [
-                    MODIFY_CLIENT
+                    MODIFY_NOTICE
                 ]
             ],
             [
                 'allow',
                 'actions' => [
-                    'new'
+                    'create'
                 ],
                 'roles' => [
-                    NEW_CLIENT
+                    NEW_NOTICE
                 ]
             ],
             [
@@ -160,7 +142,7 @@ class ClientController extends Controller
                     'del'
                 ],
                 'roles' => [
-                    DEL_CLIENT
+                    DEL_NOTICE
                 ]
             ],
             [

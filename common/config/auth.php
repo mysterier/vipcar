@@ -27,6 +27,27 @@ return [
         MODIFY_DRIVER => '修改司机',
         DEL_DRIVER => '删除司机'
     ],
+    NOTICE_MANAGER => [
+        '网站公告',
+        VIEW_NOTICE => '查询公告',
+        NEW_NOTICE => '新建公告',
+        MODIFY_NOTICE => '修改公告',
+        DEL_NOTICE => '删除公告'
+    ],
+    EVENT_MANAGER => [
+        '网站活动',
+        VIEW_EVENT => '查询活动',
+        NEW_EVENT => '新建活动',
+        MODIFY_EVENT => '修改活动',
+        DEL_EVENT => '删除活动'
+    ],
+    MAGAZINE_MANAGER => [
+        '网站杂志',
+        VIEW_MAGAZINE => '查询杂志',
+        NEW_MAGAZINE => '新建杂志',
+        MODIFY_MAGAZINE => '修改杂志',
+        DEL_MAGAZINE => '删除杂志'
+    ],
     AUTH_MANAGER => [
         '权限管理',
         VIEW_AUTH => '查询权限',

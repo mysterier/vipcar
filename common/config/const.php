@@ -142,6 +142,9 @@ define('CLIENT_MANAGER', 'client_manager');
 define('DRIVER_MANAGER', 'driver_manager');
 define('AUTH_MANAGER', 'auth_manager');
 define('ADMIN_MANAGER', 'admin_manager');
+define('NOTICE_MANAGER', 'notice_manager');
+define('EVENT_MANAGER', 'event_manager');
+define('MAGAZINE_MANAGER', 'magazine_manager');
 //operation
 define('VIEW_ORDER', 'view_order');
 define('MODIFY_ORDER', 'modify_order');
@@ -167,4 +170,16 @@ define('NEW_ADMIN', 'new_admin');
 define('MODIFY_ADMIN', 'modify_admin');
 define('DEL_ADMIN', 'del_admin');
 define('ADMIN_ROLE', 'admin_role');
+define('VIEW_NOTICE', 'view_notice');
+define('NEW_NOTICE', 'new_notice');
+define('MODIFY_NOTICE', 'modify_notice');
+define('DEL_NOTICE', 'del_notice');
+define('VIEW_EVENT', 'view_event');
+define('NEW_EVENT', 'new_event');
+define('MODIFY_EVENT', 'modify_event');
+define('DEL_EVENT', 'del_event');
+define('VIEW_MAGAZINE', 'view_magazine');
+define('NEW_MAGAZINE', 'new_magazine');
+define('MODIFY_MAGAZINE', 'modify_magazine');
+define('DEL_MAGAZINE', 'del_magazine');
 

@@ -12,6 +12,9 @@ class MagazineController extends Controller
             ]
         ]);
         
+        $template = '';
+        $template .= $this->checkAccess(MODIFY_MAGAZINE) ? '{update}' : '';
+        $template .= $this->checkAccess(DEL_MAGAZINE) ? ' {delete}' : '';
         $hash['gridDataProvider'] = $dataProvider;
         $hash['gridColumns'] = [
             [
@@ -36,7 +39,7 @@ class MagazineController extends Controller
                 ],
                 'header' => '操作',
                 'class' => 'booster.widgets.TbButtonColumn',
-                'template' => '{update} {delete}',
+                'template' => $template,
                 'updateButtonUrl' => 'Yii::app()->controller->createUrl("modify", ["id" => $data->id])',
                 'deleteButtonUrl' => 'Yii::app()->controller->createUrl("del", ["id" => $data->id])'
             ]
@@ -106,5 +109,56 @@ class MagazineController extends Controller
     {
         Magazine::model()->deleteByPk($id);
         $this->redirect('/magazine/list');
+    }
+
+    public function accessRules()
+    {
+        return [
+            [
+                'allow',
+                'actions' => [
+                    'list'
+                ],
+                'roles' => [
+                    VIEW_MAGAZINE
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'modify'
+                ],
+                'roles' => [
+                    MODIFY_MAGAZINE
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'create'
+                ],
+                'roles' => [
+                    NEW_MAGAZINE
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'del'
+                ],
+                'roles' => [
+                    DEL_MAGAZINE
+                ]
+            ],
+            [
+                'deny',
+                'users' => [
+                    '*'
+                ],
+                'deniedCallback' => function ($rule) {
+                    header("location: /");
+                }
+            ]
+        ];
     }
 }

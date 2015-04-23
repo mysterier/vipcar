@@ -132,3 +132,54 @@ define('WX_COUPON_STATUS_OFF', 2);
 define('SMS_VERIFY_CODE', 'verify_code');
 define('SMS_WX_NOTIFY', 'wx_notify');
 
+//===========RBAC=============
+//roles
+define('ADMINISTRATOR', 'administrator');
+//tasks
+define('ORDER_MANAGER', 'order_manager');
+define('VEHICLE_MANAGER', 'vehicle_manager');
+define('CLIENT_MANAGER', 'client_manager');
+define('DRIVER_MANAGER', 'driver_manager');
+define('AUTH_MANAGER', 'auth_manager');
+define('ADMIN_MANAGER', 'admin_manager');
+define('NOTICE_MANAGER', 'notice_manager');
+define('EVENT_MANAGER', 'event_manager');
+define('MAGAZINE_MANAGER', 'magazine_manager');
+//operation
+define('VIEW_ORDER', 'view_order');
+define('MODIFY_ORDER', 'modify_order');
+define('DEL_ORDER', 'del_order');
+define('VIEW_VEHICLE', 'view_vehicle');
+define('NEW_VEHICLE', 'new_vehicle');
+define('MODIFY_VEHICLE', 'modify_vehicle');
+define('DEL_VEHICLE', 'del_vehicle');
+define('VIEW_CLIENT', 'view_client');
+define('NEW_CLIENT', 'new_client');
+define('MODIFY_CLIENT', 'modify_client');
+define('DEL_CLIENT', 'del_client');
+define('VIEW_DRIVER', 'view_driver');
+define('NEW_DRIVER', 'new_driver');
+define('MODIFY_DRIVER', 'modify_driver');
+define('DEL_DRIVER', 'del_driver');
+define('VIEW_AUTH', 'view_auth');
+define('MODIFY_AUTH', 'modify_auth');
+define('NEW_ROLE', 'new_role');
+define('DEL_ROLE', 'del_role');
+define('VIEW_ADMIN', 'view_admin');
+define('NEW_ADMIN', 'new_admin');
+define('MODIFY_ADMIN', 'modify_admin');
+define('DEL_ADMIN', 'del_admin');
+define('ADMIN_ROLE', 'admin_role');
+define('VIEW_NOTICE', 'view_notice');
+define('NEW_NOTICE', 'new_notice');
+define('MODIFY_NOTICE', 'modify_notice');
+define('DEL_NOTICE', 'del_notice');
+define('VIEW_EVENT', 'view_event');
+define('NEW_EVENT', 'new_event');
+define('MODIFY_EVENT', 'modify_event');
+define('DEL_EVENT', 'del_event');
+define('VIEW_MAGAZINE', 'view_magazine');
+define('NEW_MAGAZINE', 'new_magazine');
+define('MODIFY_MAGAZINE', 'modify_magazine');
+define('DEL_MAGAZINE', 'del_magazine');
+

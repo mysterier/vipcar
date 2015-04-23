@@ -7,14 +7,17 @@ class ClientController extends Controller
     {}
 
     public function actionList()
-    {      
-        $dataProvider = new CActiveDataProvider('Clients',[
+    {
+        $dataProvider = new CActiveDataProvider('Clients', [
             'pagination' => [
                 'pageVar' => 'page',
                 'pageSize' => ADMIN_PAGE_SIZE
             ]
         ]);
         
+        $template = '';
+        $template .= $this->checkAccess(MODIFY_CLIENT) ? '{update}' : '';
+        $template .= $this->checkAccess(DEL_CLIENT) ? ' {delete}' : '';
         $hash['gridDataProvider'] = $dataProvider;
         $hash['gridColumns'] = [
             [
@@ -83,7 +86,7 @@ class ClientController extends Controller
             '新建客户'
         ];
         
-        $model = new Clients();//var_dump($model);exit();
+        $model = new Clients(); // var_dump($model);exit();
         $this->saveClients($model);
     }
 
@@ -119,5 +122,56 @@ class ClientController extends Controller
     {
         echo 123;
         // var_dump(Yii::app()>request>urlReferrer);
+    }
+
+    public function accessRules()
+    {
+        return [
+            [
+                'allow',
+                'actions' => [
+                    'list'
+                ],
+                'roles' => [
+                    VIEW_CLIENT
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'modify'
+                ],
+                'roles' => [
+                    MODIFY_CLIENT
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'new'
+                ],
+                'roles' => [
+                    NEW_CLIENT
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'del'
+                ],
+                'roles' => [
+                    DEL_CLIENT
+                ]
+            ],
+            [
+                'deny',
+                'users' => [
+                    '*'
+                ],
+                'deniedCallback' => function ($rule) {
+                    header("location: /");
+                }
+            ]
+        ];
     }
 }

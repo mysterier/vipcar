@@ -57,103 +57,132 @@ class Controller extends CController
                         ]
                     ]
                 ]
-            ],
-            [
+            ]
+        ];
+        // 订单管理
+        if ($this->checkAccess(VIEW_ORDER)) {
+            $items = [];
+            if ($this->checkAccess(VIEW_ORDER))
+                $items[] = [
+                    'label' => '订单查询',
+                    'url' => [
+                        'order/list'
+                    ]
+                ];
+            
+            if ($this->checkAccess([
+                MODIFY_ORDER,
+                DEL_ORDER
+            ]))
+                $items[] = [
+                    'label' => '订单处理',
+                    'url' => [
+                        'order/process',
+                        'status' => ORDER_STATUS_NOT_DISTRIBUTE
+                    ]
+                ];
+            
+            $this->menu[] = [
                 'label' => '订单管理',
                 'active' => $this->id == 'order' ? true : false,
-                'items' => [
-                    [
-                        'label' => '订单查询',
-                        'url' => [
-                            'order/list'
-                        ]
-                    ],
-                    [
-                        'label' => '订单处理',
-                        'url' => [
-                            'order/process',
-                            'status' => ORDER_STATUS_NOT_DISTRIBUTE
-                        ]
+                'items' => $items
+            ];
+        }
+        
+        // 用户管理
+        if ($this->checkAccess([
+            VIEW_VEHICLE,
+            VIEW_CLIENT,
+            VIEW_DRIVER
+        ])) {
+            $items = [];
+            if ($this->checkAccess(VIEW_VEHICLE))
+                $items[] = [
+                    'label' => '车辆管理',
+                    'url' => [
+                        'vehicle/list'
                     ]
-                ]
-            ],
-            [
+                ];
+            
+            if ($this->checkAccess(VIEW_CLIENT))
+                $items[] = [
+                    'label' => '客户管理',
+                    'url' => [
+                        'client/list'
+                    ]
+                ];
+            
+            if ($this->checkAccess(VIEW_DRIVER))
+                $items[] = [
+                    'label' => '司机管理',
+                    'url' => [
+                        'driver/list'
+                    ]
+                ];
+            $this->menu[] = [
                 'label' => '账户管理',
                 'active' => in_array($this->id, [
                     'driver',
                     'vehicle'
                 ]) ? true : false,
                 'url' => '/',
-                'items' => [
-                    [
-                        'label' => '车辆管理',
-                        'url' => [
-                            'vehicle/list'
-                        ]
-                    ],
-                    [
-                        'label' => '客户管理',
-                        'url' => [
-                            'client/list'
-                        ]
-                    ],
-                    [
-                        'label' => '司机管理',
-                        'url' => [
-                            'driver/list'
-                        ]
+                'items' => $items
+            ];
+        }
+        
+        // 财务管理
+        $this->menu[] = [
+            'label' => '财务管理',
+            'active' => $this->id == 'finance' ? true : false,
+            'items' => [
+                [
+                    'label' => '财务总览',
+                    'url' => [
+                        'product/new',
+                        'tag' => 'new'
+                    ]
+                ],
+                [
+                    'label' => '订单结算',
+                    'url' => [
+                        'product/new',
+                        'tag' => 'new'
+                    ]
+                ],
+                [
+                    'label' => '客户充值',
+                    'url' => [
+                        'product/new',
+                        'tag' => 'new'
+                    ]
+                ],
+                [
+                    'label' => '客户退款啊',
+                    'url' => [
+                        'product/new',
+                        'tag' => 'new'
+                    ]
+                ],
+                [
+                    'label' => '司机扣款',
+                    'url' => [
+                        'product/new',
+                        'tag' => 'new'
+                    ]
+                ],
+                [
+                    'label' => '优惠券',
+                    'url' => [
+                        'product/new',
+                        'tag' => 'new'
                     ]
                 ]
-            ],
-            [
-                'label' => '财务管理',
-                'active' => $this->id == 'finance' ? true : false,
-                'items' => [
-                    [
-                        'label' => '财务总览',
-                        'url' => [
-                            'product/new',
-                            'tag' => 'new'
-                        ]
-                    ],
-                    [
-                        'label' => '订单结算',
-                        'url' => [
-                            'product/new',
-                            'tag' => 'new'
-                        ]
-                    ],
-                    [
-                        'label' => '客户充值',
-                        'url' => [
-                            'product/new',
-                            'tag' => 'new'
-                        ]
-                    ],
-                    [
-                        'label' => '客户退款啊',
-                        'url' => [
-                            'product/new',
-                            'tag' => 'new'
-                        ]
-                    ],
-                    [
-                        'label' => '司机扣款',
-                        'url' => [
-                            'product/new',
-                            'tag' => 'new'
-                        ]
-                    ],
-                    [
-                        'label' => '优惠券',
-                        'url' => [
-                            'product/new',
-                            'tag' => 'new'
-                        ]
-                    ]
-                ]
-            ],
-            [
+            ]
+        ];
+        
+        // 统计报表
+        if (true) {
+            $this->menu[] = [
                 'label' => '统计报表',
                 'active' => $this->id == 'statistics' ? true : false,
                 'items' => [
@@ -179,58 +208,89 @@ class Controller extends CController
                         ]
                     ]
                 ]
-            ],
-            [
-                'label' => '系统设置',
-                'url' => [
-                    '/site/a'
-                ],
-                'items' => [
-                    [
-                        'label' => '后台用户',
-                        'url' => [
-                            'product/new',
-                            'tag' => 'new'
-                        ]
-                    ]
-                ]
-            ],
-            
-            [
-                'label' => '网站管理',
-                'active' => $this->id == 'statistics' ? true : false,
-                'items' => [
-                    [
+            ];
+        }
+             
+        //网站管理
+        if ($this->checkAccess([VIEW_NOTICE,VIEW_EVENT,VIEW_MAGAZINE])) {
+            $items = [];
+            if ($this->checkAccess(VIEW_NOTICE))
+                $items[] = [
                         'label' => '网站公告',
                         'url' => [
                             'notice/list',
                             'tag' => 'list'
                         ]
-                    ],
-                    [
+                    ];
+            if ($this->checkAccess(VIEW_EVENT))
+                $items[] = [
                         'label' => '网站活动',
                         'url' => [
                             'event/list',
                             'tag' => 'list'
                         ]
-                    ],
-                    [
+                    ];
+            if ($this->checkAccess(VIEW_MAGAZINE))
+                $items[] = [
                         'label' => '网站杂志',
                         'url' => [
                             'magazine/list',
                             'tag' => 'list'
                         ]
+                    ];
+            
+            $this->menu[] = [
+                'label' => '网站管理',
+                'active' => ($this->id == 'event' || $this->id == 'magazine' || $this->id == 'notice') ? true : false,
+                'items' => $items
+            ];
+        }
+    
+        // 系统设置
+        if ($this->checkAccess([
+            VIEW_ADMIN,
+            VIEW_AUTH
+        ])) {
+            $items = [];
+            if ($this->checkAccess(VIEW_ADMIN))
+                $items[] = [
+                    'label' => '后台用户',
+                    'url' => [
+                        '/user/list'
                     ]
-                ]
+                ];
+            if ($this->checkAccess(VIEW_AUTH))
+                $items[] = [
+                    'label' => '权限管理',
+                    'url' => [
+                        '/user/auth'
+                    ]
+                ];
+            $this->menu[] = [
+                'label' => '系统设置',
+                'active' => $this->id == 'user' ? true : false,
+                'items' => $items
+            ];
+        }
+        
+        $this->menu[] = [
+            'label' => '登出 (' . Yii::app()->user->name . ')',
+            'url' => [
+                '/site/logout'
             ],
-            [
-                'label' => '登出 (' . Yii::app()->user->name . ')',
-                'url' => [
-                    '/site/logout'
-                ],
-                'visible' => ! Yii::app()->user->isGuest
-            ]
+            'visible' => ! Yii::app()->user->isGuest
         ];
+    }
+
+    public function checkAccess($items)
+    {
+        if (!is_array($items))
+            return  Yii::app()->user->checkAccess($items);
+        
+        $res = false;
+        foreach ($items as $item)
+            $res = $res || Yii::app()->user->checkAccess($item);
+        return $res;
     }
 
     /**
@@ -247,9 +307,9 @@ class Controller extends CController
     {
         $path = '';
         if (is_object($file_model) && get_class($file_model) === 'CUploadedFile') {
-            $dir = DEFAULT_UPLOAD_PATH . '/' . $this->id . '/' . date('Y') . '/' . date('m');
-            if (! is_dir($dir))
-                mkdir($dir, 0777, true);
+            $dir = '/' . $this->id . '/' . date('Y') . '/' . date('m');
+            if (! is_dir(DEFAULT_UPLOAD_PATH . $dir))
+                mkdir(DEFAULT_UPLOAD_PATH . $dir, 0777, true);
             $path = $dir . '/' . $attribute . '_' . date('d') . '_' . time() . '_' . rand(0, 9999) . '.' . $file_model->extensionName;
         }
         return $path;

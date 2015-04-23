@@ -18,6 +18,9 @@ class OrderController extends Controller
             ]
         ]);
         
+        $template = '';
+        $template .= $this->checkAccess(MODIFY_ORDER) ? '{update}' : '';
+        $template .= $this->checkAccess(DEL_ORDER) ? ' {delete}' : '';
         $hash['gridDataProvider'] = $dataProvider;
         $hash['gridColumns'] = [
             [
@@ -68,7 +71,7 @@ class OrderController extends Controller
                 ],
                 'header' => '操作',
                 'class' => 'booster.widgets.TbButtonColumn',
-                'template' => '{update} {delete}',
+                'template' => $template,
                 'updateButtonUrl' => 'Yii::app()->controller->createUrl("modify", ["id" => $data->id])',
                 'deleteButtonUrl' => 'Yii::app()->controller->createUrl("del", ["id" => $data->id])'
             ]
@@ -207,6 +210,9 @@ class OrderController extends Controller
             ]
         ]);
         
+        $template = '';
+        $template .= $this->checkAccess(MODIFY_ORDER) ? '{update}' : '';
+        $template .= $this->checkAccess(DEL_ORDER) ? ' {delete}' : '';
         $hash['gridDataProvider'] = $dataProvider;
         $hash['gridColumns'] = [
             [
@@ -270,7 +276,7 @@ class OrderController extends Controller
                 ],
                 'header' => '操作',
                 'class' => 'booster.widgets.TbButtonColumn',
-                'template' => '{update} {delete}',
+                'template' => $template,
                 'updateButtonUrl' => 'Yii::app()->controller->createUrl("modify", ["id" => $data->id])',
                 'deleteButtonUrl' => 'Yii::app()->controller->createUrl("del", ["id" => $data->id])'
             ]

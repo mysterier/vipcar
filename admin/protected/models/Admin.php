@@ -12,6 +12,8 @@
 class Admin extends CActiveRecord
 {
 
+    public $confirmpwd;
+
     /**
      *
      * @return string the associated database table name
@@ -27,43 +29,36 @@ class Admin extends CActiveRecord
      */
     public function rules()
     {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
-        return array(
-            array(
-                'created',
-                'required'
-            ),
-            array(
+        return [
+            [
                 'name',
-                'length',
-                'max' => 255
-            ),
-            array(
+                'required'
+            ],
+            [
+                'name',
+                'unique',
+                'className' => 'Admin',
+                'attributeName' => 'name',
+                'allowEmpty' => false,
+                'message' => '用户名不能重复',
+            ],
+            [
                 'passwd',
-                'length',
-                'max' => 32
-            ),
-            
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
-            array(
+                'required'
+            ],
+            [
+                'confirmpwd',
+                'compare',
+                'compareAttribute' => 'passwd',
+                'message' => '两次密码输入不一致',
+                'on' => 'insert'
+            ],
+            [
                 'id, name, passwd, created',
                 'safe',
                 'on' => 'search'
-            )
-        );
-    }
-
-    /**
-     *
-     * @return array relational rules.
-     */
-    public function relations()
-    {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
-        return array();
+            ]
+        ];
     }
 
     /**
@@ -73,10 +68,11 @@ class Admin extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'id' => '開始叫飯s',
-            'name' => 'Name',
-            'passwd' => 'Passwd',
-            'created' => 'Created'
+            'id' => 'ID',
+            'name' => '用户名',
+            'passwd' => '密码',
+            'confirmpwd' => '确认密码',
+            'created' => '创建时间'
         );
     }
 

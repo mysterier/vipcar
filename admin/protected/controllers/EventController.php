@@ -12,6 +12,9 @@ class EventController extends Controller
             ]
         ]);
         
+        $template = '';
+        $template .= $this->checkAccess(MODIFY_EVENT) ? '{update}' : '';
+        $template .= $this->checkAccess(DEL_EVENT) ? ' {delete}' : '';
         $hash['gridDataProvider'] = $dataProvider;
         $hash['gridColumns'] = [
             [
@@ -36,7 +39,7 @@ class EventController extends Controller
                 ],
                 'header' => '操作',
                 'class' => 'booster.widgets.TbButtonColumn',
-                'template' => '{update} {delete}',
+                'template' => $template,
                 'updateButtonUrl' => 'Yii::app()->controller->createUrl("modify", ["id" => $data->id])',
                 'deleteButtonUrl' => 'Yii::app()->controller->createUrl("del", ["id" => $data->id])'
             ]
@@ -101,5 +104,56 @@ class EventController extends Controller
     {
         Event::model()->deleteByPk($id);
         $this->redirect('/event/list');
+    }
+
+    public function accessRules()
+    {
+        return [
+            [
+                'allow',
+                'actions' => [
+                    'list'
+                ],
+                'roles' => [
+                    VIEW_EVENT
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'modify'
+                ],
+                'roles' => [
+                    MODIFY_EVENT
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'create'
+                ],
+                'roles' => [
+                    NEW_EVENT
+                ]
+            ],
+            [
+                'allow',
+                'actions' => [
+                    'del'
+                ],
+                'roles' => [
+                    DEL_EVENT
+                ]
+            ],
+            [
+                'deny',
+                'users' => [
+                    '*'
+                ],
+                'deniedCallback' => function ($rule) {
+                    header("location: /");
+                }
+            ]
+        ];
     }
 }

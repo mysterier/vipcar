@@ -20,6 +20,10 @@ return array(
 
 	// application components
 	'components'=>array(
+	    
+	    'authManager' => [
+	        'class' => 'CDbAuthManager',
+	    ],
 		
 		'db'=>array(
 			'connectionString' => 'mysql:host=' . DB_HOST_CORE . ';port=' . DB_PORT_CORE . ';dbname=' . DB_NAME_CORE,

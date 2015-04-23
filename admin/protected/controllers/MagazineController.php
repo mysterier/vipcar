@@ -89,7 +89,12 @@ class MagazineController extends Controller
     {
         if (isset($_POST['Magazine'])) {
             $model->attributes = $_POST['Magazine'];
+            $cover = CUploadedFile::getInstance($model, 'cover');
+            $model->cover = $this->renameUploadFile($cover, 'cover');
+            echo $model->cover;
+            exit();
             if ($model->save()) {
+                $this->saveUploadFile($cover, $model->cover);
                 $this->redirect('/magazine/list');
             }
         }

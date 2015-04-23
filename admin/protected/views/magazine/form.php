@@ -7,6 +7,9 @@ $form = $this->beginWidget('booster.widgets.TbActiveForm', [
     'action' => $this->createUrl($this->action->id, [
         'id' => Yii::app()->request->getParam('id')
     ]),
+    'htmlOptions' => [
+        'enctype' => 'multipart/form-data'
+    ]
 ]);
 ?>
 <fieldset>
@@ -19,7 +22,7 @@ echo $form->textFieldGroup($model, 'title', [
     ]
 ]);
 
-echo $form->textFieldGroup($model, 'cover', [
+echo $form->fileFieldGroup($model, 'cover', [
     'wrapperHtmlOptions' => [
         'class' => 'col-sm-5'
     ]

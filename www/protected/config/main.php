@@ -6,7 +6,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'SuXian Frontend',
+    'name' => '众择',
     'timezone' => 'Asia/Shanghai',
     'defaultController' => 'home',
     // 别名
@@ -43,10 +43,9 @@ return array(
             'showScriptName' => false,
             'urlFormat' => 'path',
             'rules' => array(
-                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<action:\w+>' => 'home/<action>',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<view:about>' => 'site/page',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>'
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',         
             )
         ),
         
@@ -65,7 +64,7 @@ return array(
         'errorHandler' => array(
             
             // use 'site/error' action to display errors
-            'errorAction' => 'site/error'
+            'errorAction' => 'home/error'
         ),
         'log' => array(
             'class' => 'CLogRouter',

@@ -18,6 +18,9 @@
 class Clients extends CActiveRecord
 {
 
+    public $msg_code;
+    public $confirmpwd;
+    public $agreeme;
     /**
      *
      * @return string the associated database table name
@@ -58,7 +61,8 @@ class Clients extends CActiveRecord
                     'insert',
                     'update',
                     'reg',
-                    'loginv1'
+                    'loginv1',
+                    'webreg'
                 ]
             ],
             [
@@ -72,7 +76,8 @@ class Clients extends CActiveRecord
                     'insert',
                     'update',
                     'reg',
-                    'loginv1'
+                    'loginv1',
+                    'webreg'
                 ]
             ],
             [
@@ -80,12 +85,12 @@ class Clients extends CActiveRecord
                 'unique',
                 'className' => 'Clients',
                 'attributeName' => 'email',
-                'allowEmpty' => false,
                 'message' => EMAIL_EXISTED,
                 'on' => [
                     'insert',
                     'update',
-                    'reg'
+                    'reg',
+                    'webreg'
                 ]
             ],
             [
@@ -103,12 +108,46 @@ class Clients extends CActiveRecord
                 'safe',
                 'on' => [
                     'insert',
-                    'update'
+                    'update',
+                    'webreg'
                 ]
+            ],
+            [
+                'msg_code',
+                'msg_code',
+                'on' => 'webreg',
+            ],
+            [
+                'password',
+                'required',
+                'message' => '密码不能为空！',
+                'on' => 'webreg'
+            ],
+            [
+                'confirmpwd',
+                'compare',
+                'compareAttribute' => 'password',
+                'message' => '两次密码输入不一致',
+                'on' => 'webreg'
+            ],
+            [
+                'agreeme',
+                'agreeme',
+                'on' => 'webreg'
             ]
         ];
     }
 
+    public function msg_code($attribute, $params) {
+        if (false)
+            $this->addError('msg_code', '验证码错误！');
+    }
+    
+    public function agreeme($attribute, $params) {
+        if (!$_POST['Clients']['agreeme'])
+            $this->addError('agreeme', '未同意条款！');
+    }
+    
     /**
      *
      * @return array relational rules.
@@ -161,7 +200,9 @@ class Clients extends CActiveRecord
             'credit_record' => '诚信记录',
             'city_id' => '城市',
             'created' => '创建时间',
-            'last_update' => '最后更新时间'
+            'last_update' => '最后更新时间',
+            'msg_code' => '短信验证码',
+            'confirmpwd' => '确认密码',
         );
     }
 

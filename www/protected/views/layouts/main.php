@@ -20,7 +20,7 @@
 				<li class="header-topnav"><a href="#">关注众择</a></li>
 				<?php if(Yii::app()->user->isGuest):?>
 				<li class="header-topnav"><a href="/login">登入</a></li>
-				<li class="header-topnav"><a href="#">注册</a></li>
+				<li class="header-topnav"><a href="/register">注册</a></li>
 				<?php else:?>
 				<li class="header-topnav"><a href="/login"><?php echo Yii::app()->user->id;?></a></li>
 				<li class="header-topnav"><a href="/logout">[退出]</a></li>				

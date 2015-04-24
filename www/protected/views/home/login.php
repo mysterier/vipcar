@@ -6,13 +6,13 @@
 
 	<div class="login">
 		<ul class="logintop">
-			<li class="loginhover">个人用户</li>
-			<li>企业用户</li>
+			<li <?php if(!isset($_GET['type'])) echo 'class="loginhover"';?>>个人用户</li>
+			<li <?php if(isset($_GET['type'])) echo 'class="loginhover"';?>>企业用户</li>
 		</ul>
 		<h3>登入</h3>
 		<div class="loginbottom">
 			<!-- 1 -->
-			<div>	
+			<div <?php echo isset($_GET['type']) ? 'class="loginhide"' : '';?>>	
 				<?php
                     $form = $this->beginWidget('CActiveForm', [
                         'id' => 'login-form',
@@ -86,7 +86,7 @@
 					<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-6">
 
-							<button type="button" class="btn btn-default col-sm-5">用户注册</button>
+							<a class="btn btn-default col-sm-5" href="/register">用户注册</a>
 							<button type="button"
 								class="btn btn-default col-sm-offset-2 col-sm-5">忘记密码</button>
 						</div>
@@ -95,12 +95,13 @@
 			</div>
 
 
-			<div class="loginhide">
+			<div <?php echo !isset($_GET['type']) ? 'class="loginhide"' : '';?>>
 				<div>	
 				<?php
                     $form = $this->beginWidget('CActiveForm', [
                         'id' => 'login-form',
                         'enableClientValidation' => true,
+                        'action' => '/login?type=1',
                         'clientOptions' => [
                             'validateOnSubmit' => true
                         ],
@@ -169,8 +170,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-6">
-
-							<button type="button" class="btn btn-default col-sm-5">用户注册</button>
+							<a class="btn btn-default col-sm-5" href="/register">用户注册</a>
 							<button type="button"
 								class="btn btn-default col-sm-offset-2 col-sm-5">忘记密码</button>
 						</div>

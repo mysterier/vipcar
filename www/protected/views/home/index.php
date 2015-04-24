@@ -1,9 +1,9 @@
 <!--banner-->
 <div class="banner">
-	<div class="imglist banner-one"></div>
-	<div class="imglist banner-two"><a href="/"><img src="/img/banner1.jpg"></a></div>
-	<div class="imglist banner-three"></div>
-	<div class="imglist banner-four"></div>
+	<div class="imglist"><a href="/"><img src="/img/banner1.jpg"></a></div>
+	<div class="imglist"><a href="/"><img src="/img/banner1.jpg"></a></div>
+	<div class="imglist"><a href="/"><img src="/img/banner1.jpg"></a></div>
+	<div class="imglist"><a href="/"><img src="/img/banner1.jpg"></a></div>
 
 	<ul class="banner-btn">
 		<li class="banner-hover" dl="banner1"></li>

@@ -1,5 +1,5 @@
 $(function(){
-	//导航顶		 
+//导航顶		 
 var navH = $(".nav").offset().top; 
 //滚动条事件 
 $(window).scroll(function(){ 
@@ -49,4 +49,15 @@ var $tab_li = $('.login ul li');
 	});	
 
 
-	});
+var $tab_li = $('.account-tab ul li');
+	$tab_li.click(function(){
+		$(this).addClass('account-tab-hover').siblings().removeClass('account-tab-hover');
+		var index = $tab_li.index(this);
+		$('.account-container > div').eq(index).show().siblings().hide();
+	});		
+	
+<!--date-->		
+ $('#datetimepicker').datetimepicker({
+    format: 'yyyy-dd-mm'
+});
+});

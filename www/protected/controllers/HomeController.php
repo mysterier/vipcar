@@ -65,6 +65,7 @@ class HomeController extends Controller
         $model->attributes = $_POST['Clients'];
         if ($model->validate()) {
             $model->password = $this->encryptPasswd($model->password);
+            $model->status = USER_CLIENT_ACTIVED;
             if ($model->save(false))
                 $this->redirect('/login');
         }
@@ -88,6 +89,7 @@ class HomeController extends Controller
         if ($model_validate && $item_validate) {
             $model->password = $this->encryptPasswd($model->password);
             $model->type = 1;
+            $model->status = USER_CLIENT_ACTIVED;
             if ($model->save(false)) {
                 $item->client_id = $model->id;
                 $item->area = implode('-', $item->area);

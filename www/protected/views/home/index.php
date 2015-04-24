@@ -50,7 +50,7 @@
 		诸多人性化、个性化的服务让生活更轻松。</p>
 	<div class="service-container">
 		<div class="servicelist">
-			<img src="img/customerservice.png" />
+			<img src="img/CustomerService.png" />
 			<h4 class="text-center">专业客服</h4>
 			<p class="text-left">
 				企业用车人无需等待，直通企业客服专席，提供全流程服务 <br />客服专席电话：400-684-5505

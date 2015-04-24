@@ -15,7 +15,7 @@
 	<div class="header">
 		<div class="header-container">
 			<ul class="header-nav">
-				<li class="header-topnav"><a href="#">我的账户</a></li>
+				<li class="header-topnav"><a href="/order/index">我的账户</a></li>
 				<li class="header-topnav"><a href="#">客户端下载</a></li>
 				<li class="header-topnav"><a href="#">关注众择</a></li>
 				<?php if(Yii::app()->user->isGuest):?>
@@ -36,7 +36,7 @@
 				<img src="/img/logo.png" />
 			</div>
 			<ul class="main-nav">
-				<li class="nav-topnav"><a href="#">首页</a></li>
+				<li class="nav-topnav"><a href="/">首页</a></li>
 				<li class="nav-topnav"><a href="#">服务介绍</a></li>
 				<li class="nav-topnav"><a href="#">在线订购</a></li>
 				<li class="nav-topnav"><a href="#">活动优惠</a></li>

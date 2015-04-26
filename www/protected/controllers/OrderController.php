@@ -15,6 +15,7 @@ class OrderController extends Controller
         $from = $this->getParam('from');
         $to = $this->getParam('to');
         $criteria = new CDbCriteria();
+        $criteria->addCondition('client_id=' . $this->uid);
         if($status)
             $criteria->addCondition('status=' . $status);
         if($from)

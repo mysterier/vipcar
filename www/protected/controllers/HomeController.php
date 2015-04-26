@@ -105,13 +105,6 @@ class HomeController extends Controller
         $this->render('register', $hash);
     }
 
-    public function filters()
-    {
-        return [
-            'accessControl'
-        ];
-    }
-
     public function accessRules()
     {
         return [

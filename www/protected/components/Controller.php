@@ -27,11 +27,19 @@ class Controller extends CController
      *      for more details on how to specify this property.
      */
     public $breadcrumbs = array();
-    
+
+    public $uid;
+
+    public function init()
+    {
+        parent::init();
+        $this->uid = Yii::app()->session['uid'];
+    }
+
     /**
      * 密码加密
      *
-     * @param string $password
+     * @param string $password            
      * @return string
      * @author lqf
      */
@@ -41,5 +49,39 @@ class Controller extends CController
         $pass = 'suxian' . $pass;
         $pass = md5($pass);
         return $pass;
+    }
+
+    /**
+     * 获取post参数
+     *
+     * @param string $param            
+     * @author lqf
+     */
+    public function getParam($param, $default = null)
+    {
+        return Yii::app()->request->getParam($param, $default);
+    }
+
+    public function filters()
+    {
+        return [
+            'accessControl'
+        ];
+    }
+
+    public function accessRules()
+    {
+        return [
+            
+            [
+                'deny',
+                'users' => [
+                    '?'
+                ],
+                'deniedCallback' => function ($rule) {
+                    header("location: /login");
+                }
+            ]
+        ];
     }
 }

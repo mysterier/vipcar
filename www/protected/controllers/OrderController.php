@@ -2,11 +2,35 @@
 
 class OrderController extends Controller
 {
-    // public $brea
+   public function init() {
+        parent::init();
+        $this->layout = '//layouts/account';
+        if (!$this->uid)
+            $this->redirect('/login');
+    }
+    
     public function actionIndex()
     {
-        $this->layout = '//layouts/account';
-        $this->render('index');
+        $status = $this->getParam('status');
+        $from = $this->getParam('from');
+        $to = $this->getParam('to');
+        $criteria = new CDbCriteria();
+        if($status)
+            $criteria->addCondition('status=' . $status);
+        if($from)
+            $criteria->addCondition("pickup_time>'{$from}'");
+        if($to)
+            $criteria->addCondition("pickup_time<'{$to}'");
+        $criteria->order = 'id DESC';
+        $count = Orders::model()->count($criteria);
+        $pages = new CPagination($count);
+        $pages->applyLimit($criteria);
+        $model = Orders::model()->findAll($criteria);
+        
+        $hash['model'] = $model;
+        $hash['pages'] = $pages;
+        $hash['status'] = $status;
+        $this->render('index', $hash);
     }
 
     public function actionList()
@@ -311,39 +335,5 @@ class OrderController extends Controller
         }
         return $string;
     }
-
-    /**
-     * 设置api最后更新时间
-     * 主要针对orderlist接口
-     *
-     *
-     * @return string
-     * @author lqf
-     */
-    public function setApiLastUpdate($uid, $utype)
-    {
-        $api = $utype . '_order_list';
-        $url = '/' . $utype . '/order/list';
-        $utype = ($utype == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT;
-        
-        $c = new CDbCriteria();
-        $c->condition = 'uid =:uid and utype=:utype and url=:url';
-        $c->params = [
-            'uid' => $uid,
-            'utype' => $utype,
-            'url' => $url
-        ];
-        $model = ApiLastupdate::model()->find($c);
-        if (! $model)
-            $model = new ApiLastupdate();
-        
-        $model->attributes = [
-            'last_update' => time(),
-            'uid' => $uid,
-            'utype' => $utype,
-            'api' => $api,
-            'url' => $url
-        ];
-        return $model->save();
-    }
+    
 }

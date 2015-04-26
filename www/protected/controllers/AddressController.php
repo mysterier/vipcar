@@ -5,73 +5,65 @@ class AddressController extends Controller
     public function init() {
         parent::init();
         $this->layout = '//layouts/account';
+        if (!$this->uid)
+            $this->redirect('/login'); 
     }
 
     public function actionIndex() {
-        $this->render('index');
-    }
-    
-    public function actionAdd()
-    {
-        $attributes = $_POST;
-        $attributes['uid'] = $this->uid;
-        $address = new InvoiceAddress();
-        $address->attributes = $attributes;
-        $this->changeDefault();
-        if ($address->save()) {
-            $this->result['error_code'] = SUCCESS_DEFAULT;
-            $this->result['error_msg'] = '';
-        }                 
-    }
-    
-    public function actionList() {
-        //暂时无视sid
-        //$sid = $this->getParam('last_address_sid');
         $criteria = new CDbCriteria();
         $criteria->condition = 'uid=:uid and status=:status';
         $criteria->params = [
             'uid' => $this->uid,
             'status' => STATUS_LIVE
         ];
-        $criteria->order = 'id asc';
-        $address = InvoiceAddress::model()->findAll($criteria);
-        $address_list = [];
-        $this->result['error_code'] = SUCCESS_DEFAULT;
-        $this->result['error_msg'] = '';
-        if ($address) {
-            foreach ($address as $v) {
-                $sid = $v->id;
-                $address_list[] = [
-                    'address_sid' => $v->id,
-                    'contacter_name' => $v->contacter_name,
-                    'contacter_mobile' => $v->contacter_mobile,
-                    'address_info' => $v->address_info,
-                    'is_common_use' => $v->is_common_use
-                ];
-            }
-        }
-        //$this->result['last_address_sid'] = $sid;
-        $this->result['address_list'] = $address_list;
+        $criteria->order = 'is_common_use DESC,id DESC';
+        $model = InvoiceAddress::model()->findAll($criteria);
+        $hash['model'] = $model;
+        
+        $this->render('index', $hash);
     }
     
-    public function actionModify($id) {
-        $address = InvoiceAddress::model()->findByPk($id);
-        if ($address && $address->uid == $this->uid) {
-            $address->attributes = $_POST;
+    public function actionNew() {
+        $model = new InvoiceAddress();
+        $hash['model'] = $model;
+        $this->render('form', $hash);
+    }
+    
+    public function actionCreate()
+    {
+        $model = new InvoiceAddress();
+        $model->attributes = $_POST['InvoiceAddress'];
+        $this->changeDefault();
+        if ($model->save()) {
+            $this->redirect('/address/index');
+        }
+        $this->render('form', $hash);
+    }
+
+    public function actionEdit($id) {
+        $model = InvoiceAddress::model()->findByPk($id);
+        $hash['model'] = $model;
+        $this->render('form', $hash);
+    }
+    
+    public function actionUpdate($id) {
+        $model = InvoiceAddress::model()->findByPk($id);
+        if ($model && $model->uid == $this->uid) {
+            $model->attributes = $_POST['InvoiceAddress'];
             $this->changeDefault();
-            if ($address->save()) {
-                $this->result['error_code'] = SUCCESS_DEFAULT;
-                $this->result['error_msg'] = '';
+            if ($model->save()) {
+                $this->redirect('/address/index');
             }
+            $this->render('form', $hash);
         }
+        $this->redirect('/address/index');
     }
     
-    public function actionDelete($id) {
+    public function actionDestory($id) {
         $address = InvoiceAddress::model()->findByPk($id);
         $address->status = STATUS_DEL;
         if ($address->save()) {
-            $this->result['error_code'] = SUCCESS_DEFAULT;
-            $this->result['error_msg'] = '';
+            $this->redirect('/address/index');
         }
     }
     

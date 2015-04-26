@@ -57,7 +57,7 @@ var $tab_li = $('.account-tab ul li');
 	});		
 	
 <!--date-->		
- $('#datetimepicker').datetimepicker({
-    format: 'yyyy-dd-mm'
-});
+// $('#datetimepicker').datetimepicker({
+//    format: 'yyyy-dd-mm'
+//});
 });

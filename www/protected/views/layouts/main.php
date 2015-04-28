@@ -1,23 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/mystyle.css" />
-<script type="text/javascript" src="/js/jquery-1.11.2.js"></script>
-<script type="text/javascript" src="/js/myjs.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/css/mystyle.css"/>
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <body>
 	<!--页眉-->
-	<div class="header">
-		<div class="header-container">
+	<div id="header">
+		<div class="wrapper-width" id="header-container">
 			<ul class="header-nav">
 				<li class="header-topnav"><a href="/order/index">我的账户</a></li>
 				<li class="header-topnav"><a href="#">客户端下载</a></li>
 				<li class="header-topnav"><a href="#">关注众择</a></li>
+				<li class="header-topnav"><a href="/notice">众择公告</a></li>
 				<?php if(Yii::app()->user->isGuest):?>
 				<li class="header-topnav"><a href="/login">登入</a></li>
 				<li class="header-topnav"><a href="/register">注册</a></li>
@@ -30,18 +29,16 @@
 		</div>
 	</div>
 	<!--导航-->
-	<div class="nav">
+	<div id="nav">
 		<div class="nav-container">
-			<div class="logo">
-				<img src="/img/logo.png" />
-			</div>
+			<a href="/" id="logo"></a>
 			<ul class="main-nav">
 				<li class="nav-topnav"><a href="/">首页</a></li>
-				<li class="nav-topnav"><a href="#">服务介绍</a></li>
-				<li class="nav-topnav"><a href="#">在线订购</a></li>
-				<li class="nav-topnav"><a href="#">活动优惠</a></li>
-				<li class="nav-topnav"><a href="#">企业用户</a></li>
-				<li class="nav-topnav nav-left"><a href="#">众择杂志</a></li>
+				<li class="nav-topnav"><a <?php if($this->id == 'home' && $this->action->id == 'service') echo 'class="nav-active"';?> href="/service">服务介绍</a></li>
+				<li class="nav-topnav"><a <?php if($this->id == 'order' && $this->action->id == 'service') echo 'class="nav-active"';?> href="#">在线订购</a></li>
+				<li class="nav-topnav"><a <?php if($this->id == 'home' && $this->action->id == 'event') echo 'class="nav-active"';?> href="/event">活动优惠</a></li>
+				<li class="nav-topnav"><a <?php if($this->id == 'enterprise' && $this->action->id == 'show') echo 'class="nav-active"';?> href="/enterprise/show">企业用户</a></li>
+				<li class="nav-topnav nav-left"><a <?php if($this->id == 'home' && $this->action->id == 'magazine') echo 'class="nav-active"';?> href="/magazine">众择杂志</a></li>
 			</ul>
 		</div>
 	</div>
@@ -100,6 +97,7 @@
 	<div class="clearfix"></div>
 	<p class="text-center">Copyright © 2014 ZHONGZE All Rights Reserved.
 		备案号：沪ICP备14053943号-1。</p>
-
+<script type="text/javascript" src="/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/js/myjs.js"></script>
 </body>
 </html>

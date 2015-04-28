@@ -105,6 +105,32 @@ class HomeController extends Controller
         $this->render('register', $hash);
     }
 
+    public function actionService() {
+        $this->render('service');
+    }
+    
+    public function actionEvent() {
+        $this->render('event');
+    }
+    
+    public function actionMagazine() {
+        $attributes = [
+            'status' => 1
+        ];
+        $model = Magazine::model()->findAllByAttributes($attributes);
+        $hash['model'] = $model;
+        $this->render('magazine', $hash);
+    }
+    
+    public function actionNotice() {
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'status = 1';
+        $criteria->order = 'id DESC';
+        $model = Notice::model()->findAll($criteria);
+        $hash['model'] = $model;
+        $this->render('notice' ,$hash);
+    }
+    
     public function accessRules()
     {
         return [

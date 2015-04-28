@@ -1,17 +1,17 @@
 $(function(){
-//导航顶		 
-var navH = $(".nav").offset().top; 
-//滚动条事件 
-$(window).scroll(function(){ 
-//获取滚动条的滑动距离 
-var scroH = $(this).scrollTop(); 
-//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定 
-if(scroH>=navH){ 
-$(".nav").css({"position":"fixed","top":"0","left":"0","border-top":"4px solid #2e313b","height":"94px"}); 
-}else if(scroH<navH){ 
-$(".nav").css({"position":"static","margin":"0 auto"}); 
-} 
-}) 
+		//导航顶		 
+		var navH = $("#nav").offset().top; 
+		//滚动条事件 
+		$(window).scroll(function(){ 
+		//获取滚动条的滑动距离 
+		var scroH = $(this).scrollTop(); 
+		//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定 
+		if(scroH>=navH){ 
+		$("#nav").css({"position":"fixed","top":"0","left":"0","border-top":"4px solid #2e313b","height":"94px"}); 
+		}else if(scroH<navH){ 
+		$("#nav").css({"position":"static","margin":"0 auto"}); 
+		} 
+		}) ;
 
 //banner
 	 $(".banner .imglist").eq(0).show().siblings("div").hide();
@@ -39,25 +39,30 @@ $(".nav").css({"position":"static","margin":"0 auto"});
 				},3000); 
 		 };
 		 autoplay();
+
+
 		 
-<!--tab-->		 
-var $tab_li = $('.login ul li');
-	$tab_li.click(function(){
-		$(this).addClass('loginhover').siblings().removeClass('loginhover');
-		var index = $tab_li.index(this);
-		$('.loginbottom > div').eq(index).show().siblings().hide();
-	});	
+		<!--tab-->		 
+		var $tab_li = $('.login ul li');
+			$tab_li.click(function(){
+				$(this).addClass('loginhover').siblings().removeClass('loginhover');
+				var index = $tab_li.index(this);
+				$('.loginbottom > div').eq(index).show().siblings().hide();
+			});	
 
 
-var $tab_li = $('.account-tab ul li');
-	$tab_li.click(function(){
-		$(this).addClass('account-tab-hover').siblings().removeClass('account-tab-hover');
-		var index = $tab_li.index(this);
-		$('.account-container > div').eq(index).show().siblings().hide();
-	});		
-	
-<!--date-->		
-// $('#datetimepicker').datetimepicker({
-//    format: 'yyyy-dd-mm'
-//});
+		var $tab_li = $('.account-tab ul li');
+			$tab_li.click(function(){
+				$(this).addClass('account-tab-hover').siblings().removeClass('account-tab-hover');
+				var index = $tab_li.index(this);
+				$('.account-container > div').eq(index).show().siblings().hide();
+			});	
+
+				
+			
+		<!--date-->		
+//		 $('#datetimepicker').datetimepicker({
+//		    format: 'yyyy-dd-mm'
+//		});
+
 });

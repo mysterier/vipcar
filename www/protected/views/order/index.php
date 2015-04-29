@@ -94,8 +94,8 @@
 				    <?php foreach($model as $order):?>
 					<tr>
 					<td><?php echo $order->order_no;?></td>
-					<td><?php echo Yii::app()->controller->formatType($order->type)?></td>
-					<td><?php echo Yii::app()->controller->formatService($order->vehicle_type)?></td>
+					<td><?php echo $this->formatType($order->type)?></td>
+					<td><?php echo $this->formatService($order->vehicle_type)?></td>
 					<td><?php echo $order->contacter_name;?></td>
 					<td><?php echo $order->pickup_time;?></td>
 					<td><?php echo $order->pickup_place;?></td>

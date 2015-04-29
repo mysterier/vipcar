@@ -34,6 +34,33 @@ class OrderController extends Controller
         $this->render('index', $hash);
     }
 
+    
+    public function actionComment() {
+        $status = $this->getParam('status');
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'client_id=:client_id and status=:status';
+        $criteria->params = [
+            'client_id' => $this->uid,
+            'status' => (string)ORDER_STATUS_END
+        ];
+
+        if ($status)
+            $criteria->addCondition('star != ""');
+        else
+            $criteria->addCondition('star = ""');
+        $criteria->order = 'id DESC';
+        $count = Orders::model()->count($criteria);
+        $pages = new CPagination($count);
+        $pages->applyLimit($criteria);
+        $model = Orders::model()->findAll($criteria);
+        
+        $hash['model'] = $model;
+        $hash['pages'] = $pages;
+        $hash['status'] = $status;
+        
+        $this->render('comment', $hash);
+    }
+    //===================================================
     public function actionList()
     {
         $dataProvider = new CActiveDataProvider('Orders', [

@@ -5,12 +5,16 @@
 	<form class="form-horizontal">
 		<div class="col-md-3">
 			<div class="form-group account-information-left">
-				<div id="imgContainer1" class="infomation-header">
+				<div class="information-header">
 					<img src="..." alt="..." class="img-rounded">
 				</div>
-				<div class="btn btn-info text-center infomation-header-btn">选择图片</div>
+				<a href="javascript:void(0)"
+					class="information-file btn btn-info col-md-12">选择文件 <input
+					type="file" name="" id="">
+				</a>
 			</div>
 		</div>
+
 		<div class="col-md-9">
 			<div class="form-group account-information-right">
 				<div class="form-group">

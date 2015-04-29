@@ -35,7 +35,7 @@
 			<ul class="main-nav">
 				<li class="nav-topnav"><a href="/">首页</a></li>
 				<li class="nav-topnav"><a <?php if($this->id == 'home' && $this->action->id == 'service') echo 'class="nav-active"';?> href="/service">服务介绍</a></li>
-				<li class="nav-topnav"><a <?php if($this->id == 'order' && $this->action->id == 'service') echo 'class="nav-active"';?> href="#">在线订购</a></li>
+				<li class="nav-topnav"><a <?php if($this->id == 'order' && $this->action->id == 'service') echo 'class="nav-active"';?> href="#">在线订车</a></li>
 				<li class="nav-topnav"><a <?php if($this->id == 'home' && $this->action->id == 'event') echo 'class="nav-active"';?> href="/event">活动优惠</a></li>
 				<li class="nav-topnav"><a <?php if($this->id == 'enterprise' && $this->action->id == 'show') echo 'class="nav-active"';?> href="/enterprise/show">企业用户</a></li>
 				<li class="nav-topnav nav-left"><a <?php if($this->id == 'home' && $this->action->id == 'magazine') echo 'class="nav-active"';?> href="/magazine">众择杂志</a></li>
@@ -99,5 +99,8 @@
 		备案号：沪ICP备14053943号-1。</p>
 <script type="text/javascript" src="/js/jquery-1.11.2.js"></script>
 <script type="text/javascript" src="/js/myjs.js"></script>
+<?php if($this->id == 'order' && $this->action->id == 'comment'):?>
+<script type="text/javascript" src="/js/star.js"></script>
+<?php endif;?>
 </body>
 </html>

@@ -21,6 +21,7 @@ class Clients extends CActiveRecord
     public $msg_code;
     public $confirmpwd;
     public $agreeme;
+    public $oldpwd;
     /**
      *
      * @return string the associated database table name
@@ -118,22 +119,33 @@ class Clients extends CActiveRecord
                 'on' => 'webreg',
             ],
             [
-                'password',
+                'password,oldpwd',
                 'required',
-                'message' => '密码不能为空！',
-                'on' => 'webreg'
+                'message' => '{attribute}不能为空！',
+                'on' => [
+                    'webreg',
+                    'webeditpwd'
+                ]
             ],
             [
                 'confirmpwd',
                 'compare',
                 'compareAttribute' => 'password',
                 'message' => '两次密码输入不一致',
-                'on' => 'webreg'
+                'on' => [
+                    'webreg',
+                    'webeditpwd'
+                ]
             ],
             [
                 'agreeme',
                 'agreeme',
                 'on' => 'webreg'
+            ],
+            [
+                'oldpwd',
+                'oldpwd',
+                'on' => 'webeditpwd'
             ]
         ];
     }
@@ -146,6 +158,17 @@ class Clients extends CActiveRecord
     public function agreeme($attribute, $params) {
         if (!$_POST['Clients']['agreeme'])
             $this->addError('agreeme', '未同意条款！');
+    }
+    
+    public function oldpwd($attribute, $params) {
+        $uid = Yii::app()->session['uid'];
+        $model = self::model()->findByPk($uid);
+        $oldpwd = $_POST['Clients']['oldpwd'];
+        $pass = md5($oldpwd);
+        $pass = 'suxian' . $pass;
+        $pass = md5($pass);
+        if ($model->password != $pass) 
+            $this->addError('oldpwd', '原始密码不正确！');
     }
     
     /**
@@ -203,6 +226,7 @@ class Clients extends CActiveRecord
             'last_update' => '最后更新时间',
             'msg_code' => '短信验证码',
             'confirmpwd' => '确认密码',
+            'oldpwd' => '原始密码'
         );
     }
 

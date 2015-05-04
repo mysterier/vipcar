@@ -12,6 +12,7 @@
 	<!--页眉-->
 	<div id="header">
 		<div class="wrapper-width" id="header-container">
+		<a href="/" id="logo"></a>
 			<ul class="header-nav">
 				<li class="header-topnav"><a href="/order/index">我的账户</a></li>
 				<li class="header-topnav"><a href="#">客户端下载</a></li>
@@ -31,7 +32,6 @@
 	<!--导航-->
 	<div id="nav">
 		<div class="nav-container">
-			<a href="/" id="logo"></a>
 			<ul class="main-nav">
 				<li class="nav-topnav"><a href="/">首页</a></li>
 				<li class="nav-topnav"><a <?php if($this->id == 'home' && $this->action->id == 'service') echo 'class="nav-active"';?> href="/service">服务介绍</a></li>

@@ -43,10 +43,10 @@ $(function(){
 
 		 
 		<!--tab-->		 
-		var $tab_li = $('.login ul li');
-			$tab_li.click(function(){
+		var tab_li = $('.login ul li');
+			tab_li.click(function(){
 				$(this).addClass('loginhover').siblings().removeClass('loginhover');
-				var index = $tab_li.index(this);
+				var index = tab_li.index(this);
 				$('.loginbottom > div').eq(index).show().siblings().hide();
 			});	
 

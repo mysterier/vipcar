@@ -3,7 +3,8 @@
 	margin:0;
 	padding:0;
 }
-a:hover{text-decoration: none;}
+a:hover{text-decoration: none;
+}
 .indent{
 	text-indent: 2em;
 }
@@ -90,10 +91,11 @@ body{
 	margin:9px;
 }
 /*header*/
+
 #header{
 	width:100%;
 	height:40px;
-	background-color:#2e313b;
+	background-color:#181a20;
 }
 #header-container{
 
@@ -134,8 +136,8 @@ body{
 #nav{
 	width:100%;
 	height:90px;
-	border-bottom:1px solid #8d9ea2;
-	background:#fff;
+
+	background:#2e313b;
 	z-index:999;
 }
 .nav-container{
@@ -162,28 +164,28 @@ body{
 	height:89px;
 	line-height:90px;
 	float:left;
-
+	background:#2e313b;
 	text-align:center;
 	font-size:16px;
 
 }
 .nav-left{
-	border-right:1px solid #ccc;
+	border-right:1px solid #2d3033;
 }
 .nav-topnav a{
 
-	color:#000;
+	color:#fff;
 	width:130px;
 	height:89px;
 	line-height:90px;
 	float:left;
-	border-left:1px solid #ccc;
+	border-left:1px solid #2d3033;
 	text-align:center;
 	font-size:16px;
 }
 .nav-topnav a:hover{
 	display:block;
-	background:url(/img/navhover.png) repeat-x;
+	background:url(/img/navhover1.png) repeat-x;
 	width:130px;
 	height:90px;
 	color:#fff !important;
@@ -192,7 +194,7 @@ body{
 }
 .nav-active{
 	display:block;
-	background:url(/img/navhover.png) repeat-x;
+	background:url(/img/navhover1.png) repeat-x;
 	width:130px;
 	height:90px;
 	color:#fff !important;
@@ -202,8 +204,8 @@ body{
 /*banner*/
 .banner{
 	position:relative;
-	margin:0px auto;
-	width:1700px;
+	margin:10px auto 0;
+	width:960px;
 	height:670px;
 }
 /*.banner-one{
@@ -239,7 +241,7 @@ background:url(/img/f4.jpg) top center no-repeat;
 }
 .banner-btn{
 	position:absolute;
-	left:48%;
+	left:430px;
 	bottom:10px;
 	display:inline-block;
 	padding:2px 15px;
@@ -267,12 +269,20 @@ background:url(/img/f4.jpg) top center no-repeat;
 
 	margin:0 auto;
 }
+.showapp h4{
+	padding: 50px;
+}
 /*app下载*/
+
 .downapp{
 	width:100%;
-	padding-top:100px;
-	background:url(/img/bg-showapp.png) repeat;
+	padding-bottom:100px;
+
 }
+.downapp h3{
+	padding-bottom: 100px;
+}
+
 .downapp-container{
 	width:960px;
 	margin:0 auto;
@@ -287,10 +297,10 @@ background:url(/img/f4.jpg) top center no-repeat;
 }
 .downapp-right{
 	position:absolute;
-	top:120px;
+	top:250px;
 	left:630px;
 }
-.downapp-right h3,p{
+.downapp-right h3,.downapp-right p{
 	padding-bottom:30px;
 }
 /*service*/
@@ -491,6 +501,7 @@ background:url(/img/f4.jpg) top center no-repeat;
 .jiesongjiimg{
 	background:url(/img/jiesongjibanner.jpg) no-repeat top center;
 }
+
 /*magazine*/
 .magazineimg{
 	width: 1700px;
@@ -725,6 +736,56 @@ background:url(/img/f4.jpg) top center no-repeat;
 .account-right-head div span{
 	color: #40a6d9;
 }
+
+.invoice-addr{
+	padding: 5px;
+
+}
+.addrlist{
+   line-height: 20px;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    display: inline-block; 
+	float: left;
+	margin:10px;
+	padding: 10px;
+	height: 150px;
+	border:1px solid #ccc;
+	cursor: pointer;
+
+}
+
+.addrlist h5{
+	padding-bottom:10px; 
+
+}
+.addrlist p{
+	padding-bottom:10px; 
+
+}
+.addrlist a{
+
+	line-height: 120px;
+}
+.addrlist .small{
+	border: none;
+}
+
+
+.addrlist-select {
+    color: #fff !important;
+    background: #56abe4;
+    border-color: #56abe4;
+    text-decoration: none;
+}
+.addrlist h4{
+	margin-top: 55px;
+}
+.invoice-addr a{
+	color: #000;
+}
+
 /*活动优惠*/
 .activitieslist{
 	height: 315px;

@@ -7,6 +7,8 @@
     		<div class="information-header">
     			<img id="avatar" src="<?php echo $model->avatar ? 'http://'.DEFAULT_CDN_URL.$model->avatar : '/img/header.jpg';?>" alt="头像" class="img-rounded">
     		</div>
+    		<div id="loading">  		    
+    		</div>
     		<a href="javascript:void(0)" class="information-file btn btn-info col-md-12">
     		      选择文件 <input id="file1" type="file" name="avatar" onchange="ajaxFileUpload()">
     		</a>
@@ -120,6 +122,7 @@
 </div>
 <script>
 function ajaxFileUpload() {
+	$("#loading").html('<img src="/img/loading.gif" />');
     $.ajaxFileUpload
     (
         {
@@ -131,7 +134,7 @@ function ajaxFileUpload() {
             {
                 if (data.error_code == 1) {
                 	$("#avatar").attr("src", 'http://<?php echo DEFAULT_CDN_URL;?>'+data.avatar_path);
-                	//$('#file1').replaceWith('<input name="avatar" type="file" id="file1"  />');
+                	$('#loading').html('');
                 } else {
                     alert(data.error_msg);
                 }

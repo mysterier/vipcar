@@ -3,8 +3,8 @@
 <!--展示-->
 <div class="showapp ">
 	<div class="showapp-container wrapper-width">
-		<h3 class="text-center ">智能出行 品质生活</h3>
-		<p class="text-center paddingp">智能化实时订单处理，24小时专人专车提供个性化需求的出行服务，让乘坐成为一种生活品质。</p>
+		<h3 class="text-center ">智能出行&nbsp&nbsp&nbsp品质生活 </h3>
+        <p class="text-center paddingp font12">智能化实时订单处理，24小时专人专车提供个性化需求的出行服务，让乘坐成为一种生活品质。</p>
 		<h4 class="text-center paddingp">主体业务</h4>
 		<div class="showimg text-center">
 			<img src="/img/appbg.png" />

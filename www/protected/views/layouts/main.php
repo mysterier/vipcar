@@ -102,5 +102,8 @@
 <?php if($this->id == 'order' && $this->action->id == 'comment'):?>
 <script type="text/javascript" src="/js/star.js"></script>
 <?php endif;?>
+<?php if($this->id == 'client'):?>
+<script type="text/javascript" src="/js/ajaxfileupload.js"></script>
+<?php endif;?>
 </body>
 </html>

@@ -6,7 +6,7 @@
             $form = $this->beginWidget('CActiveForm', [
                 'id' => 'login-form',
                 'action' => '/client/updatepwd',
-                'enableClientValidation' => true,
+                //'enableClientValidation' => true,
                 'clientOptions' => [
                     'validateOnSubmit' => true
                 ],

@@ -63,7 +63,8 @@ class Clients extends CActiveRecord
                     'update',
                     'reg',
                     'loginv1',
-                    'webreg'
+                    'webreg',
+                    'webedit'
                 ]
             ],
             [
@@ -78,7 +79,8 @@ class Clients extends CActiveRecord
                     'update',
                     'reg',
                     'loginv1',
-                    'webreg'
+                    'webreg',
+                    'webedit'
                 ]
             ],
             [
@@ -91,7 +93,8 @@ class Clients extends CActiveRecord
                     'insert',
                     'update',
                     'reg',
-                    'webreg'
+                    'webreg',
+                    'webedit'
                 ]
             ],
             [
@@ -146,6 +149,11 @@ class Clients extends CActiveRecord
                 'oldpwd',
                 'oldpwd',
                 'on' => 'webeditpwd'
+            ],
+            [
+                'real_name, gender,',
+                'safe',
+                'on' => 'webedit'
             ]
         ];
     }
@@ -219,6 +227,7 @@ class Clients extends CActiveRecord
             'mobile' => '手机号',
             'email' => '邮箱',
             'password' => '密码',
+            'gender' => '性别',
             'client_title' => '称谓',
             'credit_record' => '诚信记录',
             'city_id' => '城市',

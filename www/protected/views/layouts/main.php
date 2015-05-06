@@ -19,10 +19,10 @@
 				<li class="header-topnav"><a href="#">关注众择</a></li>
 				<li class="header-topnav"><a href="/notice">众择公告</a></li>
 				<?php if(Yii::app()->user->isGuest):?>
-				<li class="header-topnav"><a href="/login">登入</a></li>
+				<li class="header-topnav"><a href="/login">登录</a></li>
 				<li class="header-topnav"><a href="/register">注册</a></li>
 				<?php else:?>
-				<li class="header-topnav"><a href="/login"><?php echo Yii::app()->user->id;?></a></li>
+				<li class="header-topnav"><a href="/login"><?php echo Yii::app()->user->name;?></a></li>
 				<li class="header-topnav"><a href="/logout">[退出]</a></li>				
 				<?php endif;?>
 				<li class="header-topnav header-tel"><span class="icon-tel"><img src="/img/icon-phone.png" /></span>400-684-5505</li>

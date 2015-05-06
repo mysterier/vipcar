@@ -34,7 +34,8 @@ class InvoiceAddress extends CActiveRecord
         return [
             [
                 'uid, contacter_name, contacter_mobile, address_info, is_common_use',
-                'required'
+                'required',
+                'message' => '{attribute}不能为空！'
             ]
         ];
     }

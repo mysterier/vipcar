@@ -225,7 +225,7 @@ class Clients extends CActiveRecord
             'real_name' => '姓名',
             'avatar' => '头像',
             'mobile' => '手机号',
-            'email' => '邮箱',
+            'email' => '电子邮箱',
             'password' => '密码',
             'gender' => '性别',
             'client_title' => '称谓',

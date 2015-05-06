@@ -34,9 +34,11 @@ class AddressController extends Controller
         $model = new InvoiceAddress();
         $model->attributes = $_POST['InvoiceAddress'];
         $this->changeDefault();
+        $model->uid = $this->uid;
         if ($model->save()) {
             $this->redirect('/address/index');
         }
+        $hash['model'] = $model;
         $this->render('form', $hash);
     }
 
@@ -46,7 +48,8 @@ class AddressController extends Controller
         $this->render('form', $hash);
     }
     
-    public function actionUpdate($id) {
+    public function actionUpdate() {
+        $id = $this->getParam('id');
         $model = InvoiceAddress::model()->findByPk($id);
         if ($model && $model->uid == $this->uid) {
             $model->attributes = $_POST['InvoiceAddress'];
@@ -68,7 +71,7 @@ class AddressController extends Controller
     }
     
     private function changeDefault() {
-        $is_common_use = $this->getParam('is_common_use');
+        $is_common_use = $_POST['InvoiceAddress']['is_common_use'];
         if ($is_common_use) {
             $attributes = [
                 'uid' => $this->uid,

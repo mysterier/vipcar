@@ -188,7 +188,7 @@
 							<?php 
 						      echo $form->textField($item, 'originator', [
 						          'class' => 'form-control',
-						          'placeholder' => '创始人'
+						          'placeholder' => '创建人'
 						      ]);
 						    ?>
 						</div>
@@ -320,7 +320,7 @@
 							<?php 
 						      echo $form->textField($model, 'email', [
 						          'class' => 'form-control',
-						          'placeholder' => '邮箱'
+						          'placeholder' => '电子邮箱'
 						      ]);
 						    ?>
 						</div>

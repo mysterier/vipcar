@@ -1,6 +1,6 @@
 <div class="loginimg">
 	<div class="logintitle">
-		<h3>登入</h3>
+		<h3>登录</h3>
 		<p>欢迎使用 众择用车，轻触按钮即可获取轻松出行的最佳之选。创建帐户，几分钟后即可出行。</p>
 	</div>
 
@@ -9,7 +9,7 @@
 			<li <?php if(!isset($_GET['type'])) echo 'class="loginhover"';?>>个人用户</li>
 			<li <?php if(isset($_GET['type'])) echo 'class="loginhover"';?>>企业用户</li>
 		</ul>
-		<h3>登入</h3>
+		<h3>登录</h3>
 		<div class="loginbottom">
 			<!-- 1 -->
 			<div <?php echo isset($_GET['type']) ? 'class="loginhide"' : '';?>>	

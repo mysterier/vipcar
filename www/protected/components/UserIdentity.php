@@ -8,6 +8,7 @@
 class UserIdentity extends CUserIdentity
 {
 
+    public $uid;
     /**
      * Authenticates a user.
      * The example implementation makes sure if the username and password
@@ -28,10 +29,14 @@ class UserIdentity extends CUserIdentity
         elseif ($client->password !== $passwd)
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         else {
-            Yii::app()->session['uid'] = $client->id;
+            $this->uid = $client->id;
             $this->errorCode = self::ERROR_NONE;
         }
             
         return ! $this->errorCode;
+    }
+    
+    public function getId() {
+        return $this->uid;
     }
 }

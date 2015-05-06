@@ -3,7 +3,7 @@
 		<div class="form-group ">
 			<input id="coupon_code" type="text"
 				class="form-control account-coupon-input" placeholder="请输入优惠券号码">
-			<button id="getticket" type="button" class="btn btn-info">兑换优惠券</button>
+			<button id="getticket" type="button" class="btn btn-info btn-coupon">兑换优惠券</button>
 		</div>
 	</form>
 

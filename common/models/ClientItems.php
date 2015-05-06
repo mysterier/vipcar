@@ -69,7 +69,7 @@ class ClientItems extends CActiveRecord
         return array(
             'id' => 'ID',
             'client_id' => '客户id',
-            'originator' => '创始人',
+            'originator' => '创建人',
             'company_name' => '企业名称',
             'area' => 'Area',
             'address' => '公司地址',

@@ -5,8 +5,6 @@ class CouponController extends Controller
     public function init() {
         parent::init();
         $this->layout = '//layouts/account';
-        if (!$this->uid)
-            $this->redirect('/login');
     }
     
     public function actionIndex()

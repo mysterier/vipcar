@@ -4,9 +4,7 @@ class ClientController extends Controller
 {
     public function init() {
         parent::init();
-        $this->layout = '//layouts/account';
-        if (!$this->uid)
-            $this->redirect('/login'); 
+        $this->layout = '//layouts/account'; 
     }
     
     public function actionEditpwd() {

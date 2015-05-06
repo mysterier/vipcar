@@ -33,7 +33,7 @@ class Controller extends CController
     public function init()
     {
         parent::init();
-        $this->uid = Yii::app()->session['uid'];
+        $this->uid = Yii::app()->user->id;
     }
 
     /**

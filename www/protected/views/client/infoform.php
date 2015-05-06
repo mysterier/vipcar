@@ -55,7 +55,7 @@
 					<label class="col-sm-3 control-label">性别</label>
 					<div class="col-sm-6 line-center">
 						<?php 
-						  echo $form->radioButtonList($model, 'gender', [
+						  echo $form->radioButtonList($model, 'client_title', [
 						      '1' => '男',
 						      '2' => '女'
 						  ],[

@@ -69,8 +69,12 @@ $(function(){
 		var addr = $('.addrlist');
 			addr.click(function(){
 				$(this).addClass('addrlist-select').siblings().removeClass('addrlist-select');
-
-
+				address_info = $(this).attr('address_info');
+				contacter_mobile = $(this).attr('contacter_mobile');
+				contacter_name = $(this).attr('contacter_name');
+				$("#address_info").val(address_info);
+				$("#contacter_mobile").val(contacter_mobile);
+				$("#contacter_name").val(contacter_name);
 			});	
 
 

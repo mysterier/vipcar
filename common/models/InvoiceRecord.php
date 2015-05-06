@@ -36,10 +36,22 @@ class InvoiceRecord extends CActiveRecord
             [
                 'uid, invoice_title, invoice_amount, contacter_name, contacter_mobile, address_info',
                 'required',
+                'message' => '{attribute}不能为空！'
+            ],
+            [
+                'invoice_amount',
+                'invoice_amount',
+                'on' => 'webcreate'
             ]
         ];
     }
 
+    public function invoice_amount($attribute, $params) {
+        if ($_POST['InvoiceRecord']['invoice_amount'] <= 0)
+            $this->addError('invoice_amount', '请注意发票金额！');
+        if ($_POST['InvoiceRecord']['invoice_amount'] > $_POST['available_invoice_amount'])
+            $this->addError('invoice_amount', '发票金额超出可开票金额！');
+    }
     /**
      *
      * @return array relational rules.
@@ -59,7 +71,7 @@ class InvoiceRecord extends CActiveRecord
             'id' => 'ID',
             'uid' => '用户id',
             'invoice_title' => '发票抬头',
-            'invoice_amount' => '发票金额',
+            'invoice_amount' => '开票金额',
             'contacter_name' => '联系人',
             'contacter_mobile' => '联系电话',
             'address_info' => '地址详情',

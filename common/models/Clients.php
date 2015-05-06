@@ -151,7 +151,7 @@ class Clients extends CActiveRecord
                 'on' => 'webeditpwd'
             ],
             [
-                'real_name, gender,',
+                'real_name, client_title,',
                 'safe',
                 'on' => 'webedit'
             ]
@@ -227,7 +227,6 @@ class Clients extends CActiveRecord
             'mobile' => '手机号',
             'email' => '电子邮箱',
             'password' => '密码',
-            'gender' => '性别',
             'client_title' => '称谓',
             'credit_record' => '诚信记录',
             'city_id' => '城市',

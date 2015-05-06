@@ -9,10 +9,10 @@
 			<li <?php if(!isset($_GET['type'])) echo 'class="loginhover"';?>>个人用户</li>
 			<li <?php if(isset($_GET['type'])) echo 'class="loginhover"';?>>企业用户</li>
 		</ul>
-		<h3>登录</h3>
 		<div class="loginbottom">
 			<!-- 1 -->
-			<div <?php echo isset($_GET['type']) ? 'class="loginhide"' : '';?>>	
+			<div <?php echo isset($_GET['type']) ? 'class="loginhide"' : '';?>>
+			     <h3>个人用户登录</h3>
 				<?php
                     $form = $this->beginWidget('CActiveForm', [
                         'id' => 'login-form',
@@ -96,6 +96,7 @@
 
 
 			<div <?php echo !isset($_GET['type']) ? 'class="loginhide"' : '';?>>
+			    <h3>企业用户登录</h3>
 				<div>	
 				<?php
                     $form = $this->beginWidget('CActiveForm', [

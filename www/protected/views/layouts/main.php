@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="/css/mystyle.css"/>
+<?php if($this->id == 'favorite'):?>
+<link rel="stylesheet" type="text/css" href="/css/account-like.css"/>
+<?php endif;?>
+<script type="text/javascript" src="/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/js/myjs.js"></script>
+<?php if($this->id == 'order' && $this->action->id == 'comment'):?>
+<script type="text/javascript" src="/js/star.js"></script>
+<?php endif;?>
+<?php if($this->id == 'client'):?>
+<script type="text/javascript" src="/js/ajaxfileupload.js"></script>
+<?php endif;?>
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
@@ -97,13 +108,5 @@
 	<div class="clearfix"></div>
 	<p class="text-center">Copyright © 2014 ZHONGZE All Rights Reserved.
 		备案号：沪ICP备14053943号-1。</p>
-<script type="text/javascript" src="/js/jquery-1.11.2.js"></script>
-<script type="text/javascript" src="/js/myjs.js"></script>
-<?php if($this->id == 'order' && $this->action->id == 'comment'):?>
-<script type="text/javascript" src="/js/star.js"></script>
-<?php endif;?>
-<?php if($this->id == 'client'):?>
-<script type="text/javascript" src="/js/ajaxfileupload.js"></script>
-<?php endif;?>
 </body>
 </html>

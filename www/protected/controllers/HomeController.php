@@ -70,6 +70,8 @@ class HomeController extends Controller
                 $this->redirect('/login');
         }
         
+        $item = new ClientItems();
+        $hash['item'] = $item;
         $hash['model'] = $model;
         $this->render('register', $hash);
     }

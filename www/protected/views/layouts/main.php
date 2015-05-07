@@ -55,58 +55,54 @@
 	</div>
 <?php echo $content; ?>
 <!--footer-->
-	<div class="footer">
-		<div class="footer-container">
-			<div class="footer-left">
-				<div class="footer-logo">
-					<img src="/img/footerlogo.png" />
-				</div>
-				<p class="service-tel">
-					客服电话:<span>400-684-5505</span>
-				</p>
-			</div>
-			<div class="footer-right">
-				<ul>
-					<li><h5>关于众择</h5></li>
-					<li><a href="#">关于众择</a></li>
-					<li><a href="#">品牌文化</a></li>
-					<li><a href="#">招聘信息</a></li>
-					<li><a href="#">联系我们</a></li>
-				</ul>
-				<ul>
-					<li><h5>帮助中心</h5></li>
-					<li><a href="#">支付说明</a></li>
-					<li><a href="#">常见问题</a></li>
-					<li><a href="#">注册及使用使用流程</a></li>
-				</ul>
-				<ul>
-					<li><h5>合作伙伴</h5></li>
-					<li><img src="/img/xiechenglogo.png" /></li>
-					<li><img src="/img/subao-logo.png" /></li>
+<div class="footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <div class="footer-logo"><img src="/img/footerlogo.png" /></div>
+            <div class="service-tel">
+                <span>400-684-5505</span>
+            </div>
+            </div>
+        <div class="footer-right">
+            <ul>
+                <li><h5>关于众择</h5></li>
+                <li><a href="/about-zz.html">关于众择</a></li>
+                <li><a href="/about-culture.html">众择文化</a></li>
+                <li><a href="/about-service.html">众择服务</a></li>               
+                <li><a href="/about-job.html">招聘信息</a></li>
+                <li><a href="/about-us.html">联系我们</a></li>
+            </ul>
+            <ul>
+                <li><h5>帮助中心</h5></li>
+                <li><a href="help-login.html">首次使用</a></li>
+                <li><a href="help-pay.html">如何支付</a></li>
+                <li><a href="help-car.html">用车帮助</a></li>
+                <li><a href="help-service.html">车辆服务</a></li>
+                <li><a href="help-login.html">查看/取消订单</a></li>
+                <li><a href="help-question.html">常见问题</a></li>
+            </ul>
+            <ul>
+                <li><h5>合作伙伴</h5></li>
+                <li><img src="/img/xiechenglogo.png" /></li>
+                <li><img src="/img/subao-logo.png" /></li>
 
-				</ul>
-			</div>
-			<div class="clearfix"></div>
-		</div>
+            </ul>            
+        </div>
+        <div class=" clearfix" ></div>
+    </div>  
+</div>
+<div class="footer-bottom">
+    <div class="footer-link">
+    <h5>友情链接</h5>
+    <ul>
+        <li><a href="http://www.ctrip.com">携程旅游</a></li>
+        <li><a href="http://subaozuche.cn.china.cn/">苏宝租车</a></li>
+    </ul>
+    </div>    
+</div>
+<div class="copyright">
+    Copyright © 2014 ZHONGZE All Rights Reserved. 备案号：沪ICP备14053943号-1。
+</div>
 
-	</div>
-
-	<div class="footer-bottom">
-		<div class="footer-link">
-			<p>友情链接</p>
-			<ul>
-				<li><a href="#">携程旅游</a></li>
-				<li><a href="#">苏宝租车</a></li>
-				<li><a href="#">携程旅游</a></li>
-				<li><a href="#">苏宝租车</a></li>
-				<li><a href="#">携程旅游</a></li>
-				<li><a href="#">苏宝租车</a></li>
-			</ul>
-		</div>
-
-	</div>
-	<div class="clearfix"></div>
-	<p class="text-center">Copyright © 2014 ZHONGZE All Rights Reserved.
-		备案号：沪ICP备14053943号-1。</p>
 </body>
 </html>

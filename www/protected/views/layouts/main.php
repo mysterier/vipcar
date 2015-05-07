@@ -4,6 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+<?php if($this->id == 'order' && ($this->action->id == 'pickup'||$this->action->id == 'send')):?>
+<link rel="stylesheet" type="text/css" href="/fonts/iconfont.css">
+<?php endif;?>
 <link rel="stylesheet" type="text/css" href="/css/mystyle.css"/>
 <?php if($this->id == 'favorite'):?>
 <link rel="stylesheet" type="text/css" href="/css/account-like.css"/>
@@ -46,7 +49,7 @@
 			<ul class="main-nav">
 				<li class="nav-topnav"><a href="/">首页</a></li>
 				<li class="nav-topnav"><a <?php if($this->id == 'home' && $this->action->id == 'service') echo 'class="nav-active"';?> href="/service">服务介绍</a></li>
-				<li class="nav-topnav"><a <?php if($this->id == 'order' && $this->action->id == 'service') echo 'class="nav-active"';?> href="#">在线订车</a></li>
+				<li class="nav-topnav"><a <?php if($this->id == 'order' && ($this->action->id == 'pickup'||$this->action->id == 'send')) echo 'class="nav-active"';?> href="/order/pickup">在线订车</a></li>
 				<li class="nav-topnav"><a <?php if($this->id == 'home' && $this->action->id == 'event') echo 'class="nav-active"';?> href="/event">活动优惠</a></li>
 				<li class="nav-topnav"><a <?php if($this->id == 'enterprise' && $this->action->id == 'show') echo 'class="nav-active"';?> href="/enterprise/show">企业用户</a></li>
 				<li class="nav-topnav nav-left"><a <?php if($this->id == 'home' && $this->action->id == 'magazine') echo 'class="nav-active"';?> href="/magazine">众择杂志</a></li>

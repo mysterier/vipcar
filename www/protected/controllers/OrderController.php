@@ -84,18 +84,17 @@ class OrderController extends Controller
         return $tpl[$service];
     }
 
-    public function actionNew()
-    {
-        $this->breadcrumbs = [
-            '客户管理' => [
-                '/client/list'
-            ],
-            '新建客户'
-        ];
-        
-        $model = new Clients();
-        $this->saveClients($model);
+
+    public function actionPickup() {
+        $this->layout = '//layouts/main';
+        $this->render('pickup');
     }
+    
+    public function actionSend() {
+        $this->layout = '//layouts/main';
+        $this->render('send');
+    }
+    //================
 
     public function actionModify($id)
     {
@@ -138,7 +137,7 @@ class OrderController extends Controller
                 ];
                 $tpl = 'driver_new_order';
                 
-                // PushMsg::action()->pushMsg($attributes, $tpl);
+                PushMsg::action()->pushMsg($attributes, $tpl);
                 $this->redirect('/order/process?status=' . ORDER_STATUS_NOT_DISTRIBUTE);
             }
         }
@@ -157,133 +156,5 @@ class OrderController extends Controller
         ] + $tmp;
         $this->render('processform', $hash);
     }
-
-    public function actionDel($id)
-    {
-        $model = Orders::model()->findByPk($id);
-        if ($model) {
-            $model->status = 2;
-            $model->save();
-        }
-        Yii::app()->end();
-    }
-
-    public function actionProcess()
-    {
-        $criteria = new CDbCriteria();
-        $criteria->with = 'driver.vehicle.model';
-        $criteria->condition = 't.status = :status';
-        $criteria->params = [
-            'status' => $_GET['status']
-        ];
-        $dataProvider = new CActiveDataProvider('Orders', [
-            'criteria' => $criteria,
-            'sort' => [
-                'defaultOrder' => 't.id DESC'
-            ],
-            'pagination' => [
-                'pageVar' => 'page',
-                'pageSize' => ADMIN_PAGE_SIZE
-            ]
-        ]);
-        
-        $template = '';
-        $template .= $this->checkAccess(MODIFY_ORDER) ? '{update}' : '';
-        $template .= $this->checkAccess(DEL_ORDER) ? ' {delete}' : '';
-        $hash['gridDataProvider'] = $dataProvider;
-        $hash['gridColumns'] = [
-            [
-                'name' => 'id',
-                'header' => '序号',
-                'htmlOptions' => [
-                    'style' => 'width: 60px'
-                ]
-            ],
-            [
-                'name' => 'order_no',
-                'header' => '订单号'
-            ],
-            [
-            'name' => 'vehicle_type',
-                'header' => '服务类型',
-                'value' => 'Yii::app()->controller->formatService($data->vehicle_type)'
-            ],
-            [
-            'name' => 'type',
-                'header' => '订单类型',
-                'value' => 'Yii::app()->controller->formatType($data->type)'
-            ],
-            [
-                'name' => 'contacter_name',
-                'header' => '联系人'
-            ],
-            [
-                'name' => 'contacter_phone',
-                'header' => '联系电话'
-            ],
-            [
-                'name' => 'pickup_place',
-                'header' => '出发地'
-            ],
-            [
-                'name' => 'drop_place',
-                'header' => '目的地'
-            ],
-            [
-                'name' => 'created',
-                'header' => '下单时间'
-            ],
-            [
-                'name' => 'driver.name',
-                'header' => '司机'
-            ],
-            [
-                'name' => 'vehicle',
-                'header' => '车型',
-                'value' => 'Yii::app()->controller->getVehicle($data)'
-            ],
-            [
-                'name' => 'status',
-                'header' => '状态',
-                'value' => 'Yii::app()->controller->formatStatus($data->status)'
-            ],
-            [
-                'htmlOptions' => [
-                    'nowrap' => 'nowrap'
-                ],
-                'header' => '操作',
-                'class' => 'booster.widgets.TbButtonColumn',
-                'template' => $template,
-                'updateButtonUrl' => 'Yii::app()->controller->createUrl("modify", ["id" => $data->id])',
-                'deleteButtonUrl' => 'Yii::app()->controller->createUrl("del", ["id" => $data->id])'
-            ]
-        ];
-        $this->breadcrumbs = [
-            '订单处理'
-        ];
-        $this->render('process', $hash);
-    }
-
-    public function formatType($type)
-    {
-        $tpl = [
-            ORDER_TYPE_AIRPORTPICKUP => '接机单',
-            ORDER_TYPE_AIRPORTSEND => '送机单'
-        ];
-        return $tpl[$type];
-    }
-    
-    public function getVehicle($obj)
-    {
-        $string = '';
-        $driver = $obj->driver;
-        if ($driver && $driver->vehicle) {
-            if ($driver->vehicle[0]->model) {
-                $string = $driver->vehicle[0]->model->make;
-                $string .= ' - ' . $driver->vehicle[0]->model->model;
-            }
-        }
-        return $string;
-    }
-    
+     
 }

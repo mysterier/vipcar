@@ -87,7 +87,15 @@ class OrderController extends Controller
 
     public function actionPickup() {
         $this->layout = '//layouts/main';
-        $this->render('pickup');
+        $model = new Orders('weborder');
+        $model->pickup_time = '';//清除数据库的默认值
+        if ($_POST) {
+            $model->attributes = $_POST['Orders'];
+            if ($model->save())
+                $this->redirect('/order/index');
+        }
+        $hash['model'] = $model;
+        $this->render('pickup', $hash);
     }
     
     public function actionSend() {

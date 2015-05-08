@@ -68,6 +68,57 @@ class JsonpController extends Controller
         echo 0;
     }
     
+    public function actionGetflight() {
+        $flight = $this->getParam('flight');
+        $date = $this->getParam('date');
+        $date = preg_match('/\d{4}-\d{2}-\d{2}/', $date, $m) ? $m[0] : '';
+        $contacter_name = '';
+        $contacter_phone = '';
+        $fdate = str_replace('-', '', $date);
+    
+        $params = [
+            'key' => '7e6e711ef3304a058decf5fb38c50ab4',
+            'flightNo' => $flight,
+            'date' => $fdate
+        ];
+        $url = "http://apis.haoservice.com/plan/InternationalFlightQueryByFlightNo";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        $output = curl_exec($ch);
+        if ($output === FALSE) {
+            $output = [
+                'error_code' => -1
+            ];
+        } else {
+            $output = json_decode($output);
+            $pickup_time = $html = '';
+            if ($output->result) {                
+                $dep_time = preg_match('/\d{2}:\d{2}/', $output->result->dep_time, $m) ? $m[0] : '';
+                $arr_time = preg_match('/\d{2}:\d{2}/', $output->result->arr_time, $m) ? $m[0] : '';
+                if (strtotime($arr_time) < strtotime($dep_time)) {
+                    $date = strtotime($date .' +1 day');
+                    $date = date('Y-m-d', $date);
+                }
+                $pickup_time .= $date . ' ' . $arr_time;
+                $output = [
+                    'error_code' => 0,
+                    'pickup_place' => $output->result->arr,
+                    'pickup_time' => $pickup_time
+                ];
+            } else {
+                $output = [
+                    'error_code' => -1,
+                ];
+            }            
+        }
+        curl_close($ch);
+        $res = json_encode($output);
+        echo $res;
+    }
+    
     public function afterAction($action) {
         Yii::app()->end();
     }

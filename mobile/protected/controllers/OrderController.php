@@ -177,15 +177,15 @@ class OrderController extends Controller
             $output = json_decode($output);
             $pickup_time = $html = '';
             if ($output->result) {
-               $dep_time = strtotime($output->result->dep_time);
-               $arr_time = strtotime($output->result->arr_time);
-               if ($arr_time < $dep_time) {
+               $dep_time = preg_match('/\d{2}:\d{2}/', $output->result->dep_time, $m) ? $m[0] : '';
+               $arr_time = preg_match('/\d{2}:\d{2}/', $output->result->arr_time, $m) ? $m[0] : '';
+               if (strtotime($arr_time) < strtotime($dep_time)) {
                    $date = strtotime($date .' +1 day');
                    $date = date('Y-m-d', $date);
                }
-               $pickup_time .= $date . ' ' . $output->result->arr_time;
+               $pickup_time .= $date . ' ' . $arr_time;
                $text = '<span class="title">航班时间选择</span>';
-               $text .= $output->result->dep . '&nbsp;&nbsp;&nbsp;&nbsp;至 &nbsp;&nbsp;&nbsp;&nbsp;' . $output->result->arr . '&nbsp;&nbsp;&nbsp;&nbsp;到达时间：'. $output->result->arr_time;
+               $text .= $output->result->dep . '&nbsp;&nbsp;&nbsp;&nbsp;至 &nbsp;&nbsp;&nbsp;&nbsp;' . $output->result->arr . '&nbsp;&nbsp;&nbsp;&nbsp;到达时间：'. $arr_time;
                
                $flight = urlencode($flight);
                $pickup_time = urlencode($pickup_time);

@@ -35,6 +35,8 @@ class Orders extends CActiveRecord
     public $total_order;
 
     public $total_income;
+    
+    public $agreeme;
 
     /**
      *
@@ -109,8 +111,24 @@ class Orders extends CActiveRecord
                 'star',
                 'required',
                 'on' => 'webcomment'
+            ],
+            [
+                'order_no, contacter_name, vehicle_type, contacter_phone, estimated_cost, pickup_place, drop_place, flight_number, pickup_time, type',
+                'required',
+                'message' => '{attribute}不能为空！',
+                'on' => 'weborder'
+            ],
+            [
+                'agreeme',
+                'agreeme',
+                'on' => 'weborder'
             ]
         ];
+    }
+    
+    public function agreeme($attribute, $params) {
+        if (!$_POST['Orders']['agreeme'])
+            $this->addError('agreeme', '未同意条款！');
     }
 
     /**
@@ -158,6 +176,7 @@ class Orders extends CActiveRecord
             'pickup_place' => '出发地',
             'drop_place' => '目的地',
             'flight_number' => '航班号',
+            'pickup_time' => '上车时间',
             'summary' => '备注',
             'type' => '订单类型',
             'status' => '订单状态',

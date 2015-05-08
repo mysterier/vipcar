@@ -79,7 +79,8 @@ class Controller extends CController
                     '?'
                 ],
                 'deniedCallback' => function ($rule) {
-                    header("location: /login");
+                    Yii::app()->user->loginRequired();
+                    //header("location: /login");
                 }
             ]
         ];

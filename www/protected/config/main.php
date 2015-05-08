@@ -32,7 +32,7 @@ return array(
     // application components
     'components' => array(
         'user' => array(
-            
+            'loginUrl' => '/login',
             // enable cookie-based authentication
             'allowAutoLogin' => true
         ),

@@ -3,6 +3,9 @@
 	margin:0;
 	padding:0;
 }
+.modal-open {
+  overflow: inherit  !important;
+}
 a:hover{text-decoration: none;
 }
 .font12{
@@ -330,7 +333,7 @@ body{
 	float:left;
 }
 .service-tel{
-	margin-top: 30px;
+	margin-left: 20px;
 	width:200px;
 	height: 30px;
 	line-height: 30px;
@@ -395,7 +398,7 @@ body{
 
 }
 .footer-link ul li a{
-	font-size:16px;
+	font-size:1em;
 	color:#fff;
 	padding:0 30px;
 	border-right:1px solid #fff;
@@ -542,6 +545,10 @@ body{
 	width: 200px;
 	height: 200px;
 }
+.registertext{
+	height: 200px;
+	line-height: 24px;
+}
 /*login*/
 .loginimg{
 	background:url(/img/loginbanner.jpg) no-repeat top center;
@@ -551,15 +558,13 @@ body{
 	margin:20px 0;
 }
 .login-right{
-
-
 	float: right;
 	width:300px;
-	margin: 250px 0 50px;
+	margin: 30px 0 50px;
 }
 .login-left{
 	float: left;
-	margin: 250px 0 50px;
+	margin: 30px 0 50px;
 }
 .login-left img{
 	width: 640px;
@@ -572,12 +577,16 @@ body{
 	margin:0 auto;
 
 }
-
-.login 	h3{
-	clear:both;
-	padding:30px;
-	text-align:center;
+.login-head{
+	padding-top: 240px;
 }
+.login-head h3{
+	font-size: 2em;
+}
+.login-head p{
+	font-size: 1.5em;
+}
+
 .loginhide{
 	display:none;
 }
@@ -585,7 +594,6 @@ body{
 	height:50px;
 	background-color:#eee;
 	border-bottom:1px solid #ccc;
-
 }
 .logintop li{
 	display:block;
@@ -596,8 +604,6 @@ body{
 	text-align:center;
 	font-size:18px;
 	cursor: pointer;
-	
-
 }
 .logintop a{
 	display: inline-block;	
@@ -622,6 +628,25 @@ body{
 	padding: 30px 10px;
 }
 /*接送机*/
+.yhq-color{
+	cursor: pointer;
+	height: 80px;
+	background-color: #37474f;
+	margin-bottom: 10px;
+}
+.yhq-color div{
+	color: #fff;
+	font-size: 2em;
+	line-height: 80px;
+	text-align: center;
+	clear: both;
+
+
+}
+.yhq-logo{
+	float: left;;
+	padding-left: 20px;
+}
 .jiejititle h3,.jiejititle p{
 	color:#000;
 	margin:0;	
@@ -631,15 +656,12 @@ body{
 	margin-bottom: 20px;
 }
 .jieji{
-
-
 	background-color:#fff;
 	padding-bottom:50px;
 	margin-bottom:50px;
 }
 .jiejibottom{
 	padding:0 30px;
-
 }
 .jiesongjibottom{
 	padding-right:0px;
@@ -669,8 +691,6 @@ body{
 	text-align:center;
 	font-size:18px;
 	cursor: pointer;
-	
-
 }
 .jiejitop a{
 	display: inline-block;	
@@ -713,10 +733,9 @@ body{
 	width: 1700px;
 	height: 230px;
 	margin: 0 auto;
-
-
 }
-.magazine-page{
+
+/*.magazine-page{
 
 	background:url(/img/vipcar.jpg) no-repeat;
 	width:960px;
@@ -736,7 +755,7 @@ body{
 }
 .magazine-text p{
 	color:#000;
-}
+}*/
 .magazinelist img{
 	display: block;
 	width: 440px;

@@ -39,7 +39,7 @@
 				<li class="header-topnav"><a href="/login"><?php echo Yii::app()->user->name;?></a></li>
 				<li class="header-topnav"><a href="/logout">[退出]</a></li>				
 				<?php endif;?>
-				<li class="header-topnav header-tel"><span class="icon-tel"><img src="/img/icon-phone.png" /></span>400-684-5505</li>
+				<li class="header-topnav header-tel"><span class="icon-tel"><img src="/img/icon-phone.png" /></span>400-965-2886</li>
 			</ul>
 		</div>
 	</div>
@@ -63,7 +63,7 @@
         <div class="footer-left">
             <div class="footer-logo"><img src="/img/footerlogo.png" /></div>
             <div class="service-tel">
-                <span>400-684-5505</span>
+                <span>400-965-2886</span>
             </div>
             </div>
         <div class="footer-right">
@@ -99,7 +99,7 @@
     <h5>友情链接</h5>
     <ul>
         <li><a href="http://www.ctrip.com">携程旅游</a></li>
-        <li><a href="http://subaozuche.cn.china.cn/">苏宝租车</a></li>
+        <li><a href="http://www.subaozuche.com/">苏宝租车</a></li>
     </ul>
     </div>    
 </div>

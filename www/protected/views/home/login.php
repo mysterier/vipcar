@@ -1,6 +1,9 @@
 <div class="loginimg">
 	<div class="wrapper-width">
-
+	<div class="login-head">
+        <h3 class="text-center">欢迎使用众择用车</h3>
+        <p class="text-center">快乐出行，让乘坐成为一种生活品质!</p>
+    </div>
 	<div class="login-right">
 		<ul class="logintop">
 			<li <?php if(!isset($_GET['type'])) echo 'class="loginhover"';?>>个人用户</li>

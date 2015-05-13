@@ -55,12 +55,6 @@
 						<div class="form-group padnone col-xs-offset-3 col-md-6">
 							<div class="input-group">
 								<div class="input-group-addon iconfont">&#xe738;</div>
-								<?php 
-                			      echo $form->textField($model, 'pickup_time', [
-                			          'class' => 'form-control',
-                			          'placeholder' => '上车时间',
-                			      ]);
-                			    ?>
                 			    <?php
                                     $this->widget('zii.widgets.jui.CJuiDatePicker', [
                                         'model' => $model,
@@ -125,7 +119,8 @@
 								<?php 
                 			      echo $form->textField($model, 'drop_place', [
                 			          'class' => 'form-control',
-                			          'placeholder' => '下车地点'
+                			          'placeholder' => '下车地点',
+                			          'id' => 'suggestId'
                 			      ]);
                 			    ?>
 							</div>
@@ -157,14 +152,39 @@
         			          'placeholder' => '其他需求'
         			      ]);
         			    ?>
-						<!--优惠券-->
-						<a href="#" style="text-align: left; margin-bottom: 15px;"
-							class="btn btn-default col-xs-offset-3 col-md-6"
-							data-toggle="modal" data-target="#youhuiquan" type="button"> <span
-							class="pull-left">优惠券</span><span class="pull-right text-muted">您目前有<span
-								class=" text-danger">4</span>张优惠券
-						</span>
-						</a>
+						<!--优惠券--> 
+                        <a id="youhuiquan" href="#" style="text-align:left; margin-bottom:15px;" class="btn btn-default col-xs-offset-3 col-md-6" data-toggle="modal" type="button"> <span class="pull-left">优惠券</span><span class="pull-right text-muted">您目前有<span class=" text-danger">4</span>张优惠券</span> </a> 
+                          
+                    
+                        <!-- 模态框 -->
+                        <div class="modal fade" id="myyouhuiquan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">我的优惠券</h4>
+                              </div>
+                              <div class="modal-body">
+                                  <!--content-->
+                               <div class="container-fluid"> 
+                                  <div class="yhq-color text-right">  
+                                  <div><p class="yhq-logo"><img  src="/images/jieji/yhqlogo.png" width="50" height="50"></p><strong>50元优惠券</strong></div>              
+                                  </div>             
+                                  <div class="yhq-color text-right">  
+                                  <div><p class="yhq-logo"><img  src="/images/jieji/yhqlogo.png" width="50" height="50"></p><strong>50元优惠券</strong></div>              
+                                  </div>                         
+                                  <div class="yhq-color text-right">  
+                                  <div><p class="yhq-logo"><img  src="/images/jieji/yhqlogo.png" width="50" height="50"></p><strong>50元优惠券</strong></div>              
+                                  </div>
+                               </div>    
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">不使用优惠券</button>
+                                <button type="button" class="btn btn-primary">确定使用</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+        			    
 						<!--价格-->
 
 						<label class="padnone col-xs-offset-3 col-md-6 text-right">价格<span
@@ -219,8 +239,14 @@ $("#Orders_flight_number").blur(function(){
        } else {
     	   $("#noflight").remove();
     	   $("#Orders_pickup_time").val(data.pickup_time);
-    	   $("#Orders_pickup_place").prop("disabled",true).val(data.pickup_place);
+    	   $("#Orders_pickup_place").prop("readonly",true).val(data.pickup_place);
        }
     },'json');
 });
+//百度地图
+var ac = new BMap.Autocomplete(
+	{"input" : "suggestId",
+	"location" : "上海"
+});
+
 </script>

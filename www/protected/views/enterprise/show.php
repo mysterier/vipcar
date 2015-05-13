@@ -1,143 +1,112 @@
 <!--banner-->
-<?php include __DIR__ . '/../home/_banner.php';?>
+<div class="imgtop">
+   <img src="/images/service/imgtop01.jpg">
+</div>
 
 
 <!--互联网时代专车-->
 <div class="showapp">
-	<div class="wrapper-width">
-		<h3 class="text-center">| 互联网时代专车 |</h3>
-		<div class="enterprise-car">
-			<div class="col-md-4 ">
-				<img src="/img/enterprisecar1.jpg">
-				<h4 class="text-center">私家车</h4>
-				<p class="text-center">城市限流 外牌入市难 停车难度增大 养车成本增加</p>
-			</div>
-			<div class="col-md-4">
-				<img src="/img/enterprisecar1.jpg">
-				<h4 class="text-center">普通拼车、打车软件</h4>
-				<p class="text-center">非专业司机多 车辆供不应求 服务不到位 国家不认可</p>
-			</div>
-			<div class="col-md-4">
-				<img src="/img/enterprisecar1.jpg">
-				<h4 class="text-center">众择用车</h4>
-				<p class="text-center">贴心服务 免费保险 专业司机 车型多样</p>
-			</div>
-		</div>
-	</div>
+    <div class="wrapper-width">
+        <h3 class="text-center">高效服务，品质保障</h3>
+        <p class="text-center"> 更舒适、更便捷、更专业、更安全</p>
+        <div class="enterprise-car">
+            <img src="/images/enterprise/enterprise1.jpg"> 
+        </div>
+    </div>
 </div>
 <div class="clearfix"></div>
 <!--app下载-->
-<div class="enterprise-why-bg">
+
 	<div class="wrapper-width">
-		<h3 class="text-center">| 为什么选择众择 |</h3>
-		<div class="enterprise-why">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-6">
-						<div class="col-md-3">
-							<img src="/img/enterprisewhy1.png">
-						</div>
-						<div class="col-md-9">
-							<h5>里程无忧</h5>
-							<p>接送服务包含50公里及2小时使用，完全满足市区往返机场的距离。</p>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="col-md-3">
-							<img src="/img/enterprisewhy2.jpg">
-						</div>
-						<div class="col-md-9">
-							<h5>智能接机</h5>
-							<p>网页和手机APP均可下单快捷接机</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="col-md-6">
-						<div class="col-md-3">
-							<img src="/img/enterprisewhy3.jpg">
-						</div>
-						<div class="col-md-9">
-							<h5>延误无忧</h5>
-							<p>延误所造成的等待时间，我们不会计入费用。</p>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="col-md-3">
-							<img src="/img/enterprisewhy4.jpg">
-						</div>
-						<div class="col-md-9">
-							<h5>快捷支付</h5>
-							<p>绑定信用卡或用支付宝给您的账户充值，您也可以先用车、后付费。</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="col-md-6">
-						<div class="col-md-3">
-							<img src="/img/enterprisewhy5.jpg">
-						</div>
-						<div class="col-md-9">
-							<h5>为他人订车</h5>
-							<p>您可以再这里给TA人订车，给TA送去一份惊喜和便捷。</p>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="col-md-3">
-							<img src="/img/enterprisewhy6.jpg">
-						</div>
-						<div class="col-md-9">
-							<h5>举牌服务</h5>
-							<p>免费为客户制作接机牌，免费代客举牌，方便用户联系。</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="col-md-6">
-						<div class="col-md-3">
-							<img src="/img/enterprisewhy7.jpg">
-						</div>
-						<div class="col-md-9">
-							<h5>专业司机</h5>
-							<p>为您提供服务的均来自上午租车领域，且驾龄超过10年的专业司机。</p>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="col-md-3">
-							<img src="/img/enterprisewhy8.jpg">
-						</div>
-						<div class="col-md-9">
-							<h5>车型多样</h5>
-							<p>将满足您呢对舒适度的不同要求来匹配您的旅程。</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="col-md-6">
-						<div class="col-md-3">
-							<img src="/img/enterprisewhy9.jpg">
-						</div>
-						<div class="col-md-9">
-							<h5>贴心提醒</h5>
-							<p>全程短信免费提醒，让您安享贴心旅程。</p>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="col-md-3">
-							<img src="/img/enterprisewhy10.jpg">
-						</div>
-						<div class="col-md-9">
-							<h5>免费保险</h5>
-							<p>每当您预定完成一次，所有乘客即获1份高额意外保险。</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-
-	</div>
+     <div class="enterprise-why-bg">
+        <div class="enterprise-title">
+            <img src="/images/enterprise/title1.png">
+        </div>
+        <div class="enterprise-why">           
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <img src="/images/enterprise/icon1.png">
+                        </div>
+                        <div class="col-md-9">
+                            <h5>专业司机</h5>
+                            <p>专业的司机团队，专业的服务培训，10年以上驾龄，安全、服务的保障。</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <img src="/images/enterprise/icon2.png">
+                        </div>
+                        <div class="col-md-9">
+                            <h5>贵宾通道</h5>
+                            <p>贵宾通道，无需等待。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <img src="/images/enterprise/icon3.png">
+                        </div>
+                        <div class="col-md-9">
+                            <h5>多样车型</h5>
+                            <p>舒适、商务、豪华等多样化车型，匹配相对应的需求，按需用车。</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <img src="/images/enterprise/icon4.png">
+                        </div>
+                        <div class="col-md-9">
+                            <h5>VIP尊享</h5>
+                            <p>出行礼品及增值服务，尊享VIP。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <img src="/images/enterprise/icon5.png">
+                        </div>
+                        <div class="col-md-9">
+                            <h5>专属客服</h5>
+                            <p>专属客服团队，为您提供用车需求的解决方案，全流程服务。</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <img src="/images/enterprise/icon6.png">
+                        </div>
+                        <div class="col-md-9">
+                            <h5>合法营运</h5>
+                            <p>自主车队，系统管理，合法营运</p>
+                        </div>
+                    </div>
+                </div>               
+            </div>
+ 
+    </div>
+		
+    </div>
 </div>
+
+<!-- 你可以这样使用众择 -->
+
+
+    <div class="wrapper-width padding100">
+    <div class="enterprise-user-container">
+        <div class="enterprise-use">
+            <img src="/images/enterprise/title2.png">
+        </div>
+        <div class="enterprise-use-img">
+            <img src="/images/enterprise/car-yuangong.png"> 
+            <img src="/images/enterprise/car-kehu.png"> 
+            <img src="/images/enterprise/car-huiyi.png"> 
+        </div>
+    </div>
+    </div>
+<div class="clearfix"></div>
 <!--service-->
 
 <div class="wrapper-width">

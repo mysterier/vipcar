@@ -95,7 +95,39 @@ class JsonpController extends Controller
         } else {
             $output = json_decode($output);
             $pickup_time = $html = '';
-            if ($output->result) {                
+            if ($output->result) {
+                if(isset($output->result->stops)) {
+                    foreach ($output->result->stops as $stop) {
+                        if (preg_match('/浦东国际机场T1/', $stop->title)) {
+                            $output->result->dep_time = $stop->dep_time;
+                            $output->result->arr_time = $stop->arr_time;
+                            $output->result->arr = '浦东国际机场T1';
+                            break;
+                        }
+                        
+                        if (preg_match('/浦东国际机场T2/', $stop->title)) {
+                            $output->result->dep_time = $stop->dep_time;
+                            $output->result->arr_time = $stop->arr_time;
+                            $output->result->arr = '浦东国际机场T2';
+                            break;
+                        }
+                        
+                        if (preg_match('/虹桥国际机场T1/', $stop->title)) {
+                            $output->result->dep_time = $stop->dep_time;
+                            $output->result->arr_time = $stop->arr_time;
+                            $output->result->arr = '虹桥国际机场T1';
+                            break;
+                        }
+                        
+                        if (preg_match('/虹桥国际机场T2/', $stop->title)) {
+                            $output->result->dep_time = $stop->dep_time;
+                            $output->result->arr_time = $stop->arr_time;
+                            $output->result->arr = '虹桥国际机场T2';
+                            break;
+                        }
+                    }
+                }
+                
                 $dep_time = preg_match('/\d{2}:\d{2}/', $output->result->dep_time, $m) ? $m[0] : '';
                 $arr_time = preg_match('/\d{2}:\d{2}/', $output->result->arr_time, $m) ? $m[0] : '';
                 if (strtotime($arr_time) < strtotime($dep_time)) {

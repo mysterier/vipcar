@@ -115,6 +115,10 @@ class HomeController extends Controller
         $this->render('event');
     }
     
+    public function actionDownload() {
+        $this->render('download');
+    }
+    
     public function actionMagazine() {
         $attributes = [
             'status' => 1

@@ -91,78 +91,47 @@ class OrderController extends Controller
         $model->pickup_time = '';//清除数据库的默认值
         if ($_POST) {
             $model->attributes = $_POST['Orders'];
+            $model->client_id = $this->uid;
+            $model->order_no = 'web' . time();
+            $model->type = (string)ORDER_TYPE_AIRPORTPICKUP;
             if ($model->save())
                 $this->redirect('/order/index');
         }
+        $coupon = $this->getTicket();
+        $hash['count_coupon'] = count($coupon);
+        $hash['coupon'] = $coupon;
         $hash['model'] = $model;
         $this->render('pickup', $hash);
     }
     
     public function actionSend() {
         $this->layout = '//layouts/main';
-        $this->render('send');
-    }
-    //================
-
-    public function actionModify($id)
-    {
-        $this->breadcrumbs = [
-            '订单处理' => [
-                '/order/process?status=' . ORDER_STATUS_NOT_DISTRIBUTE
-            ],
-            '修改订单'
-        ];
-        $model = Orders::model()->findByPk($id);
-        $model->setScenario('process_order');
-        $this->saveOrders($model);
-    }
-
-    /**
-     *
-     * @todo 推送 百度老报错
-     * @param unknown $model            
-     */
-    private function saveOrders($model)
-    {
-        if (isset($_POST['Orders'])) {
-            // 如果订单已经分配司机，则将该司机的flag改为free
-            Drivers::model()->modifyFlag(DRIVER_FLAG_FREE, $model);
-            $driver_id = $_POST['Orders']['driver_id'];
-            $driver = Drivers::model()->with('vehicle')->findByPk($driver_id);
+        $model = new Orders('weborder');
+        $model->pickup_time = '';//清除数据库的默认值
+        if ($_POST) {
             $model->attributes = $_POST['Orders'];
-            $model->status = (string) ORDER_STATUS_DISTRIBUTE;
-            $model->license_no = $driver->vehicle[0]->license_no;
-            $model->last_update = time();
-            if ($model->save()) {            
-                $this->setApiLastUpdate($model->client_id, 'client');
-                $this->setApiLastUpdate($driver_id, 'driver');
-                Drivers::model()->modifyFlag(DRIVER_FLAG_DISTRIBUTED, $model);
-                // 给司机发送通知
-                Yii::import('common.pushmsg.*');
-                $attributes = [
-                    'client_id' => $driver_id,
-                    'type' => USER_TYPE_DRIVER
-                ];
-                $tpl = 'driver_new_order';
-                
-                PushMsg::action()->pushMsg($attributes, $tpl);
-                $this->redirect('/order/process?status=' . ORDER_STATUS_NOT_DISTRIBUTE);
-            }
+            $model->client_id = $this->uid;
+            $model->order_no = 'web' . time();
+            $model->type = (string)ORDER_TYPE_AIRPORTPICKUP;
+            if ($model->save())
+                $this->redirect('/order/index');
         }
+        $coupon = $this->getTicket();
+        $hash['count_coupon'] = count($coupon);
+        $hash['coupon'] = $coupon;
         $hash['model'] = $model;
-        $drivers = $model->getDriversByVehcileType();
-        $tmp = [];
-        if ($drivers) {
-            $driver = array_shift($drivers);
-            $name = $driver->name;
-            $vehicle = $driver->vehicle[0];
-            $name .= '-->' . $vehicle->model->make . '-' . $vehicle->model->model;
-            $tmp[$driver->id] = $name;
-        }
-        $hash['drivers'] = [
-            '' => '--请选择--'
-        ] + $tmp;
-        $this->render('processform', $hash);
+        $this->render('send', $hash);
     }
      
+    private function getTicket() {
+        $criteria = new CDbCriteria();
+        $criteria->condition = 't.client_id=:client_id and t.status=:status';
+        $criteria->order = 't.id asc';
+        $criteria->params = [
+            'client_id' => $this->uid,
+            'status' => CLIENT_TICKET_ACTIVED
+        ];
+        $model = ClientTicket::model()->with('ticket')->findAll($criteria);
+        return $model;
+    }
 }

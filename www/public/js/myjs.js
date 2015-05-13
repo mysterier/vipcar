@@ -84,5 +84,14 @@ $(function(){
 				$("#contacter_name").val(contacter_name);
 			});	
 
+//模态框
+
+	$("#youhuiquan").click(function(){
+		jQuery.noConflict();
+		$("#myyouhuiquan").modal(); 
+		$("body").css('padding-right','0px');
+	})
+
+	
 
 });

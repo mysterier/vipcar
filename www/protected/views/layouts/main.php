@@ -4,14 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+<script type="text/javascript" src="/js/jquery-1.11.2.js"></script>
 <?php if($this->id == 'order' && ($this->action->id == 'pickup'||$this->action->id == 'send')):?>
 <link rel="stylesheet" type="text/css" href="/fonts/iconfont.css">
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xKTm9GM58nRtGkBATG6jGwui"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <?php endif;?>
 <link rel="stylesheet" type="text/css" href="/css/mystyle.css"/>
 <?php if($this->id == 'favorite'):?>
 <link rel="stylesheet" type="text/css" href="/css/account-like.css"/>
 <?php endif;?>
-<script type="text/javascript" src="/js/jquery-1.11.2.js"></script>
 <script type="text/javascript" src="/js/myjs.js"></script>
 <?php if($this->id == 'order' && $this->action->id == 'comment'):?>
 <script type="text/javascript" src="/js/star.js"></script>
@@ -29,7 +31,7 @@
 		<a href="/" id="logo"></a>
 			<ul class="header-nav">
 				<li class="header-topnav"><a href="/order/index">我的账户</a></li>
-				<li class="header-topnav"><a href="#">客户端下载</a></li>
+				<li class="header-topnav"><a href="/#appdown">客户端下载</a></li>
 				<li class="header-topnav"><a href="#">关注众择</a></li>
 				<li class="header-topnav"><a href="/notice">众择公告</a></li>
 				<?php if(Yii::app()->user->isGuest):?>

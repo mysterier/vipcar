@@ -36,7 +36,7 @@
     						<div class="col-sm-5">
     							<?php 
     						      echo $form->telField($model, 'mobile', [
-    						          'class' => 'form-control',
+    						          'class' => 'form-control person',
     						          'placeholder' => '手机号'
     						      ]);
     						    ?>
@@ -62,15 +62,15 @@
     						      ]);
     						    ?>
     						</div>
+    						<div class="col-sm-4">
+    							<input type="button" class="btn btn-block btn-default getcode" mobile="person" value="获取短信验证码" />
+    						</div>
     						<?php 
     						  echo $form->error($model,'msg_code',[
     						      'inputID'=>'custom-id',
     						      'class' => 'col-sm-3 errtxt'
     						  ]); 
     						?>
-    						<div class="col-sm-4">
-    							<button type="submit" class="btn btn-block btn-default">获取短信验证码</button>
-    						</div>
     					</div>
     					<div class="form-group">
     						<?php 
@@ -131,12 +131,14 @@
     						      ]);
     						    ?>
     						</div>
-    						<label class="col-sm-2"> 
-    						      <input name="Clients[client_title]" type="radio" value="1"> 先生
-    						</label> 
-    						<label class="col-sm-2"> 
-    						      <input name="Clients[client_title]" type="radio" value="2"> 女士
-    						</label>
+    						<?php 
+    						  echo $form->radioButtonList($model, 'client_title', [
+    						      '1' => '先生',
+    						      '2' => '女士'
+    						  ],[
+    						      'separator' => '&nbsp;&nbsp;&nbsp;&nbsp;'
+    						  ]);
+    						?>
     					</div>
     					<div class="form-group">
     						<div class="col-sm-offset-3 col-sm-9">
@@ -208,7 +210,7 @@
         						<div class="col-sm-5">
         							<?php 
         						      echo $form->telField($model, 'mobile', [
-        						          'class' => 'form-control',
+        						          'class' => 'form-control enter',
         						          'placeholder' => '手机号'
         						      ]);
         						    ?>
@@ -234,15 +236,15 @@
         						      ]);
         						    ?>
         						</div>
+        						<div class="col-sm-4">
+        						    <input type="button" class="btn btn-block btn-default getcode" mobile="enter" value="获取短信验证码" />
+        						</div>
         						<?php 
         						  echo $form->error($model,'msg_code',[
         						      'inputID'=>'custom-id',
         						      'class' => 'col-sm-3 errtxt'
         						  ]); 
         						?>
-        						<div class="col-sm-4">
-        							<button type="submit" class="btn btn-block btn-default">获取短信验证码</button>
-        						</div>
         					</div>
     						<div class="form-group">
     							<?php 
@@ -420,3 +422,33 @@
 </div>
 <script type="text/javascript" src="/js/area.js"></script>
 <script type="text/javascript">_init_area();</script>
+<script type="text/javascript">
+var wait=<?php echo VERIFY_CODE_RESEND;?>;
+function time(o) {
+    if (wait == 0) {
+        o.removeAttribute("disabled"); 
+        o.value="获取短信验证码";
+        wait = <?php echo VERIFY_CODE_RESEND;?>;
+    } else {
+        o.setAttribute("disabled", true);
+        o.value="重新发送(" + wait + ")";
+        wait--;
+        setTimeout(function() {
+            time(o)
+        },
+        1000)
+    }
+}
+$(".getcode").click(function(){
+	class_name = $(this).attr('mobile');
+    mobile = $("." + class_name).val();
+	if (!mobile)
+		alert('请先填写手机号码！');
+	else {
+		time(this);
+		$.post('/jsonp/sendcode',{'mobile':mobile},function(data){
+		    error_code = data.error_code;
+		},'json');
+	}	
+});
+</script>

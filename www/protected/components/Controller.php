@@ -61,6 +61,28 @@ class Controller extends CController
     {
         return Yii::app()->request->getParam($param, $default);
     }
+    
+    /**
+     * 简单redis存储
+     */
+    public function sRedisSet($key, $value, $expire = REDIS_EXPIRE)
+    {
+        Yii::app()->redis->getClient()->set($key, $value);
+        if ($expire)
+            Yii::app()->redis->getClient()->expire($key, $expire);
+    }
+    
+    public function sRedisGet($key)
+    {
+        return Yii::app()->redis->getClient()->get($key);
+    }
+    
+    public function getVerifyCode()
+    {
+        $code = rand(100000, 999999);
+        return $code;
+    }
+    
 
     public function filters()
     {

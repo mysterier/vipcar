@@ -159,20 +159,20 @@ class Clients extends CActiveRecord
     }
 
     public function msg_code($attribute, $params) {
-        if (false)
+        $captcha = Yii::app()->redis->getClient()->get($this->mobile);
+        if ($captcha != $this->msg_code)
             $this->addError('msg_code', '验证码错误！');
     }
     
     public function agreeme($attribute, $params) {
-        if (!$_POST['Clients']['agreeme'])
+        if (!$this->agreeme)
             $this->addError('agreeme', '未同意条款！');
     }
     
     public function oldpwd($attribute, $params) {
-        $uid = Yii::app()->session['uid'];
+        $uid = Yii::app()->user->id;
         $model = self::model()->findByPk($uid);
-        $oldpwd = $_POST['Clients']['oldpwd'];
-        $pass = md5($oldpwd);
+        $pass = md5($this->oldpwd);
         $pass = 'suxian' . $pass;
         $pass = md5($pass);
         if ($model->password != $pass) 

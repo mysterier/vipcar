@@ -37,6 +37,14 @@ return array(
             'allowAutoLogin' => true
         ),
         
+        'redis' =>array(
+            "class" => "common.redis.ARedisConnection",
+            "hostname" => REDIS_HOST,
+            "port" => REDIS_PORT,
+            "database" => 1,
+            "prefix" => "Yii.redis."
+        ),
+        
         // uncomment the following to enable URLs in path-format
         
         'urlManager' => array(

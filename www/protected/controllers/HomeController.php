@@ -26,8 +26,11 @@ class HomeController extends Controller
         if (isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
             // validate user input and redirect to the previous page if valid
-            if ($model->validate() && $model->login())
-                $this->redirect(Yii::app()->user->returnUrl);
+            if ($model->validate() && $model->login()) {
+                $url = Yii::app()->user->returnUrl;
+                $url = $url == '/' ? '/order/pickup' : $url;
+                $this->redirect($url);
+            }               
         }
         $this->render('login', $hash);
     }
@@ -54,12 +57,15 @@ class HomeController extends Controller
     public function actionRegister() {
         $model = new Clients();
         $item = new ClientItems();
+        $model->client_title = '1';
         $hash['model'] = $model;
         $hash['item'] = $item;
         $this->render('register', $hash);
     }
     
     public function actionRegperson() {
+        if (!$_POST)
+            $this->redirect('/register');
         $model = new Clients();
         $model->setScenario('webreg');
         $model->attributes = $_POST['Clients'];
@@ -77,6 +83,8 @@ class HomeController extends Controller
     }
     
     public function actionRegenter() {
+        if (!$_POST)
+            $this->redirect('/register');
         $model = new Clients();
         $model->setScenario('webreg');
         $model->attributes = $_POST['Clients'];

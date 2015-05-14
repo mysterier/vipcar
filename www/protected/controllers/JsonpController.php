@@ -151,6 +151,28 @@ class JsonpController extends Controller
         echo $res;
     }
     
+    public function actionSendcode() {
+        $mobile = $this->getParam('mobile');
+        if (!$this->sRedisGet($mobile.'issend_from_web')) {
+            //发送验证短信
+            Yii::import('common.sms.sms');
+            $code = $this->getVerifyCode();
+            $content = sms::getSmsTpl(SMS_VERIFY_CODE, [$code, VERIFY_CODE_EXPIRE/60]);
+            sms::addSmsToQueue($mobile, SMS_VERIFY_CODE, $content, [0, USER_TYPE_CLIENT]);
+            $this->sRedisSet($mobile, $code, VERIFY_CODE_EXPIRE);
+            $this->sRedisSet($mobile.'issend_from_web', 1, VERIFY_CODE_RESEND);
+            $output = [
+                'error_code' => 0
+            ];
+        } else {
+            $output = [
+                'error_code' => -1,
+                'error_msg' => ERROR_VERIFY_CODE_RESEND
+            ];
+        }
+        echo json_encode($output);
+    }
+        
     public function afterAction($action) {
         Yii::app()->end();
     }

@@ -115,11 +115,16 @@
             			  ]); 
             			?>
 						<div class="form-group padnone col-xs-offset-3 col-md-6">
-							<div class="input-group">
-								<div class="input-group-addon iconfont">&#xe606;</div>
+							<div class="input-group col-xs-3 pull-left">
+                              <div class="input-group-addon iconfont">&#xe606;</div>
+                                <select class="form-control radiusright">
+                                  <option>上海</option>
+                                </select>
+                            </div>
+                            <div class="col-md-9 jieji-adress"> 
 								<?php 
                 			      echo $form->textField($model, 'drop_place', [
-                			          'class' => 'form-control',
+                			          'class' => 'form-control radiusleft',
                 			          'placeholder' => '下车地点',
                 			          'id' => 'suggestId'
                 			      ]);

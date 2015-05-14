@@ -62,23 +62,6 @@
 					<div class="form-group padnone col-xs-offset-3 col-md-6">
 						<div class="input-group">
 							<div class="input-group-addon iconfont">&#xe738;</div>
-            			    <?php
-//                                 $this->widget('zii.widgets.jui.CJuiDatePicker', [
-//                                     'model' => $model,
-//                                     'attribute' => 'pickup_time',
-//                                     'language' => 'zh_cn',
-                                    
-//                                     'options' => [
-//                                         'showAnim' => 'fold',
-//                                         'dateFormat' => 'yy-mm-dd hh:ii',
-//                                     ],
-//                                     'htmlOptions' => [
-//                                         'class' => 'form-control',
-//                                         'placeholder' => '上车时间',
-//                                         //'readonly' => 'readonly'
-//                                     ]
-//                                 ]);
-                                ?>
                             <?php 
             			      echo $form->textField($model, 'pickup_time', [
             			          'class' => 'form-control',
@@ -94,11 +77,16 @@
         			  ]); 
         			?>
 					<div class="form-group padnone col-xs-offset-3 col-md-6">
-						<div class="input-group">
-							<div class="input-group-addon iconfont">&#xe606;</div>
+						<div class="input-group col-xs-3 pull-left">
+                          <div class="input-group-addon iconfont">&#xe606;</div>
+                            <select class="form-control radiusright">
+                              <option>上海</option>
+                            </select>
+                        </div>
+                        <div class="col-md-9 jieji-adress"> 
 							<?php 
             			      echo $form->textField($model, 'pickup_place', [
-            			          'class' => 'form-control',
+            			          'class' => 'form-control radiusleft',
             			          'placeholder' => '上车地点',
             			          'id' => 'suggestId'
             			      ]);

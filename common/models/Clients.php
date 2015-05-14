@@ -126,9 +126,14 @@ class Clients extends CActiveRecord
                 'required',
                 'message' => '{attribute}不能为空！',
                 'on' => [
-                    'webreg',
                     'webeditpwd'
                 ]
+            ],
+            [
+                'password',
+                'required',
+                'message' => '{attribute}不能为空！',
+                'on' => 'webreg'
             ],
             [
                 'confirmpwd',

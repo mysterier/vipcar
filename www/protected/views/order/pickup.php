@@ -101,6 +101,7 @@
 								<div class="input-group-addon iconfont">&#xe622;</div>
 								<?php 
                 			      echo $form->textField($model, 'pickup_place', [
+                			          'id' => 'terminal',
                 			          'class' => 'form-control',
                 			          'placeholder' => '航站楼',
                 			      ]);
@@ -152,41 +153,21 @@
         			          'placeholder' => '其他需求'
         			      ]);
         			    ?>
-						<!--优惠券--> 
-                        <a id="youhuiquan" href="#" style="text-align:left; margin-bottom:15px;" class="btn btn-default col-xs-offset-3 col-md-6" data-toggle="modal" type="button"> <span class="pull-left">优惠券</span><span class="pull-right text-muted">您目前有<span class=" text-danger">4</span>张优惠券</span> </a> 
-                          
-                    
-                        <!-- 模态框 -->
-                        <div class="modal fade" id="myyouhuiquan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">我的优惠券</h4>
-                              </div>
-                              <div class="modal-body">
-                                  <!--content-->
-                               <div class="container-fluid"> 
-                                  <div class="yhq-color text-right">  
-                                  <div><p class="yhq-logo"><img  src="/images/jieji/yhqlogo.png" width="50" height="50"></p><strong>50元优惠券</strong></div>              
-                                  </div>             
-                                  <div class="yhq-color text-right">  
-                                  <div><p class="yhq-logo"><img  src="/images/jieji/yhqlogo.png" width="50" height="50"></p><strong>50元优惠券</strong></div>              
-                                  </div>                         
-                                  <div class="yhq-color text-right">  
-                                  <div><p class="yhq-logo"><img  src="/images/jieji/yhqlogo.png" width="50" height="50"></p><strong>50元优惠券</strong></div>              
-                                  </div>
-                               </div>    
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">不使用优惠券</button>
-                                <button type="button" class="btn btn-primary">确定使用</button>
-                              </div>
-                            </div>
-                          </div>
+						<!--优惠券-->
+						<?php if($count_coupon > 0):?>
+                        <div class="form-group padnone col-xs-offset-3 col-md-6">
+                            <select class="form-control mycoupon" name="coupon_id">
+                                <option>您有<?php echo $count_coupon; ?>张优惠券</option>
+                                <?php foreach($coupon as $item):?>
+                                <option value="<?php echo $item->id;?>" coupon_cost="<?php echo $item->ticket->name;?>"><?php echo $item->ticket->name;?>元优惠券</option>
+                                <?php endforeach;?>
+                            </select>
                         </div>
-        			    
+        			    <?php endif;?>
 						<!--价格-->
 
+        			    <input id="estimated_cost" type="hidden" name="Orders[estimated_cost]" value="" />
+        			    
 						<label class="padnone col-xs-offset-3 col-md-6 text-right">价格<span
 							class="rmb">0</span>元
 						</label>
@@ -239,14 +220,12 @@ $("#Orders_flight_number").blur(function(){
        } else {
     	   $("#noflight").remove();
     	   $("#Orders_pickup_time").val(data.pickup_time);
-    	   $("#Orders_pickup_place").prop("readonly",true).val(data.pickup_place);
+    	   $("#terminal").prop("readonly",true).val(data.pickup_place);
+    	   income = getIncome();
+    	   $(".rmb").text(income);
+    	   $("#estimated_cost").val(income);
        }
     },'json');
 });
-//百度地图
-var ac = new BMap.Autocomplete(
-	{"input" : "suggestId",
-	"location" : "上海"
-});
-
 </script>
+<?php include '_common.php'?>

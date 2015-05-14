@@ -15,7 +15,7 @@ class OrderController extends Controller
         $criteria = new CDbCriteria();
         $criteria->addCondition('client_id=' . $this->uid);
         if($status)
-            $criteria->addCondition('status=' . $status);
+            $criteria->addCondition("status='$status'");
         if($from)
             $criteria->addCondition("pickup_time>'{$from}'");
         if($to)
@@ -84,18 +84,38 @@ class OrderController extends Controller
         return $tpl[$service];
     }
 
+    public function formatType($type)
+    {
+        $tpl = [
+            ORDER_TYPE_AIRPORTPICKUP => '接机单',
+            ORDER_TYPE_AIRPORTSEND => '送机单'
+        ];
+        return $tpl[$type];
+    }
 
     public function actionPickup() {
         $this->layout = '//layouts/main';
-        $model = new Orders('weborder');
+        $model = new Orders('weborder_pickup');
         $model->pickup_time = '';//清除数据库的默认值
         if ($_POST) {
             $model->attributes = $_POST['Orders'];
             $model->client_id = $this->uid;
             $model->order_no = 'web' . time();
             $model->type = (string)ORDER_TYPE_AIRPORTPICKUP;
-            if ($model->save())
+            if ($model->save()) {
+                //更新对应优惠券
+                $coupon_id = $this->getParam('coupon_id');
+                if ($coupon_id) {
+                    $coupon = ClientTicket::model()->findByPk($coupon_id);
+                    if ($coupon) {
+                        $coupon->order_id = $model->id;
+                        $coupon->status = 2;
+                        $coupon->last_update = time();
+                        $coupon->save();
+                    }
+                }
                 $this->redirect('/order/index');
+            }               
         }
         $coupon = $this->getTicket();
         $hash['count_coupon'] = count($coupon);
@@ -106,15 +126,27 @@ class OrderController extends Controller
     
     public function actionSend() {
         $this->layout = '//layouts/main';
-        $model = new Orders('weborder');
+        $model = new Orders('weborder_send');
         $model->pickup_time = '';//清除数据库的默认值
         if ($_POST) {
             $model->attributes = $_POST['Orders'];
             $model->client_id = $this->uid;
             $model->order_no = 'web' . time();
-            $model->type = (string)ORDER_TYPE_AIRPORTPICKUP;
-            if ($model->save())
+            $model->type = (string)ORDER_TYPE_AIRPORTSEND;
+            if ($model->save()) {
+                //更新对应优惠券
+                $coupon_id = $this->getParam('coupon_id');
+                if ($coupon_id) {
+                    $coupon = ClientTicket::model()->findByPk($coupon_id);
+                    if ($coupon) {
+                        $coupon->order_id = $model->id;
+                        $coupon->status = 2;
+                        $coupon->last_update = time();
+                        $coupon->save();
+                    }
+                }
                 $this->redirect('/order/index');
+            }
         }
         $coupon = $this->getTicket();
         $hash['count_coupon'] = count($coupon);
@@ -125,11 +157,12 @@ class OrderController extends Controller
      
     private function getTicket() {
         $criteria = new CDbCriteria();
-        $criteria->condition = 't.client_id=:client_id and t.status=:status';
+        $criteria->condition = 't.client_id=:client_id and t.status=:status and expire > :expire';
         $criteria->order = 't.id asc';
         $criteria->params = [
             'client_id' => $this->uid,
-            'status' => CLIENT_TICKET_ACTIVED
+            'status' => CLIENT_TICKET_ACTIVED,
+            'expire' => time()
         ];
         $model = ClientTicket::model()->with('ticket')->findAll($criteria);
         return $model;

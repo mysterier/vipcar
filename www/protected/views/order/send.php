@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-datetimepicker.min.css">
+<script src="/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <div class="jiesongjiimg">
 	<div class="wrapper-width">
 		<div class="jiejititle">
@@ -60,22 +63,28 @@
 						<div class="input-group">
 							<div class="input-group-addon iconfont">&#xe738;</div>
             			    <?php
-                                $this->widget('zii.widgets.jui.CJuiDatePicker', [
-                                    'model' => $model,
-                                    'attribute' => 'pickup_time',
-                                    'language' => 'zh_cn',
+//                                 $this->widget('zii.widgets.jui.CJuiDatePicker', [
+//                                     'model' => $model,
+//                                     'attribute' => 'pickup_time',
+//                                     'language' => 'zh_cn',
                                     
-                                    'options' => [
-                                        'showAnim' => 'fold',
-                                        'dateFormat' => 'yy-mm-dd hh:ii',
-                                    ],
-                                    'htmlOptions' => [
-                                        'class' => 'form-control',
-                                        'placeholder' => '上车时间',
-                                        //'readonly' => 'readonly'
-                                    ]
-                                ]);
+//                                     'options' => [
+//                                         'showAnim' => 'fold',
+//                                         'dateFormat' => 'yy-mm-dd hh:ii',
+//                                     ],
+//                                     'htmlOptions' => [
+//                                         'class' => 'form-control',
+//                                         'placeholder' => '上车时间',
+//                                         //'readonly' => 'readonly'
+//                                     ]
+//                                 ]);
                                 ?>
+                            <?php 
+            			      echo $form->textField($model, 'pickup_time', [
+            			          'class' => 'form-control',
+            			          'placeholder' => '上车时间',           			        
+            			      ]);
+            			    ?>
 						</div>
 					</div>
 					<?php 
@@ -114,7 +123,8 @@
             			          '浦东国际机场T2' => '浦东国际机场T2'
             			      ],
             			      [
-            			         'class' => 'form-control'
+            			          'id' => 'terminal',            			         
+            			          'class' => 'form-control'
             			      ]);
             			    ?>
 						</div>
@@ -161,14 +171,18 @@
 
 
 					<!--优惠券-->
-					<a href="#" style="text-align: left; margin-bottom: 15px;"
-						class="btn btn-default col-xs-offset-3 col-md-6"
-						data-toggle="modal" data-target="#youhuiquan2" type="button"> <span
-						class="pull-left">优惠券</span><span class=" pull-right text-muted">您目前有<span
-							class=" text-danger allpadding">4</span>张优惠券
-					</span>
-					</a>
+					<?php if($count_coupon > 0):?>
+                    <div class="form-group padnone col-xs-offset-3 col-md-6">
+                        <select class="form-control mycoupon" name="coupon_id">
+                            <option>您有<?php echo $count_coupon; ?>张优惠券</option>
+                            <?php foreach($coupon as $item):?>
+                            <option value="<?php echo $item->id;?>" coupon_cost="<?php echo $item->ticket->name;?>"><?php echo $item->ticket->name;?>元优惠券</option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+    			    <?php endif;?>
 
+    			    <input id="estimated_cost" type="hidden" name="Orders[estimated_cost]" value="" />
 
 					<!--价格-->
 					<label class=" text-right padnone col-xs-offset-3 col-md-6">价格<span
@@ -194,3 +208,13 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$(function(){
+    $('#Orders_pickup_time').datetimepicker({
+	    format: 'yyyy-mm-dd hh:ii',
+	    language: 'zh-CN',
+        autoclose: true
+    });
+});
+</script>
+<?php include '_common.php'?>

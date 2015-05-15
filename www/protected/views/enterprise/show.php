@@ -1,14 +1,6 @@
-<!--banner-->
-<div class="imgtop">
-
-</div>
-
-
 <!--互联网时代专车-->
 <div class="showapp">
     <div class="wrapper-width">
-        <h3 class="text-center">高效服务，品质保障</h3>
-        <p class="text-center"> 更舒适、更便捷、更专业、更安全</p>
         <div class="enterprise-car">
             <img src="/images/enterprise/enterprise1.jpg"> 
         </div>

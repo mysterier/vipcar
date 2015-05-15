@@ -166,6 +166,10 @@ class HomeController extends Controller
         $this->render('static/contact');
     }
     
+    public function actionAttention() {
+        $this->render('static/attention');
+    }
+    
     public function actionNotice() {
         $criteria = new CDbCriteria();
         $criteria->condition = 'status = 1';

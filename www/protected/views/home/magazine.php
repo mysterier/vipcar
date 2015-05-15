@@ -1,6 +1,6 @@
 <!--magazine-->
-<div class="magazineimg">
-    <div class="magazineimglist"><img src="/img/magazineimg.png"></div>
+<div class="imgtop">
+
 </div>
 <div class="wrapper-width">
 <?php foreach ($model as $magazine):?>

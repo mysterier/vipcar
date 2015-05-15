@@ -1,6 +1,6 @@
 <!--banner-->
 <div class="imgtop">
-   <img src="/images/service/imgtop01.jpg">
+
 </div>
 
 
@@ -109,10 +109,13 @@
 <div class="clearfix"></div>
 <!--service-->
 
-<div class="wrapper-width">
+<div class="wrapper-width padding100">
 <?php if(Yii::app()->user->isGuest):?>
+    <div class="enterprise-login-left">
+        <img src="/img/downapp-code.png">
+    </div>
 	<div class="enterprise-login">
-		<h3 class="text-center">| 企业用户登录 |</h3>
+		<h3 class="text-center">企业用户登录</h3>
 
 		<?php
                     $form = $this->beginWidget('CActiveForm', [
@@ -128,12 +131,8 @@
                     ]);
                 ?>
 					<div class="form-group ">
-					    <?php 
-					       echo $form->label($model, 'username', [
-					           'class' =>"col-sm-4 control-label"
-					       ]);
-					    ?>
-						<div class="col-sm-4">
+					    
+						<div class="col-sm-12">
 						    <?php 
 						      echo $form->telField($model, 'username', [
 						          'class' => 'form-control',
@@ -149,12 +148,7 @@
 						?>
 					</div>
 					<div class="form-group">
-						<?php 
-					       echo $form->label($model, 'password', [
-					           'class' =>"col-sm-4 control-label"
-					       ]);
-					    ?>
-						<div class="col-sm-4">
+						<div class="col-sm-12">
 							<?php 
 						      echo $form->passwordField($model, 'password', [
 						          'class' => 'form-control',
@@ -170,14 +164,14 @@
 						?>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-4 col-sm-4">
+						<div class="col-sm-12">
 							<div class="checkbox">
 								<label> <?php echo $form->checkbox($model, 'rememberMe');?> 记住我 </label>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-4 col-sm-4">
+						<div class="col-sm-12">
                             <?php 
                                 echo CHtml::submitButton('确定', [
                                     'class' => 'btn btn-block btn-info'
@@ -186,7 +180,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-4 col-sm-4">
+						<div class="col-sm-12">
 							<a class="btn btn-default col-sm-5" href="/register">用户注册</a>
 							<button type="button"
 								class="btn btn-default col-sm-offset-2 col-sm-5">忘记密码</button>

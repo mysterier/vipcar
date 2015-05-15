@@ -136,6 +136,36 @@ class HomeController extends Controller
         $this->render('magazine', $hash);
     }
     
+    public function actionAbout() {
+        $this->layout = '//layouts/about';
+        $this->render('static/about');
+    }
+    
+    public function actionCulture() {
+        $this->layout = '//layouts/about';
+        $this->render('static/culture');
+    }
+    
+    public function actionServices() {
+        $this->layout = '//layouts/about';
+        $this->render('static/services');
+    }
+    
+    public function actionSpecial() {
+        $this->layout = '//layouts/about';
+        $this->render('static/special');
+    }
+    
+    public function actionJobs() {
+        $this->layout = '//layouts/about';
+        $this->render('static/jobs');
+    }
+    
+    public function actionContact() {
+        $this->layout = '//layouts/about';
+        $this->render('static/contact');
+    }
+    
     public function actionNotice() {
         $criteria = new CDbCriteria();
         $criteria->condition = 'status = 1';

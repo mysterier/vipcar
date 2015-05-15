@@ -318,18 +318,17 @@ body{
 }
 .footer-container{
 	margin:0 auto;	
-	padding:100px 0;
+	padding:50px 0;
 	width:960px;
 }
 .footer-left{
 	float:left;
 }
 .service-tel{
-	margin-left: 20px;
 	padding-left: 40px;	
-	width:200px;
+	width:220px;
 	height: 30px;
-	font-size: 1.2em;	
+	font-size: 26px;	
 	line-height: 30px;
 	color: #000;
 	background: url("/img/icon-footer-tel.png")left center no-repeat;
@@ -339,11 +338,11 @@ body{
 }
 .footer-right ul{
 	float:left;
-	margin:0 45px;
+	margin:0 30px;
 
 }
 .footer-right li{
-	padding-bottom:20px;
+	padding-bottom:15px;
 }
 .footer-right li a{
 	color:#000;

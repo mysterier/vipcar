@@ -1,7 +1,5 @@
-<div class="activities">
-	<div class="magazineimg">
-		<img src="/img/magazineimg.png">
-	</div>
+<div class="imgtop">
+
 </div>
 <div class="wrapper-width">
 	<div class="activitieslist col-md-12">

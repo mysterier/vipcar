@@ -86,7 +86,7 @@
 <!-- 你可以这样使用众择 -->
 
 
-    <div class="wrapper-width padding100">
+    <div class="wrapper-width">
     <div class="enterprise-user-container">
         <div class="enterprise-use">
             <img src="/images/enterprise/title2.png">
@@ -101,10 +101,10 @@
 <div class="clearfix"></div>
 <!--service-->
 
-<div class="wrapper-width padding100">
+<div class="wrapper-width">
 <?php if(Yii::app()->user->isGuest):?>
     <div class="enterprise-login-left">
-        <img src="/img/downapp-code.png">
+        <img src="/images/enterprise/downapp-code.png">
     </div>
 	<div class="enterprise-login">
 		<h3 class="text-center">企业用户登录</h3>
@@ -178,8 +178,10 @@
 								class="btn btn-default col-sm-offset-2 col-sm-5">忘记密码</button>
 						</div>
 					</div>
+
                 <?php $this->endWidget(); ?>
+
 	</div>
 	<?php endif;?>
+                <div class="clearfix"></div>
 </div>
-<div class="clearfix"></div>

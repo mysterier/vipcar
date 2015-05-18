@@ -21,7 +21,8 @@ class UserIdentity extends CUserIdentity
     public function authenticate()
     {
         $client = Clients::model()->findByAttributes([
-            'mobile' => $this->username
+            'mobile' => $this->username,
+            'type' => isset($_GET['type']) ? $_GET['type'] : 0
         ]);
         $passwd = md5('suxian' . md5($this->password));
         if (! $client)

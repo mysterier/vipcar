@@ -1,4 +1,5 @@
 <!-- 关注众择 -->
+<div class="imgtop"></div>
 <div class="wrapper-width">
 	<div class="attention padding50">
 		<h3 class="text-center">关注众择</h3>
@@ -24,7 +25,6 @@
 				<img src="/img/weibo-code.png">
 			</div>
 			<h4>关注微博查看新动态</h4>
-
 		</div>
 		<div class="clearfix"></div>
 	</div>

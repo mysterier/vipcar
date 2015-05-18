@@ -72,8 +72,13 @@ class HomeController extends Controller
         if ($model->validate()) {
             $model->password = $this->encryptPasswd($model->password);
             $model->status = USER_CLIENT_ACTIVED;
-            if ($model->save(false))
-                $this->redirect('/login');
+            if ($model->save(false)) {
+                $login = new LoginForm();
+                $login->username = $_POST['Clients']['mobile'];
+                $login->password = $_POST['Clients']['password'];
+                if ($login->validate() && $login->login())
+                    $this->redirect('/order/pickup');
+            }              
         }
         
         $item = new ClientItems();
@@ -104,8 +109,14 @@ class HomeController extends Controller
                 $item->client_id = $model->id;
                 $item->area = implode('-', $item->area);
                 $item->area = $item->area == '省份-地级市-区县' ? '' : $item->area;
-                if ($item->save(false))
-                    $this->redirect('/login?type=1');
+                if ($item->save(false)) {
+                    $_GET['type'] = 1;
+                    $login = new LoginForm();
+                    $login->username = $_POST['Clients']['mobile'];
+                    $login->password = $_POST['Clients']['password'];
+                    if ($login->validate() && $login->login())
+                        $this->redirect('/order/pickup');
+                }
             }
         }
         

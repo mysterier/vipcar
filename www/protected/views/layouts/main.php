@@ -38,7 +38,7 @@
 				<li class="header-topnav"><a href="/login">登录</a></li>
 				<li class="header-topnav"><a href="/register">注册</a></li>
 				<?php else:?>
-				<li class="header-topnav"><a href="/login"><?php echo Yii::app()->user->name;?></a></li>
+				<li class="header-topnav"><a href="/order/index"><?php echo Yii::app()->user->name;?></a></li>
 				<li class="header-topnav"><a href="/logout">[退出]</a></li>				
 				<?php endif;?>
 				<li class="header-topnav header-tel"><span class="icon-tel"><img src="/img/icon-phone.png" /></span>400-965-2886</li>
@@ -53,8 +53,8 @@
 				<li class="nav-topnav"><a <?php if($this->id == 'home' && $this->action->id == 'service') echo 'class="nav-active"';?> href="/service">服务介绍</a></li>
 				<li class="nav-topnav"><a <?php if($this->id == 'order' && ($this->action->id == 'pickup'||$this->action->id == 'send')) echo 'class="nav-active"';?> href="/order/pickup">在线订车</a></li>
 				<li class="nav-topnav"><a <?php if($this->id == 'home' && $this->action->id == 'event') echo 'class="nav-active"';?> href="/event">活动优惠</a></li>
+                <li class="nav-topnav nav-left"><a <?php if($this->id == 'home' && $this->action->id == 'magazine') echo 'class="nav-active"';?> href="/magazine">聚焦论谈</a></li>
 				<li class="nav-topnav"><a <?php if($this->id == 'enterprise' && $this->action->id == 'show') echo 'class="nav-active"';?> href="/enterprise/show">企业用户</a></li>
-				<li class="nav-topnav nav-left"><a <?php if($this->id == 'home' && $this->action->id == 'magazine') echo 'class="nav-active"';?> href="/magazine">聚焦论谈</a></li>
 			</ul>
 		</div>
 	</div>
@@ -65,27 +65,26 @@
         <div class="footer-left">
             <div class="footer-logo"><img src="/img/footerlogo.png" /></div>
             <div class="service-tel">
-                <span>400-684-5505</span>
+                <span>400-965-2886</span>
             </div>
             </div>
         <div class="footer-right">
             <ul>
                 <li><h5>关于众择</h5></li>
-                <li><a href="/about" target="_blank">关于众择</a></li>
-                <li><a href="/culture" target="_blank">众择文化</a></li>
-                <li><a href="/services" target="_blank">众择服务</a></li>
-                <li><a href="/special" target="_blank">专享服务</a></li>            
-                <li><a href="/jobs" target="_blank">招聘信息</a></li>
-                <li><a href="/contact" target="_blank">联系我们</a></li>
+                <li><a href="/about" >关于众择</a></li>
+                <li><a href="/culture" >众择文化</a></li>
+                <li><a href="/services" >众择服务</a></li>        
+                <li><a href="/jobs" >招聘信息</a></li>
+                <li><a href="/contact" >联系我们</a></li>
             </ul>
             <ul>
                 <li><h5>帮助中心</h5></li>
-                <li><a href="/help/login" target="_blank">首次使用</a></li>
-                <li><a href="/help/webpay" target="_blank">如何支付</a></li>
-                <li><a href="/help/car" target="_blank">用车帮助</a></li>
-                <li><a href="/help/service" target="_blank">车辆服务</a></li>
-                <li><a href="/help/order" target="_blank">查看/取消订单</a></li>
-                <li><a href="/help/faq" target="_blank">常见问题</a></li>
+                <li><a href="/help/login" >首次使用</a></li>
+                <li><a href="/help/webpay" >如何支付</a></li>
+                <li><a href="/help/car" >用车帮助</a></li>
+                <li><a href="/help/service" >车辆服务</a></li>
+                <li><a href="/help/order" >查看/取消订单</a></li>
+                <li><a href="/help/faq" >常见问题</a></li>
             </ul>
             <ul>
                 <li><h5 class="text-center">众择用车官方微信</h5></li>

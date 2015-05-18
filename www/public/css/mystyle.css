@@ -255,11 +255,17 @@ body{
 }
 /*app下载*/
 .appdownbtn{
+	border-color: #895b4c;
+	background-color: #895b4c;
 	width:205px;
 	margin-top: 20px;
 }
+.appdownbtn:hover{
+	border-color: #895b4c;
+	background-color:#c38c69;
+}
 .downapp{
-	padding: 100px 0;
+	padding: 50px 0;
 	width:100%;	
 	color: #000;
 }
@@ -290,9 +296,15 @@ body{
 .downapp-right h3,.downapp-right p{
 	padding-bottom:30px;
 }
+/*产品展示*/
+.page_container {
+  max-width: 960px;
+  margin: 150px auto;
+}
+
 /*service*/
 .service{
-	padding:100px 0;
+	padding:50px 0;
 	width:100%;
 	background:url(/img/bg-showapp.png) repeat;
 }
@@ -729,24 +741,24 @@ body{
 	float:left;
 	width:200px;
 	border-radius:10px 10px 0 0;
-	background-color:#2e313b;
+	background-color: #5d4037;
 }
 .account-left h3{
 	margin:0;
 	padding:20px 0 40px;
 	color:#fff;
 	text-align:center;
-	border-bottom:1px solid #3b3b43;
+	border-bottom:1px solid #4e342e;
 }
 
 .account-left ul li a,.account-left ul li{
 	display:block;
 	height:67px;
 	line-height:67px;
-	color:#95a0aa;
+	color:#fff;
 	text-decoration:none;
 	list-style:none;
-	border-bottom:1px solid #3b3b43;
+	border-bottom:1px solid #4e342e;
 
 }
 
@@ -755,17 +767,17 @@ body{
 }
 .account-left ul li a:hover{
 	color:#fff;
-	border-left:4px solid #56abe4;
-	background-color:#202228;
+	border-left:4px solid #c99878;
+	background-color:#6d4c41;
 }
 .account-left-select{
 	color:#fff !important;
-	border-left:4px solid #56abe4;
-	background-color:#202228;
+	border-left:4px solid #c99878;
+	background-color:#6d4c41;
 }
 .account-left ul li{
 	height:67px;
-	border-bottom:1px solid #3b3b43;
+	border-bottom:1px solid #4e342e;
 	cursor: pointer;
 }
 .account-right{
@@ -784,14 +796,14 @@ body{
 	height:67px;
 	line-height:67px;
 	text-align:center;
-	color:#95a0aa;
-	background-color:#2e313b;
+	color:#fff;
+	background-color:#5d4037;
 	cursor: pointer;
 }
 
 .account-tab-hover{
-	color:#56abe4 !important;
-	border-top:2px solid #56abe4 !important;
+	color:#c99878 !important;
+	border-top:2px solid #c99878 !important;
 	background-color:#fff !important;
 }
 
@@ -806,7 +818,7 @@ body{
 	clear:both;
 }
 .account-search button{
-	width:100px;
+	width:95px;
 }
 .account-container{
 	margin-top:20px;
@@ -994,8 +1006,9 @@ body{
 }
 
 .enterprise-login{
+	margin-top: 20px;
 	float: right;
-	width: 500px;
+	width: 450px;
 ; 
 }
 .enterprise-login h3{
@@ -1006,7 +1019,7 @@ body{
 	padding-top: 50px ;
 }
 .enterprise-user-container{
-	margin-top:20px; 
+	margin-top:15px; 
 	position: relative;
 
 }
@@ -1029,6 +1042,7 @@ body{
 }
 .enterprise-login-left{
 	float: left;
+	margin-bottom: 50px;
 
 }
 

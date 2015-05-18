@@ -1,3 +1,4 @@
+<div class="imgtop"></div>
 <div class="wrapper-width">
 <?php foreach ($model as $notice):?>
 	<div class="noticelist">

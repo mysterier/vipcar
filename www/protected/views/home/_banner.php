@@ -1,6 +1,6 @@
 <div class="banner">
 	<div class="imglist banner-one">
-		<a href="http://www.baidu.com"><img src="/images/index/banner1.jpg" /></a>
+		<a href="/order/pickup"><img src="/images/index/banner1.jpg" /></a>
 	</div>
 <!-- 	<div class="imglist banner-two"> -->
 <!-- 		<img src="/images/banner/banner2.jpg" /> -->

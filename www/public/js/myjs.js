@@ -86,12 +86,61 @@ $(function(){
 
 //模态框
 
-	$("#youhuiquan").click(function(){
-		jQuery.noConflict();
-		$("#myyouhuiquan").modal(); 
-		$("body").css('padding-right','0px');
-	})
+	// $("#youhuiquan").click(function(){		
+	// 	$("#myyouhuiquan").modal(); 
+	// 	$("body").css('padding-right','0px');
+	// })
 
-	
-
+	// $("#youhuiquan").click(function(){
+	// 	jQuery.noConflict();
+	// 	$("<div id="myy"></div>ouhuiquan").modal(); 
+	// 	$("body").css('padding-right','0px');
+	// })	
+//产品展示
+	    $("#immersive_slider").immersive_slider({
+	      container: ".main"
+	    });
+ 
+//qiche
+	 // $(".carmonery .carmonerylist").eq(0).show().siblings("div").hide();
+		// $(".carmonery .carmoney-btn li").mouseover(function(){
+		// 		clearInterval(timer);//当鼠标滑动时，则停止定时任务
+		// 		var _index = $(this).index();//获取当前索引（相对应的位置）
+		// 		/*当鼠标滑动到li相对应的位置上面，则添加一个样式（小圆点）*/
+		// 		$(this).addClass("carmoney-hover").siblings().removeClass("carmoney-hover");
+		// 		/*相对应的背景图片显示和隐藏*/
+		// 		$(".carmonery .carmonerylist").eq(_index).fadeIn(1000).siblings("div").fadeOut(1000);
+		// }).mouseout(function(){
+		// 	 autoplay();//当鼠标离开时，则执行定时任务
+		// 	});
+		//  var _index = 0;
+		//  var timer = null;
+		//  /*定义一个定时任务*/
+		//  function autoplay(){
+		// 	timer=setInterval(function(){
+		// 		 _index++;
+		// 		  if(_index<4){
+		// 			$(".carmonery .carmoney-btn li").eq(_index).addClass("carmoney-hover").siblings().removeClass("banner-hover");
+		// 			$(".carmonery .carmonerylist").eq(_index).fadeIn(1000).siblings("div").fadeOut(1000);
+		// 		  }else{_index=-1;}
+						
+		// 		},3000); 
+		//  };
+		//  autoplay();	 
+	 $(".carmonery .carmonerylist").eq(0).show().siblings("div").hide();
+		 var _index = 0;
+		 var timer = null;
+		 /*定义一个定时任务*/
+		 function autoplayX(){
+			timer=setInterval(function(){
+				 _index++;
+				  if(_index<4){
+					$(".carmonery .carmonerylist").eq(_index).fadeIn(1000).siblings("div").fadeOut(1000);
+				  }else{_index=-1;}
+						
+				},3000); 
+		 };
+		 autoplayX();   
 });
+
+

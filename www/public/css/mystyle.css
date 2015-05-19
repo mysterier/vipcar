@@ -1,4 +1,7 @@
 /*all*/
+a:link{
+	text-decoration: none;
+}
 *{
 	margin:0;
 	padding:0;
@@ -772,12 +775,12 @@ body{
 }
 .account-left-select{
 	color:#fff !important;
-	border-left:4px solid #c99878;
-	background-color:#6d4c41;
+	border-left:4px solid #56abe4;
+	background-color:#202228;
 }
 .account-left ul li{
 	height:67px;
-	border-bottom:1px solid #4e342e;
+	border-bottom:1px solid #66453a;
 	cursor: pointer;
 }
 .account-right{
@@ -796,14 +799,14 @@ body{
 	height:67px;
 	line-height:67px;
 	text-align:center;
-	color:#fff;
-	background-color:#5d4037;
+	color:#95a0aa;
+	background-color:#2e313b;
 	cursor: pointer;
 }
 
 .account-tab-hover{
-	color:#c99878 !important;
-	border-top:2px solid #c99878 !important;
+	color:#56abe4 !important;
+	border-top:2px solid #56abe4 !important;
 	background-color:#fff !important;
 }
 
@@ -818,7 +821,7 @@ body{
 	clear:both;
 }
 .account-search button{
-	width:95px;
+	width:100px;
 }
 .account-container{
 	margin-top:20px;
@@ -1019,7 +1022,7 @@ body{
 	padding-top: 50px ;
 }
 .enterprise-user-container{
-	margin-top:15px; 
+	margin-top:5px; 
 	position: relative;
 
 }
@@ -1113,6 +1116,64 @@ body{
 }
 .about-right img{
 	max-width: 680px;
+}
+.car-price{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.car-circle{
+	margin:0 30px;
+	width: 130px;
+	height: 130px;
+	border-radius: 50%;
+	text-align: center;
+	background-color: #604c33;
+	color: #fff;
+	padding:34px 10px;
+	float: left;
+}
+.car-code{
+	font-size: 2em;
+	margin:0 30px;
+	padding: 40px;
+	text-align: center;
+	color: #c48e6a;
+	float: left;
+}
+.carmonery{
+	position:relative;
+	margin:10px auto 0;
+	width:960px;
+	height:670px;
+}
+
+.carmonery .carmonerylist{
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+.carmonery .carmonerylist img{
+	margin:0 auto;
+	width: 100%;
+}
+.carmonery-btn{
+	position:absolute;
+	left:430px;
+	bottom:10px;
+	padding:2px 15px;	
+	display:inline-block;
+	border-radius:11px;
+	background-color:#ccc;
+}
+.carmonery-btn li{
+	margin:0px 2px;	
+	float:left;
+	height:16px;
+	width:16px;
+	background:url(/img/1.png) no-repeat;
+}
+.carmonery-btn .carmonery-hover{
+	background:url(/img/2.png) no-repeat;
 }
 /*downapp*/
 .downlist{

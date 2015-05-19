@@ -1122,13 +1122,18 @@ body{
 	margin-left: 20px;
 }
 .car-circle{
+	-webkit-box-shadow: 3px 4px 28px 1px rgba(109,142,168,.52);
+	-moz-box-shadow: 3px 4px 28px 1px rgba(109,142,168,.52);
+	box-shadow: 3px 4px 28px 1px rgba(109,142,168,.52);
+
+
 	margin:0 30px;
 	width: 130px;
 	height: 130px;
 	border-radius: 50%;
 	text-align: center;
-	background-color: #604c33;
-	color: #fff;
+/*	background-color: #604c33;*/
+	color: #000;
 	padding:34px 10px;
 	float: left;
 }
@@ -1137,14 +1142,14 @@ body{
 	margin:0 30px;
 	padding: 40px;
 	text-align: center;
-	color: #c48e6a;
+	color: #000;
 	float: left;
 }
 .carmonery{
 	position:relative;
 	margin:10px auto 0;
 	width:960px;
-	height:670px;
+	height:570px;
 }
 
 .carmonery .carmonerylist{
@@ -1174,6 +1179,13 @@ body{
 }
 .carmonery-btn .carmonery-hover{
 	background:url(/img/2.png) no-repeat;
+}
+.carmonery-p{
+	margin-bottom: 50px;
+	margin-top:20px;
+	text-align: center;
+
+
 }
 /*downapp*/
 .downlist{

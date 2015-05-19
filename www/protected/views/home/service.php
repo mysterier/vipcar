@@ -92,8 +92,9 @@
                 </div>
             </div>
         </div>
-
+        
         <div style="clear:both"></div>
     </div> 
+    <p class="carmonery-p">【备注：超时未满20分钟不计费，超20分钟按1小时计算】</p>
 </div>
 <div class="clearfix"></div>

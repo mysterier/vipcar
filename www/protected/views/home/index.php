@@ -2,11 +2,8 @@
 <?php $this->renderPartial('_banner');?>
 <!--展示-->
 <div class="showapp ">
-	<div class="showapp-container wrapper-width">
-      	<h3 class="text-center ">智能出行&nbsp&nbsp&nbsp&nbsp品质生活 </h3>
-        <p class="text-center paddingp font12">智能化实时订单处理，24小时专人专车提供个性化需求的出行服务，让乘坐成为一种生活品质。</p>
-        <div><img src="/images/index/contant.jpg"></div>
-        
+	<div class="showapp-container wrapper-width padding50">      	
+        <div><img src="/images/index/contant.jpg"></div>        
      </div>
 
 </div>
@@ -28,9 +25,49 @@
             </p>
     		<div class="downapp-code"><img src="/img/downapp-code.png" /></div>
             <a href="/download" class="appdownbtn btn btn-info btn-lg">点击下载</a>
-		</div>	
-
-		
+		</div>			
     </div>
  <div class="clearfix"></div>       
 </div>
+<!-- 展示 -->
+
+<div class="wrapper-width">
+      <div id="immersive_slider">
+        <div class="slide" >
+          <div class="content">
+            <h3>网站与APP交互使用</h3>
+            <p>一键注册、专享体验、轻松出行</p>
+          </div>
+          <div class="image">
+            <img src="/images/app/zhuce.png" alt="Slider 1">
+          </div>
+        </div>
+        <div class="slide" >
+          <div class="content">
+            <h3>线上查询系统</h3>
+            <p>航班查询、行程引导、旅程无忧</p>
+          </div>
+          <div class="image">
+            <img src="/images/app/hangbanhao.png" alt="Slider 1">
+          </div>
+        </div>
+        <div class="slide" >
+          <div class="content">
+            <h3>多功能账户中心</h3>
+            <p>账户管理清晰便捷，个性化服务新体验  </p>
+          </div>
+          <div class="image">
+            <img src="/images/app/geren.png" alt="Slider 1">
+          </div>
+        </div>
+        <div class="slide">
+          <div class="content">
+            <h3>智能匹配 快速响应</h3>
+            <p>按需用车，GPS定位、高效服务</p>
+          </div>
+          <div class="image">
+            <img src="/images/app/jieji.png" alt="Slider 1">
+          </div>
+        </div>
+      </div>
+  </div>

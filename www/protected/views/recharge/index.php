@@ -2,7 +2,7 @@
 	<div>
 		账户余额<span>0</span>元
 	</div>
-	<a href="/account-balance-money.html" class="btn btn-info btn-color">充值</a>
+	<a href="/recharge/cash" class="btn btn-info btn-color">充值</a>
 	<p>优惠：新用户一次性充值100元及以上，即赠送50元大礼包（仅可获得一次）</p>
 </div>
 <div class="account-record">

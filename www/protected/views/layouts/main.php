@@ -9,11 +9,16 @@
 <link rel="stylesheet" type="text/css" href="/fonts/iconfont.css">
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xKTm9GM58nRtGkBATG6jGwui"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+
+
 <?php endif;?>
 <link rel="stylesheet" type="text/css" href="/css/mystyle.css"/>
 <?php if($this->id == 'favorite'):?>
 <link rel="stylesheet" type="text/css" href="/css/account-like.css"/>
 <?php endif;?>
+<script type="text/javascript" src="/js/jquery.immersive-slider.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/immersive-slider.css">
 <script type="text/javascript" src="/js/myjs.js"></script>
 <?php if($this->id == 'order' && $this->action->id == 'comment'):?>
 <script type="text/javascript" src="/js/star.js"></script>

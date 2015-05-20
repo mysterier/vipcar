@@ -97,6 +97,7 @@ class OrderController extends Controller
         $this->layout = '//layouts/main';
         $model = new Orders('weborder_pickup');
         $model->pickup_time = '';//清除数据库的默认值
+        $model->vehicle_type = VEHICLE_TYPE_BUSINESS;
         if ($_POST) {
             $model->attributes = $_POST['Orders'];
             $model->client_id = $this->uid;
@@ -128,6 +129,7 @@ class OrderController extends Controller
         $this->layout = '//layouts/main';
         $model = new Orders('weborder_send');
         $model->pickup_time = '';//清除数据库的默认值
+        $model->vehicle_type = VEHICLE_TYPE_BUSINESS;
         if ($_POST) {
             $model->attributes = $_POST['Orders'];
             $model->client_id = $this->uid;

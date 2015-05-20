@@ -52,8 +52,8 @@ define('COMFORTABLE_LOW', 280);
 define('COMFORTABLE_HIGH', 380);
 define('BUSINESS_LOW', 280);
 define('BUSINESS_HIGH', 380);
-define('LUXURY_LOW', 280);
-define('LUXURY_HIGH', 380);
+define('LUXURY_LOW', 680);
+define('LUXURY_HIGH', 880);
 
 // Global error
 define('ERROR_DEFAULT', - 1);

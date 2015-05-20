@@ -125,6 +125,7 @@
 							<div class="input-group-addon iconfont">&#xe603;</div>
 							<?php 
             			      echo $form->dropDownList($model, 'vehicle_type', [
+            			          VEHICLE_TYPE_COMFORTABLE => '舒适型',
             			          VEHICLE_TYPE_BUSINESS => '商务型',
             			          VEHICLE_TYPE_LUXURY => '豪华型'   
             			      ],

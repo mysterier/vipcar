@@ -181,6 +181,10 @@ class HomeController extends Controller
         $this->render('static/attention');
     }
     
+    public function actionProtocal() {
+        $this->render('static/protocal');
+    }
+    
     public function actionNotice() {
         $criteria = new CDbCriteria();
         $criteria->condition = 'status = 1';

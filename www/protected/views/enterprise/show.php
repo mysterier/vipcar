@@ -104,7 +104,7 @@
 <div class="wrapper-width">
 <?php if(Yii::app()->user->isGuest):?>
     <div class="enterprise-login-left">
-        <img src="/images/enterprise/downapp-code.png">
+        <h3 class="text-center">众择用车   您的贴心管家</h3>
     </div>
 	<div class="enterprise-login">
 		<h3 class="text-center">企业用户登录</h3>

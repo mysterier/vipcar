@@ -1,8 +1,8 @@
 <div class="imgtop">
 
 </div>
-<div class="wrapper-width">
-	<div class="activitieslist col-md-12">
+<div class="wrapper-width padding100">
+<!-- 	<div class="activitieslist col-md-12">
 		<div class="activitiesimg col-md-5">
 			<img src="/img/active1.jpg">
 		</div>
@@ -39,7 +39,7 @@
 				注： 1、本活动不可与其它优惠活动叠加使用 2、回程路程与预定路程一至 本活动最终解释权归众择所有</p>
 		</div>
 
-		<div class="btn btn-info pull-right">马上参与</div>
+		<div class="btn btn-info pull-right">马上参与</div> -->
 	</div>
 </div>
 

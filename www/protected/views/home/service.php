@@ -1,26 +1,6 @@
-<!--banner-->
-<div class="banner">
-	<div class="imglist banner-one">
-		<a href="/order/pickup"><img src="/images/service/banner1.jpg" /></a>
-	</div>
-	<div class="imglist banner-two">
-		<img src="/images/service/banner2.jpg" />
-	</div>
-	<div class="imglist banner-three">
-		<img src="/images/service/banner3.jpg" />
-	</div>
-
-	<ul class="banner-btn">
-		<li class="banner-hover" dl="banner1"></li>
-		<li dl="banner2"></li>
-		<li dl="banner3"></li>
-	</ul>
-	<div style="clear: both"></div>
-</div>
-
 
 <!--互联网时代专车-->
-<div class="wrapper-width padding50">
+<div class="wrapper-width service-img">
     <img src="/images/index/contant.jpg">
 </div>
 <div class="clearfix"></div>
@@ -52,7 +32,7 @@
         </div>
         <div class="carmonerylist registerhide">
             <h3 class="text-center">商务型</h3>
-            <p class="text-center">别克GL8 陆尊等6座车型 等同级车型</p>
+            <p class="text-center">别克GL8 7座车型</p>
             <img src="/images/service/car2.png" />
             <div class="car-price">
                 <div class="car-circle">
@@ -95,6 +75,6 @@
         
         <div style="clear:both"></div>
     </div> 
-    <p class="carmonery-p">【备注：超时未满20分钟不计费，超20分钟按1小时计算】</p>
+    <p class="carmonery-p ">【温馨提示：超时未满20分钟不计费，超20分钟按1小时计算】</p>
 </div>
 <div class="clearfix"></div>

@@ -38,7 +38,7 @@
 		</div>
 		<div class="from-group">
 			<div class="col-md-offset-3 col-md-6">
-				<button type="submit" class="btn btn-info btn-block">保存</button>
+				<button type="submit" class="btn btn-info btn-block all-btn-color">保存</button>
 			</div>
 		</div>
 	<?php $this->endWidget(); ?>

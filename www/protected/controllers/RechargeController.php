@@ -69,6 +69,10 @@ class RechargeController extends Controller
         $hash['pages'] = $pages;
         $this->render('index', $hash);
     }
+    
+    public function actionCash() {
+        $this->render('cash');
+    }
 
     public function actionNotify()
     {

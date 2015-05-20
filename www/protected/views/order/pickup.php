@@ -1,15 +1,14 @@
 <div class="jiesongjiimg">
 	<div class="wrapper-width">
 		<div class="jiejititle">
-			<h3>接送机</h3>
-			<p>欢迎使用 众择用车，轻触按钮即可获取轻松出行的最佳之选。创建帐户，几分钟后即可出行。</p>
+			<p class="text-center">欢迎使用 众择用车，轻触按钮即可获取轻松出行的最佳之选。创建帐户，几分钟后即可出行。</p>
 		</div>
 		<div class="jieji">
 			<ul class="jiejitop">
 				<li class="jiejihover"><a href="/order/pickup">接机</a></li>
 				<li><a href="/order/send">送机</a></li>
 			</ul>
-			<h3>接送机</h3>
+			<h3></h3>
 			<div class=" jiesongjibottom">
 				<div>
 					<?php
@@ -180,8 +179,7 @@
 						<!--协议-->
 						<div style="clear: both;"
 							class=" padnone checkbox col-xs-offset-3 col-md-6">
-							<label> <?php echo $form->checkbox($model, 'agreeme');?> 勾选同意<a href="#"
-								data-toggle="modal" data-target="#agreement">《众择用车》</a>协议
+							<label> <?php echo $form->checkbox($model, 'agreeme');?> 勾选同意<a target="_blank" href="/protocal">《众择用车》</a>协议
 							</label>
 						</div>
 						<!-- Modal -->

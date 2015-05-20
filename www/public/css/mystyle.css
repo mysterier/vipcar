@@ -1,4 +1,21 @@
 /*all*/
+.img-border{
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+.table-width{
+	width: 90px;
+}
+.all-btn-color{
+
+	background-color: #5d4037;
+	border-color: #5d4037;
+}
+.all-btn-color:hover{
+	background-color: #c99878;
+	border-color: #c99878;
+}
+
 a:link{
 	text-decoration: none;
 }
@@ -268,9 +285,13 @@ body{
 	background-color:#c38c69;
 }
 .downapp{
-	padding: 50px 0;
+	margin-bottom: 50px;
 	width:100%;	
 	color: #000;
+}
+.downapp h2{
+	font-size: 3em;
+	font-weight: bold;
 }
 .downapp:hover{
 	color: #000;
@@ -303,6 +324,12 @@ body{
 .page_container {
   max-width: 960px;
   margin: 150px auto;
+}
+.content h3{
+	font-size: 1.8em;
+}
+.content p{
+	font-size: 1.2em;
 }
 
 /*service*/
@@ -433,6 +460,7 @@ body{
 	background: url("/img/weixingicon.png") left center no-repeat;
 }
 .attention-left img{
+	margin-bottom: 20px;
 	clear: both;
 }
 .attention-right img{
@@ -440,6 +468,18 @@ body{
 }
 .attention-right a{	
 	margin-bottom: 20px;
+}
+.attention-img-code{
+	margin-top:-17px; 
+}
+.attention-left-txt{
+	margin-left:14px; 
+}
+.attention-right-txt{
+	margin-left: 14px;
+}
+.attention-index{
+ padding-left: 22px;
 }
 
 /*register*/
@@ -545,7 +585,7 @@ body{
 	width:297px;
 }
 .login-right{
-	margin: 30px 0 50px;
+	margin: 310px 0 50px;
 	float: right;
 	width:300px;
 }
@@ -566,13 +606,14 @@ body{
 
 }
 .login-head{
-	padding-top: 240px;
+	margin-top: 380px;
+	margin-left: 160px;
 }
 .login-head h3{
-	font-size: 2em;
+	font-size: 2.5em;
 }
 .login-head p{
-	font-size: 1.5em;
+	font-size: 2em;
 }
 
 .loginhide{
@@ -637,6 +678,10 @@ body{
 	margin:0;	
 	color:#000;
 }
+.jiejititle p{
+	font-weight: bold;
+
+}
 .jiejititle{
 	padding-top: 250px;
 	margin-bottom: 20px;
@@ -653,7 +698,7 @@ body{
 	padding-right:0px;
 }
 .jieji 	h3{
-	padding:30px;
+	padding:10px;
 	text-align:center;
 	clear:both;
 }
@@ -661,6 +706,7 @@ body{
 	display:none;
 }
 .jiejitop{
+
 	margin:0 auto;
 	width: 490px;
 	height:50px;
@@ -771,12 +817,12 @@ body{
 .account-left ul li a:hover{
 	color:#fff;
 	border-left:4px solid #c99878;
-	background-color:#6d4c41;
+	background-color:#c99878;
 }
 .account-left-select{
 	color:#fff !important;
-	border-left:4px solid #56abe4;
-	background-color:#202228;
+	border-left:4px solid #c99878;
+	background-color:#c99878;
 }
 .account-left ul li{
 	height:67px;
@@ -799,14 +845,14 @@ body{
 	height:67px;
 	line-height:67px;
 	text-align:center;
-	color:#95a0aa;
-	background-color:#2e313b;
+	color:#fff;
+	background-color:#5d4037;
 	cursor: pointer;
 }
 
 .account-tab-hover{
-	color:#56abe4 !important;
-	border-top:2px solid #56abe4 !important;
+	color:#c99878 !important;
+	border-top:2px solid #c99878 !important;
 	background-color:#fff !important;
 }
 
@@ -821,7 +867,7 @@ body{
 	clear:both;
 }
 .account-search button{
-	width:100px;
+	width:80px;
 }
 .account-container{
 	margin-top:20px;
@@ -970,8 +1016,8 @@ body{
 
 .addrlist-select {
     color: #fff !important;
-    background: #56abe4;
-    border-color: #56abe4;
+    background: #c99878;
+    border-color: #c99878;
     text-decoration: none;
 }
 .addrlist h4{
@@ -1011,8 +1057,9 @@ body{
 .enterprise-login{
 	margin-top: 20px;
 	float: right;
-	width: 450px;
-; 
+	width: 360px;
+	margin-bottom: 50px;
+
 }
 .enterprise-login h3{
 	margin-bottom: 50px;
@@ -1047,6 +1094,11 @@ body{
 	float: left;
 	margin-bottom: 50px;
 
+}
+.enterprise-login-left h3{
+	margin-top:160px;
+	margin-left:120px; 
+	font-size: 2.5em; 
 }
 
 /*服务*/
@@ -1186,6 +1238,9 @@ body{
 	text-align: center;
 
 
+}
+.service-img{
+	padding: 10px 0 50px;
 }
 /*downapp*/
 .downlist{

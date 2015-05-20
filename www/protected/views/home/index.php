@@ -10,20 +10,19 @@
 <!--app下载-->
 <a href="#" name="appdown"></a>
 <div class="downapp" >
+  <h2 class="text-center ">让出行轻松一些</h2>
 	<div class="downapp-container wrapper-width "> 
     <div class="downapp-left">
     <img src="/img/downapp-left.png" />
     </div>
         <div class="downapp-right">
-        
-            <h3 class="text-left ">累了&nbsp&nbsp&nbsp&nbsp坐我吧</h3>
             <h4 class="text-left ">全新 Android 客户端</h4>
             <p class="text-left">
             完美适配Android，界面更清爽，操作更流畅
             便捷地下单流程
             更多人性化的功能 
             </p>
-    		<div class="downapp-code"><img src="/img/downapp-code.png" /></div>
+    		<div class="downapp-code"><img class="img-border" src="/img/downapp-code.png" /></div>
             <a href="/download" class="appdownbtn btn btn-info btn-lg">点击下载</a>
 		</div>			
     </div>

@@ -81,9 +81,11 @@
 </dl>
 <h4>六．高级 iOS 开发工程师</h4>
 <dl>
+	<br/>
 	<dt>岗位职责：</dt>
 	<dd>1.负责移动平台 iPhone 的应用设计、开发；</dd>
 	<dd>2.负责 iPhone 平台应用软件的技术方案、编码和测试。</dd>
+	<br/>
 	<dt>任职资格：</dt>
 	<dd>1.三年以上软件开发经验，一年以上IOS（iPhone/iPad） 平台开发经验；</dd>
 	<dd>2.熟练掌握 Objective-C，熟悉IOS应用开发框架；</dd>

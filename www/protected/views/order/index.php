@@ -56,7 +56,7 @@
 			</select>
 		</div>
 
-		<button type="submit" class="btn btn-info">搜索</button>
+		<button type="submit" class="btn btn-info all-btn-color">搜索</button>
 
 	</form>
 
@@ -79,12 +79,12 @@
 
 <div class="account-container">
 	<div>
-		<table class="table table-hover">
+		<table class="table table-hover ">
 			<thead>
 				<th>订单号</th>
-				<th>订单类型</th>
-				<th>服务类型</th>
-				<th>联系人</th>
+				<th class="table-width">订单类型</th>
+				<th class="table-width">服务类型</th>
+				<th class="table-width">联系人</th>
 				<th>上车时间</th>
 				<th>出发地</th>
 				<th>目的地</th>

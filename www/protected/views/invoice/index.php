@@ -2,7 +2,7 @@
 	<div class="pull-left">
 		可开发票：<span><?php echo $available_invoice_amount;?>元</span>
 	</div>
-	<a href="/invoice/new" class="btn btn-info pull-right">我要开票</a>
+	<a href="/invoice/new" class="btn btn-info pull-right ">我要开票</a>
 	<div class="clearfix"></div>
 	<h3>开票记录</h3>
 </div>

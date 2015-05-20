@@ -143,7 +143,7 @@
     					<div class="form-group">
     						<div class="col-sm-offset-3 col-sm-9">
     							<div class="checkbox">
-    								<label> <?php echo $form->checkbox($model, 'agreeme');?>  我已阅读并同意<span>众择用车</span> </label>
+    								<label> <?php echo $form->checkbox($model, 'agreeme');?>  我已阅读并同意<a target="_blank" href="/protocal">《众择用车》</a> 协议</label>
     							</div>
     							<?php 
         						  echo $form->error($model,'agreeme',[
@@ -390,7 +390,7 @@
     						<div class="form-group">
     							<div class="col-sm-offset-3 col-sm-9">
         							<div class="checkbox">
-        								<label> <?php echo $form->checkbox($model, 'agreeme');?>  我已阅读并同意<span>众择用车</span> </label>
+        								<label> <?php echo $form->checkbox($model, 'agreeme');?>  我已阅读并同意<a target="_blank" href="/protocal">《众择用车》</a> 协议</label>
         							</div>
         							<?php 
             						  echo $form->error($model,'agreeme',[
@@ -415,7 +415,7 @@
     	</div>
         <div class="register-right">
             <p>下载众择用车到APP</p>
-            <img src="/img/downapp-code.png">
+            <img class="img-border" src="/img/downapp-code.png">
         </div>
     <div class="clearfix"></div>
 	</div>

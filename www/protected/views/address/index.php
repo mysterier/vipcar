@@ -35,7 +35,7 @@
 	</div>
 </div>
 <div>
-	<a href="/address/new" class="btn btn-info marginright">新增常用地址</a>
+	<a href="/address/new" class="btn btn-info marginright all-btn-color">新增常用地址</a>
 </div>
 <script>
 function del(){

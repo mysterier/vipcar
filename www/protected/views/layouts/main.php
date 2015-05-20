@@ -93,11 +93,11 @@
             </ul>
             <ul>
                 <li><h5 class="text-center">众择用车官方微信</h5></li>
-                <li><img src="/images/index/weixing-code.jpg" /></li>
+                <li><img class="img-border" src="/images/index/weixing-code.jpg" /></li>
             </ul>   
             <ul>
                 <li><h5 class="text-center">众择用车官方微博</h5></li>
-                <li><img src="/images/index/weibo-code.jpg" /></li>
+                <li><img class="img-border" src="/images/index/weibo-code.jpg" /></li>
             </ul>           
         </div>
         <div class=" clearfix" ></div>
@@ -113,7 +113,7 @@
     </div>    
 </div>
 <div class="copyright">
-    Copyright © 2014 ZHONGZE All Rights Reserved. 备案号：沪ICP备14053943号-1。
+    Copyright © 2014 ZHONGZE All Rights Reserved. 备案号：沪ICP备14053943号-1
 </div>
 
 </body>

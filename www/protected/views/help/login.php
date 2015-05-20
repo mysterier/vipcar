@@ -1,5 +1,5 @@
 
-<h4 class="text-left">1. 注册</h4>
+<!-- <h4 class="text-left">1. 注册</h4>
 
 <p>
 	1）登陆易到用车网，点击<a href="/register">注册</a>
@@ -16,4 +16,4 @@
 
 </div>
 <div class="clearfix"></div>
-</div>
+</div> -->

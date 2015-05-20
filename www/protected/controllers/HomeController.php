@@ -185,6 +185,32 @@ class HomeController extends Controller
         $this->render('static/protocal');
     }
     
+    public function actionGetpass() {
+        $model = new Clients();
+        if ($_POST) {
+            $attributes = [
+                'mobile' => $_POST['Clients']['mobile']
+            ];
+            $client = Clients::model()->findByAttributes($attributes);
+            if ($client) {
+                $client->setScenario('webgetpass');
+                $client->attributes = $_POST['Clients'];//var_dump($client->attributes);exit();
+                if ($client->validate()) {
+                    $client->password = $this->encryptPasswd($client->password);
+                    if($client->save(false))
+                        $this->redirect('/login');
+                } else {
+                    $model = $client;
+                }
+            } else {
+                $model->attributes = $_POST['Clients'];
+                $model->addError('mobile', '该用户不存在！');
+            }          
+        }
+        $hash['model'] = $model;
+        $this->render('getpass', $hash);
+    }
+    
     public function actionNotice() {
         $criteria = new CDbCriteria();
         $criteria->condition = 'status = 1';

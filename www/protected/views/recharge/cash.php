@@ -12,12 +12,14 @@
 					<option>300</option>
 					<option>400</option>
 					<option>500</option>
+					<option>1000</option>
+					<option>2000</option>
 				</select>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-5">
-				<button class="btn btn-info btn-block">支付宝充值</button>
+				<button class="btn btn-info btn-block all-btn-color">支付宝充值</button>
 			</div>
 		</div>
 	</form>

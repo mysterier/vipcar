@@ -73,7 +73,7 @@
 						<div class="col-sm-12">
 
 							<a class="btn btn-default col-sm-5" href="/register">用户注册</a>
-							<a href="/forget.html" class="btn btn-default col-sm-offset-2 col-sm-5">忘记密码</a>
+							<a href="/getpass" class="btn btn-default col-sm-offset-2 col-sm-5">忘记密码</a>
 						</div>
 					</div>
                 <?php $this->endWidget(); ?>
@@ -146,7 +146,7 @@
 					<div class="form-group">
 						<div class="col-sm-12">
 							<a class="btn btn-default col-sm-5" href="/register">用户注册</a>
-							<a href="/forget.html" class="btn btn-default col-sm-offset-2 col-sm-5">忘记密码</a>
+							<a href="/getpass" class="btn btn-default col-sm-offset-2 col-sm-5">忘记密码</a>
 						</div>
 					</div>
                 <?php $this->endWidget(); ?>

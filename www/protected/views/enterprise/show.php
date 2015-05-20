@@ -174,8 +174,7 @@
 					<div class="form-group">
 						<div class="col-sm-12">
 							<a class="btn btn-default col-sm-5" href="/register">用户注册</a>
-							<button type="button"
-								class="btn btn-default col-sm-offset-2 col-sm-5">忘记密码</button>
+							<a class="btn btn-default col-sm-offset-2 col-sm-5" href="/getpass">忘记密码</a>
 						</div>
 					</div>
 

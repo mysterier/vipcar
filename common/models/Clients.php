@@ -64,7 +64,8 @@ class Clients extends CActiveRecord
                     'reg',
                     'loginv1',
                     'webreg',
-                    'webedit'
+                    'webedit',
+                    'webgetpass'
                 ]
             ],
             [
@@ -119,7 +120,10 @@ class Clients extends CActiveRecord
             [
                 'msg_code',
                 'msg_code',
-                'on' => 'webreg',
+                'on' => [                    
+                    'webreg',
+                    'webgetpass'
+                ],
             ],
             [
                 'password,oldpwd',
@@ -133,7 +137,10 @@ class Clients extends CActiveRecord
                 'password',
                 'required',
                 'message' => '{attribute}不能为空！',
-                'on' => 'webreg'
+                'on' => [                    
+                    'webreg',
+                    'webgetpass'
+                ]
             ],
             [
                 'confirmpwd',
@@ -142,7 +149,8 @@ class Clients extends CActiveRecord
                 'message' => '两次密码输入不一致',
                 'on' => [
                     'webreg',
-                    'webeditpwd'
+                    'webeditpwd',
+                    'webgetpass'
                 ]
             ],
             [
@@ -165,7 +173,7 @@ class Clients extends CActiveRecord
 
     public function msg_code($attribute, $params) {
         $captcha = Yii::app()->redis->getClient()->get($this->mobile);
-        if ($captcha != $this->msg_code)
+        if (!$this->msg_code || $captcha != $this->msg_code)
             $this->addError('msg_code', '验证码错误！');
     }
     

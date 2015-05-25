@@ -138,6 +138,10 @@ class HomeController extends Controller
         $this->render('download');
     }
     
+    public function actionAppdown() {
+        $this->render('appdown');
+    }
+    
     public function actionMagazine() {
         $attributes = [
             'status' => 1

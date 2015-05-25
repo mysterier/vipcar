@@ -1,4 +1,5 @@
 <!--account-->
+<div class="imgtop"></div>
 <div class="account">
 	<div class="account-right-head">
 		<h3>忘记密码</h3>

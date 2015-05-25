@@ -36,7 +36,7 @@
 		<a href="/" id="logo"></a>
 			<ul class="header-nav">
 				<li class="header-topnav"><a href="/order/index">我的账户</a></li>
-				<li class="header-topnav"><a href="/#appdown">客户端下载</a></li>
+				<li class="header-topnav"><a href="/appdown">客户端下载</a></li>
 				<li class="header-topnav"><a href="/attention" target="_blank">关注众择</a></li>
 				<li class="header-topnav"><a href="/notice" target="_blank">众择公告</a></li>
 				<?php if(Yii::app()->user->isGuest):?>

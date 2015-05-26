@@ -101,13 +101,17 @@ class EventController extends Controller
     {
         if (isset($_POST['Event'])) {
             $model->attributes = $_POST['Event'];
-            $cover = CUploadedFile::getInstance($model, 'cover');
-            $model->cover = $this->renameUploadFile($cover, 'cover');
-            $content_img = CUploadedFile::getInstance($model, 'content_img');
-            $model->content_img = $this->renameUploadFile($content_img, 'content_img');
+            if ($_FILES) {
+                $cover = CUploadedFile::getInstance($model, 'cover');
+                $model->cover = $this->renameUploadFile($cover, 'cover');
+                $content_img = CUploadedFile::getInstance($model, 'content_img');
+                $model->content_img = $this->renameUploadFile($content_img, 'content_img');
+            }           
             if ($model->save()) {
-                $this->saveUploadFile($cover, DEFAULT_UPLOAD_PATH . $model->cover);
-                $this->saveUploadFile($content_img, DEFAULT_UPLOAD_PATH . $model->content_img);
+                if ($_FILES) {
+                    $this->saveUploadFile($cover, DEFAULT_UPLOAD_PATH . $model->cover);
+                    $this->saveUploadFile($content_img, DEFAULT_UPLOAD_PATH . $model->content_img);
+                }               
                 $this->redirect('/event/list');
             }
         }

@@ -193,6 +193,23 @@ class Clients extends CActiveRecord
     }
     
     /**
+     * 注册得50元优惠券
+     * 活动时间：2015年6月1日-2015年9月1日
+     */
+    public function getticket() {
+        $start = strtotime('2015-06-01 00:00:01');
+        $end = strtotime('2015-09-01 23:59:59');
+        if (time() > $start && time() < $end) {
+            $client_ticket = new ClientTicket();
+            $client_ticket->client_id = $this->id;
+            $client_ticket->ticket_id = 2;
+            $client_ticket->coupon_type = 1;
+            $client_ticket->expire = strtotime('+30 days');
+            $client_ticket->save();
+        }
+    }
+    
+    /**
      *
      * @return array relational rules.
      */

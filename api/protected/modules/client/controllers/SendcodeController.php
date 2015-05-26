@@ -48,8 +48,11 @@ class SendcodeController extends Controller
                 $model->mobile = $mobile;
                 $model->password = '123';
                 $model->status = '1';
-                if ($model->save())
+                if ($model->save()) {
+                    //注册赠送优惠券活动
+                    $model->getticket();
                     $this->sendSms($mobile, $model);
+                }                  
             } else    
                 $this->sendSms($mobile, $model);     
         } else

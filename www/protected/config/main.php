@@ -9,6 +9,7 @@ return array(
     'name' => '众择',
     'timezone' => 'Asia/Shanghai',
     'defaultController' => 'home',
+    'homeUrl' => 'www.vip-car.com.cn',
     // 别名
     'aliases' => array(
         'common' => COMMON

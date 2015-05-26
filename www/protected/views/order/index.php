@@ -66,7 +66,7 @@
 		<a href="/order/index"><li
 			class="<?php if ($status == '') echo 'account-tab-hover';?>">全部</li></a>
 		<a href="/order/index?status=0"><li
-			class="<?php if ($status == '0') echo 'account-tab-hover';?>">未分配</li></a>
+			class="<?php if ($status == '0') echo 'account-tab-hover';?>">待分配</li></a>
 		<a href="/order/index?status=1"><li
 			class="<?php if ($status == '1') echo 'account-tab-hover';?>">已分配</li></a>
 		<a href="/order/index?status=2"><li

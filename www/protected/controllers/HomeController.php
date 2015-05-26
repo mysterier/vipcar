@@ -73,6 +73,8 @@ class HomeController extends Controller
             $model->password = $this->encryptPasswd($model->password);
             $model->status = USER_CLIENT_ACTIVED;
             if ($model->save(false)) {
+                //注册赠送优惠券活动
+                $model->getticket();
                 $login = new LoginForm();
                 $login->username = $_POST['Clients']['mobile'];
                 $login->password = $_POST['Clients']['password'];
@@ -106,6 +108,8 @@ class HomeController extends Controller
             $model->type = 1;
             $model->status = USER_CLIENT_ACTIVED;
             if ($model->save(false)) {
+                //注册赠送优惠券活动
+                $model->getticket();
                 $item->client_id = $model->id;
                 $item->area = implode('-', $item->area);
                 $item->area = $item->area == '省份-地级市-区县' ? '' : $item->area;

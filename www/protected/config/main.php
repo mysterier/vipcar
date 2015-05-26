@@ -53,6 +53,7 @@ return array(
             'urlFormat' => 'path',
             'rules' => array(
                 '<action:\w+>' => 'home/<action>',
+                '<action:\w+>/<id:\d+>' => 'home/<action>',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',         
             )

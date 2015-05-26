@@ -7,6 +7,9 @@ $form = $this->beginWidget('booster.widgets.TbActiveForm', [
     'action' => $this->createUrl($this->action->id, [
         'id' => Yii::app()->request->getParam('id')
     ]),
+    'htmlOptions' => [
+        'enctype' => 'multipart/form-data'
+    ]
 ]);
 ?>
 <fieldset>
@@ -14,6 +17,29 @@ $form = $this->beginWidget('booster.widgets.TbActiveForm', [
 <?php
 
 echo $form->textFieldGroup($model, 'title', [
+    'wrapperHtmlOptions' => [
+        'class' => 'col-sm-5'
+    ]
+]);
+
+echo $form->fileFieldGroup($model, 'cover', [
+    'wrapperHtmlOptions' => [
+        'class' => 'col-sm-5'
+    ]
+]);
+
+echo $form->textAreaGroup($model, 'desc', [
+    'wrapperHtmlOptions' => [
+        'class' => 'col-sm-9'
+    ],
+    'widgetOptions' => [
+        'htmlOptions' => [
+            'rows' => 5
+        ]
+    ]
+]);
+
+echo $form->fileFieldGroup($model, 'content_img', [
     'wrapperHtmlOptions' => [
         'class' => 'col-sm-5'
     ]

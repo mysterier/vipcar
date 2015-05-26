@@ -135,7 +135,21 @@ class HomeController extends Controller
     }
     
     public function actionEvent() {
-        $this->render('event');
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'status = :status';
+        $criteria->order = 'id DESC';
+        $criteria->params = [
+            'status' => STATUS_LIVE
+        ];
+        $model = Event::model()->findAll($criteria);
+        $hash['model'] = $model;
+        $this->render('event', $hash);
+    }
+    
+    public function actionEventdetail($id) {
+        $model = Event::model()->findByPk($id);
+        $hash['model'] = $model;
+        $this->render('eventdetail', $hash);
     }
     
     public function actionDownload() {

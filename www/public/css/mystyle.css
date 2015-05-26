@@ -1043,6 +1043,19 @@ body{
 	height: 315px;
 	margin:20px;
 }
+/*活动详情*/
+.active-detial-wrapper{
+	width: 688px;
+	margin: 0 auto;
+}
+.active-detial-img{
+	width: 688px;
+	height: 600px;
+	background: #ccc;
+}
+.active-detial-content{
+	margin:20px 0;
+}
 /*企业用户*/
 .enterprise-head h3{
 	font-size: 2em;

@@ -218,24 +218,21 @@ class Controller extends CController
                 $items[] = [
                         'label' => '网站公告',
                         'url' => [
-                            'notice/list',
-                            'tag' => 'list'
+                            'notice/list'
                         ]
                     ];
             if ($this->checkAccess(VIEW_EVENT))
                 $items[] = [
                         'label' => '网站活动',
                         'url' => [
-                            'event/list',
-                            'tag' => 'list'
+                            'event/list'
                         ]
                     ];
             if ($this->checkAccess(VIEW_MAGAZINE))
                 $items[] = [
                         'label' => '网站杂志',
                         'url' => [
-                            'magazine/list',
-                            'tag' => 'list'
+                            'magazine/list'
                         ]
                     ];
             

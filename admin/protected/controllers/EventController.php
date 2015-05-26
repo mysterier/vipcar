@@ -5,11 +5,17 @@ class EventController extends Controller
 
     public function actionList()
     {
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'status = :status';
+        $criteria->params = [
+            'status' => STATUS_LIVE
+        ];
         $dataProvider = new CActiveDataProvider('Event', [
             'pagination' => [
                 'pageVar' => 'page',
                 'pageSize' => ADMIN_PAGE_SIZE
-            ]
+            ],
+            'criteria' => $criteria
         ]);
         
         $template = '';
@@ -29,10 +35,13 @@ class EventController extends Controller
                 'header' => '标题'
             ],
             [
-                'name' => 'status',
-                'header' => '状态',
-                'value' => 'Yii::app()->controller->formatStatus($data->status)'
+                'name' => 'desc',
             ],
+//             [
+//                 'name' => 'status',
+//                 'header' => '状态',
+//                 'value' => 'Yii::app()->controller->formatStatus($data->status)'
+//             ],
             [
                 'htmlOptions' => [
                     'nowrap' => 'nowrap'
@@ -92,7 +101,13 @@ class EventController extends Controller
     {
         if (isset($_POST['Event'])) {
             $model->attributes = $_POST['Event'];
+            $cover = CUploadedFile::getInstance($model, 'cover');
+            $model->cover = $this->renameUploadFile($cover, 'cover');
+            $content_img = CUploadedFile::getInstance($model, 'content_img');
+            $model->content_img = $this->renameUploadFile($content_img, 'content_img');
             if ($model->save()) {
+                $this->saveUploadFile($cover, DEFAULT_UPLOAD_PATH . $model->cover);
+                $this->saveUploadFile($content_img, DEFAULT_UPLOAD_PATH . $model->content_img);
                 $this->redirect('/event/list');
             }
         }
@@ -102,7 +117,9 @@ class EventController extends Controller
 
     public function actionDel($id)
     {
-        Event::model()->deleteByPk($id);
+        $model = Event::model()->findByPk($id);
+        $model->status = STATUS_DEL;
+        $model->save(false);
         $this->redirect('/event/list');
     }
 

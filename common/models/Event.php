@@ -27,12 +27,16 @@ class Event extends CActiveRecord
      */
     public function rules()
     {
-        return array(
-            array(
-                'title, content',
+        return [
+            [
+                'title, content, desc',
                 'required'
-            )
-        );
+            ],
+            [
+                'cover, content_img',
+                'safe'
+            ]
+        ];
     }
 
     /**
@@ -53,6 +57,9 @@ class Event extends CActiveRecord
         return array(
             'id' => 'ID',
             'title' => '标题',
+            'desc' => '描述',
+            'cover' => '封面图',
+            'content_img' => '内容图',
             'content' => '内容',
             'created' => '创建时间'
         );

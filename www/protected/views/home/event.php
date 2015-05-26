@@ -5,7 +5,7 @@
 <?php foreach ($model as $item):?>
 	<div class="activitieslist col-md-12">
 		<div class="activitiesimg col-md-5">
-			<img src="<?php echo DEFAULT_CDN_URL . $item->cover;?>">
+			<img src="http://<?php echo DEFAULT_CDN_URL . $item->cover;?>">
 		</div>
 		<div class="activitiesspan col-md-7">
 			<h3><?php echo $item->title;?></h3>

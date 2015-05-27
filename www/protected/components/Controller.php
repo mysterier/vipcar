@@ -41,6 +41,7 @@ class Controller extends CController
                 '/help/faq' => 'page/help'
             ];
             $url = Yii::app()->request->getUrl();
+            $url = $maps[$url];
             $this->redirect('http://m.vip-car.com.cn' . $url);
             Yii::app()->end();
         }

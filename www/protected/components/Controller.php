@@ -33,7 +33,7 @@ class Controller extends CController
     public function init()
     {
         $detect = Yii::app()->mobileDetect;
-        if (!$detect->isMobile()) {
+        if ($detect->isMobile()) {
             $maps = [
                 '/contact' => '/page/contactus',
                 '/help/billing' => '/page/service',
@@ -41,7 +41,7 @@ class Controller extends CController
                 '/help/faq' => 'page/help'
             ];
             $url = Yii::app()->request->getUrl();
-            $this->redirect('m.vip-car.com.cn' . $url);
+            $this->redirect('http://m.vip-car.com.cn' . $url);
             Yii::app()->end();
         }
         parent::init();

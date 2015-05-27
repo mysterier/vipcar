@@ -10,14 +10,15 @@
 		<div class="activitiesspan col-md-7 padnone">
 			<h3><?php echo $item->title;?></h3>
 			<p><?php echo $item->desc;?></p>
+
+			<a class="btn btn-info" href="/eventdetail/<?php echo $item->id;?>">点击详情</a>
+			<div class="pull-right" onmouseover="setShare('<?php echo $item->title;?>','http://<?php echo Yii::app()->homeUrl . '/eventdetail/' . $item->id;?>');"> 
+		      <div class="jiathis_style">
+		      <a class="jiathis_button_tsina">新浪微博</a>
+		      <a class="jiathis_button_weixin">微信</a>
+		      </div>
+		    </div>
 		</div>
-		<a class="btn btn-info col-md-offset-5" href="/eventdetail/<?php echo $item->id;?>">点击详情</a>
-		<div class="pull-right" onmouseover="setShare('<?php echo $item->title;?>','http://<?php echo Yii::app()->homeUrl . '/eventdetail/' . $item->id;?>');"> 
-	      <div class="jiathis_style">
-	      <a class="jiathis_button_tsina">新浪微博</a>
-	      <a class="jiathis_button_weixin">微信</a>
-	      </div>
-	    </div>
 	</div>
 <?php endforeach;?>
 </div>

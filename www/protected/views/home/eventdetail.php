@@ -1,5 +1,5 @@
 <div class="imgtop"></div>
-<div class="wrapper-width padding100">
+<div class="wrapper-width padding50">
   <div class="active-detial-wrapper">
     <?php if($model->content_img):?>
     <div class="active-detial-img">

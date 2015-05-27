@@ -1056,6 +1056,9 @@ body{
 .active-detial-content{
 	margin:20px 0;
 }
+.active-detial-content p{
+	font-size: 1.2em;
+}
 /*企业用户*/
 .enterprise-head h3{
 	font-size: 2em;

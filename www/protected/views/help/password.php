@@ -1,6 +1,13 @@
-<!-- <h4 class="text-left">修改密码</h4>
+
+<h4 class="text-left">找回密码</h4>
 
 <p>
-	1）登录我的账户，选择修改密码<br /> 2）设置新密码，保存完成
+	1）通过登录页面点击忘记密码
 </p>
-<img src="/img/help-login4.png"> -->
+<img src="/images/help/getpass1.png">
+<p>2）验证信息，重新设置密码。</p>
+<img src="/images/help/getpass2.png">
+
+
+
+<div class="clearfix"></div>

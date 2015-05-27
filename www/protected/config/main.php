@@ -46,6 +46,10 @@ return array(
             "prefix" => "Yii.redis."
         ),
         
+        'mobileDetect' => array(
+            'class' => 'common.MobileDetect.MobileDetect'
+        ),
+        
         // uncomment the following to enable URLs in path-format
         
         'urlManager' => array(

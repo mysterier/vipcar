@@ -32,7 +32,20 @@ class Controller extends CController
 
     public function init()
     {
+        $detect = Yii::app()->mobileDetect;
+        if (!$detect->isMobile()) {
+            $maps = [
+                '/contact' => '/page/contactus',
+                '/help/billing' => '/page/service',
+                '/appdown' => '/page/download',
+                '/help/faq' => 'page/help'
+            ];
+            $url = Yii::app()->request->getUrl();
+            $this->redirect('m.vip-car.com.cn' . $url);
+            Yii::app()->end();
+        }
         parent::init();
+        
         $this->uid = Yii::app()->user->id;
     }
 

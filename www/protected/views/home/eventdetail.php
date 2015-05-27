@@ -9,7 +9,7 @@
     <h3><?php echo $model->title?></h3>
 
     <div class="active-detial-content">
-      <p>活动详情</p>
+      <p>活动详情:</p>
       <p><?php echo $model->content;?></p>
     </div>
   </div>

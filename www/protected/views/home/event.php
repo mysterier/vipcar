@@ -11,7 +11,7 @@
 			<h3><?php echo $item->title;?></h3>
 			<p><?php echo $item->desc;?></p>
 
-			<a class="btn btn-info" href="/eventdetail/<?php echo $item->id;?>">点击详情</a>
+			<a class="btn eventbtn" href="/eventdetail/<?php echo $item->id;?>">点击详情</a>
 			<div class="pull-right" onmouseover="setShare('<?php echo $item->title;?>','http://<?php echo Yii::app()->homeUrl . '/eventdetail/' . $item->id;?>');"> 
 		      <div class="jiathis_style">
 		      <a class="jiathis_button_tsina">新浪微博</a>

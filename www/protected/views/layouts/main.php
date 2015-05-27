@@ -115,6 +115,15 @@
 <div class="copyright">
     Copyright © 2014 ZHONGZE All Rights Reserved. 备案号：沪ICP备14053943号-1
 </div>
-
+<!-- vip-car.com.cn Baidu tongji analytics -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fefc1705270abb0dfc8d996218efe2a3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </body>
 </html>

@@ -1043,6 +1043,26 @@ body{
 	height: 315px;
 	margin:20px;
 }
+.eventbtn{
+	color: #7d7d7d;
+	background-image: -webkit-gradient(radial, center center, 0, center center, 150, from(white), to(#dedede));
+	background-image: -webkit-radial-gradient(center center, contain, white, #dedede);
+	background-image: -moz-radial-gradient(center center, contain, white, #dedede);
+	background-image: -o-radial-gradient(center center, contain, white, #dedede);
+	background-image: -ms-radial-gradient(center center, contain, white, #dedede);
+	background-image: radial-gradient(center center, contain, white, #dedede);
+	border:none;
+	}
+.eventbtn:hover{
+	color: #ccc;
+	background-image: -webkit-gradient(radial, center center, 0, center center, 150, from(white), to(#dedede));
+	background-image: -webkit-radial-gradient(center center, contain, white, #dedede);
+	background-image: -moz-radial-gradient(center center, contain, white, #dedede);
+	background-image: -o-radial-gradient(center center, contain, white, #dedede);
+	background-image: -ms-radial-gradient(center center, contain, white, #dedede);
+	background-image: radial-gradient(center center, contain, white, #dedede);
+	border:none;
+}
 /*活动详情*/
 .active-detial-wrapper{
 	width: 688px;

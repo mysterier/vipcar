@@ -1270,6 +1270,9 @@ body{
 	padding: 10px 0 50px;
 }
 /*downapp*/
+.downapp-wrapper{
+	margin-top:50px;
+}
 .downlist{
 	float: left;
 	padding: 10px;

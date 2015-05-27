@@ -1,6 +1,6 @@
 <div class="imgtop"></div>
-<div class="downapp" >
-  <h2 class="text-center ">让出行轻松一些</h2>
+<div class="downapp-wrapper" >
+  <h3 class="text-center">让出行轻松一些</h3>
 	<div class="downapp-container wrapper-width "> 
     <div class="downapp-left">
     <img src="/img/downapp-left.png" />

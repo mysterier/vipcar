@@ -13,7 +13,7 @@ class RechargeController extends Controller
         $subject = $this->getParam('subject');
         $body = $this->getParam('body');
         $params['partner'] = $alipay_config['partner'];
-        $params['seller_id'] = 'jackyren@subaozuche.com';
+        $params['seller_id'] = 'zhongzeyongche@163.com';
         $params['out_trade_no'] = $recharge_no;
         $params['subject'] = $subject;
         $params['body'] = $body;

@@ -35,6 +35,9 @@ class Controller extends CController
 
     public function beforeAction($action)
     {
+        if ($this->id == 'page')
+            return true;
+        
         $openid = Yii::app()->session['openid'];
         if ($openid)
             $this->openid = $openid;

@@ -390,7 +390,7 @@
     						<div class="form-group">
     							<div class="col-sm-offset-3 col-sm-9">
         							<div class="checkbox">
-        								<label> <?php echo $form->checkbox($model, 'agreeme');?>  我已阅读并同意<a target="_blank" href="/protocal">《众择用车》</a> 协议</label>
+        								<label> <?php echo $form->checkbox($model, 'agreeme');?>  我已阅读并同意<a target="_blank" href="/entprotocal">《众择用车》</a> 协议</label>
         							</div>
         							<?php 
             						  echo $form->error($model,'agreeme',[

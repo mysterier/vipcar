@@ -1,5 +1,5 @@
 
-<h4 class="text-left">找回密码</h4>
+<h4 class="text-left">如何订车</h4>
 
 <p>
 	1）点击导航上的在线订车进入订车页面

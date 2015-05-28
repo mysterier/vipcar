@@ -85,10 +85,10 @@
             <ul>
                 <li><h5>帮助中心</h5></li>
                 <li><a href="/help/login" >首次使用</a></li>
-                <li><a href="/help/webpay" >如何支付</a></li>
+             <!--    <li><a href="/help/webpay" >如何支付</a></li> -->
                 <li><a href="/help/car" >用车帮助</a></li>
                 <li><a href="/help/service" >车辆服务</a></li>
-                <li><a href="/help/order" >查看/取消订单</a></li>
+               <!--  <li><a href="/help/order" >查看/取消订单</a></li> -->
                 <li><a href="/help/faq" >常见问题</a></li>
             </ul>
             <ul>

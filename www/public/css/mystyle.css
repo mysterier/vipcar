@@ -3,8 +3,17 @@
 	padding: 5px;
 	border: 1px solid #ccc;
 }
-.table-width{
-	width: 90px;
+.table-width80{
+	width: 80px;
+}
+.table-width60{
+	width: 60px;
+}
+.table-width100{
+	width: 100px;
+}
+.table-width120{
+	width: 120px;
 }
 .all-btn-color{
 	background-color: #5d4037 !important;

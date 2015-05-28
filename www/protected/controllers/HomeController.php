@@ -207,6 +207,10 @@ class HomeController extends Controller
         $this->render('static/protocal');
     }
     
+    public function actionEntprotocal() {
+        $this->render('static/entprotocal');
+    }
+    
     public function actionGetpass() {
         $model = new Clients();
         if ($_POST) {

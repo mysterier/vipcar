@@ -14,7 +14,7 @@ class OrderController extends Controller
         $to = $this->getParam('to');
         $criteria = new CDbCriteria();
         $criteria->addCondition('client_id=' . $this->uid);
-        if($status)
+        if(isset($status))
             $criteria->addCondition("status='$status'");
         if($from)
             $criteria->addCondition("pickup_time>'{$from}'");

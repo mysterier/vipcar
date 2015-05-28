@@ -87,5 +87,14 @@ return  [
         'custom_content' => [
             'key' => 'value'
         ]
+    ],
+    'driver_cancel_order' => [
+        'title' => '众择租车来消息啦',
+        'description' => '订单xxxxx，用户已取消，请耐心等待下一单吧。',
+        'notification_basic_style' => 7,
+        'open_type' => 2,
+        'custom_content' => [
+            'key' => 'value'
+        ]
     ]
 ];

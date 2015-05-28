@@ -64,7 +64,7 @@ class Controller extends CController
             $items = [];
             if ($this->checkAccess(VIEW_ORDER))
                 $items[] = [
-                    'label' => '订单查询',
+                    'label' => '订单处理(驾控)',
                     'url' => [
                         'order/list'
                     ]
@@ -75,7 +75,7 @@ class Controller extends CController
                 DEL_ORDER
             ]))
                 $items[] = [
-                    'label' => '订单处理',
+                    'label' => '后台管理(客服)',
                     'url' => [
                         'order/process',
                         'status' => ORDER_STATUS_NOT_DISTRIBUTE

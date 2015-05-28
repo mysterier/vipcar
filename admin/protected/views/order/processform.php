@@ -28,6 +28,38 @@ echo $form->textFieldGroup($model, 'contacter_phone', [
     ]
 ]);
 
+echo $form->textFieldGroup($model, 'pickup_place', [
+    'wrapperHtmlOptions' => [
+        'class' => 'col-sm-5'
+    ]
+]);
+
+echo $form->textFieldGroup($model, 'drop_place', [
+    'wrapperHtmlOptions' => [
+        'class' => 'col-sm-5'
+    ]
+]);
+
+// echo $form->textFieldGroup($model, 'pickup_time', [
+//     'wrapperHtmlOptions' => [
+//         'class' => 'col-sm-5'
+//     ]
+// ]);
+
+echo $form->dateTimePickerGroup($model, 'pickup_time', [
+    'widgetOptions' => [
+        'options' => [
+            'format' => 'yyyy-mm-dd hh:ii:ss',
+            'language' => 'zh-CN',
+            'autoclose' => true
+        ]
+    ],
+    'wrapperHtmlOptions' => [
+        'class' => 'col-sm-5'
+    ],
+    //'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
+]);
+
 echo $form->textAreaGroup($model, 'summary', [
     'wrapperHtmlOptions' => [
         'class' => 'col-sm-9'

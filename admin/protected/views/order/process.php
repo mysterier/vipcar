@@ -14,7 +14,7 @@ $this->widget(
     [
         'buttonType' => 'link',
         'label' => '已分配',
-        'context' => 'Warning',
+        'context' => 'info',
         'url' =>  Yii::app()->createUrl('order/process?status=' . ORDER_STATUS_DISTRIBUTE)
     ]
 );
@@ -24,8 +24,28 @@ $this->widget(
     [
         'buttonType' => 'link',
         'label' => '进行中',
-        'context' => 'danger',
+        'context' => 'Warning',
         'url' =>  Yii::app()->createUrl('order/process?status=' . ORDER_STATUS_RUN)
+    ]
+);
+
+$this->widget(
+    'booster.widgets.TbButton',
+    [
+        'buttonType' => 'link',
+        'label' => '已取消',
+        'context' => 'danger',
+        'url' =>  Yii::app()->createUrl('order/process?status=' . ORDER_STATUS_CANCEL)
+    ]
+);
+
+$this->widget(
+    'booster.widgets.TbButton',
+    [
+        'buttonType' => 'link',
+        'label' => '已完成',
+        'context' => 'success',
+        'url' =>  Yii::app()->createUrl('order/process?status=' . ORDER_STATUS_END)
     ]
 );
 ?>

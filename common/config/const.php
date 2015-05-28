@@ -80,7 +80,7 @@ define('ORDER_STATUS_RUN', 2);
 define('ORDER_STATUS_HAND', 3);
 define('ORDER_STATUS_RUSH', 4);
 define('ORDER_STATUS_PAY', 5);
-define('ORDER_STATUS_AUTO_END', 7);
+define('ORDER_STATUS_CANCEL', 7);
 define('ORDER_FINISHED', 0);
 define('ORDER_UNFINISHED', 1);
 

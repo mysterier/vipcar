@@ -8,6 +8,12 @@ class OrderController extends Controller
 
     public function actionList()
     {
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'status = :status';
+        $criteria->order = 'pickup_time DESC';
+        $criteria->params = [
+            'status' => (string) ORDER_STATUS_NOT_DISTRIBUTE
+        ];
         $dataProvider = new CActiveDataProvider('Orders', [
             'sort' => [
                 'defaultOrder' => 'id DESC'
@@ -15,7 +21,8 @@ class OrderController extends Controller
             'pagination' => [
                 'pageVar' => 'page',
                 'pageSize' => ADMIN_PAGE_SIZE
-            ]
+            ],
+            'criteria' => $criteria
         ]);
         
         $template = '';
@@ -35,18 +42,22 @@ class OrderController extends Controller
                 'header' => '订单号'
             ],
             [
-            'name' => 'type',
+                'name' => 'type',
                 'header' => '订单类型',
                 'value' => 'Yii::app()->controller->formatType($data->type)'
             ],
             [
-            'name' => 'vehicle_type',
+                'name' => 'vehicle_type',
                 'header' => '服务类型',
                 'value' => 'Yii::app()->controller->formatService($data->vehicle_type)'
             ],
             [
                 'name' => 'contacter_name',
                 'header' => '联系人'
+            ],
+            [
+                'name' => 'contacter_phone',
+                'header' => '联系电话'
             ],
             [
                 'name' => 'pickup_place',
@@ -57,13 +68,8 @@ class OrderController extends Controller
                 'header' => '目的地'
             ],
             [
-                'name' => 'created',
-                'header' => '创建时间'
-            ],
-            [
-                'name' => 'status',
-                'header' => '状态',
-                'value' => 'Yii::app()->controller->formatStatus($data->status)'
+                'name' => 'pickup_time',
+                'header' => '用车时间'
             ],
             [
                 'htmlOptions' => [
@@ -95,7 +101,7 @@ class OrderController extends Controller
         ];
         return $tpl[$status];
     }
-    
+
     public function formatService($service)
     {
         $tpl = [
@@ -135,8 +141,7 @@ class OrderController extends Controller
 
     /**
      *
-     * @todo 推送 百度老报错
-     * @param unknown $model            
+     * @param obj $model            
      */
     private function saveOrders($model)
     {
@@ -144,26 +149,29 @@ class OrderController extends Controller
             // 如果订单已经分配司机，则将该司机的flag改为free
             Drivers::model()->modifyFlag(DRIVER_FLAG_FREE, $model);
             $driver_id = $_POST['Orders']['driver_id'];
-            $driver = Drivers::model()->with('vehicle')->findByPk($driver_id);
-            $model->attributes = $_POST['Orders'];
-            $model->status = (string) ORDER_STATUS_DISTRIBUTE;
-            $model->license_no = $driver->vehicle[0]->license_no;
-            $model->last_update = time();
-            if ($model->save()) {            
-                $this->setApiLastUpdate($model->client_id, 'client');
-                $this->setApiLastUpdate($driver_id, 'driver');
-                Drivers::model()->modifyFlag(DRIVER_FLAG_DISTRIBUTED, $model);
-                // 给司机发送通知
-                Yii::import('common.pushmsg.*');
-                $attributes = [
-                    'client_id' => $driver_id,
-                    'type' => USER_TYPE_DRIVER
-                ];
-                $tpl = 'driver_new_order';
-                
-                // PushMsg::action()->pushMsg($attributes, $tpl);
-                $this->redirect('/order/process?status=' . ORDER_STATUS_NOT_DISTRIBUTE);
-            }
+            if ($driver_id) {
+                $driver = Drivers::model()->with('vehicle')->findByPk($driver_id);
+                $model->attributes = $_POST['Orders'];
+                $model->status = (string) ORDER_STATUS_DISTRIBUTE;
+                $model->license_no = $driver->vehicle[0]->license_no;
+                $model->last_update = time();
+                if ($model->save()) {
+                    $this->setApiLastUpdate($model->client_id, 'client');
+                    $this->setApiLastUpdate($driver_id, 'driver');
+                    Drivers::model()->modifyFlag(DRIVER_FLAG_DISTRIBUTED, $model);
+                    // 给司机发送通知
+                    Yii::import('common.pushmsg.*');
+                    $attributes = [
+                        'client_id' => $driver_id,
+                        'type' => USER_TYPE_DRIVER
+                    ];
+                    $tpl = 'driver_new_order';                
+                    PushMsg::action()->pushMsg($attributes, $tpl);
+                    $this->redirect('/order/process?status=' . ORDER_STATUS_NOT_DISTRIBUTE);
+                }
+            } else {
+                $model->addError('driver_id', '未分配司机');
+            }         
         }
         $hash['model'] = $model;
         $drivers = $model->getDriversByVehcileType();
@@ -227,12 +235,12 @@ class OrderController extends Controller
                 'header' => '订单号'
             ],
             [
-            'name' => 'vehicle_type',
+                'name' => 'vehicle_type',
                 'header' => '服务类型',
                 'value' => 'Yii::app()->controller->formatService($data->vehicle_type)'
             ],
             [
-            'name' => 'type',
+                'name' => 'type',
                 'header' => '订单类型',
                 'value' => 'Yii::app()->controller->formatType($data->type)'
             ],
@@ -253,23 +261,23 @@ class OrderController extends Controller
                 'header' => '目的地'
             ],
             [
-                'name' => 'created',
-                'header' => '下单时间'
+                'name' => 'pickup_time',
+                'header' => '用车时间'
             ],
-            [
-                'name' => 'driver.name',
-                'header' => '司机'
-            ],
-            [
-                'name' => 'vehicle',
-                'header' => '车型',
-                'value' => 'Yii::app()->controller->getVehicle($data)'
-            ],
-            [
-                'name' => 'status',
-                'header' => '状态',
-                'value' => 'Yii::app()->controller->formatStatus($data->status)'
-            ],
+//             [
+//                 'name' => 'driver.name',
+//                 'header' => '司机'
+//             ],
+//             [
+//                 'name' => 'vehicle',
+//                 'header' => '车型',
+//                 'value' => 'Yii::app()->controller->getVehicle($data)'
+//             ],
+//             [
+//                 'name' => 'status',
+//                 'header' => '状态',
+//                 'value' => 'Yii::app()->controller->formatStatus($data->status)'
+//             ],
             [
                 'htmlOptions' => [
                     'nowrap' => 'nowrap'
@@ -295,7 +303,7 @@ class OrderController extends Controller
         ];
         return $tpl[$type];
     }
-    
+
     public function getVehicle($obj)
     {
         $string = '';

@@ -292,12 +292,12 @@ class Orders extends CActiveRecord
          
         $pickup_time = strtotime($model->pickup_time);
         $len = $pickup_time - time();
+        // 开启事务处理
+        $transaction = Yii::app()->db->beginTransaction();
         if ($len < 7200) {
             if ($confirm) {
                 return 2;
-            }
-            // 开启事务处理
-            $transaction = Yii::app()->db->beginTransaction();
+            }           
             //扣除20%费用
             // 修改账户余额
             $client_obj = Clients::model()->findByPk($uid);

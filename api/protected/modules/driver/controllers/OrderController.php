@@ -57,6 +57,10 @@ class OrderController extends Controller
         $model = Orders::model()->findByPk($id);
         $this->getIncome($model);
         if ($model) {
+            if ($model->status == ORDER_STATUS_CANCEL) {
+                echo json_encode(['error_code' => '-301']);
+                Yii::app()->end();
+            }
             $result['error_code'] = SUCCESS_DEFAULT;
             $result['error_msg'] = '';
             $result['order_no'] = $model->order_no;
@@ -89,6 +93,10 @@ class OrderController extends Controller
         if ($status == ORDER_STATUS_RUN) {
             $model = Orders::model()->findByPk($id);
             if ($model && ($model->driver_id == $this->uid)) {
+                if ($model->status == ORDER_STATUS_CANCEL) {
+                    echo json_encode(['error_code' => '-301']);
+                    Yii::app()->end();
+                }
                 $model->status = $status;
                 $model->last_update = time();
                 if ($model->save(false)) {

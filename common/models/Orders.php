@@ -270,7 +270,7 @@ class Orders extends CActiveRecord
                     'client_id' => $model->driver_id,
                     'type' => USER_TYPE_DRIVER
                 ];
-                $tpl = 'driver_new_order';
+                $tpl = 'driver_cancel_order';
                 $option = [
                     'description' => '订单' . $model->order_no . '，用户已取消，请耐心等待下一单吧。'
                 ];
@@ -328,7 +328,7 @@ class Orders extends CActiveRecord
                 'client_id' => $model->driver_id,
                 'type' => USER_TYPE_DRIVER
             ];
-            $tpl = 'driver_new_order';
+            $tpl = 'driver_cancel_order';
             $option = [
                 'description' => '订单' . $model->order_no . '，用户已取消，请耐心等待下一单吧。'
             ];

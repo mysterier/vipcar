@@ -85,7 +85,7 @@ class Orders extends CActiveRecord
             ],
             
             [
-                'contacter_name, contacter_phone, vehicle_type, driver_id',
+                'contacter_name, contacter_phone, pickup_place, drop_place, pickup_time, vehicle_type, driver_id',
                 'required',
                 'on' => 'process_order'
             ],
@@ -249,5 +249,79 @@ class Orders extends CActiveRecord
         $criteria->with = 'vehicle.model';
         $drivers = Drivers::model()->findAll($criteria);
         return $drivers;
+    }
+    
+    /**
+     * 取消待分配订单
+     * 
+     * @return 1:成功，2：需扣费等待用户再次确认，3：取消失败
+     */
+    public function cancelzero($id) {
+        $model = $this->findByPk($id);
+        $model->status = (string) ORDER_STATUS_CANCEL;
+        $model->last_update = time();
+        if ($model->save(false))
+            return 1;
+         return 3;
+    }
+    
+    /**
+     * 取消已分配订单
+     * $confirm ? 用户未确认 ：用户已经确认
+     * 
+     * @return 1:成功，2：需扣费等待用户再次确认，3：取消失败
+     */
+    public function cancelone($id, $confirm, $uid) {
+        $model = $this->findByPk($id);
+         
+        $pickup_time = strtotime($model->pickup_time);
+        $len = $pickup_time - time();
+        if ($len < 7200) {
+            if ($confirm) {
+                return 2;
+            }
+            // 开启事务处理
+            $transaction = Yii::app()->db->beginTransaction();
+            //扣除20%费用
+            // 修改账户余额
+            $client_obj = Clients::model()->findByPk($uid);
+            $payment = ($model->estimated_cost)*0.2;
+            $client_obj->account_balance = $client_obj->account_balance - $payment;
+            $client_obj->last_update = time();
+            $client_obj->setScenario('modify_balance');
+            if ($client_obj->save()) {
+                // 支付记录
+                $palylog = new PayLog();
+                $palylog->uid = $uid;
+                $palylog->amount = $payment;
+                $palylog->order_id = $id;
+                if (!$palylog->save())
+                    $transaction->rollback();
+            } else
+                $transaction->rollback();
+        }
+    
+        $model->status = (string) ORDER_STATUS_CANCEL;
+        $model->last_update = time();
+        if ($model->save(false)) {
+            //司机变更为空闲 加百度推送
+            Drivers::model()->modifyFlag(DRIVER_FLAG_FREE, $model);
+            // 给司机发送通知
+            Yii::import('common.pushmsg.*');
+            $attributes = [
+                'client_id' => $model->driver_id,
+                'type' => USER_TYPE_DRIVER
+            ];
+            $tpl = 'driver_new_order';
+            $option = [
+                'description' => '订单' . $model->order_no . '，用户已取消，请耐心等待下一单吧。'
+            ];
+            PushMsg::action()->pushMsg($attributes, $tpl, $option);
+            $transaction->commit();
+            return 1;
+        } else {
+            $transaction->rollback();
+            return 3;
+        }
     }
 }

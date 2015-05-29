@@ -66,5 +66,6 @@ $this->breadcrumbs=array(
 <h2><a href="/api/invoice?module=amount">总额、可开票金额、已开票金额</a></h2>
 <h2><a href="/api/cloginv1">登录v1.1</a></h2>
 <h2><a href="/api/sendcodelogin">登录动态码</a></h2>
+<h2><a href="/api/cancel">取消订单</a></h2>
 </div>
 </div>

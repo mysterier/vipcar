@@ -2,13 +2,13 @@
 /* @var $this SiteController */
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
-$this->pageTitle = Yii::app()->name . ' - Order-Detail';
+$this->pageTitle = Yii::app()->name . ' - cancel';
 $this->breadcrumbs = array(
-    'Order-Detail'
+    'cancel'
 );
 ?>
 
-<h1>Order-Detail</h1>
+<h1>cancel</h1>
 
 <p>Please fill out the following form with your login credentials:</p>
 
@@ -17,7 +17,7 @@ $this->breadcrumbs = array(
 
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'login-form',
-    'action' => '/driver/order/detail/4',
+    'action' => '/client/order/cancel/27',
     'enableClientValidation' => true,
     'clientOptions' => array(
         'validateOnSubmit' => true
@@ -33,10 +33,15 @@ $form = $this->beginWidget('CActiveForm', array(
 	   <label>Token</label>
 	   <input type="text" name="token" />
 	</div>
+	
+	<div class="row">
+	   <label>confirm</label>
+	   <input type="text" name="confirm" />
+	</div>
 
 	
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Order-Detail'); ?>
+		<?php echo CHtml::submitButton('cancel'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

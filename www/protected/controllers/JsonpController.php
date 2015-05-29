@@ -173,95 +173,52 @@ class JsonpController extends Controller
         echo json_encode($output);
     }
     
-    /**
-     * 取消待分配订单
-     */
-    public function actionCancelzero() {
+    public function actionCancelorder() {
         $id = $this->getParam('id');
-        $model = Orders::model()->findByPk($id);       
-        $model->status = (string) ORDER_STATUS_CANCEL;
-        $model->last_update = time();
-        if ($model->save(false)) {
-            $output = [
-                'error_code' => 0
-            ];
-        } else {
-            $output = [
-                'error_code' => -1
-            ];
-        }
-                     
-        echo json_encode($output);
-    }
-    
-    /**
-     * 取消已分配订单
-     */
-    public function actionCancelone() {
-        $id = $this->getParam('id');
-        $confirm = $this->getParam('confirm');
         $model = Orders::model()->findByPk($id);
-             
-        $pickup_time = strtotime($model->pickup_time);
-        $len = $pickup_time - time();
-        if ($len < 7200) {
-            if ($confirm) {
-                $output = [
-                    'error_code' => 1
-                ];
-                echo json_encode($output);
-                Yii::app()->end();
-            }
-            // 开启事务处理
-            $transaction = Yii::app()->db->beginTransaction();
-            //扣除20%费用
-            // 修改账户余额
-            $client_obj = Clients::model()->findByPk($this->uid);
-            $payment = ($model->estimated_cost)*0.2;
-            $client_obj->account_balance = $client_obj->account_balance - $payment;
-            $client_obj->last_update = time();
-            $client_obj->setScenario('modify_balance');
-            if ($client_obj->save()) {
-                // 支付记录
-                $palylog = new PayLog();
-                $palylog->uid = $this->uid;
-                $palylog->amount = $payment;
-                $palylog->order_id = $id;
-                if (!$palylog->save())
-                    $transaction->rollback();
-            } else
-                $transaction->rollback();
-        }                   
-    
-        $model->status = (string) ORDER_STATUS_CANCEL;
-        $model->last_update = time();
-        if ($model->save(false)) {
-            //司机变更为空闲 加百度推送
-            Drivers::model()->modifyFlag(DRIVER_FLAG_FREE, $model);
-            // 给司机发送通知
-            Yii::import('common.pushmsg.*');
-            $attributes = [
-                'client_id' => $model->driver_id,
-                'type' => USER_TYPE_DRIVER
-            ];
-            $tpl = 'driver_new_order';
-            $option = [
-                'description' => '订单' . $model->order_no . '，用户已取消，请耐心等待下一单吧。'
-            ];
-            PushMsg::action()->pushMsg($attributes, $tpl, $option);
-            $transaction->commit();
-            $output = [
-                'error_code' => 0
-            ];
-        } else {
-            $transaction->rollback();
+        if (!$model) {
             $output = [
                 'error_code' => -1
             ];
+            echo json_encode($output);
+            Yii::app()->end();
         }
-         
+        if ($model->status == '1') {
+            $confirm = $this->getParam('confirm');
+            switch ($model->cancelone($id, $confirm, $this->uid)) {
+                case 1:
+                    $output = [
+                        'error_code' => 0
+                    ];
+                    break;
+                case 2:
+                    $output = [
+                        'error_code' => 1
+                    ];
+                    break;
+                case 3:
+                    $output = [
+                        'error_code' => -1
+                    ];
+                    break;
+            }
+        } else {
+            switch ($model->cancelzero($id)) {
+                case 1:
+                    $output = [
+                        'error_code' => 0
+                    ];
+                    break;
+                case 3:
+                    $output = [
+                        'error_code' => -1
+                    ];
+                    break;
+            }
+        }
+        
         echo json_encode($output);
-    }
+    }      
         
     public function afterAction($action) {
         Yii::app()->end();

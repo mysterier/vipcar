@@ -135,4 +135,42 @@ class OrderController extends Controller
             $this->result['error_msg'] = '';
         }
     }
+    
+    public function actionCancel($id) {
+        $model = Orders::model()->findByPk($id);
+        if (!$model) {
+            $output = [
+                'error_code' => -1,
+                'error_msg' => '未找到订单'
+            ];
+            echo json_encode($output);
+            Yii::app()->end();
+        }
+        if ($model->status == '1') {
+            $confirm = $this->getParam('confirm');
+            switch ($model->cancelone($id, $confirm, $this->uid)) {
+                case 1:
+                    $this->result['error_code'] = SUCCESS_DEFAULT;
+                    $this->result['error_msg'] = '';
+                    break;
+                case 2:
+                    $this->result['error_code'] = 2;
+                    $this->result['error_msg'] = '';
+                    break;
+                case 3:
+                    $this->result['error_msg'] = '取消未成功';
+                    break;
+            }
+        } else {
+            switch ($model->cancelzero($id)) {
+                case 1:
+                    $this->result['error_code'] = SUCCESS_DEFAULT;
+                    $this->result['error_msg'] = '';
+                    break;
+                case 3:
+                    $this->result['error_msg'] = '取消未成功';
+                    break;
+            }
+        }
+    }
 }

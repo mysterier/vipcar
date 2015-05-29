@@ -295,4 +295,8 @@ class ApiController extends Controller
             'module' => $module,
         ]);
     }
+    
+    public function actionCancel() {
+        $this->render('cancel');
+    }
 }

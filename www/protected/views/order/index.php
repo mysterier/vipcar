@@ -104,7 +104,7 @@
 					<td><?php echo $order->pickup_place;?></td>
 					<td><?php echo $order->drop_place;?></td>
 					<?php if ($status == '0' || $status == '1'): ?>
-					<td><a href="#" class="cancel" order_id="<?php echo $order->id;?>" status="<?php echo $status;?>">取消</a></td>
+					<td><a href="#" class="cancel" order_id="<?php echo $order->id;?>">取消</a></td>
 					<?php endif;?>
 				</tr>
 				<?php endforeach;?>
@@ -134,32 +134,24 @@ $(function(){
 		if(window.confirm( '您确定要取消订单么？')) {
 			tr = $(this).parents("tr");
 			id = $(this).attr("order_id");
-			status = $(this).attr("status");
-			if (status == 0) {
-				//取消未分配订单
-				$.post('/jsonp/cancelzero', {'id':id}, function(data){
-				    if (data.error_code == 0) {
-				    	tr.remove();
-					}	    	
-				},'json');
-			} else {
-				//取消已分配订单
-				$.post('/jsonp/cancelone', {'id':id, 'confirm':1}, function(data){
-				    if (data.error_code == 0) {
-				    	tr.remove();
+ 
+			//取消已分配订单
+			$.post('/jsonp/cancelorder', {'id':id, 'confirm':1}, function(data){
+			    if (data.error_code == 0) {
+			    	tr.remove();
+				}
+			    //已分配且上车时间和当前时间小于2小时
+				if (data.error_code == 1) {
+					if(window.confirm( '取消该笔订单需要收取空驶费（20%的价钱）')) {
+						$.post('/jsonp/cancelorder', {'id':id, 'confirm':0}, function(data){
+							if (data.error_code == 0) {
+						    	tr.remove();
+							}
+						},'json');
 					}
-				    //已分配且上车时间和当前时间小于2小时
-					if (data.error_code == 1) {
-						if(window.confirm( '取消该笔订单需要收取空驶费（20%的价钱）')) {
-							$.post('/jsonp/cancelone', {'id':id, 'confirm':0}, function(data){
-								if (data.error_code == 0) {
-							    	tr.remove();
-								}
-							},'json');
-						}
-					}	    	
-				},'json');
-			}			
+				}	    	
+			},'json');
+					
 		}
 	});
 });

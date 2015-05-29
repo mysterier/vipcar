@@ -88,7 +88,7 @@
 				<th class="table-width100">上车时间</th>
 				<th class="table-width120">出发地</th>
 				<th class="table-width120">目的地</th>
-				<?php if ($status == '0' || $status == '1'): ?>
+				<?php if ($status == '0' || $status == '1' || $status == '2'): ?>
 				<th >操作</th>
 				<?php endif;?>
 			</thead>
@@ -103,7 +103,7 @@
 					<td><?php echo $order->pickup_time;?></td>
 					<td><?php echo $order->pickup_place;?></td>
 					<td><?php echo $order->drop_place;?></td>
-					<?php if ($status == '0' || $status == '1'): ?>
+					<?php if ($status == '0' || $status == '1' || $status == '2'): ?>
 					<td><a href="#" class="cancel" order_id="<?php echo $order->id;?>">取消</a></td>
 					<?php endif;?>
 				</tr>

@@ -183,7 +183,7 @@ class JsonpController extends Controller
             echo json_encode($output);
             Yii::app()->end();
         }
-        if ($model->status == '1') {
+        if ($model->status == ORDER_STATUS_RUN) {
             $confirm = $this->getParam('confirm');
             switch ($model->cancelone($id, $confirm, $this->uid)) {
                 case 1:

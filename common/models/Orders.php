@@ -260,8 +260,24 @@ class Orders extends CActiveRecord
         $model = $this->findByPk($id);
         $model->status = (string) ORDER_STATUS_CANCEL;
         $model->last_update = time();
-        if ($model->save(false))
+        if ($model->save(false)) {
+            //司机变更为空闲 加百度推送
+            Drivers::model()->modifyFlag(DRIVER_FLAG_FREE, $model);
+            if ($model->driver_id) {
+                // 给司机发送通知
+                Yii::import('common.pushmsg.*');
+                $attributes = [
+                    'client_id' => $model->driver_id,
+                    'type' => USER_TYPE_DRIVER
+                ];
+                $tpl = 'driver_new_order';
+                $option = [
+                    'description' => '订单' . $model->order_no . '，用户已取消，请耐心等待下一单吧。'
+                ];
+                PushMsg::action()->pushMsg($attributes, $tpl, $option);
+            }            
             return 1;
+        }            
          return 3;
     }
     

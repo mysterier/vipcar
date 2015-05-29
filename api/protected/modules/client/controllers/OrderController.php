@@ -146,10 +146,11 @@ class OrderController extends Controller
             echo json_encode($output);
             Yii::app()->end();
         }
-        if ($model->status == '1') {
+        if ($model->status == ORDER_STATUS_RUN) {
             $confirm = $this->getParam('confirm');
             switch ($model->cancelone($id, $confirm, $this->uid)) {
                 case 1:
+                    $this->setApiLastUpdate();
                     $this->result['error_code'] = SUCCESS_DEFAULT;
                     $this->result['error_msg'] = '';
                     break;
@@ -161,9 +162,10 @@ class OrderController extends Controller
                     $this->result['error_msg'] = '取消未成功';
                     break;
             }
-        } else {
+        } else if ($model->status == ORDER_STATUS_NOT_DISTRIBUTE || $model->status == ORDER_STATUS_DISTRIBUTE) {
             switch ($model->cancelzero($id)) {
                 case 1:
+                    $this->setApiLastUpdate();
                     $this->result['error_code'] = SUCCESS_DEFAULT;
                     $this->result['error_msg'] = '';
                     break;

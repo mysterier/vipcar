@@ -257,7 +257,7 @@ class OrderController extends Controller
      */
     private function getNewOrders()
     {
-        $condition = 'driver_id=:uid and id > :id and (status<="' . ORDER_STATUS_RUN . '" or status="' . ORDER_STATUS_CANCEL . '")';
+        $condition = 'driver_id=:uid and id > :id and status<="' . ORDER_STATUS_RUN . '"';
         $params = [
             'uid' => $this->uid,
             'id' => $this->sid
@@ -280,7 +280,7 @@ class OrderController extends Controller
         $api_last_update = $this->getApiLastUpdate();
         
         if ($api_last_update > $last_update) {
-            $condition = $condition ? $condition : 'driver_id=:uid and (status="' . ORDER_STATUS_PAY . '" or status="' . ORDER_STATUS_END . '") and last_update > :last_update';
+            $condition = $condition ? $condition : 'driver_id=:uid and status>="' . ORDER_STATUS_PAY . '" and last_update > :last_update';
             $params = [
                 'uid' => $this->uid,
                 'last_update' => $last_update
@@ -361,7 +361,18 @@ class OrderController extends Controller
                 $order->save();
                 
                 $this->setApiLastUpdate($this->id,'order', 'client', $order->client_id);
-                $this->setApiLastUpdate($this-id, 'driver', $driver->id);
+                $this->setApiLastUpdate($this->id, 'driver', $driver->id);
+                
+                Yii::import('common.pushmsg.*');
+                $attributes = [
+                    'client_id' => $order->client_id,
+                    'type' => USER_TYPE_CLIENT
+                ];
+                $tpl = 'order_confirm';
+                $option = [
+                    'description' => '您的订单' . $order->order_no . '已被确认，司机正向您火速奔来。'
+                ];
+                PushMsg::action()->pushMsg($attributes, $tpl, $option);
                 // 更改司机flag
                 if ($driver->flag == DRIVER_FLAG_FREE)
                     Drivers::model()->modifyFlag(DRIVER_FLAG_DISTRIBUTED, $order);

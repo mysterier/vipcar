@@ -217,9 +217,47 @@ class JsonpController extends Controller
             }
         }
         
+        $this->setApiLastUpdate($this->uid, 'client');
+        if ($model->driver_id)
+            $this->setApiLastUpdate($this->driver_id, 'driver');
         echo json_encode($output);
     }      
-        
+
+    /**
+     * 设置api最后更新时间
+     * 主要针对orderlist接口
+     *
+     *
+     * @return string
+     * @author lqf
+     */
+    public function setApiLastUpdate($uid, $utype)
+    {
+        $api = $utype . '_order_list';
+        $url = '/' . $utype . '/order/list';
+        $utype = ($utype == 'driver') ? USER_TYPE_DRIVER : USER_TYPE_CLIENT;
+    
+        $c = new CDbCriteria();
+        $c->condition = 'uid =:uid and utype=:utype and url=:url';
+        $c->params = [
+            'uid' => $uid,
+            'utype' => $utype,
+            'url' => $url
+        ];
+        $model = ApiLastupdate::model()->find($c);
+        if (! $model)
+            $model = new ApiLastupdate();
+    
+        $model->attributes = [
+            'last_update' => time(),
+            'uid' => $uid,
+            'utype' => $utype,
+            'api' => $api,
+            'url' => $url
+        ];
+        return $model->save();
+    }
+    
     public function afterAction($action) {
         Yii::app()->end();
     }

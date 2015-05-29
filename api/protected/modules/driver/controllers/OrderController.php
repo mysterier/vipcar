@@ -352,8 +352,8 @@ class OrderController extends Controller
                 $order->attributes = $attributes;
                 $order->save();
                 
-                $this->setApiLastUpdate($order->client_id, 'client');
-                $this->setApiLastUpdate($driver->id, 'driver');
+                $this->setApiLastUpdate($this->id,'order', 'client', $order->client_id);
+                $this->setApiLastUpdate($this-id, 'driver', $driver->id);
                 // 更改司机flag
                 if ($driver->flag == DRIVER_FLAG_FREE)
                     Drivers::model()->modifyFlag(DRIVER_FLAG_DISTRIBUTED, $order);

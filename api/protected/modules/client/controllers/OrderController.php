@@ -151,6 +151,8 @@ class OrderController extends Controller
             switch ($model->cancelone($id, $confirm, $this->uid)) {
                 case 1:
                     $this->setApiLastUpdate();
+                    if ($model->driver_id)
+                        $this->setApiLastUpdate($this->id, 'driver', $model->driver_id);
                     $this->result['error_code'] = SUCCESS_DEFAULT;
                     $this->result['error_msg'] = '';
                     break;
@@ -166,6 +168,8 @@ class OrderController extends Controller
             switch ($model->cancelzero($id)) {
                 case 1:
                     $this->setApiLastUpdate();
+                    if ($model->driver_id)
+                        $this->setApiLastUpdate($this->id, 'driver', $model->driver_id);
                     $this->result['error_code'] = SUCCESS_DEFAULT;
                     $this->result['error_msg'] = '';
                     break;

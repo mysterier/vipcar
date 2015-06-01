@@ -38,6 +38,7 @@ class CouponController extends Controller
                         $this->result['coupon_sid'] = $client_ticket->id;
                         $this->result['coupon_ticket'] = $model->ticket->name;
                         $this->result['coupon_type'] = $model->type;
+                        $this->result['coupon_created'] = strtotime($model->created);
                         $this->result['coupon_expire'] = $model->ticket_expire;
                     } else 
                         $transaction->rollback();
@@ -68,6 +69,7 @@ class CouponController extends Controller
                         'coupon_sid' => $coupon->id,
                         'coupon_ticket' => $coupon->ticket->name,
                         'coupon_type' => $coupon->coupon_type,
+                        'coupon_created' => strtotime($coupon->created),
                         'coupon_expire' => $coupon->expire
                     ];
                 }
@@ -76,6 +78,7 @@ class CouponController extends Controller
         $this->result['error_code'] = SUCCESS_DEFAULT;
         $this->result['error_msg'] = '';
         $this->result['last_coupon_sid'] = $last_coupon_sid;
+        $this->result['server_time'] = time();
         $this->result['coupons'] = $tickets;
     }
 

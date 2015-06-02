@@ -22,7 +22,7 @@ define('SEX_MSG_MALE', '男');
 define('SEX_FEMALE', 2);
 define('SEX_MSG_FEMALE', '女');
 define('FILE_TOOLARGE', '文件大于10M，上传失败！请上传小于10M的文件！');
-define('DEFAULT_UPLOAD_PATH', '/workdisk/upload');
+define('DEFAULT_UPLOAD_PATH', '/workdisk/workdata/www/upload');
 define('DEFAULT_CDN_URL', 'cdn.carvip.wang');
 define('ERROR_MSG_UPLOAD', '上传失败');
 define('ID_CARD_EXISTED', '身份证号码已被注册');

@@ -43,7 +43,7 @@
 					<td><?php echo $item->recharge_no;?></td>
 					<td><?php echo $item->created;?></td>
 					<td><?php echo $item->amount;?></td>
-					<td><?php echo ($item->recharge_no == 1) ? '成功' : '未成功';?></td>
+					<td><?php echo ($item->status == 1) ? '成功' : '未成功';?></td>
 				</tr>
 				<?php endforeach;?>
             <?php else:?>

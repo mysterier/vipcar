@@ -112,6 +112,9 @@ body{
 	border-bottom-right-radius:0;
 	border-top-right-radius:0;
 }
+.margintop10{
+	margin-top:10px; 
+}
 /*提示*/
 .wrapper-width{
 	margin: 0 auto;
@@ -208,7 +211,6 @@ body{
 	float:left;
 	width:200px;
 	height:90px;	
-	background: url("/img/logo.png") no-repeat;
 }
 .nav-topnav{
 	float:left;
@@ -463,11 +465,9 @@ body{
 }
 /*attention*/
 .attention-left{	
-	width:460px;
 	float: left;
 }
 .attention-right{
-	width:460px;
 	float: right;
 }
 .attention-left h4{
@@ -491,6 +491,7 @@ body{
 }
 .attention-img-code{
 	margin-top:-17px; 
+	margin-left: 15px;
 }
 .attention-left-txt{
 	margin-left:14px; 
@@ -498,8 +499,11 @@ body{
 .attention-right-txt{
 	margin-left: 14px;
 }
-.attention-index{
- padding-left: 22px;
+.attention-pad-left{
+ padding:0 65px;
+}
+.attention-pad-right{
+ padding:0 80px;
 }
 
 /*register*/

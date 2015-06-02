@@ -19,8 +19,8 @@
 </div>
 <div class="account-tab">
 	<ul>
-		<li class="col-md-6 account-tab-hover">已使用优惠券</li>
-		<li class="col-md-6">未使用优惠券</li>
+		<li class="col-md-6 account-tab-hover">未使用优惠券</li>
+		<li class="col-md-6">已使用优惠券</li>
 
 	</ul>
 </div>
@@ -33,31 +33,6 @@
 				<th>面值</th>
 				<th>获取时间</th>
 				<th>使用时间</th>
-
-			</thead>
-			<tbody>
-				<?php if($used):?>
-				    <?php foreach ($used as $acp):?>
-					<tr>
-					<td><?php echo $acp->ticket->name;?> 元</td>
-					<td><?php echo $acp->created;?></td>
-					<td><?php echo date('Y-m-d H:i:s', $acp->last_update);?></td>
-				</tr>
-					<?php endforeach;?>
-				<?php else:?>
-				    <tr>
-					<td>无相关数据</td>
-				</tr>
-				<?php endif;?>
-				</tbody>
-		</table>
-	</div>
-	<div class="loginhide">
-		<table class="table table-hover">
-			<thead>
-				<th>面值</th>
-				<th>获取时间</th>
-				<th>过期时间</th>
 
 			</thead>
 			<tbody>
@@ -74,7 +49,33 @@
 					<td>无相关数据</td>
 				</tr>
 				<?php endif;?>
-				</tbody>
+			</tbody>
+			
+		</table>
+	</div>
+	<div class="loginhide">
+		<table class="table table-hover">
+			<thead>
+				<th>面值</th>
+				<th>获取时间</th>
+				<th>过期时间</th>
+
+			</thead>
+			<tbody>
+				<?php if($used):?>
+				    <?php foreach ($used as $acp):?>
+					<tr>
+					<td><?php echo $acp->ticket->name;?> 元</td>
+					<td><?php echo $acp->created;?></td>
+					<td><?php echo date('Y-m-d H:i:s', $acp->last_update);?></td>
+				</tr>
+					<?php endforeach;?>
+				<?php else:?>
+				    <tr>
+					<td>无相关数据</td>
+				</tr>
+				<?php endif;?>
+			</tbody>
 		</table>
 	</div>
 </div>

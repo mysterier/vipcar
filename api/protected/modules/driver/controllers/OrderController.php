@@ -103,16 +103,16 @@ class OrderController extends Controller
                     $this->setApiLastUpdate();
                     $this->setApiLastUpdate('order', 'client', $model->client_id);
                     
-                    Yii::import('common.pushmsg.*');
-                    $attributes = [
-                        'client_id' => $model->client_id,
-                        'type' => USER_TYPE_CLIENT
-                    ];
-                    $tpl = 'order_confirm';
-                    $option = [
-                        'description' => '您的订单' . $model->order_no . '已被确认，司机正向您火速奔来。'
-                    ];
-                    PushMsg::action()->pushMsg($attributes, $tpl, $option);
+//                     Yii::import('common.pushmsg.*');
+//                     $attributes = [
+//                         'client_id' => $model->client_id,
+//                         'type' => USER_TYPE_CLIENT
+//                     ];
+//                     $tpl = 'order_confirm';
+//                     $option = [
+//                         'description' => '您的订单' . $model->order_no . '已被确认，司机正向您火速奔来。'
+//                     ];
+//                     PushMsg::action()->pushMsg($attributes, $tpl, $option);
                     
                     $result['error_code'] = SUCCESS_DEFAULT;
                     $result['error_msg'] = '';

@@ -33,7 +33,7 @@
 	<!--页眉-->
 	<div id="header">
 		<div class="wrapper-width" id="header-container">
-		<a href="/" id="logo"></a>
+		<a href="/" id="logo"><img src="/img/logo.png"></a>
 			<ul class="header-nav">
 				<li class="header-topnav"><a href="/order/index">我的账户</a></li>
 				<li class="header-topnav"><a href="/appdown">客户端下载</a></li>

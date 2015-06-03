@@ -28,8 +28,10 @@ class RechargeController extends Controller
         $pages->applyLimit($criteria);
         
         $model = RechargeLog::model()->findAll($criteria);
+        $client = Clients::model()->findByPk($this->uid);
         $hash['model'] = $model;
         $hash['pages'] = $pages;
+        $hash['balance'] = $client->account_balance;
         $this->render('index', $hash);
     }
 

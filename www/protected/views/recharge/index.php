@@ -1,6 +1,6 @@
 <div class="balance-money">
 	<div>
-		账户余额<span>0</span>元
+		账户余额<span><?php echo $balance ? $balance : 0;?></span>元
 	</div>
 	<a href="/recharge/cash" class="btn btn-info btn-color all-btn-color">充值</a>
 </div>

@@ -102,7 +102,7 @@ class Drivers extends CActiveRecord
             [
                 'id_card_path',
                 'file',
-                'types' => 'jpg,png,gif',
+                'types' => 'jpg,png,gif,tif',
                 'maxSize' => 1024 * 1024 * 10,
                 'tooLarge' => FILE_TOOLARGE,
                 'on' => [
@@ -113,7 +113,7 @@ class Drivers extends CActiveRecord
             [
                 'license_path',
                 'file',
-                'types' => 'jpg,png,gif',
+                'types' => 'jpg,png,gif,tif',
                 'maxSize' => 1024 * 1024 * 10,
                 'tooLarge' => FILE_TOOLARGE,
                 'on' => [

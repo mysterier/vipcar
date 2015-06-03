@@ -308,7 +308,9 @@ class DriverController extends Controller
             [
                 'allow',
                 'actions' => [
-                    'modify'
+                    'modify',
+                    'distribute',
+                    'savevehicle'
                 ],
                 'roles' => [
                     MODIFY_DRIVER

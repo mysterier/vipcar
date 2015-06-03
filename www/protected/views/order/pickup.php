@@ -62,6 +62,7 @@
                                         'options' => [
                                             'showAnim' => 'fold',
                                             'dateFormat' => 'yy-mm-dd',
+                                            'minDate' => '+1d'
                                         ],
                                         'htmlOptions' => [
                                             'class' => 'form-control',

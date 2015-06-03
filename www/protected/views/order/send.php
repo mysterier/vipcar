@@ -202,7 +202,8 @@ $(function(){
     $('#Orders_pickup_time').datetimepicker({
 	    format: 'yyyy-mm-dd hh:ii',
 	    language: 'zh-CN',
-        autoclose: true
+        autoclose: true,
+        startDate: '<?php echo date('Y-m-d', strtotime('+1d'));?>'
     });
 });
 </script>

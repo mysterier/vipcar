@@ -5,9 +5,9 @@ class LoginController extends Controller
 
     public function actionIndex()
     {
-        $model = new ApiLoginForm('client');
+        $model = new ApiLoginForm('clientv1');
         $model->attributes = $_POST;
-        if ($model->validate() && $model->login()) {
+        if ($model->validate() && $model->loginv1()) {
             $this->result['error_code'] = SUCCESS_DEFAULT;
             $this->result['error_msg'] = '';
         } else {

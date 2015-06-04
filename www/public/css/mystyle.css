@@ -16,6 +16,7 @@
 	width: 120px;
 }
 .all-btn-color{
+	color: #fff !important;
 	background-color: #5d4037 !important;
 	border-color: #5d4037 !important;
 }
@@ -23,23 +24,22 @@
 	background-color: #c99878 !important;
 	border-color: #c99878 !important;
 }
-.all-btn-color:link{
-	background-color: #c99878 !important;
-	border-color: #c99878 !important;
+ul.yiiPager .selected a{
+	color:#fff !important;
+	background-color: #5d4037 !important;
 }
-.all-btn-color:visited{
-	background-color: #c99878 !important;
-	border-color: #c99878 !important;
+ul.yiiPager a:link, ul.yiiPager a:visited{
+	border: solid 1px #5d4037 !important;
 }
-.all-btn-color:active{
-	background-color: #c99878 !important;
-	border-color: #c99878 !important;
+
+.yiiPager a{
+	color:#5d4037 !important; 
 }
 
 a:link{
 	text-decoration: none;
 }
-*{
+*{	
 	margin:0;
 	padding:0;
 }
@@ -813,7 +813,7 @@ body{
 	padding:20px 0;
 	float:left;
 	width:200px;
-	border-radius:10px 10px 0 0;
+	border-radius:10px;
 	background-color: #5d4037;
 }
 .account-left h3{
@@ -824,7 +824,7 @@ body{
 	border-bottom:1px solid #4e342e;
 }
 
-.account-left ul li a,.account-left ul li{
+.account-left ul li a{
 	display:block;
 	height:67px;
 	line-height:67px;
@@ -832,20 +832,16 @@ body{
 	text-decoration:none;
 	list-style:none;
 	border-bottom:1px solid #4e342e;
+		padding-left:20px;
 
 }
 
-.account-left ul li a{
-	padding-left:20px;
-}
 .account-left ul li a:hover{
 	color:#fff;
-	border-left:4px solid #c99878;
 	background-color:#c99878;
 }
 .account-left-select{
 	color:#fff !important;
-	border-left:4px solid #c99878;
 	background-color:#c99878;
 }
 .account-left ul li{

@@ -94,7 +94,7 @@
 		<input type="hidden" name="id" value="<?php echo $model->id;?>" />
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-5">
-				<button type="submit" class="btn btn-info col-sm-12">保存</button>
+				<button type="submit" class="btn all-btn-color col-sm-12">保存</button>
 			</div>
 		</div>	
 	<?php $this->endWidget(); ?>

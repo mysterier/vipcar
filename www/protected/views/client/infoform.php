@@ -9,7 +9,7 @@
     		</div>
     		<div id="loading">  		    
     		</div>
-    		<a href="javascript:void(0)" class="all-btn-color information-file btn btn-info col-md-12">
+    		<a href="javascript:void(0)" class="all-btn-color information-file btn col-md-12">
     		      选择文件 <input id="file1" type="file" name="avatar" onchange="ajaxFileUpload()">
     		</a>
     	</div>
@@ -113,7 +113,7 @@
 
 				<div class="form-group">
 					<div class="col-sm-offset-3 col-sm-6">
-						<button type="submit" class="btn btn-info col-sm-12 all-btn-color">保存</button>
+						<button type="submit" class="btn col-sm-12 all-btn-color">保存</button>
 					</div>
 				</div>
 			</div>

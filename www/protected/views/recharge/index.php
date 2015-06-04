@@ -2,7 +2,7 @@
 	<div>
 		账户余额<span><?php echo $balance ? $balance : 0;?></span>元
 	</div>
-	<a href="/recharge/cash" class="btn btn-info btn-color all-btn-color">充值</a>
+	<a href="/recharge/cash" class="btn btn-color all-btn-color">充值</a>
 </div>
 <div class="account-record">
 	<form class="form-inline">
@@ -20,7 +20,7 @@
 		</div>
 
 
-		<button type="submit" class="btn btn-info all-btn-color">查询</button>
+		<button type="submit" class="btn all-btn-color">查询</button>
 
 	</form>
 
@@ -63,7 +63,10 @@
         'pages' => $pages,
         'maxButtonCount' => 5,
         'firstPageLabel' => '首页',
-        'lastPageLabel' => '末页'
+        'lastPageLabel' => '末页',
+        'nextPageLabel' => '下一页',
+        'prevPageLabel' => '上一页',
+
     ]);
     ?>
 </div>

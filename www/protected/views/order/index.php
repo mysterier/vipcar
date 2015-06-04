@@ -56,7 +56,7 @@
 			</select>
 		</div>
 
-		<button type="submit" class="btn btn-info all-btn-color">搜索</button>
+		<button type="submit" class="btn all-btn-color">搜索</button>
 
 	</form>
 

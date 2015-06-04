@@ -83,7 +83,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-5">
-				<button type="submit" class="btn btn-info btn-block all-btn-color">保存</button>
+				<button type="submit" class="btn btn-block all-btn-color">保存</button>
 			</div>
 		</div>
 	 <?php $this->endWidget(); ?>

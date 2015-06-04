@@ -38,7 +38,8 @@ class Controller extends CController
                 '/contact' => '/page/contactus',
                 '/help/billing' => '/page/service',
                 '/appdown' => '/page/download',
-                '/help/faq' => '/page/help'
+                '/help/car' => '/page/help',
+                '/about' => '/page/about'
             ];
             $url = Yii::app()->request->getUrl();
             if (isset($maps[$url])) {

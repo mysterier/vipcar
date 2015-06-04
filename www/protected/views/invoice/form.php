@@ -2,7 +2,7 @@
 	<div class="pull-left">
 		可开发票：<span><?php echo $available_invoice_amount;?>元</span>
 	</div>
-	<a href="/invoice/index" class="btn btn-info pull-right all-btn-color">查看开票记录</a>
+	<a href="/invoice/index" class="btn pull-right all-btn-color">查看开票记录</a>
 	<div class="clearfix"></div>
 	<h3>我要开发票</h3>
 </div>
@@ -88,7 +88,7 @@
 		<input type="hidden" value="<?php echo $available_invoice_amount;?>" name="available_invoice_amount" />
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-5">
-				<button type="submit" class="btn btn-info btn-block all-btn-color">保存</button>
+				<button type="submit" class="btn btn-block all-btn-color">保存</button>
 			</div>
 		</div>
 

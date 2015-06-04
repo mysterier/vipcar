@@ -36,6 +36,12 @@ class PageController extends Controller
         $this->layout = '//layouts/download';
         $this->render('download');
     }
+    
+    public function actionAbout()
+    {
+        $this->title = '关于众择';
+        $this->render('about');
+    }
 
     public function actionAd()
     {

@@ -196,6 +196,40 @@ class Orders extends CActiveRecord
     }
 
     /**
+     * 一次车费 两次服务
+     * 活动时间：2015年6月1日-2015年9月1日
+     */
+    public function getticket() {
+        $start = strtotime('2015-06-01 00:00:01');
+        $end = strtotime('2015-09-01 23:59:59');
+        if (time() > $start && time() < $end) {
+            $client_ticket = new ClientTicket();
+            $client_ticket->client_id = $this->client_id;           
+            switch ($this->type) {
+                case ORDER_TYPE_AIRPORTPICKUP:
+                    if (strstr($this->pickup_place, '虹桥'))
+                        $client_ticket->ticket_id = 3;
+                    else
+                        $client_ticket->ticket_id = 4;
+                    $client_ticket->coupon_type = COUPON_BUSINESS_SEND;
+                    break;
+                case ORDER_TYPE_AIRPORTSEND:
+                    if (strstr($this->drop_place, '虹桥'))
+                        $client_ticket->ticket_id = 3;
+                    else
+                        $client_ticket->ticket_id = 4;
+                    $client_ticket->coupon_type = COUPON_BUSINESS_PICKUP;
+                    break;
+            }
+            $client_ticket->expire = strtotime('+30 days');
+            if($client_ticket->save())
+                return true;
+            else
+                return false;
+        }
+    }
+    
+    /**
      * Retrieves a list of models based on the current search/filter conditions.
      *
      * Typical usecase:

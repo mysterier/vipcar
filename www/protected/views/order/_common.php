@@ -23,24 +23,45 @@ function getIncome() {
 	return fare;
 }
 
-$("#Orders_vehicle_type,#terminal").change(function(){
+$("#terminal").change(function(){
 	income = getIncome();
 	$(".rmb").text(income);
 	$("#estimated_cost").val(income);
+	//将优惠券重置
+	$(".mycoupon")[0].selectedIndex = 0;
+});
+
+$("#Orders_vehicle_type").change(function(){
+	income = getIncome();
+	$(".rmb").text(income);
+	$("#estimated_cost").val(income);
+	$(".mycoupon").remove();
+	$.post('/jsonp/getticket',{'vehicle_type':$(this).val(),'order_type':'<?php echo Yii::app()->controller->action->id;?>'},function(data){
+	    $("#showticket").append(data);
+	});
 });
 
 $(function(){
 	income = getIncome();
 	$(".rmb").text(income);
 	$("#estimated_cost").val(income);
+	$.post('/jsonp/getticket',{'vehicle_type':$("#Orders_vehicle_type").val(),'order_type':'<?php echo Yii::app()->controller->action->id;?>'},function(data){
+	    $("#showticket").append(data);
+	});
 });
 
-$(".mycoupon").change(function(){
+$(".mycoupon").live('change',function(){
 	var coupon_cost = $(".mycoupon option:selected").attr("coupon_cost");
 	var income = getIncome()-coupon_cost;
-	income = (income > 0) ? income : 0;
-	$(".rmb").text(income);
-	$("#estimated_cost").val(income);
+	if (coupon_cost) {
+		income = (income > 0) ? income : 0;
+		$(".rmb").text(income);
+		$("#estimated_cost").val(income);
+	} else {
+		income = getIncome();
+		$(".rmb").text(income);
+		$("#estimated_cost").val(income);
+	}	
 });
 
 //百度地图

@@ -203,7 +203,7 @@ class Clients extends CActiveRecord
             $client_ticket = new ClientTicket();
             $client_ticket->client_id = $this->id;
             $client_ticket->ticket_id = 2;
-            $client_ticket->coupon_type = 1;
+            $client_ticket->coupon_type = COUPON_COMMON;
             $client_ticket->expire = strtotime('+30 days');
             $client_ticket->save();
         }

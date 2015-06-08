@@ -40,7 +40,7 @@ define('EMAIL_EXISTED', '邮箱已被注册');
 define('VERIFY_CODE_EXPIRE', 1800);
 define('VERIFY_CODE_RESEND', 60);
 define('ADMIN_PAGE_SIZE', 10);
-define('DEFAULT_API_SITE', 'api.carvip.wang:8080');
+define('DEFAULT_API_SITE', 'api.vip-car.com.cn:8080');
 define('STATUS_DEL', 0);
 define('STATUS_LIVE', 1);
 //汽车费用
@@ -128,6 +128,15 @@ define('COUPON_PREFIX', 2015);
 define('COUPON_CHECK_CODE', 201501);
 define('WX_COUPON_STATUS_ON', 1);
 define('WX_COUPON_STATUS_OFF', 2);
+define('COUPON_COMMON', '99');
+define('COUPON_PICKUP', '5');
+define('COUPON_COMFORTABLE_PICKUP', '51');
+define('COUPON_BUSINESS_PICKUP', '52');
+define('COUPON_LUXURY_PICKUP', '53');
+define('COUPON_SEND', '6');
+define('COUPON_COMFORTABLE_SEND', '61');
+define('COUPON_BUSINESS_SEND', '62');
+define('COUPON_LUXURY_SEND', '63');
 
 //sms_tpl
 define('SMS_VERIFY_CODE', 'verify_code');

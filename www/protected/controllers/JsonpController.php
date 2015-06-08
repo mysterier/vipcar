@@ -348,6 +348,42 @@ class JsonpController extends Controller
             echo json_encode(['status' => '0']);
     }
     
+    public function actionGetticket() {
+        $vehicle_type = $this->getParam('vehicle_type');
+        $order_type = $this->getParam('order_type');
+        switch ($order_type) {
+            case 'pickup':
+                $order_type = '5';
+                break;
+            case 'send':
+                $order_type = '6';
+                break;
+            default:
+                $order_type = '5';
+        }
+        $type = $order_type . ($vehicle_type-1);
+        $criteria = new CDbCriteria();
+        $criteria->condition = 't.client_id=:client_id and t.status=:status and expire > :expire';
+        $criteria->addCondition('(coupon_type='.COUPON_COMMON.' or coupon_type='.$order_type.' or coupon_type='.$type.')');
+        $criteria->order = 't.id asc';
+        $criteria->params = [
+            'client_id' => $this->uid,
+            'status' => CLIENT_TICKET_ACTIVED,
+            'expire' => time()
+        ];
+        $model = ClientTicket::model()->with('ticket')->findAll($criteria);
+        $html = '';
+        if ($model) {
+            $html .= '<select class="form-control mycoupon" name="coupon_id">';
+            $html .= '<option>您有' . count($model) . '张优惠券</option>';
+            foreach ($model as $item) {
+                $html .= '<option value="' . $item->id . '" coupon_cost="' . $item->ticket->name . '">' . $item->ticket->name .'元优惠券</option>';
+            }
+            $html .= '</select>';
+        }
+        echo $html;
+    }
+    
     public function afterAction($action) {
         Yii::app()->end();
     }

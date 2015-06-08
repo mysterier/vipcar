@@ -54,6 +54,7 @@ class PaymentController extends Controller
                                 } else
                                     $transaction->rollback();
                             } else {
+                                $order_obj->getticket();
                                 $transaction->commit();
                                 $this->result['error_code'] = SUCCESS_DEFAULT;
                                 $this->result['error_msg'] = '';

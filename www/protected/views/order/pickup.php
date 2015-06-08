@@ -160,16 +160,7 @@
         			      ]);
         			    ?>
 						<!--优惠券-->
-						<?php if($count_coupon > 0):?>
-                        <div class="form-group padnone col-xs-offset-3 col-md-6">
-                            <select class="form-control mycoupon" name="coupon_id">
-                                <option>您有<?php echo $count_coupon; ?>张优惠券</option>
-                                <?php foreach($coupon as $item):?>
-                                <option value="<?php echo $item->id;?>" coupon_cost="<?php echo $item->ticket->name;?>"><?php echo $item->ticket->name;?>元优惠券</option>
-                                <?php endforeach;?>
-                            </select>
-                        </div>
-        			    <?php endif;?>
+                        <div class="form-group padnone col-xs-offset-3 col-md-6" id="showticket"></div>
 						<!--价格-->
 
         			    <input id="estimated_cost" type="hidden" name="Orders[estimated_cost]" value="" />

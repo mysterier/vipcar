@@ -118,9 +118,9 @@ class OrderController extends Controller
                 $this->redirect('/order/index');
             }               
         }
-        $coupon = $this->getTicket();
-        $hash['count_coupon'] = count($coupon);
-        $hash['coupon'] = $coupon;
+//         $coupon = $this->getTicket();
+//         $hash['count_coupon'] = count($coupon);
+//         $hash['coupon'] = $coupon;
         $hash['model'] = $model;
         $this->render('pickup', $hash);
     }
@@ -149,10 +149,10 @@ class OrderController extends Controller
                 }
                 $this->redirect('/order/index');
             }
-        }
-        $coupon = $this->getTicket();
-        $hash['count_coupon'] = count($coupon);
-        $hash['coupon'] = $coupon;
+         }
+//         $coupon = $this->getTicket();
+//         $hash['count_coupon'] = count($coupon);
+//         $hash['coupon'] = $coupon;
         $hash['model'] = $model;
         $this->render('send', $hash);
     }

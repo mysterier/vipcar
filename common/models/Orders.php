@@ -232,10 +232,18 @@ class Orders extends CActiveRecord
     /**
      * 检查是否有足够余额下单
      */
-    public function checkBalance() {
+    public function checkBalance($coupon_id = '') {
         $client = Clients::model()->findByPk($this->client_id);
+        $estimated_cost = $this->estimated_cost + $client->freeze;
+        
+        if ($coupon_id) {
+            $coupon_obj = ClientTicket::model()->with('ticket')->findByPk($coupon_id);
+            $ticket_value = $coupon_obj->ticket->name;
+            $estimated_cost = $estimated_cost - $ticket_value;
+        }
+        
         $balance = $client->account_balance ? $client->account_balance : 0;
-        if (($this->estimated_cost + $client->freeze) > $balance)
+        if ($estimated_cost > $balance)
             return false;
         else
             return true;
@@ -387,15 +395,14 @@ class Orders extends CActiveRecord
         }
     }
     
-    public function useTicket($coupon_id) {
-        $coupon_obj = ClientTicket::model()->with('ticket')->findByPk($coupon_id);
+    public function useTicket($coupon_obj) {
         if (!$coupon_obj)
             return false;
         $coupon_obj->status = 2;
         $coupon_obj->order_id = $this->id;
         $coupon_obj->last_update = time();
         if ($coupon_obj->save())
-            return $coupon_id->ticket->name;  
+            return true;  
         return false;     
     }
 }

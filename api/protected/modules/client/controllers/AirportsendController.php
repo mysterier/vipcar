@@ -17,14 +17,15 @@ class AirportsendController extends Controller
         
         $model = new Orders('airportsend');
         $model->attributes = $attributes;
-        if ($model->checkBalance()) {
+        $coupon_id = $this->getParam('coupon_sid');
+        if ($model->checkBalance($coupon_id)) {
             //开启事物
             $transaction = Yii::app()->db->beginTransaction();
             $client = Clients::model()->findByPk($this->uid);
             $client->freeze += $model->estimated_cost;
             $client->last_update = time();
             $client->save();
-            $coupon_id = $this->getParam('coupon_sid');
+           
             $coupon_obj = ClientTicket::model()->with('ticket')->findByPk($coupon_id);
             $ticket_fee = $coupon_obj ? $coupon_obj->ticket->name : 0;
             $model->ticket_fee = $ticket_fee;

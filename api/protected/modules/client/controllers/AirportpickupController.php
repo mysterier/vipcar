@@ -18,7 +18,12 @@ class AirportpickupController extends Controller
         $model = new Orders();
         $model->attributes = $attributes;
         if ($model->checkBalance()) {
-            $model->freeze += $model->estimated_cost;
+            //开启事物
+            $transaction = Yii::app()->db->beginTransaction();
+            $client = Clients::model()->findByPk($this->uid);
+            $client->freeze += $model->estimated_cost;
+            $client->last_update = time();
+            $client->save();
             $coupon_id = $this->getParam('coupon_sid');
             $ticket_fee = $model->useTicket($coupon_id);
             $model->ticket_fee = $ticket_fee ? $ticket_fee : 0;
@@ -27,12 +32,14 @@ class AirportpickupController extends Controller
                 $contacter = new Contacter();
                 $contacter->setContacter();
             
+                $transaction->commit();
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';
                 $this->result['order_sid'] = $model->id;
                 $this->result['order_no'] = $order_no;
                 $this->result['order_date'] = date('Y-m-d H:i:s');
             } else {
+                $transaction->rollback();
                 $this->addErrors($model);
             }
         } else {

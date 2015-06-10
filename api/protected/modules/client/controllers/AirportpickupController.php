@@ -25,13 +25,15 @@ class AirportpickupController extends Controller
             $client->last_update = time();
             $client->save();
             $coupon_id = $this->getParam('coupon_sid');
-            $ticket_fee = $model->useTicket($coupon_id);
-            $model->ticket_fee = $ticket_fee ? $ticket_fee : 0;
+            $coupon_obj = ClientTicket::model()->with('ticket')->findByPk($coupon_id);
+            $ticket_fee = $coupon_obj ? $coupon_obj->ticket->name : 0;
+            $model->ticket_fee = $ticket_fee;
             if ($model->save()) {
                 // 记录联系人历史
                 $contacter = new Contacter();
                 $contacter->setContacter();
             
+                $model->useTicket($coupon_obj);
                 $transaction->commit();
                 $this->result['error_code'] = SUCCESS_DEFAULT;
                 $this->result['error_msg'] = '';

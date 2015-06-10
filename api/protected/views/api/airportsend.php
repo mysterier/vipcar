@@ -118,6 +118,11 @@ $form = $this->beginWidget('CActiveForm', array(
 		<label>drop_latitude</label>
 	    <input type="text" name="drop_latitude" />
 	</div>
+	
+	<div class="row">
+		<label>coupon_sid</label>
+	    <input type="text" name="coupon_sid" />
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Airportsend'); ?>

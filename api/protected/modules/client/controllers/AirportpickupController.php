@@ -24,7 +24,7 @@ class AirportpickupController extends Controller
             $client = Clients::model()->findByPk($this->uid);
             $client->freeze += $model->estimated_cost;
             $client->last_update = time();
-            $client->save();
+            $client->save(false);
             
             $coupon_obj = ClientTicket::model()->with('ticket')->findByPk($coupon_id);
             $ticket_fee = $coupon_obj ? $coupon_obj->ticket->name : 0;

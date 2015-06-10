@@ -17,18 +17,26 @@ class AirportpickupController extends Controller
         
         $model = new Orders();
         $model->attributes = $attributes;
-        if ($model->save()) {
-            // 记录联系人历史
-            $contacter = new Contacter();
-            $contacter->setContacter();
+        if ($model->checkBalance()) {
+            $model->freeze += $model->estimated_cost;
+            $coupon_id = $this->getParam('coupon_sid');
+            $model->ticket_fee = $model->useTicket($coupon_id);
+            if ($model->save()) {
+                // 记录联系人历史
+                $contacter = new Contacter();
+                $contacter->setContacter();
             
-            $this->result['error_code'] = SUCCESS_DEFAULT;
-            $this->result['error_msg'] = '';
-            $this->result['order_sid'] = $model->id;
-            $this->result['order_no'] = $order_no;
-            $this->result['order_date'] = date('Y-m-d H:i:s');
+                $this->result['error_code'] = SUCCESS_DEFAULT;
+                $this->result['error_msg'] = '';
+                $this->result['order_sid'] = $model->id;
+                $this->result['order_no'] = $order_no;
+                $this->result['order_date'] = date('Y-m-d H:i:s');
+            } else {
+                $this->addErrors($model);
+            }
         } else {
-            $this->addErrors($model);
-        }
+            $this->result['error_code'] = CLIENT_ERROR_NOT_SUFFICIENT_FUNDS;
+            $this->result['error_msg'] = CLIENT_ERROR_MSG_NOT_SUFFICIENT_FUNDS;
+        }       
     }
 }

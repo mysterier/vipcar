@@ -230,6 +230,18 @@ class Orders extends CActiveRecord
     }
     
     /**
+     * 检查是否有足够余额下单
+     */
+    public function checkBalance() {
+        $client = Clients::model()->findByPk($this->client_id);
+        $balance = $client->account_balance ? $client->account_balance : 0;
+        if (($this->estimated_cost + $client->freeze) > $balance)
+            return false;
+        else
+            return true;
+    }
+    
+    /**
      * Retrieves a list of models based on the current search/filter conditions.
      *
      * Typical usecase:
@@ -308,7 +320,7 @@ class Orders extends CActiveRecord
                 $option = [
                     'description' => '订单' . $model->order_no . '，用户已取消，请耐心等待下一单吧。'
                 ];
-                PushMsg::action()->pushMsg($attributes, $tpl, $option);
+                PushMsg::action(1)->pushMsg($attributes, $tpl, $option);
             }            
             return 1;
         }            
@@ -366,12 +378,24 @@ class Orders extends CActiveRecord
             $option = [
                 'description' => '订单' . $model->order_no . '，用户已取消，请耐心等待下一单吧。'
             ];
-            PushMsg::action()->pushMsg($attributes, $tpl, $option);
+            PushMsg::action(1)->pushMsg($attributes, $tpl, $option);
             $transaction->commit();
             return 1;
         } else {
             $transaction->rollback();
             return 3;
         }
+    }
+    
+    public function useTicket($coupon_id) {
+        $coupon_obj = ClientTicket::model()->with('ticket')->findByPk($coupon_id);
+        if (!$coupon_obj)
+            return false;
+        $coupon_obj->status = 2;
+        $coupon_obj->order_id = $this->id;
+        $coupon_obj->last_update = time();
+        if ($coupon_obj->save())
+            return $coupon_id->ticket->name;  
+        return false;     
     }
 }

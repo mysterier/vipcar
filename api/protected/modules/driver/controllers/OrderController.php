@@ -238,11 +238,15 @@ class OrderController extends Controller
         $extra .= $over_duration ? '超时费' . $over_duration . '元，' : '';
         $extra = $extra ? '额外费用：' . $extra : '';
         
+        
         $income = $fare + $over_distance + $over_duration;
         $income += $packing_fee;
         $income += $highway_fee;
         
-        $this->bill_cofirm = '您的订单' . $model->order_no . '的账单已生成，请您核实查验：' . $place . '机场接送机服务' . $vehicle_type . '型' . $fare . '元，' . $extra . '共计' . $income . '元。';
+        $fact = $income - $model->ticket_fee;
+        $dedmsg = $model->ticket_fee ? '优惠券抵扣' . $model->ticket_fee . '元，实际应付' . $fact . '元。' : '';
+        
+        $this->bill_cofirm = '您的订单' . $model->order_no . '的账单已生成，请您核实查验：' . $place . '机场接送机服务' . $vehicle_type . '型' . $fare . '元，' . $extra . '共计' . $income . '元。' . $dedmsg;
         $this->fare = $fare;
         $this->over_distance = $over_distance;
         $this->over_duration = $over_duration;

@@ -166,7 +166,7 @@ class OrderController extends Controller
                         'type' => USER_TYPE_DRIVER
                     ];
                     $tpl = 'driver_new_order';                
-                    PushMsg::action()->pushMsg($attributes, $tpl);
+                    PushMsg::action(1)->pushMsg($attributes, $tpl);
                     $this->redirect('/order/process?status=' . ORDER_STATUS_NOT_DISTRIBUTE);
                 }
             } else {

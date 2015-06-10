@@ -20,7 +20,8 @@ class AirportpickupController extends Controller
         if ($model->checkBalance()) {
             $model->freeze += $model->estimated_cost;
             $coupon_id = $this->getParam('coupon_sid');
-            $model->ticket_fee = $model->useTicket($coupon_id);
+            $ticket_fee = $model->useTicket($coupon_id);
+            $model->ticket_fee = $ticket_fee ? $ticket_fee : 0;
             if ($model->save()) {
                 // 记录联系人历史
                 $contacter = new Contacter();

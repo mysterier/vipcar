@@ -243,7 +243,7 @@ class Orders extends CActiveRecord
         }
         
         $balance = $client->account_balance ? $client->account_balance : 0;
-        if ($estimated_cost >= $balance)
+        if ($estimated_cost > $balance)
             return false;
         else
             return true;

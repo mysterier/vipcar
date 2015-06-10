@@ -10,20 +10,20 @@
 <!--app下载-->
 <a href="#" name="appdown"></a>
 <div class="downapp" >
-  <h2 class="text-center ">让出行轻松一些</h2>
+  <h2 class="text-center index-h2">关注公众号 更多资讯 更多优惠
+</h2>
 	<div class="downapp-container wrapper-width "> 
     <div class="downapp-left">
     <img src="/img/downapp-left.png" />
     </div>
         <div class="downapp-right">
-            <h4 class="text-left ">全新 Android 客户端</h4>
+            <h4 class="text-center ">众择用车官方微信</h4>
             <p class="text-left">
-            完美适配Android，界面更清爽，操作更流畅
-            便捷地下单流程
-            更多人性化的功能 
+        扫描二维码添加公众号，绑定手机号，轻松出行
+
             </p>
-    		<div class="downapp-code"><img class="img-border" src="/img/downapp-code.png" /></div>
-            <a href="/download" class="appdownbtn btn btn-info btn-lg">点击下载</a>
+    		<div class="downapp-code downapp-center"><img class="img-border" src="/img/weixing-code.jpg" /></div>
+            <!-- <a href="/download" class="appdownbtn btn btn-info btn-lg">点击下载</a> -->
 		</div>			
     </div>
  <div class="clearfix"></div>       
@@ -31,6 +31,7 @@
 <!-- 展示 -->
 
 <div class="wrapper-width">
+ <h2 class="text-center index-h2">让出行轻松一些</h2>
       <div id="immersive_slider">
         <div class="slide" >
           <div class="content">

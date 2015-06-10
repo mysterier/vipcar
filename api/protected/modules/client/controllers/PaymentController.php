@@ -8,7 +8,7 @@ class PaymentController extends Controller
         $order_obj = Orders::model()->findByPk($id);
         if ($order_obj && $order_obj->status == ORDER_STATUS_PAY) {
             $client_obj = Clients::model()->findByPk($this->uid);
-            $account_balance = $client_obj->account_balance - $order_obj->ticket_fee;
+            $account_balance = $client_obj->account_balance - ($order_obj->order_income - $order_obj->ticket_fee);
             
             if ($account_balance >= 0) {
                 // 开启事务处理

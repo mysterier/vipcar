@@ -311,7 +311,7 @@ body{
 	width:100%;	
 	color: #000;
 }
-.downapp h2{
+.index-h2{
 	font-size: 3em;
 	font-weight: bold;
 }
@@ -327,20 +327,24 @@ body{
 .downapp-left{
 	float:left;
 }
+.downapp-center{
+	margin-left:47px;
+}
 .downapp-code img{
+
 	width: 200px;
 	height: 200px;
 }
 .downapp-right{
 	position:absolute;
-	top:120px;
+	top:165px;
 	left:630px;
 }
 .downapp-right h3{
 	font-size: 2em;
 }
-.downapp-right h3,.downapp-right p{
-	padding-bottom:30px;
+.downapp-right p{
+	padding-bottom:50px;
 }
 /*产品展示*/
 .page_container {

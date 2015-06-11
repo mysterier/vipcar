@@ -45,6 +45,9 @@ class AirportsendController extends Controller
                 $transaction->rollback();
                 $this->addErrors($model);
             }
+        } else {
+            $this->result['error_code'] = CLIENT_ERROR_NOT_SUFFICIENT_FUNDS;
+            $this->result['error_msg'] = CLIENT_ERROR_MSG_NOT_SUFFICIENT_FUNDS;
         }
     }
 }

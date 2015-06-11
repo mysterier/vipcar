@@ -35,7 +35,8 @@ class PaymentController extends Controller
                         $model->order_id = $order_obj->id;
                         $model->coupon_id = $coupon_obj ? $coupon_obj->id : 0;
                         if ($model->save()) {
-                            $order_obj->getticket();
+                            if (!$coupon_obj)
+                                $order_obj->getticket();
                             $transaction->commit();
                             $this->result['error_code'] = SUCCESS_DEFAULT;
                             $this->result['error_msg'] = '';

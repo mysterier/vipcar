@@ -28,11 +28,12 @@ class PaymentController extends Controller
                     $client_obj->setScenario('modify_balance');
                     if ($client_obj->save()) {
                         // 支付记录
+                        $coupon_obj = ClientTicket::model()->findByAttributes(['order_id' => $id]);
                         $model = new PayLog();
                         $model->uid = $this->uid;
                         $model->amount = $deduction;
                         $model->order_id = $order_obj->id;
-                        $model->coupon_id = $coupon_id;
+                        $model->coupon_id = $coupon_obj ? $coupon_obj->id : 0;
                         if ($model->save()) {
                             $order_obj->getticket();
                             $transaction->commit();

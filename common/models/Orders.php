@@ -238,7 +238,7 @@ class Orders extends CActiveRecord
         
         if ($coupon_id) {
             $coupon_obj = ClientTicket::model()->with('ticket')->findByPk($coupon_id);
-            $ticket_value = $coupon_obj->ticket->name;
+            $ticket_value = $coupon_obj ? $coupon_obj->ticket->name : 0;
             $estimated_cost = $estimated_cost - $ticket_value;
         }
         

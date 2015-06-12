@@ -103,20 +103,25 @@ class OrderController extends Controller
             $model->client_id = $this->uid;
             $model->order_no = 'web' . time();
             $model->type = (string)ORDER_TYPE_AIRPORTPICKUP;
-            if ($model->save()) {
-                //更新对应优惠券
-                $coupon_id = $this->getParam('coupon_id');
-                if ($coupon_id) {
-                    $coupon = ClientTicket::model()->findByPk($coupon_id);
-                    if ($coupon) {
-                        $coupon->order_id = $model->id;
-                        $coupon->status = 2;
-                        $coupon->last_update = time();
-                        $coupon->save();
+            
+            $coupon_id = $this->getParam('coupon_id');
+            if ($model->checkBalance($coupon_id)) {
+                if ($model->save()) {
+                    //更新对应优惠券                
+                    if ($coupon_id) {
+                        $coupon = ClientTicket::model()->findByPk($coupon_id);
+                        if ($coupon) {
+                            $coupon->order_id = $model->id;
+                            $coupon->status = 2;
+                            $coupon->last_update = time();
+                            $coupon->save();
+                        }
                     }
+                    $this->redirect('/order/index');
                 }
-                $this->redirect('/order/index');
-            }               
+            } else {
+                $this->redirect('/recharge/cash');
+            }             
         }
 //         $coupon = $this->getTicket();
 //         $hash['count_coupon'] = count($coupon);
@@ -135,19 +140,24 @@ class OrderController extends Controller
             $model->client_id = $this->uid;
             $model->order_no = 'web' . time();
             $model->type = (string)ORDER_TYPE_AIRPORTSEND;
-            if ($model->save()) {
-                //更新对应优惠券
-                $coupon_id = $this->getParam('coupon_id');
-                if ($coupon_id) {
-                    $coupon = ClientTicket::model()->findByPk($coupon_id);
-                    if ($coupon) {
-                        $coupon->order_id = $model->id;
-                        $coupon->status = 2;
-                        $coupon->last_update = time();
-                        $coupon->save();
+            
+            $coupon_id = $this->getParam('coupon_id');
+            if ($model->checkBalance($coupon_id)) {
+                if ($model->save()) {
+                    //更新对应优惠券                    
+                    if ($coupon_id) {
+                        $coupon = ClientTicket::model()->findByPk($coupon_id);
+                        if ($coupon) {
+                            $coupon->order_id = $model->id;
+                            $coupon->status = 2;
+                            $coupon->last_update = time();
+                            $coupon->save();
+                        }
                     }
+                    $this->redirect('/order/index');
                 }
-                $this->redirect('/order/index');
+            } else {
+                $this->redirect('/recharge/cash');
             }
          }
 //         $coupon = $this->getTicket();

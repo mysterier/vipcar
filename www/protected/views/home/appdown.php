@@ -3,7 +3,7 @@
   <h3 class="text-center">让出行轻松一些</h3>
 	<div class="downapp-container wrapper-width "> 
     <div class="downapp-left">
-    <img src="/img/downapp-left.png" />
+    <img src="/images/app/downapp.png" />
     </div>
         <div class="downapp-right">
             <h4 class="text-left ">全新 Android 客户端</h4>

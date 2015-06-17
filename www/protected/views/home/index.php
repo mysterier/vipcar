@@ -19,7 +19,9 @@
         <div class="downapp-right">
             <h4 class="text-center ">众择用车官方微信</h4>
             <p class="text-left">
-        扫描二维码添加公众号，绑定手机号，轻松出行
+              扫描下方二维码或者微信公众号搜索AirportCar
+                <br/>
+              添加公众号，绑定手机，轻松出行
 
             </p>
     		<div class="downapp-code downapp-center"><img class="img-border" src="/img/weixing-code.jpg" /></div>

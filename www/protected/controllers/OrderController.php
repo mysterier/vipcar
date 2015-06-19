@@ -105,7 +105,7 @@ class OrderController extends Controller
             $model->type = (string)ORDER_TYPE_AIRPORTPICKUP;
             
             $coupon_id = $this->getParam('coupon_id');
-            if ($model->checkBalance($coupon_id)) {
+            if ($model->checkBalance($coupon_id) || $this->type) {
                 if ($model->save()) {
                     //更新对应优惠券                
                     if ($coupon_id) {
@@ -142,7 +142,7 @@ class OrderController extends Controller
             $model->type = (string)ORDER_TYPE_AIRPORTSEND;
             
             $coupon_id = $this->getParam('coupon_id');
-            if ($model->checkBalance($coupon_id)) {
+            if ($model->checkBalance($coupon_id) || $this->type) {
                 if ($model->save()) {
                     //更新对应优惠券                    
                     if ($coupon_id) {

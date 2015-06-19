@@ -29,6 +29,7 @@ class Controller extends CController
     public $breadcrumbs = array();
 
     public $uid;
+    public $type;
 
     public function init()
     {
@@ -51,6 +52,7 @@ class Controller extends CController
         parent::init();
         
         $this->uid = Yii::app()->user->id;
+        $this->type = Yii::app()->user->getState('type');
     }
 
     /**

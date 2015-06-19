@@ -30,6 +30,7 @@ class UserIdentity extends CUserIdentity
         elseif ($client->password !== $passwd)
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         else {
+            Yii::app()->user->setState('type', $client->type);
             $this->uid = $client->id;
             $this->errorCode = self::ERROR_NONE;
         }

@@ -21,7 +21,7 @@ class PageController extends Controller
 
     public function actionService()
     {
-        $this->title = '收费详情';
+        $this->title = '服务介绍';
         $this->render('service');
     }
 

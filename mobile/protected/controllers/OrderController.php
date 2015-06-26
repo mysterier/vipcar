@@ -380,7 +380,7 @@ class OrderController extends Controller
             $result['drop_place'] = $model->drop_place;
             $result['highway_fee'] = $model->highway_fee;
             $result['packing_fee'] = $model->packing_fee;
-            $result['all_cost'] = $model->order_income;
+            $result['all_cost'] = (int)$model->order_income ? $model->order_income : $model->estimated_cost;
             $result['contacter_name'] = $model->contacter_name;
             $result['contacter_mobile'] = $model->contacter_phone;
             $result['is_round_trip'] = $model->is_round_trip;            
@@ -388,9 +388,10 @@ class OrderController extends Controller
             $result['flight_number'] = $model->flight_number;
             $result['summary'] = $model->summary;
             $result['status'] = $model->status;
-            
+
             if ($model->status == ORDER_STATUS_PAY) {
-                $jsApiParameters = $this->getWxParams($model->order_no, (int)$model->estimated_cost);
+			//todo重复订单无法付款
+                $jsApiParameters = 'todo';//$this->getWxParams($model->order_no, (int)$model->estimated_cost);
                 $result['jsApiParameters'] = $jsApiParameters;
             }
         }

@@ -7,7 +7,7 @@
 	<p class="text-muted">
 		<strong>订单已完成</strong><br />谢谢您的支持
 	</p>
-<?php elseif($status == ORDER_STATUS_PAY):?>
+<?php elseif(false)://elseif($status == ORDER_STATUS_PAY):?>
 <div class="ddimg pull-left"><img src="/img/iconfont-fukuan.png" width="70" height="70" alt=""/></div>
     <p class="text-muted"><strong>订单待付款</strong><br/>订单超过30天自动完成</p>
      <button id="wxpay" type="button" class="btn btn-success btn-block">付款</button>	

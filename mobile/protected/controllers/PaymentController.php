@@ -57,7 +57,7 @@ class PaymentController extends Controller
                     $model->status = (string)ORDER_STATUS_NOT_DISTRIBUTE;
                     if ($model->save()) {
                         $attributes = [
-                            'client_id' => $array['uid'],
+                            'client_id' => $model->client_id,
                             'order_id' => $model->id
                         ];
                         $coupon = ClientTicket::model()->findByAttributes($attributes);

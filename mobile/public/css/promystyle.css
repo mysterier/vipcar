@@ -116,6 +116,22 @@ body,html{
 	max-width: 40px;
 
 }
+.formlist-time{
+	display:block;
+	margin: 0 auto;
+	height: 60px;
+}
+.formlist-time input{
+	outline:none;
+	overflow-y:hidden;
+	display: block;
+	text-align: left;
+	border:none;
+	height: 40px;
+	margin: 10px 0;
+	font-size: 1em;
+}
+
 .formlist input{
 	text-align: left;
 
@@ -313,6 +329,21 @@ input[type=checkbox]{
 	margin-right: 10px;
 	width: 20px;
 	height: 20px;
+}
+.sex-radio{
+	padding:20px 0;
+	float: left;
+}
+.sex-radio input{
+	width: 20px;
+	height: 20px;
+	margin: 0;
+
+}
+.sex-p{
+	height: 60px;
+	line-height: 60px;
+	padding-left: 40px;
 }
 .checkbox label{
 	line-height: 20px;

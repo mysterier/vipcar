@@ -15,12 +15,14 @@
 					<img src="/img/xingbie.png">
 				</div>
 				<div class="col-xs-4">
-					<label class="radio-inline p-select"> <input type="radio" name="client_title" id="" value="1" <?php if($model->client_title==1) echo 'checked';?> > 先生
-					</label>
+					<div class="sex-radio"> <input type="radio" name="client_title" id="" value="1" <?php if($model->client_title==1) echo 'checked';?> > 
+					</div>
+					<div class="p-select sex-p">先生</div>
 				</div>
 				<div class="col-xs-4">
-					<label class="radio-inline p-select"> <input type="radio" name="client_title" id="" value="2" <?php if($model->client_title==2) echo 'checked';?>> 女士
-					</label>
+					<div class="sex-radio"> <input type="radio" name="client_title" id="" value="2" <?php if($model->client_title==2) echo 'checked';?>>
+					</div>
+					<div class="p-select sex-p">女士</div>
 				</div>
 			</div>
 		</div>

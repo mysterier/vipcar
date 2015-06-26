@@ -31,7 +31,7 @@ class HomeController extends Controller
             $client = Clients::model()->findByAttributes($attributes);
             if ($client) {
                 $client->setScenario('wechat');               
-            } else {
+            } else {                
                 $client = new Clients('wechat');
                 $client->mobile = $mobile;
                 $client->status = (string) CLIENT_ACTIVED;
@@ -40,6 +40,9 @@ class HomeController extends Controller
             $client->open_id = $this->openid;
             $client->msg_code = $msg_code;
             if ($client->save()) {
+                //同步网站订单和微信订单
+                Orders::model()->updateAll(['open_id'=>$this->openid],'client_id=:uid',['uid'=>$client->id]);
+                Orders::model()->updateAll(['client_id'=>$client->id],'open_id=:openid',['openid'=>$this->openid]);
                 //赠送50优惠券
                 $client->getticket();
                 $redirect = Yii::app()->session['redirect_url'];
@@ -50,6 +53,10 @@ class HomeController extends Controller
         }
         $hash['client'] = $client;
         $this->render('bindmobile', $hash);
+    }
+    
+    public function bindorders() {
+        $model = Orders::model()->updateAll($attributes,$condition,$params);
     }
     
     public function actionAdvice() {

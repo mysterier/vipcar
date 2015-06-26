@@ -101,7 +101,7 @@ class OrderController extends Controller
         if ($_POST) {
             // 记录联系人历史
             $contacter = new Contacter();
-            //$contacter->setContacter();
+            $contacter->setContacter();
             $query = $this->replaceQuery($_POST);
             $type = $this->getParam('type', ORDER_TYPE_AIRPORTPICKUP);
             $order_type = ($type == ORDER_TYPE_AIRPORTPICKUP) ? 'airportpickup' : 'airportsend';
@@ -221,7 +221,6 @@ class OrderController extends Controller
         //spbill_create_ip已填,商户无需重复填写
         //sign已填,商户无需重复填写
         $unifiedOrder->setParameter("openid","$this->openid");//openid
-        $unifiedOrder->setParameter("uid","$this->uid");
         $unifiedOrder->setParameter("body","订单支付");//商品描述
         $unifiedOrder->setParameter("out_trade_no","$order_no");//商户订单号
         $unifiedOrder->setParameter("total_fee","$total_fee");//总金额

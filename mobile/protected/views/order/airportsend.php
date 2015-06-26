@@ -24,12 +24,12 @@
 			</a>
 		</div>
 		<div class="formgroup">
-			<div class="formlist">
+			<div class="formlist-time">
 				<div class="col-xs-2">
 					<img src="/img/z-shijian.png">
 				</div>
 				<div class="col-xs-10">
-					<input type="datetime-local" class="form-control" name="pickup_time" placeholder="上车时间">
+					<input style="none" type="datetime-local" name="pickup_time" placeholder="上车时间">
 				</div>
 			</div>
 		</div>

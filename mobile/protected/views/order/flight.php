@@ -1,7 +1,7 @@
 <div class="wrapper">
 		<div class="formgroup">
-			<div class="formlist">
-				<div class="col-xs-2"><img src="/img/feiji.png"></div>
+			<div class="formlist-time">
+				<div class="col-xs-2"><img src="/img/shijian.png"></div>
 				<div class="col-xs-10">
 			    	<input type="datetime-local" class="" id="datetimepicker" name="" placeholder="航班时间">
 			    </div>				    
@@ -9,7 +9,7 @@
 		    <div class="formline"></div>
 		  	<div class="formlist">
 				<div class="col-xs-2">
-                    <img src="/img/shijian.png">
+                    <img src="/img/feiji.png">
 				</div>
                 <div class="col-xs-10">
                     <input type="text" class="form-control" id="hangban_j" placeholder="航班号">

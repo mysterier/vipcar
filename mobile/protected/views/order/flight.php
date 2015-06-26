@@ -1,32 +1,34 @@
-<div class="form-group">
-	<div class="input-group">
-		<div class="input-group-addon iconfont">&#xe738;</div>
-		<input type="text" class="form-control" id="datetimepicker"
-			placeholder="上车时间" name="pickup_time" readonly>
-
-	</div>
-</div>
-
-<div class="form-group">
-    <div class="input-group">
-        <div class="input-group-addon iconfont">&#xe630;</div>
-      <input type="text" class="form-control" id="hangban_j" placeholder="航班号">
-
-    </div>
-</div>
-<button id="getflight" type="button" class="btn btn-primary btn-block search">查询</button>
-<div class="form-group hangban-title">
-	<div id="flight-content">
-	</div>
-</div>
+<div class="wrapper">
+		<div class="formgroup">
+			<div class="formlist">
+				<div class="col-xs-2"><img src="/img/feiji.png"></div>
+				<div class="col-xs-10">
+			    	<input type="datetime-local" class="" id="datetimepicker" name="" placeholder="航班时间">
+			    </div>				    
+			</div>
+		    <div class="formline"></div>
+		  	<div class="formlist">
+				<div class="col-xs-2">
+                    <img src="/img/shijian.png">
+				</div>
+                <div class="col-xs-10">
+                    <input type="text" class="form-control" id="hangban_j" placeholder="航班号">
+                </div>			    
+		    </div> 
+                            				
+		</div>
+        <button id="getflight" type="button" class="btn btn-block brown-btn width98">查询</button>        
+  	</div>
 <script>
 $("#getflight").click(function(){
 	var flight_no = $("#hangban_j").val();
 	var date = $("#datetimepicker").val();
-	$.post('/order/getflight',{flight:flight_no,date:date,contacter_name:'<?php echo $contacter_name;?>',contacter_phone:'<?php echo $contacter_phone;?>'},function(data){
+	$.post('/order/getflight',{flight:flight_no,date:date,contacter_name:'<?php echo $contacter_name;?>',contacter_phone:'<?php echo $contacter_phone;?>',seats:'<?php echo $seats;?>'},function(data){
 		if (data.error_code == 0) {
-			$("#flight-content").html(data.html);
+			$(".flight-head,.flight-content").remove();
+			$(".wrapper").append(data.html);
 		}
 	},'json');
 });
+
 </script>

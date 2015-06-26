@@ -50,7 +50,7 @@ $(function(){
 	});
 });
 
-$(".mycoupon").live('change',function(){
+$(".mycoupon").on('change',function(){
 	var coupon_cost = $(".mycoupon option:selected").attr("coupon_cost");
 	var income = getIncome()-coupon_cost;
 	if (coupon_cost) {

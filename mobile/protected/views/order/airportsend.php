@@ -1,87 +1,128 @@
-<form method="post" action="/order/process/<?php echo ORDER_TYPE_AIRPORTSEND;?>?showwxpaytitle=1">
-	<div style="margin-top: 1em;" class="form-group">
-		<div class="input-group">
-			<div class="input-group-addon iconfont">&#xf0053;</div>
-			<input type="text" class="form-control" id="user" placeholder="联系人"
-				name="contacter_name">
-		</div>
+<div class="wrapper">
+	<div class="tab">
+		<a href="/order/airportpickup" class="text-center col-xs-offset-2 col-xs-4 tab-left"> 接机 </a>
+		<a href="#" class="text-center col-xs-4 tab-right-select"> 送机</a>
 	</div>
-
-	<div class="form-group">
-		<div class="input-group">
-			<div class="input-group-addon iconfont">&#xe64a;</div>
-			<input type="tel" class="form-control" id="tel" placeholder="联系电话" name="contacter_phone">
+	<div class="clearfix"></div>
+	<form method="post" action="/order/process/<?php echo ORDER_TYPE_AIRPORTSEND;?>?showwxpaytitle=1">
+		<div class="formgroup">
+			<a href="/order/addcontacter?type=2&is_round_trip=<?php echo $is_round_trip;?>&pickup_time=<?php echo $pickup_time;?>&pickup_place=<?php echo $pickup_place;?>&drop_place=<?php echo $drop_place;?>" class="formlist a-select">
+				<div class="col-xs-2">
+					<img src="/img/z-geren.png">
+				</div>
+				<div class="col-xs-8">
+					<p class="p-gren">
+						<span><?php echo $contacter_name;?></span><span><?php echo $seats;?>人</span>
+					</p>
+					<p class="p-gren">
+						<span><?php echo $contacter_phone;?></span>
+					</p>
+				</div>
+				<div class="col-xs-2">
+					<img class="pull-right" src="/img/z-next.png">
+				</div>
+			</a>
 		</div>
-	</div>
-
-
-
-	<div class="form-group">
-		<div class="input-group">
-			<div class="input-group-addon iconfont">&#xe738;</div>
-			<input type="text" class="form-control" id="datetimepicker"
-				placeholder="上车时间" name="pickup_time" readonly>
-
+		<div class="formgroup">
+			<div class="formlist">
+				<div class="col-xs-2">
+					<img src="/img/z-shijian.png">
+				</div>
+				<div class="col-xs-10">
+					<input type="datetime-local" class="form-control" name="pickup_time" placeholder="上车时间">
+				</div>
+			</div>
 		</div>
-	</div>
+		<div class="formgroup">
+			<div class="formlist">
+				<div class="col-xs-2">
+					<img src="/img/z-qidian.png">
+				</div>
+				<div class="col-xs-2">
+					<p class="p-adress">上海</p>
+				</div>
+				<div class="col-xs-8">
+					<input type="text" class="form-control" id="suggestId" placeholder="上车地点" name="pickup_place">
+				</div>
+			</div>
+			<div class="formline"></div>
+			<div class="formlist">
+				<div class="col-xs-2">
+					<img src="/img/z-qidian.png">
+				</div>
+				<div class="col-xs-2">
+					<p class="p-adress">上海</p>
+				</div>
 
-	<div class="form-group">
-		<div class="input-group">
-			<div class="input-group-addon iconfont">&#xe606;</div>
-			<input type="text" class="form-control" id="suggestId"
-				placeholder="上车地点" name="pickup_place">
+				<div class="col-xs-8">
+					<select id="terminal" class="form-control p-select drop_place" name="drop_place">
+        				<optgroup label="航站楼"></optgroup>
+        				<option value="虹桥国际机场T1">虹桥国际机场T1</option>
+        				<option value="虹桥国际机场T2">虹桥国际机场T2</option>
+        				<option value="浦东国际机场T1">浦东国际机场T1</option>
+        				<option value="浦东国际机场T2">浦东国际机场T2</option>
+        			</select>
+				</div>
+
+			</div>
 		</div>
-	</div>
-
-	<div class="form-group">
-		<div class="input-group">
-			<div class="input-group-addon iconfont">&#xe622;</div>
-			<select id="terminal" class="form-control" name="drop_place">
-				<optgroup label="航站楼"></optgroup>
-				<option value="虹桥国际机场T1">虹桥国际机场T1</option>
-				<option value="虹桥国际机场T2">虹桥国际机场T2</option>
-				<option value="浦东国际机场T1">浦东国际机场T1</option>
-				<option value="浦东国际机场T2">浦东国际机场T2</option>
-			</select>
+		<div class="formgroup">
+			<div class="formlist">
+				<div class="col-xs-2">
+					<img src="/img/z-qiche.png">
+				</div>
+				<div class="col-xs-10">
+					<p class="p-normal p-select">
+						商务GL8<span>(目前促销期)</span>
+					</p>
+				</div>
+			</div>
+			<div class="formline"></div>
+			<div class="formlist">
+				<div class="col-xs-2">
+					<img src="/img/z-wangfan.png">
+				</div>
+				 <div class="checkbox wangfan-checkbox pull-left">
+				    <input type="checkbox" name="is_round_trip" value="1">
+				 </div>
+				 <div class="wangfan-checkbox p-select">
+				 	往返
+				 </div>
+			</div>
+			<div class="formline"></div>
+			<div class="formlist">
+				<div class="col-xs-2">
+					<img src="/img/z-xuqiu.png">
+				</div>
+				<div class="col-xs-10">
+					<textarea class="form-control" cols="1" rows="1" placeholder="其他需求" name="summary"></textarea>
+				</div>
+			</div>
 		</div>
-	</div>
-
-
-
-	<div class="form-group">
-
-		<div class="input-group">
-
-			<div class="input-group-addon iconfont">&#xe603;</div>
-			<select id="vehicle_type" class="form-control" name="vehicle_type">
-				<optgroup label="车型选择"></optgroup>
-				<!--<option value="2">舒适性</option>-->
-				<option value="3">商务型</option>
-				<option value="4">豪华型</option>
-			</select>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="exampleInputFile">是否往返</label>
-		<div style="width: 100%;" class="input-group">
-
-
-			<select class="form-control" name="is_round_trip">
-				<option value="0">否</option>
-				<option value="1">是</option>
-			</select>
-		</div>
-	</div>
-	<textarea style="width: 100%;" class="form-group" rows="3"
-		placeholder="其他需求" name="summary"></textarea>
-<?php include '_coupon.php';?>
-	<label style="float: right;">价格<span class="rmb">0</span>元
-	<input type="hidden" name="estimated_cost" id="estimated_cost">
-	</label>
-<?php include '_protocol.php';?>
-</form>
-
-<script>
-
-</script>
+		<div class="formgroup">
+			<div class="formlist">
+				<div class="col-xs-2">
+					<img src="/img/z-youhuiquan.png">
+				</div>
+				<div class="col-xs-10">
+					<select id="showticket" class="form-control p-select" name="coupon_id">
+						<option>您有0张优惠券</option>
+					</select>
+				</div>
+			</div>
+		</div>	
+    	<div class="clearfix"></div>
+    	<div class="width98">
+    		<div class="text-right price">
+    			预计价格<span class="rmb">0</span>元
+    		</div>
+    	</div>
+    	<input type="hidden" value="<?php echo $contacter_name;?>" name="contacter_name" />
+    	<input type="hidden" value="<?php echo $contacter_phone;?>" name="contacter_phone" />
+    	<input type="hidden" value="<?php echo $seats;?>" name="seats" />
+    	<input id="Orders_vehicle_type" type="hidden" value="<?php echo VEHICLE_TYPE_BUSINESS;?>" name="vehicle_type" />
+    	<div class="width98">
+        <?php include '_protocol.php';?>
+    	</div>
+	</form>
+</div>

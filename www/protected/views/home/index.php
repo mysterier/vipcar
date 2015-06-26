@@ -3,7 +3,7 @@
 <!--展示-->
 <div class="showapp ">
 	<div class="showapp-container wrapper-width padding50">      	
-        <div><img src="/images/index/contant.jpg"></div>        
+        <div><img width="960px" height="1293px" src="/images/index/contant.jpg"></div>        
      </div>
 
 </div>
@@ -14,7 +14,7 @@
 </h2>
 	<div class="downapp-container wrapper-width "> 
     <div class="downapp-left">
-    <img src="/img/downapp-left.png" />
+    <img width="555px" height="682px" src="/img/downapp-left.png" />
     </div>
         <div class="downapp-right">
             <h4 class="text-center ">众择用车官方微信</h4>
@@ -24,7 +24,7 @@
               添加公众号，绑定手机，轻松出行
 
             </p>
-    		<div class="downapp-code downapp-center"><img class="img-border" src="/img/weixing-code.jpg" /></div>
+    		<div class="downapp-code downapp-center"><img width="200px" height="200px" class="img-border" src="/img/weixing-code.jpg" /></div>
             <!-- <a href="/download" class="appdownbtn btn btn-info btn-lg">点击下载</a> -->
 		</div>			
     </div>

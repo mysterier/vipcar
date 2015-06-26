@@ -41,7 +41,8 @@ class Clients extends CActiveRecord
             
             [
                 'email',
-                'email'
+                'email',
+                'message' => '{attribute}格式不正确！',
             ],
             [
                 'email,mobile',
@@ -65,7 +66,8 @@ class Clients extends CActiveRecord
                     'loginv1',
                     'webreg',
                     'webedit',
-                    'webgetpass'
+                    'webgetpass',
+                    'wechat'
                 ]
             ],
             [
@@ -95,7 +97,8 @@ class Clients extends CActiveRecord
                     'update',
                     'reg',
                     'webreg',
-                    'webedit'
+                    'webedit',
+                    'wxedit'
                 ]
             ],
             [
@@ -122,7 +125,8 @@ class Clients extends CActiveRecord
                 'msg_code',
                 'on' => [                    
                     'webreg',
-                    'webgetpass'
+                    'webgetpass',
+                    'wechat'
                 ],
             ],
             [
@@ -139,7 +143,8 @@ class Clients extends CActiveRecord
                 'message' => '{attribute}不能为空！',
                 'on' => [                    
                     'webreg',
-                    'webgetpass'
+                    'webgetpass',
+                    'wechat'
                 ]
             ],
             [
@@ -166,7 +171,15 @@ class Clients extends CActiveRecord
             [
                 'real_name, client_title,',
                 'safe',
-                'on' => 'webedit'
+                'on' => [
+                    'webedit',
+                    'wxedit'
+                ]
+            ],
+            [
+                'open_id',
+                'safe',
+                'on' => 'wechat'
             ]
         ];
     }

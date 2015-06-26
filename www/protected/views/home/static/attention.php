@@ -8,7 +8,7 @@
 		<div class="attention-pad-left attention-left">
 			<h4>众择用车官方微信</h4>
 			<div class="attention-img-code">
-				<img class="img-border" src="/img/weixing-code.jpg">				
+				<img width="278px" height="278px" class="img-border" src="/img/weixing-code.jpg">				
 			</div>
 			<div class="attention-left-txt">
 				<p>众择用车 微信公众平台上线了</p>
@@ -20,9 +20,9 @@
 			</div>
 		</div>
 		<div class="attention-pad-right attention-right">
-			<img src="/img/weiboicon.png">
+			<img width="312px" height="111px" src="/img/weiboicon.png">
 			<div class="">
-				<img class="img-border"  src="/img/weibo-code.png">
+				<img width="278px" height="278px" class="img-border"  src="/img/weibo-code.png">
 			</div>
 			<div class="attention-right-txt">
 			<p>点击跳转到众择官方微博↓↓</p>

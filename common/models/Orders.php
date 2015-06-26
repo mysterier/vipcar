@@ -91,13 +91,13 @@ class Orders extends CActiveRecord
             ],
             
             [
-                'order_no, open_id, contacter_name, vehicle_type, contacter_phone, estimated_cost, pickup_place, drop_place, flight_number, pickup_time, type',
+                'order_no, client_id, open_id, contacter_name, vehicle_type, contacter_phone, estimated_cost, pickup_place, drop_place, flight_number, pickup_time, type, seats',
                 'required',
                 'on' => 'wechat_pickup'
             ],
             
             [
-                'order_no, open_id, contacter_name, vehicle_type, contacter_phone, estimated_cost, pickup_place, drop_place, pickup_time, is_round_trip, type',
+                'order_no, client_id, open_id, contacter_name, vehicle_type, contacter_phone, estimated_cost, pickup_place, drop_place, pickup_time, is_round_trip, type, seats',
                 'required',
                 'on' => 'wechat_send'
             ],

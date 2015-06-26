@@ -1,12 +1,20 @@
 <!--标题栏-->
+<!--         <div>
+            <div class="text-center col-xs-offset-2 col-xs-4 btn brown-btn">
+                进行中
+            </div>
+            <div class="text-center col-xs-4 brown-border-btn">
+                已完成
+            </div>            
+        </div> -->
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
 	<div class="btn-group" role="group">
-		<a id="running" class="btn btn-primary">进行中</a>
+		<a id="running" class="btn brown-btn">进行中</a>
 	</div>
 
 	<div class="btn-group" role="group">
-		<a id="finished" class="btn btn-default">已完成</a>
+		<a id="finished" class="btn brown-border-btn">已完成</a>
 	</div>
 </div>
 
@@ -64,15 +72,19 @@ $(function(){
 });
 
 $("#running").click(function(){
-	$("#finished").removeClass("btn-primary").addClass("btn-default");
-	$(this).removeClass("btn-default").addClass("btn-primary");
+	$("#finished").removeClass("brown-btn").addClass("brown-border-btn");
+	$(this).removeClass("brown-border-btn").addClass("brown-btn");
+	// $("#finished").removeClass("brown-btn").addClass("btn-default");
+	// $(this).removeClass("btn-default").addClass("brown-btn");
 	$(".running").show();
 	$(".finished").hide();
 });
 
 $("#finished").click(function(){
-	$("#running").removeClass("btn-primary").addClass("btn-default");
-	$(this).removeClass("btn-default").addClass("btn-primary");
+	$("#running").removeClass("brown-btn").addClass("brown-border-btn");
+	$(this).removeClass("brown-border-btn").addClass("brown-btn");
+	// $("#running").removeClass("brown-btn").addClass("btn-default");
+	// $(this).removeClass("btn-default").addClass("brown-btn");
 	$(".finished").show();
 	$(".running").hide();
 });

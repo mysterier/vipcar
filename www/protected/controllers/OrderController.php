@@ -95,6 +95,7 @@ class OrderController extends Controller
 
     public function actionPickup() {
         $this->layout = '//layouts/main';
+        $this->setPageTitle('接送机_众择用车');
         $model = new Orders('weborder_pickup');
         $model->pickup_time = '';//清除数据库的默认值
         $model->vehicle_type = VEHICLE_TYPE_BUSINESS;

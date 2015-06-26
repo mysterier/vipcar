@@ -5,6 +5,7 @@ class HomeController extends Controller
 
     public function actionIndex()
     {
+        $this->setPageTitle('专注接送机服务，让出行轻松一些_众择用车');
         $this->render('index');
     }
 
@@ -13,6 +14,7 @@ class HomeController extends Controller
      */
     public function actionLogin()
     {
+        $this->setPageTitle('个人会员登录_众择用车');
         $model = new LoginForm();
         $hash['model'] = $model;
         
@@ -55,6 +57,7 @@ class HomeController extends Controller
     }
     
     public function actionRegister() {
+        $this->setPageTitle('个人会员注册_众择用车');
         $model = new Clients();
         $item = new ClientItems();
         $model->client_title = '1';
@@ -131,10 +134,12 @@ class HomeController extends Controller
     }
 
     public function actionService() {
+        $this->setPageTitle('【图】上海机场高铁接送_众择用车');
         $this->render('service');
     }
     
     public function actionEvent() {
+        $this->setPageTitle('最新活动_众择用车');
         $criteria = new CDbCriteria();
         $criteria->condition = 'status = :status';
         $criteria->order = 'id DESC';
@@ -161,6 +166,7 @@ class HomeController extends Controller
     }
     
     public function actionMagazine() {
+        $this->setPageTitle('聚焦论谈_众择用车');
         $attributes = [
             'status' => 1
         ];
@@ -171,11 +177,13 @@ class HomeController extends Controller
     
     public function actionAbout() {
         $this->layout = '//layouts/about';
+        $this->setPageTitle('帮助中心_关于众择_众择用车');
         $this->render('static/about');
     }
     
     public function actionCulture() {
         $this->layout = '//layouts/about';
+        $this->setPageTitle('帮助中心_众择文化_众择用车');
         $this->render('static/culture');
     }
     

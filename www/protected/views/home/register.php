@@ -415,7 +415,7 @@
     	</div>
         <div class="register-right">
             <p>下载众择用车到APP</p>
-            <img class="img-border" src="/img/downapp-code.png">
+            <img width="200px" height="200px" class="img-border" src="/img/downapp-code.png">
         </div>
     <div class="clearfix"></div>
 	</div>

@@ -32,6 +32,8 @@ class Controller extends CController
     public $openid;
 
     public $title;
+    
+    public $uid;
 
     public function beforeAction($action)
     {       
@@ -40,23 +42,38 @@ class Controller extends CController
             $this->openid = $openid;
         else {
             // 微信获取openid            
-            if (! isset($_GET['code'])) {
-                $url = urlencode('http://m.vip-car.com.cn/'.$this->id.'/'.$this->action->id);
-                $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.WECHAT_APP_ID.'&redirect_uri=' . $url . '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
-                $this->redirect($url);
-            } else {
-                $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.WECHAT_APP_ID.'&secret='.WECHAT_APP_SECRET.'&code=' . $_GET['code'] . '&grant_type=authorization_code';
-                $output = $this->gettohost($url);
-                $output = json_decode($output);
-                $openid = $output->openid;
-                Yii::app()->session['openid'] = $openid;
-                $this->openid = $openid;
-           }
+            $this->getOpenid();
         }        
-        if ($this->openid)
+        if ($this->openid) {
+            $this->uid = Yii::app()->session['uid'];
+            if (!$this->uid) {
+                $attribute = [
+                    'open_id' => $this->openid, 
+                    'status' => (string) CLIENT_ACTIVED
+                ];
+                $client = Clients::model()->findByAttributes($attribute);
+                if ($client)
+                    $this->uid = Yii::app()->session['uid'] = $client->id;
+            }
             return true;
+        }          
     }
 
+    public function getOpenid() {
+        if (! isset($_GET['code'])) {
+            $url = urlencode('http://m.vip-car.com.cn/'.$this->id.'/'.$this->action->id);
+            $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.WECHAT_APP_ID.'&redirect_uri=' . $url . '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+            $this->redirect($url);
+        } else {
+            $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.WECHAT_APP_ID.'&secret='.WECHAT_APP_SECRET.'&code=' . $_GET['code'] . '&grant_type=authorization_code';
+            $output = $this->gettohost($url);
+            $output = json_decode($output);
+            $openid = $output->openid;
+            Yii::app()->session['openid'] = $openid;
+            $this->openid = $openid;
+        }
+    }
+    
     public function gettohost($url)
     {
         $curl = curl_init();
@@ -94,5 +111,67 @@ class Controller extends CController
             }
             WxExpand::model()->updateAll(['grant' => 1], "open_id=:open_id and `grant`=0", ['open_id' => $this->openid]);
         }
+    }
+    
+    /**
+     * 获取post参数
+     *
+     * @param string $param
+     * @author lqf
+     */
+    public function getParam($param, $default = null)
+    {
+        return Yii::app()->request->getParam($param, $default);
+    }
+    
+    /**
+     * 过滤方法 绑定手机号码
+     * 
+     * @param obj $filterChain
+     * @author lqf
+     */
+    public function filterBindMobile($filterChain) {
+        //$this->getOpenid();
+        $this->openid = Yii::app()->session['openid'];
+        
+        if ($this->hasClient())
+            $filterChain->run();
+        else {
+            Yii::app()->session['redirect_url'] = Yii::app()->request->url;
+            $this->redirect('/home/bindmobile');
+        }
+    }
+    
+    public function hasClient() {
+        $attributes = [
+            'open_id' => $this->openid,
+            'status' => (string) USER_CLIENT_ACTIVED
+        ];
+        $model = Clients::model()->findByAttributes($attributes);
+        if ($model)
+            return true;
+        else
+            return false;
+    }
+    
+    /**
+     * 简单redis存储
+     */
+    public function sRedisSet($key, $value, $expire = REDIS_EXPIRE)
+    {
+        Yii::app()->redis->getClient()->set($key, $value);
+        if ($expire)
+            Yii::app()->redis->getClient()->expire($key, $expire);
+    }
+    
+    public function sRedisGet($key)
+    {
+        return Yii::app()->redis->getClient()->get($key);
+    }
+    
+    public function getVerifyCode()
+    {
+        $code = rand(100000, 999999);
+        return $code;
     }
 }

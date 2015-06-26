@@ -6,37 +6,58 @@ class OrderController extends Controller
     
     public function actionAirportpickup()
     {
+        $this->layout = '//layouts/promotion';
         $this->title = '接机';
-        $this->checkExpand();
-        $coupons = $this->couponlist();
-        $hash['coupons'] = $coupons;
+        //$this->checkExpand();
+        $contacter = $this->getContacter();
         $hash['flight_no'] = isset($_GET['flight_no']) ? urldecode($_GET['flight_no']) : '';
         $hash['pickup_time'] = isset($_GET['pickup_time']) ? urldecode($_GET['pickup_time']) : '';
         $hash['pickup_place'] = isset($_GET['pickup_place']) ? urldecode($_GET['pickup_place']) : '';
-        $hash['contacter_name'] = isset($_GET['contacter_name']) ? urldecode($_GET['contacter_name']) : '';
-        $hash['contacter_phone'] = isset($_GET['contacter_phone']) ? urldecode($_GET['contacter_phone']) : '';
+        $hash['drop_place'] = isset($_GET['drop_place']) ? urldecode($_GET['drop_place']) : '';
+        $hash['contacter_name'] = isset($_GET['contacter_name']) ? urldecode($_GET['contacter_name']) : $contacter['name'];
+        $hash['contacter_phone'] = isset($_GET['contacter_phone']) ? urldecode($_GET['contacter_phone']) : $contacter['tel'];
+        $hash['seats'] = isset($_GET['seats']) ? urldecode($_GET['seats']) : 1;
         $this->render('airportpickup', $hash);
     }
     
     public function actionAirportsend()
     {
+        $this->layout = '//layouts/promotion';
         $this->title = '送机';
-        $this->checkExpand();
-        $coupons = $this->couponlist();
-        $hash['coupons'] = $coupons;
+        //$this->checkExpand();
+        $contacter = $this->getContacter();
+        $hash['is_round_trip'] = isset($_GET['is_round_trip']) ? urldecode($_GET['is_round_trip']) : '';
+        $hash['pickup_time'] = isset($_GET['pickup_time']) ? urldecode($_GET['pickup_time']) : '';
+        $hash['pickup_place'] = isset($_GET['pickup_place']) ? urldecode($_GET['pickup_place']) : '';
+        $hash['drop_place'] = isset($_GET['drop_place']) ? urldecode($_GET['drop_place']) : '';
+        $hash['contacter_name'] = isset($_GET['contacter_name']) ? urldecode($_GET['contacter_name']) : $contacter['name'];
+        $hash['contacter_phone'] = isset($_GET['contacter_phone']) ? urldecode($_GET['contacter_phone']) : $contacter['tel'];
+        $hash['seats'] = isset($_GET['seats']) ? urldecode($_GET['seats']) : 1;
+        
         $this->render('airportsend', $hash);
     }
     
-    private function couponlist() {
-        $scope = ($this->action->id == 'airportsend') ? ORDER_TYPE_AIRPORTSEND : ORDER_TYPE_AIRPORTPICKUP;
-        $condition = 'open_id=:open_id and status=:status and (scope=:scope or scope=3)';
-        $params = [
-            'open_id' => $this->openid,
-            'status' => 1,
-            'scope' => $scope
+    public function getContacter() {
+        $contacter = Clients::model()
+                        ->with(['contacter' => ['order' => 'contacter.weight desc']])
+                        ->with(['contacter.tel' => ['order' => 'tel.weight desc']])
+                        ->findByPk($this->uid);
+        $res = [
+            'name' => '',
+            'tel' => ''
         ];
-        $model = WxCoupon::model()->findAll($condition, $params);
-        return $model;
+        if ($contacter->contacter) {
+            $nameobj = $contacter->contacter[0];
+            $res['name'] = $nameobj->name;
+            if ($nameobj->tel) {
+                $telobj = $nameobj->tel[0];
+                $res['tel'] = $telobj->tel;
+            }
+        } else {
+            $res['name'] = $contacter->real_name;
+            $res['tel'] = $contacter->mobile;
+        }
+        return $res;
     }
     
     public function actionProcess($id) {
@@ -44,22 +65,25 @@ class OrderController extends Controller
         $scenario = ($id == ORDER_TYPE_AIRPORTSEND) ? 'wechat_send' : 'wechat_pickup';
         $wechat = new Orders($scenario);
         $order_no = 'wx'.time();
+        $date = $_POST['pickup_time'];
+        $_POST['pickup_time'] = date('Y-m-d H:i:s', strtotime($date));
         $wechat->attributes = $_POST;
+        $wechat->client_id = $this->uid;
         $wechat->open_id = $this->openid;
         $wechat->order_no = $order_no;
         $wechat->type = (string)$id;
-        $wechat->status = ORDER_STATUS_HAND; //暂定
+        $wechat->status = (string)ORDER_STATUS_PAY;        
         if ($wechat->save()) {
             //更新对应优惠券
             if (isset($_POST['coupon_id'])) {
-                $coupon = WxCoupon::model()->findByPk($_POST['coupon_id']);
+                $coupon = ClientTicket::model()->findByPk($_POST['coupon_id']);
                 if ($coupon) {
                     $coupon->order_id = $wechat->id;
                     $coupon->last_update = time();
                     $coupon->save();
                 }
             }
-            
+
             $total_fee = $_POST['estimated_cost'];
             if ($total_fee == 0)
                 $this->successForCoupon($wechat, $coupon);
@@ -68,7 +92,77 @@ class OrderController extends Controller
             $hash = $_POST;
             $hash['jsApiParameters'] = $jsApiParameters;
             $this->render('confirm_order', $hash);
-        }   
+        }            
+    }
+    
+    public function actionAddcontacter() {
+        $this->layout = '//layouts/promotion';
+        $this->title = '联系人';
+        if ($_POST) {
+            // 记录联系人历史
+            $contacter = new Contacter();
+            //$contacter->setContacter();
+            $query = $this->replaceQuery($_POST);
+            $type = $this->getParam('type', ORDER_TYPE_AIRPORTPICKUP);
+            $order_type = ($type == ORDER_TYPE_AIRPORTPICKUP) ? 'airportpickup' : 'airportsend';
+            $this->redirect('/order/' . $order_type . '?' . $query);
+        }
+        $get = Yii::app()->request->getRequestUri();
+               
+        $this->render('addcontacter');
+    }
+    
+    public function replaceQuery(array $items) {
+        $query = '';
+        if ($_GET) {
+            $query_array = $_GET;
+            foreach ($items as $k => $v) {
+                $query_array[$k] = urlencode($v);
+            }
+            $temp = [];
+            foreach ($query_array as $key => $value) {
+                $temp[]= $key . '=' . $value;
+            }
+            $query = implode('&', $temp);
+        }
+        return $query;
+    }
+    
+    /**
+     * 获取优惠券
+     */
+    public function actionGetticket() {
+        $vehicle_type = $this->getParam('vehicle_type');
+        $order_type = $this->getParam('order_type');
+        switch ($order_type) {
+            case 'airportpickup':
+                $order_type = '5';
+                break;
+            case 'airportsend':
+                $order_type = '6';
+                break;
+            default:
+                $order_type = '5';
+        }
+        $type = $order_type . ($vehicle_type-1);
+        $criteria = new CDbCriteria();
+        $criteria->condition = 't.client_id=:client_id and t.status=:status and expire > :expire';
+        $criteria->addCondition('(coupon_type='.COUPON_COMMON.' or coupon_type='.$order_type.' or coupon_type='.$type.')');
+        $criteria->order = 't.id asc';
+        $criteria->params = [
+            'client_id' => $this->uid,
+            'status' => CLIENT_TICKET_ACTIVED,
+            'expire' => time()
+        ];
+        $model = ClientTicket::model()->with('ticket')->findAll($criteria);
+        $html = '';
+        if ($model) {
+            $html .= '<option>您有' . count($model) . '张优惠券</option>';
+            foreach ($model as $item) {
+                $html .= '<option value="' . $item->id . '" coupon_cost="' . $item->ticket->name . '">' . $item->ticket->name .'元优惠券</option>';
+            }
+        }
+        echo $html;
     }
     
     /**
@@ -126,7 +220,8 @@ class OrderController extends Controller
         //noncestr已填,商户无需重复填写
         //spbill_create_ip已填,商户无需重复填写
         //sign已填,商户无需重复填写
-        $unifiedOrder->setParameter("openid","$this->openid");//商品描述
+        $unifiedOrder->setParameter("openid","$this->openid");//openid
+        $unifiedOrder->setParameter("uid","$this->uid");
         $unifiedOrder->setParameter("body","订单支付");//商品描述
         $unifiedOrder->setParameter("out_trade_no","$order_no");//商户订单号
         $unifiedOrder->setParameter("total_fee","$total_fee");//总金额
@@ -153,8 +248,10 @@ class OrderController extends Controller
     public function actionGetflight() {
         $flight = $_POST['flight'];
         $date = $_POST['date'];
+        $date = date('Y-m-d', strtotime($date));
         $contacter_name = $_POST['contacter_name'];
         $contacter_phone = $_POST['contacter_phone'];
+        $seats = $_POST['seats'];
         $fdate = str_replace('-', '', $date);
         
         $params = [
@@ -177,27 +274,63 @@ class OrderController extends Controller
             $output = json_decode($output);
             $pickup_time = $html = '';
             if ($output->result) {
-               $dep_time = preg_match('/\d{2}:\d{2}/', $output->result->dep_time, $m) ? $m[0] : '';
-               $arr_time = preg_match('/\d{2}:\d{2}/', $output->result->arr_time, $m) ? $m[0] : '';
-               if (strtotime($arr_time) < strtotime($dep_time)) {
-                   $date = strtotime($date .' +1 day');
-                   $date = date('Y-m-d', $date);
-               }
-               $pickup_time .= $date . ' ' . $arr_time;
-               $text = '<span class="title">航班时间选择</span>';
-               $text .= $output->result->dep . '&nbsp;&nbsp;&nbsp;&nbsp;至 &nbsp;&nbsp;&nbsp;&nbsp;' . $output->result->arr . '&nbsp;&nbsp;&nbsp;&nbsp;到达时间：'. $arr_time;
+                if(isset($output->result->stops)) {
+                    foreach ($output->result->stops as $stop) {
+                        if (preg_match('/浦东国际机场T1/', $stop->title)) {
+                            $output->result->dep_time = $stop->dep_time;
+                            $output->result->arr_time = $stop->arr_time;
+                            $output->result->arr = '浦东国际机场T1';
+                            break;
+                        }
+                
+                        if (preg_match('/浦东国际机场T2/', $stop->title)) {
+                            $output->result->dep_time = $stop->dep_time;
+                            $output->result->arr_time = $stop->arr_time;
+                            $output->result->arr = '浦东国际机场T2';
+                            break;
+                        }
+                
+                        if (preg_match('/虹桥国际机场T1/', $stop->title)) {
+                            $output->result->dep_time = $stop->dep_time;
+                            $output->result->arr_time = $stop->arr_time;
+                            $output->result->arr = '虹桥国际机场T1';
+                            break;
+                        }
+                
+                        if (preg_match('/虹桥国际机场T2/', $stop->title)) {
+                            $output->result->dep_time = $stop->dep_time;
+                            $output->result->arr_time = $stop->arr_time;
+                            $output->result->arr = '虹桥国际机场T2';
+                            break;
+                        }
+                    }
+                } 
+                
+                $dep_time = preg_match('/\d{2}:\d{2}/', $output->result->dep_time, $m) ? $m[0] : '';
+                $arr_time = preg_match('/\d{2}:\d{2}/', $output->result->arr_time, $m) ? $m[0] : '';
+                if (strtotime($arr_time) < strtotime($dep_time)) {
+                    $date = strtotime($date .' +1 day');
+                    $date = date('Y-m-d', $date);
+                }
+                $pickup_time .= $date . ' ' . $arr_time;
+                $text = '<div class="text-left col-xs-4">' . $output->result->dep . '</div>';
+                $text .= '<div class="text-center col-xs-2">至</div>';
+                $text .= '<div class="text-center col-xs-4">' . $output->result->arr . '</div>';
+                $text .= '<div class="text-right col-xs-2">' . $arr_time . '</div>';
+                $text .= '<div class="clearfix"></div>';
                
-               $flight = urlencode($flight);
-               $pickup_time = urlencode($pickup_time);
-               $pickup_place = urlencode($output->result->arr);
-               $contacter_name = urlencode($contacter_name);
-               $contacter_phone = urlencode($contacter_phone);
+                $flight = urlencode($flight);
+                $pickup_time = urlencode($pickup_time);
+                $pickup_place = urlencode($output->result->arr);
+                $contacter_name = urlencode($contacter_name);
+                $contacter_phone = urlencode($contacter_phone);
                
-               $query = "flight_no={$flight}&pickup_time={$pickup_time}&pickup_place={$pickup_place}&contacter_name={$contacter_name}&contacter_phone={$contacter_phone}";
-                             
-               $html .= '<a href="/order/airportpickup?'.$query.'" class="hangban-time">';
-               $html .= $text;
-               $html .= '</a>';
+                $query = "flight_no={$flight}&pickup_time={$pickup_time}&pickup_place={$pickup_place}&contacter_name={$contacter_name}&contacter_phone={$contacter_phone}&seats={$seats}";
+
+                $html .= '<div class="flight-head"><h3>航班时间选择</h3></div>';
+                $html .= '<a href="/order/airportpickup?'.$query.'" class="flight-content a-select">';
+                $html .= $text;
+                $html .= '</a>';
             }            
             
             $output = [
@@ -207,16 +340,17 @@ class OrderController extends Controller
         }
         curl_close($ch);
         
-        
         $res = json_encode($output);
         echo $res;
         Yii::app()->end();
     }
     
     public function actionFlight() {
+        $this->layout = '//layouts/promotion';
         $this->title = '查询航班号';
         $hash['contacter_name'] = isset($_GET['contacter_name']) ? $_GET['contacter_name'] : '';
         $hash['contacter_phone'] = isset($_GET['contacter_phone']) ? $_GET['contacter_phone'] : '';
+        $hash['seats'] = isset($_GET['seats']) ? $_GET['seats'] : '';
         $this->render('flight', $hash);
     }
     
@@ -257,10 +391,16 @@ class OrderController extends Controller
             $result['status'] = $model->status;
             
             if ($model->status == ORDER_STATUS_PAY) {
-                $jsApiParameters = $this->getWxParams($model->order_no, '1');
+                $jsApiParameters = $this->getWxParams($model->order_no, $model->estimated_cost);
                 $result['jsApiParameters'] = $jsApiParameters;
             }
         }
         $this->render('detail', $result);
+    }
+    
+    public function filters() {
+        return [
+            'bindMobile + airportpickup, airportsend, list'
+        ];
     }
 }

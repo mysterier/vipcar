@@ -3,6 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="众择用车专注机场 高铁接送服务，只为更专业。让乘坐成为一种生活品质，一次车费，两次服务，现在注册即得50元专车券">
+<meta name="keywords" content="众择用车,众择,上海专车,上海机场接送,接送机服务,上海高铁接送">
+<link rel="icon" href="logo16.ico" sizes="16x16">
+<link rel="icon" href="logo32.ico" sizes="32x32">
+<link rel="icon" href="logo48.ico" sizes="48x48">
+<link rel="icon" href="logo64.ico" sizes="64x64">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
 <script type="text/javascript" src="/js/jquery-1.11.2.js"></script>
 <?php if($this->id == 'order' && ($this->action->id == 'pickup'||$this->action->id == 'send')):?>
@@ -13,15 +19,15 @@
 
 
 <?php endif;?>
-<link rel="stylesheet" type="text/css" href="/css/mystyle.css"/>
+<link rel="stylesheet" type="text/css" href="/css/mystyle-min.css"/>
 <?php if($this->id == 'favorite'):?>
-<link rel="stylesheet" type="text/css" href="/css/account-like.css"/>
+<link rel="stylesheet" type="text/css" href="/css/account-like-min.css"/>
 <?php endif;?>
-<script type="text/javascript" src="/js/jquery.immersive-slider.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/immersive-slider.css">
-<script type="text/javascript" src="/js/myjs.js"></script>
+<script type="text/javascript" src="/js/jquery.immersive-slider-min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/immersive-slider-min.css">
+<script type="text/javascript" src="/js/myjs-min.js"></script>
 <?php if($this->id == 'order' && $this->action->id == 'comment'):?>
-<script type="text/javascript" src="/js/star.js"></script>
+<script type="text/javascript" src="/js/star-min.js"></script>
 <?php endif;?>
 <?php if($this->id == 'client'):?>
 <script type="text/javascript" src="/js/ajaxfileupload.js"></script>
@@ -33,7 +39,7 @@
 	<!--页眉-->
 	<div id="header">
 		<div class="wrapper-width" id="header-container">
-		<a href="/" id="logo"><img src="/img/logo.png"></a>
+		<a href="/" id="logo"><img width="195px" height="90px" src="/img/logo.png"></a>
 			<ul class="header-nav">
 				<li class="header-topnav"><a href="/order/index">我的账户</a></li>
 				<li class="header-topnav"><a href="/appdown">客户端下载</a></li>
@@ -68,7 +74,7 @@
 <div class="footer">
     <div class="footer-container">
         <div class="footer-left">
-            <div class="footer-logo"><img src="/img/footerlogo.png" /></div>
+            <div class="footer-logo"><img width="200px" height="100px" src="/img/footerlogo.png" /></div>
             <div class="service-tel">
                 <span>400-965-2886</span>
             </div>
@@ -93,11 +99,11 @@
             </ul>
             <ul>
                 <li><h5 class="text-center">众择用车官方微信</h5></li>
-                <li><img class="img-border" src="/images/index/weixing-code.jpg" /></li>
+                <li><img width="150px" height="150px" class="img-border" src="/images/index/weixing-code.jpg" /></li>
             </ul>   
             <ul>
                 <li><h5 class="text-center">众择用车官方微博</h5></li>
-                <li><img class="img-border" src="/images/index/weibo-code.jpg" /></li>
+                <li><img width="150px" height="150px" class="img-border" src="/images/index/weibo-code.jpg" /></li>
             </ul>           
         </div>
         <div class=" clearfix" ></div>

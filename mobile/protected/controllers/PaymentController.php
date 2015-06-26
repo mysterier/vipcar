@@ -53,21 +53,19 @@ class PaymentController extends Controller
                     'order_no' => $array['out_trade_no']
                 ];
                 $model = Orders::model()->findByAttributes($attributes);
-                if ($model && $model->status == ORDER_STATUS_HAND) {
-                    $model->status = ORDER_STATUS_NOT_DISTRIBUTE;
+                if ($model && $model->status == ORDER_STATUS_PAY) {
+                    $model->status = (string)ORDER_STATUS_NOT_DISTRIBUTE;
                     if ($model->save()) {
                         $attributes = [
-                            'open_id' => $array['openid'],
+                            'client_id' => $array['uid'],
                             'order_id' => $model->id
                         ];
-                        $coupon = WxCoupon::model()->findByAttributes($attributes);
+                        $coupon = ClientTicket::model()->findByAttributes($attributes);
                         if ($coupon) {
                             $coupon->status = 2;
                             $coupon->save();
-                            if ($coupon->value == 50)
-                                $this->sendCoupon($model);
                         } else {
-                            $this->sendCoupon($model);
+                            $model->getticket();
                         }
                         
                         //发送验证短信
@@ -93,15 +91,7 @@ class PaymentController extends Controller
             }
         }
     }
-    
-    public function sendCoupon(Orders $order) {
-        $coupon = new WxCoupon();
-        $coupon->open_id = $order->open_id;
-        $coupon->value = 450;
-        $coupon->scope = ($order->type == ORDER_TYPE_AIRPORTPICKUP) ? ORDER_TYPE_AIRPORTSEND : ORDER_TYPE_AIRPORTPICKUP;
-        $coupon->save();
-    }
-    
+        
     /**
      * 记录调用接口日志
      *

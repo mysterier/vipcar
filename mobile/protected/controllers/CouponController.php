@@ -15,4 +15,10 @@ class CouponController extends Controller
         $hash['coupons'] = $model;
         $this->render('list', $hash);
     }
+    
+    public function filters() {
+        return [
+            'bindMobile + list'
+        ];
+    }
 }

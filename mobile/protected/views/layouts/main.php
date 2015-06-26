@@ -32,15 +32,7 @@ $(function(){
 </head>
 
 <body>
-    <?php if (Yii::app()->request->getParam('type') != 'app'):?>
-	<div class="head">
-		<p style="color: #fff; padding: 0.3em; font-size: 2em;"
-			class="text-center">
-			<strong><?php echo $this->title; ?></strong>
-		</p>
-	</div>
-	<?php endif;?>
-	<div class="container-fluid">
+<div class="container-fluid">
 <?php echo $content;?>
 </div>
 </body>

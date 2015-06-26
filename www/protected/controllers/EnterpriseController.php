@@ -4,6 +4,7 @@ class EnterpriseController extends Controller
 {    
 
     public function actionShow() {
+        $this->setPageTitle('【图】企业平台_众择用车');
         $model = new LoginForm();
         $hash['model'] = $model;
         $this->render('show', $hash);

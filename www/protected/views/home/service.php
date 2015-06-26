@@ -12,7 +12,7 @@
         <div class="carmonerylist">
             <h3 class="text-center">舒适型</h3>
             <p class="text-center">大众帕萨特、丰田凯美瑞、马自达同级别车型</p>
-            <img src="/images/service/car1.png" />
+            <img width="960px" height="320px" src="/images/service/car1.png" />
             <div class="car-price">
                 <div class="car-circle">
                     <p>¥280/380</p>
@@ -33,7 +33,7 @@
         <div class="carmonerylist registerhide">
             <h3 class="text-center">商务型</h3>
             <p class="text-center">别克GL8 7座车型</p>
-            <img src="/images/service/car2.png" />
+            <img width="960px" height="320px" src="/images/service/car2.png" />
             <div class="car-price">
                 <div class="car-circle">
                     <p>¥280/380</p>
@@ -54,7 +54,7 @@
         <div class="carmonerylist registerhide">
             <h3 class="text-center">豪华型</h3>
             <p class="text-center">宝马5系 奥迪A6L 等同级车型</p>
-            <img src="/images/service/car3.png" />
+            <img width="960px" height="320px" src="/images/service/car3.png" />
             <div class="car-price">
                 <div class="car-circle">
                     <p>¥680/880</p>

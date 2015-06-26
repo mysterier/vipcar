@@ -1,4 +1,59 @@
 ﻿/*所有*/
+.container-fluid{
+	padding-top: 20px;
+}
+.orange-btn:hover{
+	background-color: #d4620b;	
+	height: 40px;
+
+	color: #fff;
+	font-size: 1em;
+}
+
+.brown-btn{
+	background-color: #6d4c41;
+	height: 40px;
+
+	color: #fff !important;
+	font-size: 1em;
+}
+.brown-btn:hover{
+	background-color: #5d4138;
+	height: 40px;
+
+	color: #fff;
+	font-size: 1em;
+}
+.brown-border-btn{
+	border: 2px solid #5d4138 !important;
+	background-color: #fff;
+	height: 40px;
+
+	color: #5d4138 !important;
+	font-size: 1em;
+}
+.brown-border-btn:hover{
+	border: 2px solid #5d4138;
+	background-color: #bdbdbd;
+	height: 40px;
+
+	color: #5d4138 !important;
+	font-size: 1em;
+}
+.blue-btn{
+	background-color: #56abe4;
+	height: 40px;
+
+	color: #fff !important;
+	font-size: 1em;
+}
+.blue-btn:hover{
+	background-color: #509dd1;
+	height: 40px;
+
+	color: #fff !important;
+	font-size: 1em;
+}
 .head {
 	width: 100%;
 	background: rgb(66, 139, 202);
@@ -166,7 +221,7 @@ h1 {
 }
 
 .bg-airportsend {
-	background-color: rgba(239, 102, 31, 1.00);
+	background-color: #d4620b;
 }
 
 /*订单详情*/

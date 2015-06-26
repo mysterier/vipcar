@@ -3,7 +3,7 @@
   <h3 class="text-center">让出行轻松一些</h3>
 	<div class="downapp-container wrapper-width "> 
     <div class="downapp-left">
-    <img src="/images/app/downapp.png" />
+    <img width="555px" height="682px" src="/images/app/downapp.png" />
     </div>
         <div class="downapp-right">
             <h4 class="text-left ">全新 Android 客户端</h4>
@@ -12,7 +12,7 @@
             便捷地下单流程
             更多人性化的功能 
             </p>
-    		<div class="downapp-code"><img class="img-border" src="/img/downapp-code.png" /></div>
+    		<div class="downapp-code"><img width="200px" height="200px" class="img-border" src="/img/downapp-code.png" /></div>
             <a href="/download" class="appdownbtn btn btn-info btn-lg">点击下载</a>
 		</div>			
     </div>

@@ -131,8 +131,13 @@ class Controller extends CController
      * @author lqf
      */
     public function filterBindMobile($filterChain) {
-        //$this->getOpenid();
-        $this->openid = Yii::app()->session['openid'];
+        $openid = Yii::app()->session['openid'];
+        if ($openid)
+            $this->openid = $openid;
+        else {
+            // 微信获取openid
+            $this->getOpenid();
+        }
         
         if ($this->hasClient())
             $filterChain->run();
@@ -148,10 +153,7 @@ class Controller extends CController
             'status' => (string) USER_CLIENT_ACTIVED
         ];
         $model = Clients::model()->findByAttributes($attributes);
-        if ($model)
-            return true;
-        else
-            return false;
+        return $model;
     }
     
     /**

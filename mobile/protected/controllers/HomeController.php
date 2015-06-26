@@ -52,6 +52,20 @@ class HomeController extends Controller
         $this->render('bindmobile', $hash);
     }
     
+    public function actionAdvice() {
+        $this->layout = '//layouts/promotion';
+        $this->title = '建议反馈';
+        if ($_POST) {
+            $model = new WxAdvice();
+            $model->open_id = $this->openid;
+            $model->content = $this->getParam('content');
+            if ($model->save()) {
+                $this->redirect('/order/airportpickup');
+            }
+        }
+        $this->render('advice');
+    }
+    
     public function actionSendcode() {
         $mobile = $this->getParam('mobile');
         if (!$this->sRedisGet($mobile.'issend_from_wechat')) {

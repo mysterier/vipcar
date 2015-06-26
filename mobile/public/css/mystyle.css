@@ -9,7 +9,9 @@
 	color: #fff;
 	font-size: 1em;
 }
-
+.brown-title{
+	color: #6d4c41 !important;
+}
 .brown-btn{
 	background-color: #6d4c41;
 	height: 40px;

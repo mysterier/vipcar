@@ -1,11 +1,13 @@
 <div style="clear:both;" class="checkbox">
-      <label>
+	<div class="pull-left xieyi-checkbox ">
         <input id="orderText" type="checkbox">
-        勾选同意<a href="#" class="brown-title" data-toggle="modal" data-target="#myModal">《众择用车》</a>协议 </label>
+    </div>
+    <div class="xieyi-checkbox">
+        勾选同意<a href="#" class="brown-title" data-toggle="modal" data-target="#myModal">《众择用车》</a>协议 
+    </div>
     </div>
     
-    
-    
+
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

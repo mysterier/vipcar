@@ -94,6 +94,7 @@ body,html{
 	background-color: #fff;
 }
 .formgroup img{
+
 	width: 40px;
 	height: 60px;
 }
@@ -313,6 +314,9 @@ input[type=checkbox]{
 	width: 20px;
 	height: 20px;
 }
+.checkbox label{
+	line-height: 20px;
+}
 .checkbox{
 	margin: 0 !important;
 }
@@ -321,10 +325,21 @@ input[type=checkbox]{
 	margin: 20px !important;
 
 }
+
 .wangfan-checkbox{
 	position: static !important;
 	height: 60px !important;
 	line-height: 60px !important;
+}
+.xieyi-checkbox input{
+	position: static !important;
+	margin: 10px 10px 10px 0 !important;
+
+}
+.xieyi-checkbox{
+	position: static !important;
+	height: 40px !important;
+	line-height: 40px !important;
 }
 .price{
 	color: #999;

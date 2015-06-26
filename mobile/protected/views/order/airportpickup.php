@@ -61,11 +61,11 @@
 				<div class="col-xs-2">
 					<img src="/img/z-qidian.png">
 				</div>
-				<div class="col-xs-2">
+				<div class="col-xs-3">
 					<p class="p-adress">上海</p>
 				</div>
 
-				<div class="col-xs-8">
+				<div class="col-xs-7">
 				<?php if($pickup_place):?>
 				    <p class="p-normal p-select"><?php echo $pickup_place?></p>
 				<?php else:?>
@@ -80,10 +80,10 @@
 				<div class="col-xs-2">
 					<img src="/img/z-zhongdian.png">
 				</div>
-				<div class="col-xs-2">
+				<div class="col-xs-3">
 					<p class="p-adress">上海</p>
 				</div>
-				<div class="col-xs-8">
+				<div class="col-xs-7">
 					<input id="suggestId" type="text" class="form-control drop_place" placeholder="下车地址" name="drop_place" />
 				</div>
 			</div>

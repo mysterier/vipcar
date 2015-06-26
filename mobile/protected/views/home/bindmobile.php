@@ -24,7 +24,7 @@
 	</form>
 	<p class="phone-p-bottom text-center">50元可全额一次性作为车费抵用</p>
 	<?php else:?>
-		<p class="text-center phone-p">您已是众择用车注册会员<br/>50元专车券已存入<span><?php echo $client->mobile;?></span>账户中</p>
+		<p class="text-center phone-p">您已是众择用车注册会员<br/>50元专车券已存入<span><?php echo preg_replace('/(\d{3})\d{4}/', '${1}****', $client->mobile);?></span>账户中</p>
 	<?php endif;?>
 	</div>
 </div>

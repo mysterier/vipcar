@@ -38,23 +38,23 @@
 				<div class="col-xs-2">
 					<img src="/img/z-qidian.png">
 				</div>
-				<div class="col-xs-2">
+				<div class="col-xs-3">
 					<p class="p-adress">上海</p>
 				</div>
-				<div class="col-xs-8">
+				<div class="col-xs-7">
 					<input type="text" class="form-control" id="suggestId" placeholder="上车地点" name="pickup_place">
 				</div>
 			</div>
 			<div class="formline"></div>
 			<div class="formlist">
 				<div class="col-xs-2">
-					<img src="/img/z-qidian.png">
+					<img src="/img/z-zhongdian.png">
 				</div>
-				<div class="col-xs-2">
+				<div class="col-xs-3">
 					<p class="p-adress">上海</p>
 				</div>
 
-				<div class="col-xs-8">
+				<div class="col-xs-7">
 					<select id="terminal" class="form-control p-select drop_place" name="drop_place">
         				<optgroup label="航站楼"></optgroup>
         				<option value="虹桥国际机场T1">虹桥国际机场T1</option>

@@ -6,7 +6,7 @@ class PageController extends Controller
     public function init()
     {
         parent::init();
-        // $this->layout = '//layouts/page';
+        //$this->layout = '//layouts/promotion';
     }
 
     public function beforeAction($action) {
@@ -25,10 +25,10 @@ class PageController extends Controller
         $this->render('service');
     }
 
-    public function actionContactus()
+    public function actionQuestion()
     {
-        $this->title = '联系我们';
-        $this->render('contactus');
+        $this->title = '常见问题';
+        $this->render('question');
     }
 
     public function actionDownload()
@@ -71,7 +71,7 @@ class PageController extends Controller
         $hash['signPackage'] = $signPackage;
         $this->render('ad', $hash);
     }
-    
+        
     public function pageStatistics($openid) {
         $model = new WxStatistics();
         $model->open_id = $openid;

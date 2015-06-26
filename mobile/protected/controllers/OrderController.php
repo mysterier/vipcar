@@ -220,7 +220,7 @@ class OrderController extends Controller
         //noncestr已填,商户无需重复填写
         //spbill_create_ip已填,商户无需重复填写
         //sign已填,商户无需重复填写
-        $unifiedOrder->setParameter("openid","$this->openid");//openid
+        $unifiedOrder->setParameter("openid","oA7kOtw-NcEWHPlc-bGUQMx8azY8");//openid
         $unifiedOrder->setParameter("body","订单支付");//商品描述
         $unifiedOrder->setParameter("out_trade_no","$order_no");//商户订单号
         $unifiedOrder->setParameter("total_fee","$total_fee");//总金额
@@ -390,7 +390,7 @@ class OrderController extends Controller
             $result['status'] = $model->status;
             
             if ($model->status == ORDER_STATUS_PAY) {
-                $jsApiParameters = $this->getWxParams($model->order_no, $model->estimated_cost);
+                $jsApiParameters = $this->getWxParams($model->order_no, (int)$model->estimated_cost);
                 $result['jsApiParameters'] = $jsApiParameters;
             }
         }

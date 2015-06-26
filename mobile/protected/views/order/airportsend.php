@@ -29,7 +29,7 @@
 					<img src="/img/z-shijian.png">
 				</div>
 				<div class="col-xs-10">
-					<input style="none" type="datetime-local" name="pickup_time" placeholder="上车时间">
+					<input type="datetime-local" name="pickup_time" placeholder="上车时间">
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,5 @@
 <div class="phone-bg">
-	<div>
+	<div class="phone-wrapper">
 	<div class="phone-logo">
 		<img src="/img/logo.png">
 	</div>

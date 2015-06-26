@@ -445,6 +445,9 @@ input[type=checkbox]{
 	margin-bottom: 10px;
 
 }
+.phone-wrapper{
+	width: 80%;
+}
 .phone-formlist .pull-left{
 	width: 60%;
 }

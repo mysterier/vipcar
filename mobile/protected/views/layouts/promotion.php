@@ -19,6 +19,6 @@ function alertError(msg) {
 </head>
 <body>
     <?php echo $content;?>
-<div style="display: none;position:fixed;bottom:200px; padding:10px; width:80%; margin:auto; left:0; right:0;" class="tips"></div>
+<div style="display: none;position:fixed;bottom:200px;right:1%;left:1%;" class="tips"></div>
 </body>
 </html>

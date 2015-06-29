@@ -4,13 +4,13 @@ class ClientController extends Controller
 {
     public function init() {
         parent::init();
-        $this->layout = '//layouts/promotion'; 
+        $this->layout = '//layouts/promotion';
     }
-    
+
     public function actionIndex() {
         $this->render('index');
     }
-    
+
     public function actionEdit() {
         $model = Clients::model()->findByPk($this->uid);
         $model->client_title = $model->client_title ? $model->client_title : 1;
@@ -23,14 +23,14 @@ class ClientController extends Controller
             } else {
                 $error = $model->getErrors();
                 foreach ($error as $v)
-                    $msg .= $v[0];               
+                    $msg .= $v[0];
             }
         }
         $hash['error'] = $msg;
         $hash['model'] = $model;
         $this->render('edit', $hash);
     }
-    
+
     public function actionCoupons() {
         $actived = $this->getTicket(CLIENT_TICKET_ACTIVED);
         $type = [
@@ -48,7 +48,7 @@ class ClientController extends Controller
         $hash['type'] = $type;
         $this->render('coupons', $hash);
     }
-    
+
     private function getTicket($status) {
         $criteria = new CDbCriteria();
         $criteria->condition = 't.client_id=:client_id and t.status=:status';
@@ -60,7 +60,7 @@ class ClientController extends Controller
         $model = ClientTicket::model()->with('ticket')->findAll($criteria);
         return $model;
     }
-    
+
     public function filters() {
         return [
             'bindMobile + index, edit, coupons'

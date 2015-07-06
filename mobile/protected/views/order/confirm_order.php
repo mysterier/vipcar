@@ -42,7 +42,15 @@
 <h4 class=" text-center allmargin">
 	预付款:<span class="text-danger allsizelg allpadding"><?php echo $estimated_cost; ?></span>元
 </h4>
-<button id="wxpay" type="button" class="btn btn-primary btn-lg btn-block">确认付款</button>
+<div>
+<div class="col-xs-6">
+<button id="wxpay" type="button" class="btn brown-btn btn-block">确认付款</button>
+</div>
+<div class=" col-xs-6">
+<button id="no" type="button" class="btn btn-default default-btn btn-default btn-block">取消付款</button>
+</div>
+</div>
+
 <script type="text/javascript">
 //调用微信JS api 支付
 function jsApiCall()

@@ -19,6 +19,20 @@
 	color: #fff !important;
 	font-size: 1em;
 }
+.default-btn{
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+	height: 40px;
+	font-size: 1em;
+}
+.default-btn:hover{
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+	height: 40px;
+	font-size: 1em;
+}
 .brown-btn:hover{
 	background-color: #5d4138;
 	height: 40px;

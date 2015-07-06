@@ -33,49 +33,49 @@ ul.yiiPager a:link, ul.yiiPager a:visited{
 }
 
 .yiiPager a{
-	color:#5d4037 !important; 
+	color:#5d4037 !important;
 }
 
 a:link{
 	text-decoration: none;
 }
-*{	
+*{
 	margin:0;
 	padding:0;
 }
-.modal-open { 
-	overflow: inherit  !important; 
+.modal-open {
+	overflow: inherit  !important;
 }
-a:hover{ 
-	text-decoration: none; 
+a:hover{
+	text-decoration: none;
 }
-.font12{ 
-	font-size: 1.2em; 
+.font12{
+	font-size: 1.2em;
 }
-.indent{ 
-	text-indent: 2em; 
+.indent{
+	text-indent: 2em;
 }
-.padnone{ 
-	padding:0; 
+.padnone{
+	padding:0;
 }
-h5{	
+h5{
 	margin-top:0;
 	font-size:1em;
 	font-weight:bold;
 }
-li{ 
-	list-style:none; 
+li{
+	list-style:none;
 }
 h3{
     font-size:1.5em;
 	font-weight:bold;
 }
-h4{ 
+h4{
 	font-size:1.2em;
 	font-weight:bold;
 }
-body{ 
-	font-family:"微软雅黑"; 
+body{
+	font-family:"微软雅黑";
 }
 .padding100{
 	padding:100px 0;
@@ -103,7 +103,7 @@ body{
 }
 .cursor-txt{
 	cursor :text !important;
-} 
+}
 .radiusleft{
 	border-bottom-left-radius:0;
 	border-top-left-radius:0;
@@ -113,7 +113,7 @@ body{
 	border-top-right-radius:0;
 }
 .margintop10{
-	margin-top:10px; 
+	margin-top:10px;
 }
 /*提示*/
 .wrapper-width{
@@ -124,7 +124,7 @@ body{
 	height:34px;
 	line-height:34px;
 	color:#56abe4;
-	font-size:14px;	
+	font-size:14px;
 }
 .warningtxt span{
 	margin:9px;
@@ -132,25 +132,31 @@ body{
 	float:left;
 	width:16px;
 	height:16px;
-	background:url(/img/iconfont-zhuyi.png) no-repeat;	
+	background:url(/img/iconfont-zhuyi.png) no-repeat;
 }
 .errtxt{
 	height:34px;
-	line-height:34px;	
+	line-height:34px;
 	font-size:14px;
 	color:#eb4f38;
 }
 .errtxt span{
-	margin:9px;	
-	display:block;	
+	margin:9px;
+	display:block;
 	float:left;
 	width:16px;
 	height:16px;
 	background:url(/img/iconfont-cuowu.png) no-repeat;
 }
+label.error{
+	height:34px;
+	line-height:34px;
+	font-size:14px;
+	color:#eb4f38;
+}
 .imgtop{
 	background: url(/images/service/imgtop01.jpg) top center no-repeat;
-	padding-top:230px; 
+	padding-top:230px;
 }
 /*header*/
 
@@ -170,8 +176,8 @@ body{
 }
 .header-topnav{
 	padding:0 10px;
-	float:left;	
-	line-height:40px;	
+	float:left;
+	line-height:40px;
 	list-style:none;
 	text-decoration:none;
 }
@@ -188,7 +194,7 @@ body{
 	color:#fff;
 }
 .header-tel span img{
-	padding-right:10px;	
+	padding-right:10px;
 	padding-bottom: 3px;
 }
 /*nav*/
@@ -210,32 +216,32 @@ body{
 	display: inline-block;
 	float:left;
 	width:200px;
-	height:90px;	
+	height:90px;
 }
 .nav-topnav{
 	float:left;
 	width:160px;
 	height:40px;
-	font-size:16px;	
+	font-size:16px;
 	line-height:40px;
-	text-align:center;	
-	text-decoration:none;				
+	text-align:center;
+	text-decoration:none;
 	list-style:none;
 	background:#37474f;
 }
 .nav-topnav a{
-	float:left;	
+	float:left;
 	width:160px;
 	height:40px;
-	font-size:16px;	
-	line-height:40px;		
+	font-size:16px;
+	line-height:40px;
 	color:#fff;
 	text-align:center;
 }
 .nav-topnav a:hover{
 	display:block;
 	width:160px;
-	height:40px;	
+	height:40px;
 	color:#fff !important;
 	text-decoration:none;
 	background:url(/img/navhover.png) repeat-x;
@@ -245,7 +251,7 @@ body{
 	width:130px;
 	height:40px;
 	color:#fff !important;
-	text-decoration:none;	
+	text-decoration:none;
 	background:url(/img/navhover.png) repeat-x;
 }
 
@@ -266,19 +272,19 @@ body{
 .banner .imglist img{
 	margin:0 auto;
 	width: 960px;
-	height: 670px;	
+	height: 670px;
 }
 .banner-btn{
 	position:absolute;
 	left:430px;
 	bottom:10px;
-	padding:2px 15px;	
+	padding:2px 15px;
 	display:inline-block;
 	border-radius:11px;
 	background-color:#ccc;
 }
 .banner-btn li{
-	margin:0px 2px;	
+	margin:0px 2px;
 	float:left;
 	height:16px;
 	width:16px;
@@ -308,7 +314,7 @@ body{
 }
 .downapp{
 	margin-bottom: 50px;
-	width:100%;	
+	width:100%;
 	color: #000;
 }
 .index-h2{
@@ -320,8 +326,8 @@ body{
 }
 
 .downapp-container{
-	position:relative;	
-	margin:0 auto;	
+	position:relative;
+	margin:0 auto;
 	width:960px;
 }
 .downapp-left{
@@ -370,17 +376,17 @@ body{
 }
 
 .service-container{
-	margin:0 auto;	
+	margin:0 auto;
 	width:960px;
 }
 .servicelist{
 	margin-right:20px;
-	float:left;	
+	float:left;
 	width:300px;
 	height:400px;
 }
 .servicelist img{
-	padding-bottom:40px;	
+	padding-bottom:40px;
 	max-width: 300px;
 }
 /*footer*/
@@ -389,7 +395,7 @@ body{
 	background-color:#eaeaea;
 }
 .footer-container{
-	margin:0 auto;	
+	margin:0 auto;
 	padding:50px 0;
 	width:960px;
 }
@@ -397,10 +403,10 @@ body{
 	float:left;
 }
 .service-tel{
-	padding-left: 40px;	
+	padding-left: 40px;
 	width:220px;
 	height: 30px;
-	font-size: 26px;	
+	font-size: 26px;
 	line-height: 30px;
 	color: #000;
 	background: url("/img/icon-footer-tel.png")left center no-repeat;
@@ -435,13 +441,13 @@ body{
 
 }
 .footer-link{
-	margin:0 auto;	
+	margin:0 auto;
 	width:960px;
 	height:90px;
 	line-height:90px;
 }
 .footer-link h5{
-	float:left;	
+	float:left;
 	line-height:90px;
 	color:#fff;
 }
@@ -453,7 +459,7 @@ body{
 	float:left;
 }
 .footer-link ul li a{
-	padding:0 30px;	
+	padding:0 30px;
 	font-size:1em;
 	color:#fff;
 	border-right:1px solid #fff;
@@ -464,15 +470,15 @@ body{
 
 
 .copyright{
-	margin:0; 
+	margin:0;
 	padding: 10px;
-	width:100%;		
+	width:100%;
 	color: #fff;
-	text-align:center;	
+	text-align:center;
 	background: #000;
 }
 /*attention*/
-.attention-left{	
+.attention-left{
 	float: left;
 }
 .attention-right{
@@ -483,7 +489,7 @@ body{
 	padding-left: 140px;
 	display: inline-block;
 	height: 111px;
-	font-size:1.5em; 
+	font-size:1.5em;
 	line-height: 111px;
 	background: url("/img/weixingicon.png") left center no-repeat;
 }
@@ -494,15 +500,15 @@ body{
 .attention-right img{
 	margin-bottom: 20px
 }
-.attention-right a{	
+.attention-right a{
 	margin-bottom: 20px;
 }
 .attention-img-code{
-	margin-top:-17px; 
+	margin-top:-17px;
 	margin-left: 15px;
 }
 .attention-left-txt{
-	margin-left:14px; 
+	margin-left:14px;
 }
 .attention-right-txt{
 	margin-left: 14px;
@@ -517,7 +523,7 @@ body{
 /*register*/
 
 .registertitle h3,.registertitle p{
-	margin:0;	
+	margin:0;
 	color:#000;
 }
 .register-tab{
@@ -567,7 +573,7 @@ body{
 	cursor: pointer;
 }
 .registertop a{
-	display: inline-block;	
+	display: inline-block;
 	width:394px;
 	height:50px;
 	color:#808080;
@@ -615,6 +621,9 @@ body{
 .loginbtn{
 	margin:20px 0;
 	width:297px;
+}
+.btn-login{
+	width: 40%;
 }
 .login-right{
 	margin: 310px 0 50px;
@@ -667,7 +676,7 @@ body{
 	cursor: pointer;
 }
 .logintop a{
-	display: inline-block;	
+	display: inline-block;
 	width:394px;
 	height:50px;
 	color:#808080;
@@ -707,7 +716,7 @@ body{
 	padding-left: 20px;
 }
 .jiejititle h3,.jiejititle p{
-	margin:0;	
+	margin:0;
 	color:#000;
 }
 .jiejititle p{
@@ -757,7 +766,7 @@ body{
 	cursor: pointer;
 }
 .jiejitop a{
-	display: inline-block;	
+	display: inline-block;
 	width:245px;
 	height:50px;
 	color:#808080;
@@ -862,7 +871,7 @@ body{
 	width:740px;
 }
 .account-tab{
-	margin-bottom:10px;	
+	margin-bottom:10px;
 }
 .account-bill-tab li{
 	width: 148px;
@@ -916,8 +925,8 @@ body{
 .btn-color{
 	float:left;
 	margin:18px 0;
-	width:55px;	
-} 
+	width:55px;
+}
 .balance-money p{
 	font-size:14px;
 	color:#40a6d9;
@@ -960,7 +969,7 @@ body{
 	margin:20px 0
 }
 .information-header img{
-	margin-bottom:20px; 
+	margin-bottom:20px;
 	max-height: 160px;
 	max-width: 160px;
 
@@ -1015,7 +1024,7 @@ body{
     background: #fff;
     border-radius: 5px;
     overflow: hidden;
-    display: inline-block; 
+    display: inline-block;
 	float: left;
 	margin:10px;
 	padding: 10px;
@@ -1026,11 +1035,11 @@ body{
 }
 
 .addrlist h5{
-	padding-bottom:10px; 
+	padding-bottom:10px;
 
 }
 .addrlist p{
-	padding-bottom:10px; 
+	padding-bottom:10px;
 
 }
 .addrlist a{
@@ -1115,7 +1124,7 @@ body{
 	padding-top: 50px;
 }
 .enterprise-why .col-md-12{
-	padding:10px; 
+	padding:10px;
 }
 
 .enterprise-login{
@@ -1133,7 +1142,7 @@ body{
 	padding-top: 50px ;
 }
 .enterprise-user-container{
-	margin-top:5px; 
+	margin-top:5px;
 	position: relative;
 
 }
@@ -1161,8 +1170,8 @@ body{
 }
 .enterprise-login-left h3{
 	margin-top:160px;
-	margin-left:120px; 
-	font-size: 2.5em; 
+	margin-left:120px;
+	font-size: 2.5em;
 }
 
 /*服务*/
@@ -1281,13 +1290,13 @@ body{
 	position:absolute;
 	left:430px;
 	bottom:10px;
-	padding:2px 15px;	
+	padding:2px 15px;
 	display:inline-block;
 	border-radius:11px;
 	background-color:#ccc;
 }
 .carmonery-btn li{
-	margin:0px 2px;	
+	margin:0px 2px;
 	float:left;
 	height:16px;
 	width:16px;

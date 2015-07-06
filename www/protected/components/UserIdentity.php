@@ -22,15 +22,21 @@ class UserIdentity extends CUserIdentity
     {
         $client = Clients::model()->findByAttributes([
             'mobile' => $this->username,
-            'type' => isset($_GET['type']) ? $_GET['type'] : 0
+            'status' => (string) CLIENT_ACTIVED
         ]);
-        $passwd = md5('suxian' . md5($this->password));
+        if (isset($_GET['type'])) {
+            $passwd = $this->password;
+        } else {
+            $passwd = md5('suxian' . md5($this->password));
+        }
+        
         if (! $client)
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-        elseif ($client->password !== $passwd)
+        elseif ($client->password !== $passwd && Yii::app()->redis->getClient()->get($this->username) != $passwd)
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         else {
             Yii::app()->user->setState('type', $client->type);
+            Yii::app()->user->setState('pid', $client->pid);
             $this->uid = $client->id;
             $this->errorCode = self::ERROR_NONE;
         }

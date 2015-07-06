@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="众择用车专注机场 高铁接送服务，只为更专业。让乘坐成为一种生活品质，一次车费，两次服务，现在注册即得50元专车券">
 <meta name="keywords" content="众择用车,众择,上海专车,上海机场接送,接送机服务,上海高铁接送">
-<link rel="icon" href="logo16.ico" sizes="16x16">
-<link rel="icon" href="logo32.ico" sizes="32x32">
-<link rel="icon" href="logo48.ico" sizes="48x48">
-<link rel="icon" href="logo64.ico" sizes="64x64">
+<link rel="icon" href="/logo16.png" sizes="16x16">
+<link rel="icon" href="/logo32.png" sizes="32x32">
+<link rel="icon" href="/logo48.png" sizes="48x48">
+<link rel="icon" href="/logo64.png" sizes="64x64">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
 <script type="text/javascript" src="/js/jquery-1.11.2.js"></script>
 <?php if($this->id == 'order' && ($this->action->id == 'pickup'||$this->action->id == 'send')):?>
@@ -19,7 +19,7 @@
 
 
 <?php endif;?>
-<link rel="stylesheet" type="text/css" href="/css/mystyle-min.css"/>
+<link rel="stylesheet" type="text/css" href="/css/mystyle.css"/>
 <?php if($this->id == 'favorite'):?>
 <link rel="stylesheet" type="text/css" href="/css/account-like-min.css"/>
 <?php endif;?>
@@ -50,7 +50,7 @@
 				<li class="header-topnav"><a href="/register">注册</a></li>
 				<?php else:?>
 				<li class="header-topnav"><a href="/order/index"><?php echo Yii::app()->user->name;?></a></li>
-				<li class="header-topnav"><a href="/logout">[退出]</a></li>				
+				<li class="header-topnav"><a href="/logout">[退出]</a></li>
 				<?php endif;?>
 				<li class="header-topnav header-tel"><span class="icon-tel"><img src="/img/icon-phone.png" /></span>400-965-2886</li>
 			</ul>
@@ -84,7 +84,7 @@
                 <li><h5>关于众择</h5></li>
                 <li><a href="/about" >关于众择</a></li>
                 <li><a href="/culture" >众择文化</a></li>
-                <li><a href="/services" >众择服务</a></li>        
+                <li><a href="/services" >众择服务</a></li>
                 <li><a href="/jobs" >招聘信息</a></li>
                 <li><a href="/contact" >联系我们</a></li>
             </ul>
@@ -100,14 +100,14 @@
             <ul>
                 <li><h5 class="text-center">众择用车官方微信</h5></li>
                 <li><img width="150px" height="150px" class="img-border" src="/images/index/weixing-code.jpg" /></li>
-            </ul>   
+            </ul>
             <ul>
                 <li><h5 class="text-center">众择用车官方微博</h5></li>
                 <li><img width="150px" height="150px" class="img-border" src="/images/index/weibo-code.jpg" /></li>
-            </ul>           
+            </ul>
         </div>
         <div class=" clearfix" ></div>
-    </div>  
+    </div>
 </div>
 <div class="footer-bottom">
     <div class="footer-link">
@@ -116,7 +116,7 @@
         <li><a href="http://www.ctrip.com" target="_blank">携程旅游</a></li>
         <li><a href="http://www.subaozuche.com/" target="_blank">苏宝租车</a></li>
     </ul>
-    </div>    
+    </div>
 </div>
 <div class="copyright">
     Copyright © 2014 ZHONGZE All Rights Reserved. 备案号：沪ICP备14053943号-1
@@ -127,7 +127,7 @@ var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "//hm.baidu.com/hm.js?fefc1705270abb0dfc8d996218efe2a3";
-  var s = document.getElementsByTagName("script")[0]; 
+  var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>

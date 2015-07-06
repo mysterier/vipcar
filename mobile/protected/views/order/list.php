@@ -5,7 +5,7 @@
             </div>
             <div class="text-center col-xs-4 brown-border-btn">
                 已完成
-            </div>            
+            </div>
         </div> -->
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -19,11 +19,13 @@
 </div>
 
 <!--页面-->
-<?php 
+<?php
 if($orders):
 	foreach($orders as $order):
 ?>
-<a href="/order/detail/<?php echo $order->id . (($order->status==ORDER_STATUS_PAY) ? '?showwxpaytitle=1' : '');?>" class="alllist btn btn-default <?php echo ($order->status==ORDER_STATUS_END) ? 'finished' : 'running';?>">
+<div style="padding:20px 0" class="<?php echo ($order->status==ORDER_STATUS_END) ? 'finished' : 'running';?>">
+<div style="margin-bottom:-10px;" class="text-center"><?php echo $order->order_no;?></div>
+<a href="/order/detail/<?php echo $order->id . (($order->status==ORDER_STATUS_PAY) ? '?showwxpaytitle=1' : '');?>" class="alllist btn btn-default">
 	<div class="onelist">
 		<div class="leixin pull-left <?php echo ($order->type==ORDER_TYPE_AIRPORTPICKUP) ? 'bg-primary' : 'bg-airportsend';?>">
 			<?php echo ($order->type==ORDER_TYPE_AIRPORTPICKUP) ? '接机' : '送机';?>
@@ -57,11 +59,16 @@ if($orders):
 				case ORDER_STATUS_PAY:
 					echo '<div class="ddicon pull-left text-danger">待付款</div>';
 					break;
+				case ORDER_STATUS_CANCEL:
+				    echo '<div style="color:#ccc;" class="ddicon pull-left">已取消</div>';
+				    break;
 			}
 		?>
 		<div class="ddpadd text-right"><?php echo ($order->status==ORDER_STATUS_END) ? date('Y-m-d H:i:s', $order->last_update) : $order->created;?></div>
 	</div>
 </a>
+</div>
+
 <?php
 	endforeach;
 endif;

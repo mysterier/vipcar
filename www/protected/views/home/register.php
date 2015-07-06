@@ -1,3 +1,4 @@
+<?php CHtml::$errorCss = '';?>
 <div class="registerimg">
 	<div class="wrapper-width">
     	<div class="register-left">
@@ -21,11 +22,11 @@
                             ],
                             'htmlOptions' => [
                                 'class' => 'form-horizontal'
-                            ]
+                            ],
                         ]);
                     ?>
     					<div class="form-group"> 
-    						<label for="" class="col-sm-2 control-label">注册信息</label>
+    						<label for="" class="col-sm-2 control-label">注册信息1</label>
     					</div>
     					<div class="form-group">
     					    <?php 

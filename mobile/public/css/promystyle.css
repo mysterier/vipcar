@@ -108,6 +108,11 @@ body,html{
 	margin: 0 auto;
 	height: 60px;
 }
+.formlist textarea{
+		margin: 20px 0;
+		height: 20px;
+		line-height: 20px;
+}
 .formlist-choose{
 	display:block;
 	height: 60px;
@@ -166,11 +171,11 @@ body,html{
 	line-height: 60px;
 }
 .formlist textarea{
+	resize: none;
 	outline: 0;
-	height: 60px;
+	line-height: 20px;
 	font-size: 1em;
 	color: #6d4c41;
-	line-height: 60px;
 	border: none;
 	overflow-y:hidden;
 }

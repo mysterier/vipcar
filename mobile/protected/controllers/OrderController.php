@@ -356,7 +356,7 @@ class OrderController extends Controller
     public function actionList() {
         $this->title = '我的订单';
         $criteria = new CDbCriteria();
-        $criteria->select = 'id,pickup_place,vehicle_type,drop_place,type,status,created,last_update';
+        $criteria->select = 'id,order_no,pickup_place,vehicle_type,drop_place,type,status,created,last_update';
         $criteria->condition = 'open_id=:open_id and t.status != :status';
         $criteria->order = 't.id desc';
         $criteria->params = [

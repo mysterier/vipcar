@@ -1,16 +1,16 @@
 $(function(){
-//导航顶		 
-		var navH = $("#nav").offset().top; 
-		//滚动条事件 
-		$(window).scroll(function(){ 
-		//获取滚动条的滑动距离 
-		var scroH = $(this).scrollTop(); 
-		//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定 
-		if(scroH>=navH){ 
-		$("#nav").css({"position":"fixed","top":"0","left":"0","height":"40px"}); 
-		}else if(scroH<navH){ 
-		$("#nav").css({"position":"static","margin":"0 auto"}); 
-		} 
+//导航顶
+		var navH = $("#nav").offset().top;
+		//滚动条事件
+		$(window).scroll(function(){
+		//获取滚动条的滑动距离
+		var scroH = $(this).scrollTop();
+		//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+		if(scroH>=navH){
+		$("#nav").css({"position":"fixed","top":"0","left":"0","height":"40px"});
+		}else if(scroH<navH){
+		$("#nav").css({"position":"static","margin":"0 auto"});
+		}
 		}) ;
 
 //banner
@@ -35,14 +35,14 @@ $(function(){
 					$(".banner .banner-btn li").eq(_index).addClass("banner-hover").siblings().removeClass("banner-hover");
 					$(".banner .imglist").eq(_index).fadeIn(1000).siblings("div").fadeOut(1000);
 				  }else{_index=-1;}
-						
-				},3000); 
+
+				},3000);
 		 };
 		 autoplay();
 
 
-		 
- //tab 
+
+ //tab
 
  	// 我的订单
 		var account_tab_li = $('.account-tab ul li');
@@ -50,9 +50,9 @@ $(function(){
 				$(this).addClass('account-tab-hover').siblings().removeClass('account-tab-hover');
 				var index = account_tab_li.index(this);
 				$('.account-container > div').eq(index).show().siblings().hide();
-			});	
+			});
 
-				
+
 
 
 	//注册
@@ -61,7 +61,7 @@ $(function(){
 				$(this).addClass('registerhover').siblings().removeClass('registerhover');
 				var index =register_tab_li.index(this);
 				$('.registerbottom > div').eq(index).show().siblings().hide();
-			});	
+			});
 
 	//登入
 		var login_tab_li = $('.login-right ul li');
@@ -69,7 +69,7 @@ $(function(){
 				$(this).addClass('loginhover').siblings().removeClass('loginhover');
 				var index =login_tab_li.index(this);
 				$('.loginbottom > div').eq(index).show().siblings().hide();
-			});	
+			});
 
 
 //地址选择
@@ -82,25 +82,25 @@ $(function(){
 				$("#address_info").val(address_info);
 				$("#contacter_mobile").val(contacter_mobile);
 				$("#contacter_name").val(contacter_name);
-			});	
+			});
 
 //模态框
 
-	// $("#youhuiquan").click(function(){		
-	// 	$("#myyouhuiquan").modal(); 
+	// $("#youhuiquan").click(function(){
+	// 	$("#myyouhuiquan").modal();
 	// 	$("body").css('padding-right','0px');
 	// })
 
 	// $("#youhuiquan").click(function(){
 	// 	jQuery.noConflict();
-	// 	$("<div id="myy"></div>ouhuiquan").modal(); 
+	// 	$("<div id="myy"></div>ouhuiquan").modal();
 	// 	$("body").css('padding-right','0px');
-	// })	
+	// })
 //产品展示
 	    $("#immersive_slider").immersive_slider({
 	      container: ".main"
 	    });
- 
+
 //qiche
 	 // $(".carmonery .carmonerylist").eq(0).show().siblings("div").hide();
 		// $(".carmonery .carmoney-btn li").mouseover(function(){
@@ -123,10 +123,10 @@ $(function(){
 		// 			$(".carmonery .carmoney-btn li").eq(_index).addClass("carmoney-hover").siblings().removeClass("banner-hover");
 		// 			$(".carmonery .carmonerylist").eq(_index).fadeIn(1000).siblings("div").fadeOut(1000);
 		// 		  }else{_index=-1;}
-						
-		// 		},3000); 
+
+		// 		},3000);
 		//  };
-		//  autoplay();	 
+		//  autoplay();
 	 $(".carmonery .carmonerylist").eq(0).show().siblings("div").hide();
 		 var _index = 0;
 		 var timer = null;
@@ -137,10 +137,8 @@ $(function(){
 				  if(_index<4){
 					$(".carmonery .carmonerylist").eq(_index).fadeIn(1000).siblings("div").fadeOut(1000);
 				  }else{_index=-1;}
-						
-				},3000); 
+
+				},3000);
 		 };
-		 autoplayX();   
+		 autoplayX();
 });
-
-

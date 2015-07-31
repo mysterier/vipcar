@@ -384,6 +384,27 @@ class JsonpController extends Controller
         echo $html;
     }
     
+    public function actionCheckmobile() {
+        $mobile = $this->getParam('mobile');
+        $attributes = [
+            'mobile' => $mobile,
+            'status' => (string) CLIENT_ACTIVED
+        ];
+        $model = Clients::model()->findByAttributes($attributes);
+        if ($model) {
+            if ($model->password) {
+                //手机号码存在且已设置密码
+                echo 2;
+            } else {
+                //手机号码存在但没设置密码
+                echo 3;
+            }
+        } else {
+            //手机号码不存在
+            echo 1;
+        }
+    }
+    
     public function afterAction($action) {
         Yii::app()->end();
     }
